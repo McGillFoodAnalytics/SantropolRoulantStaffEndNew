@@ -1,0 +1,55 @@
+
+::ng-deep .cdk-overlay-container{ z-index:2000; }
+
+.modal-header{
+  background-color: #5fce99;
+}
+
+.modal-title {
+  color: white;
+}
+
+.modal-body{
+  padding: 1rem 2rem 0 2rem;
+}
+
+.form{
+  padding-bottom: 0;
+}
+
+.form-section{
+  margin-bottom: 1.5rem;
+  color: darkgrey;
+  margin-top: 1.5rem;
+}
+
+.footer{
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+
+.btn-add-volunteer {
+  color:#5fce99 !important;
+  border-color:#5fce99 !important;
+}
+
+.btn-add-volunteer:hover {
+  background-color: #5fce99 !important;
+  color: white !important;
+}
+
+.close:focus {
+  outline: none;
+}
+
+.btn-add:focus {
+  outline: none;
+}
+
+.btn-add {
+  color:#5fce99;
+}
+
+mat-icon {
+  font-size: 30px;
+}

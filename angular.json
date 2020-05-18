@@ -20,7 +20,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "customWebpackConfig": {
@@ -114,6 +115,7 @@
             "scripts": [],
             "styles": [
               "src/styles.scss"
+
             ],
             "assets": [
               "src/assets"

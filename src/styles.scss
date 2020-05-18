@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
 html, body {
   margin: 0;
   padding: 0;
@@ -15,9 +20,9 @@ html, body {
   align-items: center;
   justify-content: center;
 
-  background: url(./assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
+  //background: url(./assets/background.jpg) no-repeat center fixed;
+  //-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  //background-size: cover; /* version standardisée */
 
   .title {
     color: white;
