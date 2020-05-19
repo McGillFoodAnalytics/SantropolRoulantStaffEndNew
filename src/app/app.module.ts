@@ -11,6 +11,7 @@ import { AppConfig } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 // NG Translate
+import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -53,7 +54,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewUserComponent } from './new-user/new-user.component';
 
 import { AgGridModule } from 'ag-grid-angular';
@@ -65,22 +65,84 @@ import {ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
+
+import {ChangeRegistrationCodeComponent} from './change-registration-code/change-registration-code.component';
+import {MarkImportantEventComponent } from './mark-important-event/mark-important-event.component';
+import {SignUpSheetComponent} from './sign-up-sheet/sign-up-sheet.component';
+import {SliderComponent} from './slider/slider.component';
+import {AddUserToEventComponent} from './sign-up-sheet/add-user-to-event/add-user-to-event.component';
+import {RemoveUserFromEventComponent} from './sign-up-sheet/remove-user-from-event/remove-user-from-event.component';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+import {MarkPermanentEventComponent} from './sign-up-sheet/mark-permanent-event/mark-permanent-event.component';
+import {PermanentVolunteerComponent} from './permanent-volunteer/permanent-volunteer.component';
+import {PermanentVolunteerDirectoryComponent} from './permanent-volunteer-directory/permanent-volunteer-directory.component';
+import {EventSignUpTableComponent} from './sign-up-sheet/event-sign-up-table/event-sign-up-table.component';
+import {BugReportComponent} from './bug-report/bug-report.component';
+import {StaffNoteComponent } from './sign-up-sheet/staff-note/staff-note.component';
+import {NotificationsComponent} from './toolbar/notifications/notifications.component';
+import {EventNoteComponent} from './sign-up-sheet/event-note/event-note.component';
+import {UserEventComponent} from './user-event/user-event.component';
+import {HomeComponent} from './home/home.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+//translate:
+
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: SignUpSheetComponent
+  },
+  {
+    path: 'volunteer-schedule',
+    component: SignUpSheetComponent
+  },
+  {
+    path: 'volunteer-directory',
+    component: VolunteerDirectoryComponent
+  },
+  {
+    path: '**',
+    component: SignUpSheetComponent
+  }
+];
+
 @NgModule({
-  declarations: [AppComponent, VolunteerDirectoryComponent, NewUserComponent],
+  declarations: [
+    AppComponent,
+    NewUserComponent,
+    ChangeRegistrationCodeComponent,
+    MarkImportantEventComponent,
+    SignUpSheetComponent,
+    HomeComponent,
+    SliderComponent,
+    AddUserToEventComponent,
+    RemoveUserFromEventComponent,
+    ToolbarComponent,
+    MarkPermanentEventComponent,
+    PermanentVolunteerComponent,
+    PermanentVolunteerDirectoryComponent,
+    EventSignUpTableComponent,
+    BugReportComponent,
+    StaffNoteComponent,
+    NotificationsComponent,
+    EventNoteComponent,
+    VolunteerDirectoryComponent,
+    UserEventComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(AppConfig.firebase),
     HttpClientModule,
     CoreModule,
     FlexLayoutModule,
     AgGridModule.withComponents([]),
     SharedModule,
-    HomeModule,
+     FontAwesomeModule,
     DetailModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -125,8 +187,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    FontAwesomeModule
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

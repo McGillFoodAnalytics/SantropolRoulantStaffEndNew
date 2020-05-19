@@ -43,7 +43,7 @@ export class VolunteerDirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.volunteersObservable = this.fs.getUsers().subscribe(snapshots => {
+      this.fs.getUsers().subscribe(snapshots => {
 
       //console.log(this.volunteers);
       this.dataSource = new MatTableDataSource(snapshots);

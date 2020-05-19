@@ -1,0 +1,25 @@
+::ng-deep .my-class .modal-dialog {
+     max-width: 40%;
+     width: 40%;
+}
+
+.modal-header{
+  background-color: #ff3547;
+}
+
+.modal-title{
+  color: white;
+}
+
+.modal-body{
+  padding: 1rem 2rem 0 2rem;
+}
+
+.form{
+  padding-bottom: 0;
+}
+
+.footer{
+  padding-bottom:2.5rem;
+  text-align:center;
+}

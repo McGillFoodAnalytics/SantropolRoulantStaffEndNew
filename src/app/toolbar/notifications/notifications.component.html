@@ -1,0 +1,20 @@
+<button mat-icon-button class="notification-menu" [matMenuTriggerFor]="notficationMenu">
+    <mat-icon class="notifications" [matBadge]="notifications.length" [matBadgeHidden]="notifications.length < 1" matBadgeColor="warn">
+        notifications
+    </mat-icon>
+</button>
+<mat-menu #notficationMenu="matMenu" class="mat-menu-nofication" (closed)="onClickOutside()" xPosition="before">
+    <div class="notification-header row">
+        <div class="label col-5">Notifications</div>
+        <a *ngIf="notificationsNotEmpty()" class="col-6 mark-all-as-read" (click)="markAllAsRead($event)">Mark all as read
+    </a>
+    </div>
+    <mat-selection-list #list *ngIf="notificationsNotEmpty(); else notificationsEmpty" [(ngModel)]="selectedNotifications" (ngModelChange)="onNgModelChange($event)">
+        <mat-list-option *ngFor="let n of notifications | keyvalue" [value]="n.key" [selected]="n.value.read" (click)="blockClose($event)" [attr.isRead]="isRead(n.value.read)">
+            {{n.value.msg}}
+        </mat-list-option>
+    </mat-selection-list>
+    <ng-template #notificationsEmpty>
+        <div class="no-notifications"> No notifications </div>
+    </ng-template>
+</mat-menu>

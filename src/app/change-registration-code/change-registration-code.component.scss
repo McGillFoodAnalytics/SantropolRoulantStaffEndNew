@@ -1,0 +1,35 @@
+::ng-deep .change-registration-code .modal-dialog {
+     max-width: 40% !important;
+     width: 40% !important;
+}
+
+.form{
+  padding-bottom: 0;
+}
+
+.modal-header{
+  background-color: #5fce99;
+}
+
+.modal-title{
+  color: white;
+}
+
+.modal-body{
+  padding: 1rem 2rem 0 2rem;
+}
+
+.footer {
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+
+.btn-change-registration-code {
+  color:#5fce99 !important;
+  border-color:#5fce99 !important;
+}
+
+.btn-change-registration-code:hover {
+  background-color: #5fce99 !important;
+  color: white !important;
+}

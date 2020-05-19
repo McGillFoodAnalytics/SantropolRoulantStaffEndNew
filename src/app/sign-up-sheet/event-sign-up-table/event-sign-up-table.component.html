@@ -1,0 +1,43 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+    <!-- Slot Column -->
+    <ng-container matColumnDef="slot">
+        <th mat-header-cell *matHeaderCellDef> Slot </th>
+        <td mat-cell *matCellDef="let element"> {{ prettySlot(element.slot) }}</td>
+    </ng-container>
+    <!-- Volunteer Column -->
+    <ng-container matColumnDef="volunteer">
+        <th mat-header-cell *matHeaderCellDef> Volunteer </th>
+        <td mat-cell *matCellDef="let element"> {{ element.first_name }} {{ element.last_name }} </td>
+    </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="!isEmpty(element.first_name, element.last_name);" style="float:right">
+              <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <app-remove-user-from-event firstName={{element.first_name}}
+                                        lastName={{element.last_name}}
+                                        date={{element.event_date_txt}}
+                                        [eventType]="eventType"
+                                        (confirmRemove)="onRemoveUserFromEvent(element.id)">
+            </app-remove-user-from-event>
+            <app-staff-note firstName={{element.first_name}}
+                            lastName={{element.last_name}}
+                            date={{element.event_date_txt}}
+                            [eventType]="eventType"
+                            staffNote={{element.staff_note}}
+                            (insertStaffNote)="onInsertStaffNote(element.id, $event)">
+            </app-staff-note>
+          </mat-menu>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                class="table-row"
+                [attr.isEmpty]="isEmpty(row.first_name, row.last_name)"
+                (click)="isEmpty(row.first_name, row.last_name) && openAddUserModal(row)"
+                ></tr>
+</table>

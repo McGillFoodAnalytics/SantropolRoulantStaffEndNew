@@ -1,0 +1,29 @@
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100" id="modal-basic-title">Confirm Removal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-3">
+                <img class="img-warning" src="../../assets/warning.png" width=80px>
+            </div>
+            <div class="col-9">
+                <div> You are about to remove <b> {{ firstName }} {{ lastName }} </b> from the <b> {{ eventType }}</b> event on <b> {{ date }}</b>.
+                    <br />
+                    <br /> Are you sure?<b> This cannot be undone! </b></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button type="button" class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal.dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-xl btn-outline-danger btn-remove-volunteer" (click)="onSubmit()">Remove Volunteer</button>
+    </div>
+</ng-template>
+
+<button mat-menu-item (click)="open(content)">
+    <mat-icon>delete_forever</mat-icon>
+    <span>Remove Volunteer</span>
+</button>

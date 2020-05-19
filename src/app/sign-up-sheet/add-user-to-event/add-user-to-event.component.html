@@ -1,0 +1,41 @@
+<ng-template #addUserModal let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100" id="modal-basic-title"><i class="fa fa-user-plus"></i>Add Volunteer to Event</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row mb-12">
+            Select a volunteer to add to the &nbsp; <b> {{ eventType }}</b> &nbsp; event on &nbsp; <b> {{ date }} </b>.
+            <mat-form-field class="search-volunteer">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <div class="table-volunteers">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+                    <ng-container matColumnDef="first_name">
+                        <th mat-header-cell *matHeaderCellDef> First name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="last_name">
+                        <th mat-header-cell *matHeaderCellDef> Last name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="setClickedRow(i, row)" [class.active]="i == selectedRowIndex">
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button type="submit" class="btn btn-xl btn-outline-danger btn-add-volunteer" (click)="onSubmit()">Add Volunteer to Event</button>
+    </div>
+</ng-template>

@@ -1,0 +1,25 @@
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100" id="modal-basic-title">Event Note</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss(); close()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+          <div class="form-row mb-12 desc">
+              <span *ngIf="eventNote; else noEventNote">Below is the event note for the <b> {{ eventType }} </b> event on <b> {{ date }}</b>. Click on the textbox to edit.</span>
+              <ng-template #noEventNote>
+                <span>Insert a event note for the <b> {{ eventType }} </b> event on <b> {{ date }}. </b></span>
+              </ng-template>
+          </div>
+          <div contenteditable="true"
+            [textContent]="eventNote" (input)="eventNote=$event.target.textContent; touch()">
+          </div>
+    </div>
+    <div class="footer">
+        <button *ngIf="touched" type="button" class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal.dismiss(); close()">Cancel</button>
+        <button *ngIf="touched" type="submit" class="btn btn-xl btn-outline-danger btn-insert-staff-note" (click)="onSubmit()">Save Event Note</button>
+    </div>
+</ng-template>
+
+<img class="event-note" src="../../assets/event-note.svg" width="32px" (click)="open(content)">

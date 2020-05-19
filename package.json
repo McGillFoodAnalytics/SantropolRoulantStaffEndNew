@@ -109,6 +109,8 @@
     "ag-grid-community": "23.1.1",
     "angular-bootstrap-md": "9.3.0",
     "bootstrap": "4.5.0",
-    "firebase": "7.14.4"
+    "firebase": "7.14.4",
+    "jquery": "3.5.1",
+    "resolve-url-loader": "3.1.1"
   }
 }

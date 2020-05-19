@@ -1,0 +1,81 @@
+::ng-deep .staff-note .modal-dialog {
+     max-width: 40%;
+     width: 40%;
+}
+
+
+.modal-header{
+  background-color: #5fce99;
+}
+
+.modal-title{
+  color: white;
+}
+
+.modal-body {
+  padding: 1rem 4rem 1rem 4rem;
+}
+
+.footer {
+  padding-top: 1rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+
+.btn-insert-staff-note {
+  background-color: #5fce99 !important;
+  color: white !important;
+  border-color: #5fce99 !important;
+}
+
+.btn-insert-staff-note:hover {
+  background-color: #40c485 !important;
+  border-color: #40c485 !important;
+}
+
+.btn-cancel {
+  color:#5fce99 !important;
+  border-color:#5fce99 !important;
+  margin-right:1rem;
+}
+
+.btn-cancel:hover {
+  background-color: #5fce99 !important;
+  color: white !important;
+}
+
+.desc {
+  margin-bottom: 1.5rem;
+}
+
+.note {
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+p {
+  font-family: Lato;
+}
+
+[contenteditable] {
+  border: 1px solid black;
+  padding: 16px;
+  white-space: pre;
+  outline: 0;
+  line-height: 30px;
+}
+
+[contenteditable]:focus {
+  border-color: blue;
+}
+
+.close:focus {
+  outline: none;
+}
+
+.event-note {
+  cursor: pointer;
+}

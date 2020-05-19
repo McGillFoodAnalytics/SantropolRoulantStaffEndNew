@@ -1,0 +1,39 @@
+<ng-template #content let-modal>
+  <div class="modal-header text-center">
+    <h4 class="modal-title w-100" id="modal-basic-title">Market Event as Important</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="form-row mb-12">
+        <div class="form-group col-md-6">
+          <mat-form-field>
+            <mat-label>Event Type</mat-label>
+            <mat-select formControlName="event_type" [(ngModel)]="model.event_type">
+              <mat-option disabled>--Select Event Type--</mat-option>
+              <mat-option *ngFor="let event of eventTypes | keyvalue" [value]="event.key"> {{ event.key }} </mat-option>
+            </mat-select>
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field>
+            <mat-label>Event Date</mat-label>
+            <mat-select formControlName="event_date" [(ngModel)]="model.event_date">
+              <mat-option disabled>--Select Event Date--</mat-option>
+              <mat-option *ngFor="let date of eventDates | keyvalue" [value]="date.key"> {{ date.key }} </mat-option>
+            </mat-select>
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+      <button type="submit" class="btn btn-xl btn-outline-danger" (click)="onSubmit()">Mark as Important</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-danger" (click)="open(content)">Mark Important Event</button>

@@ -1,0 +1,35 @@
+<ng-template #content let-modal>
+
+  <!-- top of the window with the X button on the top-right corner-->
+   <div class="modal-header text-center">
+      <h4 class="modal-title w-100" id="modal-basic-title" style="color: white">Create New Bug Report</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+
+   <!-- main box where bug report is written into -->
+   <div class="modal-body">
+      <form class="form" (ngSubmit)="onSubmit()" [formGroup]="myForm">
+        <div class="form-row mb-12 div-desc">
+            <mat-form-field class="desc" appearance=fill>
+               <textarea matInput placeholder="Description of bug report" formControlName="description" [(ngModel)]="model.description" rows="10" col="40" ></textarea>
+               <mat-error>Required!</mat-error>
+            </mat-form-field>
+          </div>
+      </form>
+   </div>
+
+   <!-- bottom of the bug pop-up window with submit and cancel button-->
+   <div class="footer">
+     <button type="button" class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal.dismiss(); close()">Cancel</button>
+     <button type="submit" class="btn btn-xl btn-outline-primary btn-submit" (click)="onSubmit()">Submit Report</button>
+   </div>
+</ng-template>
+
+<button mat-menu-item (click)="open(content)">
+  <mat-icon>bug_report</mat-icon>
+  <span>New Bug Report</span>
+</button>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create New Volunteer</button> -->

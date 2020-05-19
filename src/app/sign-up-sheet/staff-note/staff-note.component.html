@@ -1,0 +1,28 @@
+<ng-template #content let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100" id="modal-basic-title">Staff Note</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss(); close()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+          <div class="form-row mb-12 desc">
+              <span *ngIf="currentStaffNote; else noStaffNote">Below is the staff note for <b> {{ firstName }} {{ lastName }} </b> for the <b> {{ eventType }} </b> event on <b> {{ date }}  </b></span>
+              <ng-template #noStaffNote>
+                <span>Insert a staff note for <b> {{ firstName }} {{ lastName }} </b> for the <b> {{ eventType }} </b> event on <b> {{ date }}  </b></span>
+              </ng-template>
+          </div>
+          <div contenteditable="true"
+            [textContent]="currentStaffNote" (input)="currentStaffNote=$event.target.textContent; touch()">
+          </div>
+    </div>
+    <div class="footer">
+        <button *ngIf="touched" type="button" class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal.dismiss(); close()">Cancel</button>
+        <button *ngIf="touched" type="submit" class="btn btn-xl btn-outline-danger btn-insert-staff-note" (click)="onSubmit()">Save Staff Note</button>
+    </div>
+</ng-template>
+
+<button mat-menu-item (click)="open(content)">
+    <mat-icon>notes</mat-icon>
+    <span>Staff Note</span>
+</button>

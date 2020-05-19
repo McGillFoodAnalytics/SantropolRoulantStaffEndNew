@@ -1,0 +1,32 @@
+mat-toolbar {
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+a {
+  color: white;
+}
+
+a:hover{
+  text-decoration: none !important;
+  color: #e4e4e2
+}
+
+::ng-deep.cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+  background-color: #212529 !important;
+  opacity: 0.5 !important;
+}
+
+button.mat-menu-trigger.mat-icon-button.mat-button-base:hover {
+  color: #e4e4e2
+}
+
+.menu-btn {
+  outline: none;
+}
+
+.notifications {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}

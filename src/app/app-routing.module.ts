@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 
 import { HomeRoutingModule } from './home/home-routing.module';
+import {SignUpSheetComponent} from './sign-up-sheet/sign-up-sheet.component';
 import { DetailRoutingModule } from './detail/detail-routing.module';
 
 const routes: Routes = [
@@ -10,10 +11,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent
   }
 ];
 

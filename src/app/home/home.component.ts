@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +6,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private isCollapsed = true;
+  private opened: boolean = false;
+  private closeOnClickOutside: boolean = true;
+  private showBackdrop: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+  }
+
+  toggleSidebar() {
+    this.opened = !this.opened;
+  }
+
+  private onBackdropClicked() {
+
+  }
 
 }

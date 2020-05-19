@@ -1,0 +1,35 @@
+.card-header{
+  text-align: center;
+  color: white;
+}
+
+.card-header {
+  background-color: #60A4FF;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.kitchenPM .card-body {
+  background-color: #F4ABAA;
+}
+
+.row {
+  justify-content: center;
+ }
+
+ .img-important-event-false {
+   cursor: pointer;
+ }
+
+ app-permanent-volunteer {
+   float:right;
+   margin-right:0.5rem;
+   margin-top:0.2rem;
+   cursor: pointer;
+ }
+
+.img-important-event-true {
+  cursor: pointer;
+}

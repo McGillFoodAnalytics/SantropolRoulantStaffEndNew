@@ -1,0 +1,87 @@
+.notification-menu {
+  outline: none;
+}
+
+.notification-header {
+  padding: 10px;
+  color: white;
+  background-color: #5fce99;
+  position: sticky;
+  position: -webkit-sticky; /* For macOS/iOS Safari */
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.label {
+  display: inline-block;
+  width: 90%;
+  text-align: left;
+  font-weight: 500;
+  margin-left: 0.3rem;
+}
+
+::ng-deep.mat-menu-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+::ng-deep.mat-menu-panel {
+  max-height: calc(100vh - 90px) !important;
+  max-width: 350px !important;
+  overflow-x: hidden !important;
+}
+
+.mat-list-base .mat-list-option {
+  font-size: 14px;
+  color: #565454;
+}
+
+.msg, .no-notifications {
+  font-size: 14px;
+  color: #565454;
+}
+
+::ng-deep.mat-pseudo-checkbox-checked {
+    background: #5fce99 !important;
+}
+
+::ng-deep.cdk-overlay-transparent-backdrop, .cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+  background-color: #212529 !important;
+  opacity: 0.5 !important;
+}
+
+mat-list-option[isRead='false'] {
+  background-color: #d6ede3;
+}
+
+mat-list-option[isRead='true'] {
+  background-color: #efefefd9;
+}
+
+.no-notifications {
+  padding: 1rem 7.5rem;
+  background-color: #efefefd9;
+}
+
+mat-selection-list {
+  padding-top: 0;
+}
+
+::ng-deep mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  padding: 0.5rem 0 !important;
+  margin: 0.2rem !important;
+  height: 100% !important;
+}
+
+.fa-circle {
+  color: #f24a5a;
+  padding: 0;
+  padding-top: 10px;
+}
+
+.mark-all-as-read {
+  text-align: right;
+  cursor: pointer;
+  padding-right: 0;
+  font-size: 14px;
+}

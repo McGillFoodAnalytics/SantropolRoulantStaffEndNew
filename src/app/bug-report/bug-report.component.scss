@@ -1,0 +1,64 @@
+
+::ng-deep .bug-report .modal-dialog {
+     max-width: 60% !important;
+     width: 60% !important;
+}
+
+.modal-header{
+  background-color: #5fce99;
+}
+
+.modal-title{
+  color: white;
+}
+
+.modal-body {
+  padding: 2.5rem 3rem 0rem 3rem
+}
+
+.footer {
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+.form-row{
+  justify-content: center;
+}
+.btn-submit {
+  background-color: #5fce99 !important;
+  color: white !important;
+  border-color: #5fce99 !important;
+}
+
+.btn-submit:hover {
+  background-color: #40c485 !important;
+  border-color: #40c485 !important;
+}
+
+.form{
+  padding-bottom: 0;
+}
+
+.desc {
+  width: 100%;
+}
+
+.btn-cancel {
+  color:#5fce99 !important;
+  border-color:#5fce99 !important;
+  margin-right:1rem;
+}
+
+.btn-cancel:hover {
+  background-color: #5fce99 !important;
+  color: white !important;
+}
+
+.form-section{
+  margin-bottom: 1.5rem;
+  color: darkgrey;
+  margin-top: 1.5rem;
+}
+
+.div-desc {
+  justify-content: center;
+}

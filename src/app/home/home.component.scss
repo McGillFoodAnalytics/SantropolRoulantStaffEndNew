@@ -1,3 +1,25 @@
-:host {
-  
+// HEADER
+
+.header{
+    background-color: #D3BBDB;
+    color: white;
+    padding: 0.5px;
+    margin-bottom: 0;
+    height: 70px;
+}
+.header-text{
+    margin-left: 1rem;
+}
+.actions-title{
+  padding: 2rem;
+  text-align: center;
+}
+.container-page{
+  background-color: '#DEF3C0'
+}
+
+ng-sidebar-container {
+    aside.ng-sidebar {
+        background-color: darkslategray !important;
+    }
 }
