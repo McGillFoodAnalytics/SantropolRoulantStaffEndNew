@@ -15,7 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
+//import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AppComponent } from './app.component';
@@ -55,6 +55,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NewUserComponent } from './new-user/new-user.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -82,7 +83,7 @@ import {StaffNoteComponent } from './sign-up-sheet/staff-note/staff-note.compone
 import {NotificationsComponent} from './toolbar/notifications/notifications.component';
 import {EventNoteComponent} from './sign-up-sheet/event-note/event-note.component';
 import {UserEventComponent} from './user-event/user-event.component';
-import {HomeComponent} from './home/home.component';
+//import {HomeComponent} from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //translate:
 
@@ -116,7 +117,7 @@ const appRoutes: Routes = [
     ChangeRegistrationCodeComponent,
     MarkImportantEventComponent,
     SignUpSheetComponent,
-    HomeComponent,
+    //HomeComponent,
     SliderComponent,
     AddUserToEventComponent,
     RemoveUserFromEventComponent,
@@ -135,6 +136,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+
+    MatBadgeModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(AppConfig.firebase),
     HttpClientModule,
