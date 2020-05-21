@@ -145,7 +145,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     AgGridModule.withComponents([]),
     SharedModule,
-     FontAwesomeModule,
+    FontAwesomeModule,
     DetailModule,
     AppRoutingModule,
     BrowserAnimationsModule,

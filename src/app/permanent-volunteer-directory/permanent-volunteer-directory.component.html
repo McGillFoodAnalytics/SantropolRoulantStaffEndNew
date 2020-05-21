@@ -18,7 +18,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let event of events">
+      <tr *ngFor="let event of eventsObservable | async">
         <th scope="row">{{event.user_id}}</th>
         <td>
           {{event.event_type}}
