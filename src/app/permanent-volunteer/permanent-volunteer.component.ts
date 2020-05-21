@@ -48,7 +48,7 @@ export class PermanentVolunteerComponent implements OnInit {
       frequency: ['', Validators.required],
       endDate: ['', Validators.required],
       startDate:['', Validators.required],
-      volunteer:['', Validators.required],
+      volunteer:[['','',''], Validators.required],
       eventType:['', Validators.required]
     });
   }
