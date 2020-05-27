@@ -12,9 +12,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8 offset-2" style="text-align:center">
-                            <button class="btn" (click)="prevWeek()" *ngIf="currentWeek!='first'"><i class="fa fa-chevron-left fa-lg" style="color:#5fce99"></i></button>
+                            <button class="btn" (click)="prevWeek()" *ngIf="currentWeek!='first'"><mat-icon>arrow_back_ios</mat-icon></button>
                             {{getWeekTitle()}}
-                            <button class="btn" (click)="nextWeek()" *ngIf="currentWeek!='third'"><i class="fa fa-chevron-right fa-lg" style="color:#5fce99"></i></button>
+                            <button class="btn" (click)="nextWeek()" *ngIf="currentWeek!='third'"><mat-icon>arrow_forward_ios</mat-icon></button>
                         </div>
                         <div class="col-2" style="text-align:right">
                             <select class="browser-default custom-select" [(ngModel)]="currentEvent" style="background-color:#5fce99 !important; color:white; border:none">
@@ -61,9 +61,9 @@
                                 </ng-template> -->
                             </div>
                             <div class="card-footer" style="text-align:center">
-                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.svg" width=35px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
+                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.png" width=35px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
                                 <ng-template #importantEventFalse>
-                                    <img class="img-important-event-false" src="../../assets/important-event-false.svg" width=35px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
+                                    <img class="img-important-event-false" src="../../assets/important-event-false.png" width=35px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
                                 </ng-template>
                                 <!-- <app-add-user-to-event *ngIf="day.value.num_volunteers < day.value.num_slots; else fullEvent" [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="false" (onAddUser)="addUserToEvent($event, day.value)" style="cursor: pointer;"  matTooltip="Click to add a volunteer to this event"></app-add-user-to-event>
                                 <ng-template #fullEvent>
@@ -112,9 +112,9 @@
                                 </ng-template> -->
                             </div>
                             <div class="card-footer" style="text-align:center">
-                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.svg" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
+                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.png" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
                                 <ng-template #importantEventFalse>
-                                    <img class="img-important-event-false" src="../../assets/important-event-false.svg" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
+                                    <img class="img-important-event-false" src="../../assets/important-event-false.png" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
                                 </ng-template>
                                 <!-- <app-add-user-to-event *ngIf="day.value.num_volunteers < day.value.num_slots; else fullEvent" [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="false" (onAddUser)="addUserToEvent($event, day.value)" style="cursor: pointer;" matTooltip="Click to add a volunteer to this event"></app-add-user-to-event>
                                 <ng-template #fullEvent>
@@ -162,9 +162,9 @@
                                 </ng-template> -->
                             </div>
                             <div class="card-footer" style="text-align:center">
-                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.svg" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
+                                <img class="img-important-event-true" *ngIf="day.value.is_important_event; else importantEventFalse" src="../../assets/important-event-true.png" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)"  matTooltip="Click to mark this event as unimportant">
                                 <ng-template #importantEventFalse>
-                                    <img class="img-important-event-false" src="../../assets/important-event-false.svg" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
+                                    <img class="img-important-event-false" src="../../assets/important-event-false.png" width=30px style="margin-right:1rem" (click)="changeEventImportance(day.key)" matTooltip="Click to mark this event as important">
                                 </ng-template>
                                 <!-- <app-add-user-to-event *ngIf="day.value.num_volunteers < day.value.num_slots; else fullEvent" [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="false" (onAddUser)="addUserToEvent($event, day.value)" style="cursor: pointer;" matTooltip="Click to add a volunteer to this event"></app-add-user-to-event>
                                 <ng-template #fullEvent>

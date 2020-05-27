@@ -11,7 +11,7 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th scope="col">Volunteer ID</th>
+        <th scope="col">Volunteer</th>
         <th scope="col">Event Type </th>
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
@@ -19,16 +19,14 @@
       </thead>
       <tbody>
       <tr *ngFor="let event of eventsObservable | async">
-        <th scope="row">{{event.user_id}}</th>
+        <th scope="row">{{event.first_name}} {{event.last_name}}</th>
         <td>
           {{event.event_type}}
 
         <td>
           {{event.start_date}}
         <td>
-        {{event.end_date}}</td>
-        <td>
-        <!-- <mat-icon (click)="delete(event.id)">delete</mat-icon></td> -->
+        {{event.end_date}} <mat-icon (click)="delete(event.id)">delete</mat-icon></td>
       </tr>
       </tbody>
     </table>

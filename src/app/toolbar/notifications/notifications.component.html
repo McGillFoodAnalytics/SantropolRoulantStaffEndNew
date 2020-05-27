@@ -1,6 +1,6 @@
 <button mat-icon-button class="notification-menu" [matMenuTriggerFor]="notficationMenu">
     <mat-icon class="notifications" [matBadge]="notifications.length" [matBadgeHidden]="notifications.length < 1" matBadgeColor="warn">
-        notifications
+        alarm
     </mat-icon>
 </button>
 <mat-menu #notficationMenu="matMenu" class="mat-menu-nofication" (closed)="onClickOutside()" xPosition="before">

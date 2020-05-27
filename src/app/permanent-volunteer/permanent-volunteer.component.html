@@ -18,7 +18,7 @@
         <div class="form-row mb-12">
            <div class="form-group col-md-4">
              <mat-form-field>
-               <mat-label>Volunteer</mat-label>
+               <mat-label>Existing Volunteer</mat-label>
                <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
                  <mat-option disabled>--Select the volunteer--</mat-option>
                  <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
