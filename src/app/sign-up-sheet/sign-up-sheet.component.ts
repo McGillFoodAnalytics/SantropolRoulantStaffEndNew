@@ -46,6 +46,8 @@ export class SignUpSheetComponent implements OnInit {
                         'Delivery Driver Sat' : 'delds',
                         'Delivery Sat' : 'delis'
                       };
+  eventArray = ['Kitchen AM','Kitchen PM','Delivery Driver','Delivery','Kitcham AM Sat','Kitchem PM Sat','Delivery Driver Sat','Delivery Sat'];
+
   currentEvent = 'Kitchen AM';
   private pane = 'left';
   items: Observable<any[]>;
@@ -217,6 +219,19 @@ export class SignUpSheetComponent implements OnInit {
 
   getEventList(){
     var currentEventValue = this.eventTypes[this.currentEvent];
+    if (this.currentWeek == "first") {
+      return this.week1[currentEventValue];
+    }
+    else if (this.currentWeek == "second"){
+      return this.week2[currentEventValue];
+    }
+    else {
+      return this.week3[currentEventValue];
+    }
+  }
+
+  getEventListCool(eventType){
+    var currentEventValue = this.eventTypes[eventType];
     if (this.currentWeek == "first") {
       return this.week1[currentEventValue];
     }

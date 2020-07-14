@@ -7,7 +7,6 @@ import { AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { User } from '../shared/models/user';
 
 
 @Component({
@@ -33,7 +32,7 @@ export class VolunteerDirectoryComponent implements OnInit {
   eventsObservable;
   dataSource;
   errorMessage;
-  expandedElement: User;
+  expandedElement: Event;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 

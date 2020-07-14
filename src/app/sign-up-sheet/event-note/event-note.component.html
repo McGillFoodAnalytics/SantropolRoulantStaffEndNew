@@ -9,7 +9,7 @@
           <div class="form-row mb-12 desc">
               <span *ngIf="eventNote; else noEventNote">Below is the event note for the <b> {{ eventType }} </b> event on <b> {{ date }}</b>. Click on the textbox to edit.</span>
               <ng-template #noEventNote>
-                <span>Insert a event note for the <b> {{ eventType }} </b> event on <b> {{ date }}. </b></span>
+                <span>Insert an event note for the <b> {{ eventType }} </b> event on <b> {{ date }}. </b></span>
               </ng-template>
           </div>
           <div contenteditable="true"

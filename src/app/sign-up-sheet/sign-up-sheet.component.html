@@ -28,10 +28,11 @@
         </div>
     </div>
     <div class="container-fluid">
+      <app-new-schedule></app-new-schedule>
         <app-slider [activePane]="currentWeek">
             <div firstPane>
                 <div class="row" style="padding-bottom:2rem">
-                    <div class="col-4" *ngFor="let day of getEventList() | keyvalue" style="padding-bottom:2rem">
+                    <div class="col-3" *ngFor="let day of getEventList() | keyvalue" style="padding-bottom:2rem">
                         <div class="card">
                             <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->
                             <div class="card-header" *ngIf="day.value.is_important_event; else importantEventFalseHeader" style="background-color:#f24a5a">
@@ -81,9 +82,13 @@
                     </div>
                 </div>
             </div>
+
+
+
             <div secondPane>
-                <div class="row" style="padding-bottom:2rem">
-                    <div class="col-4" *ngFor="let day of getEventList() | keyvalue; let i=index" style="padding-bottom:2rem">
+                <div class="row" style="padding-bottom:2rem" *ngFor="let coolEvent of eventArray">
+
+                    <div class="col-3" *ngFor="let day of getEventListCool(coolEvent) | keyvalue; let i=index" style="padding-bottom:2rem">
                         <div class="card">
                           <div class="card-header" *ngIf="day.value.is_important_event; else importantEventFalseHeader" style="background-color:#f24a5a">
                               {{ day.value.display_date | date: 'EEEE, MMM d' }}
@@ -95,7 +100,7 @@
                           </ng-template>
                             <div class="card-body">
                               <app-event-sign-up-table [slots]="day.value.slots"
-                                                       [eventType]="currentEvent"
+                                                       [eventType]="coolEvent"
                                                        [volunteerList]="volunteerList"
                                                        (removeUserFromEvent)="removeUserFromEvent($event)"
                                                        (insertStaffNote)="insertStaffNote($event)">
@@ -121,19 +126,24 @@
                                   <app-add-user-to-event [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="true" (onAddUser)="addUserToEvent($event, day.value)" style="opacity:0.4"></app-add-user-to-event>
                                 </ng-template> -->
                                 <app-event-note date={{day.value.slots[0].event_date_txt}}
-                                                [eventType]="currentEvent"
+                                                [eventType]="coolEvent"
                                                 eventNote={{day.value.slots[0].event_note}}
                                                 (updateEventNote)="updateEventNote(day.value.slots[0].id, $event)"
                                                 matTooltip="Click to view & edit the event note">
                                 </app-event-note>
+                                <mat-icon *ngIf="day.value.slots[0].event_note != null && day.value.slots[0].event_note.length > 0">announcement</mat-icon>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
             <div thirdPane>
                 <div class="row" style="padding-bottom:2rem">
-                    <div class="col-4" *ngFor="let day of getEventList() | keyvalue; let i=index" style="padding-bottom:2rem">
+                    <div class="col-3" *ngFor="let day of getEventList() | keyvalue; let i=index" style="padding-bottom:2rem">
                         <div class="card">
                           <div class="card-header" *ngIf="day.value.is_important_event; else importantEventFalseHeader" style="background-color:#f24a5a">
                               {{ day.value.display_date | date: 'EEEE, MMM d' }}
