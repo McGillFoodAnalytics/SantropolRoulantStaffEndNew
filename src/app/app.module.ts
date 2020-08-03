@@ -86,6 +86,7 @@ import {UserEventComponent} from './user-event/user-event.component';
 //import {HomeComponent} from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewScheduleComponent } from './sign-up-sheet/new-schedule/new-schedule.component';
+import { WeekGeneratorComponent } from './week-generator/week-generator.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -133,7 +134,8 @@ const appRoutes: Routes = [
     EventNoteComponent,
     VolunteerDirectoryComponent,
     UserEventComponent,
-    NewScheduleComponent
+    NewScheduleComponent,
+    WeekGeneratorComponent
   ],
   imports: [
     BrowserModule,

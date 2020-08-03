@@ -1,0 +1,160 @@
+<ng-template #addPermanentModal let-modal>
+  <div class="modal-header text-center">
+    <h4 class="modal-title w-100"><i class="fa fa-map-marker"></i>Permanent Volunteer</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body text-center">
+
+
+      <form class="form" (ngSubmit)="onSubmit()" [formGroup]="addPermanentForm">
+        <div class="form-row mb-12">
+          <div class="form-group col-md-12" style="margin-bottom:1rem;">
+            Add permanent volunteer markers:
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Weekday</div>
+          <div class="col-1">Monday</div>
+          <div class="col-1">Tuesday</div>
+          <div class="col-1">Wednesday</div>
+          <div class="col-1">Thursday</div>
+          <div class="col-1">Friday</div>
+          <div class="col-1">Saturday</div>
+          <div class="col-1">Sunday</div>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            Kitchen AM:
+          </div>
+          <div class="col-1">
+            <mat-select formControlName="kitamSlots"  [(ngModel)]="model.kitamSlots[0]">
+              <mat-option [value]="0"> 0 </mat-option>
+              <mat-option [value]="1"> 1 </mat-option>
+              <mat-option [value]="2"> 2 </mat-option>
+              <mat-option [value]="3"> 3 </mat-option>
+              <mat-option [value]="4"> 4 </mat-option>
+            </mat-select>
+        </div>
+        <div class="col-1">
+          <mat-select formControlName="kitamSlots" [(ngModel)]="model.kitamSlots[1]">
+            <mat-option [value]="0"> 0 </mat-option>
+            <mat-option [value]="1"> 1 </mat-option>
+            <mat-option [value]="2"> 2 </mat-option>
+            <mat-option [value]="3"> 3 </mat-option>
+            <mat-option [value]="4"> 4 </mat-option>
+          </mat-select>
+      </div>
+        </div>
+        <div class="form-row mb-12">
+           <div class="col-1">
+             Kitchen AM:
+             <!-- <mat-form-field>
+               <mat-label>Existing Volunteer</mat-label>
+               <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
+                 <mat-option disabled>--Select the volunteer--</mat-option>
+                 <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field> -->
+           </div>
+           <div class="form-group col-md-4">
+             Kitchen PM:
+             <!-- <mat-form-field>
+               <mat-label>Existing Volunteer</mat-label>
+               <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
+                 <mat-option disabled>--Select the volunteer--</mat-option>
+                 <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field> -->
+           </div>
+           <div class="form-group col-md-4">
+             Delivery:
+             <!-- <mat-form-field>
+               <mat-label>Existing Volunteer</mat-label>
+               <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
+                 <mat-option disabled>--Select the volunteer--</mat-option>
+                 <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field> -->
+           </div>
+           <div class="form-group col-md-4">
+             Delivery Driver:
+             <!-- <mat-form-field>
+               <mat-label>Existing Volunteer</mat-label>
+               <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
+                 <mat-option disabled>--Select the volunteer--</mat-option>
+                 <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field> -->
+           </div>
+
+
+           <div class="form-group col-md-4">
+             <mat-form-field>
+               <mat-label>Frequency</mat-label>
+               <mat-select formControlName="frequency" [(ngModel)]="model.frequency">
+                 <mat-option disabled>--Select the frequency--</mat-option>
+                 <mat-option [value]="1"> Weekly </mat-option>
+                 <mat-option [value]="2"> Biweekly </mat-option>
+                 <mat-option [value]="3"> Triweekly </mat-option>
+                 <mat-option [value]="4"> Monthly </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field>
+           </div>
+           <div class="form-group col-md-4">
+             <mat-form-field>
+               <mat-label>Event Type</mat-label>
+               <mat-select formControlName="eventType" [(ngModel)]="model.eventType">
+                 <mat-option disabled>--Select the event type--</mat-option>
+                 <mat-option [value]="'kitam'"> Kitchen AM </mat-option>
+                 <mat-option [value]="'kitpm'"> Kitchen PM </mat-option>
+                 <mat-option [value]="'kitas'"> Kitchen AM Sat </mat-option>
+                 <mat-option [value]="'kitps'"> Kitchen PM Sat </mat-option>
+                 <mat-option [value]="'delds'"> Delivery Driver Sat </mat-option>
+                 <mat-option [value]="'delis'"> Delivery Sat </mat-option>
+                 <mat-option [value]="'deldr'"> Delivery Driver </mat-option>
+                 <mat-option [value]="'deliv'"> Delivery </mat-option>
+               </mat-select>
+               <mat-error>Required!</mat-error>
+             </mat-form-field>
+           </div>
+           <div class="form-group col-md-6">
+              <mat-form-field>
+                 <mat-label>Start Date</mat-label>
+                 <input matInput [matDatepicker]="picker1" [min]="today" [max]="aYearFromNow" placeholder="mm/dd/yyyy" formControlName="startDate" [(ngModel)]="model.startDate">
+                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                 <mat-datepicker #picker1></mat-datepicker>
+                 <mat-error *ngIf="startDateRequiredError()">Required!</mat-error>
+              </mat-form-field>
+           </div>
+           <div class="form-group col-md-6">
+              <mat-form-field>
+                 <mat-label>End Date</mat-label>
+                 <input matInput [matDatepicker]="picker" [min]="today" [max]="aYearFromNow" placeholder="mm/dd/yyyy" formControlName="endDate" [(ngModel)]="model.endDate">
+                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                 <mat-datepicker #picker></mat-datepicker>
+                 <mat-error *ngIf="endDateRequiredError()">Required!</mat-error>
+              </mat-form-field>
+           </div>
+        </div>
+      </form>
+      <button type="submit" class="btn btn-xl btn-outline-success btn-change-registration-code"  (click)="onSubmit('add')">Add Permanent Volunteer</button>
+
+
+
+  </div>
+
+
+</ng-template>
+
+<button mat-menu-item (click)="open(addPermanentModal)">
+  <mat-icon>assignment_ind</mat-icon>
+  <span>Generate New Week</span>
+</button>

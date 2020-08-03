@@ -42,14 +42,19 @@ export class VolunteerDirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.fs.getUsers().subscribe(snapshots => {
 
-      //console.log(this.volunteers);
-      this.dataSource = new MatTableDataSource(snapshots);
-      this.dataSource.sort = this.sort;
-    // let temp = Object.keys(this.volunteers[0]);
-    // temp = temp.filter(e => !this.displayedColumns.includes(e));
-    });
+  }
+  ngAfterViewInit() {
+    this.fs.getUsers().subscribe(snapshots => {
+
+    //console.log(this.volunteers);
+    this.dataSource = new MatTableDataSource(snapshots);
+    this.dataSource.sort = this.sort;
+  // let temp = Object.keys(this.volunteers[0]);
+  // temp = temp.filter(e => !this.displayedColumns.includes(e));
+  });
+
+
   }
 
   prettify(str: string) {
