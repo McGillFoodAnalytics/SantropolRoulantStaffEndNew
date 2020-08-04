@@ -11,4 +11,7 @@ export class User {
   public no_show: number;
   public phone_number: string;
   public signup_date: string;
+  public emergency_contact_number: string;
+  public emergency_contact_name: string;
+  public emergency_relationship: string;
 }

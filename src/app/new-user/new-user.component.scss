@@ -1,7 +1,8 @@
+::ng-deep .cdk-overlay-container {
+  z-index: 2000;
+}
 
-::ng-deep .cdk-overlay-container{ z-index:2000; }
-
-.modal-header{
+.modal-header {
   background-color: #5fce99;
 }
 
@@ -9,28 +10,28 @@
   color: white;
 }
 
-.modal-body{
+.modal-body {
   padding: 1rem 2rem 0 2rem;
 }
 
-.form{
+.form {
   padding-bottom: 0;
 }
 
-.form-section{
+.form-section {
   margin-bottom: 1.5rem;
   color: darkgrey;
   margin-top: 1.5rem;
 }
 
-.footer{
+.footer {
   padding-bottom: 2.5rem;
   text-align: center;
 }
 
 .btn-add-volunteer {
-  color:#5fce99 !important;
-  border-color:#5fce99 !important;
+  color: #5fce99 !important;
+  border-color: #5fce99 !important;
 }
 
 .btn-add-volunteer:hover {
@@ -47,7 +48,24 @@
 }
 
 .btn-add {
-  color:#5fce99;
+  color: #5fce99;
+}
+
+hr {
+  display: block;
+  margin: 10px 0 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+
+.section {
+  color: gray;
+  margin-left: 0em;
+}
+
+.mat-checkbox {
+  margin-left: 0em;
+  color: gray;
 }
 
 mat-icon {

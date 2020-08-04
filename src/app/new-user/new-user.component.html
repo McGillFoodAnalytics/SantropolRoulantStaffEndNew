@@ -1,91 +1,199 @@
 <ng-template #content let-modal>
-   <div class="modal-header text-center">
-      <h4 class="modal-title w-100" id="modal-basic-title">Create New Volunteer</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+  <div class="modal-header text-center">
+    <h4 class="modal-title w-100" id="modal-basic-title">
+      Create New Volunteer
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    >
       <span aria-hidden="true">&times;</span>
-      </button>
-   </div>
-   <div class="modal-body">
-      <form class="form" (ngSubmit)="onSubmit()" [formGroup]="myForm">
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form" (ngSubmit)="onSubmit()" [formGroup]="myForm">
       <div class="form-row mb-12">
-         <h5 class="form-section"> Personal Information </h5>
+        <h5 class="form-section">Personal Information</h5>
       </div>
       <div class="form-row mb-12">
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <input matInput placeholder="First Name" formControlName="first_name" [(ngModel)]="model.first_name">
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <input matInput placeholder="Last Name" formControlName="last_name" [(ngModel)]="model.last_name" />
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <mat-label> Birth Date </mat-label>
-               <input matInput [matDatepicker]="picker" [max]="today" placeholder="mm/dd/yyyy" formControlName="dob" [(ngModel)]="model.dob">
-               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-               <mat-datepicker #picker></mat-datepicker>
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="First Name"
+              formControlName="first_name"
+              [(ngModel)]="model.first_name"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Last Name"
+              formControlName="last_name"
+              [(ngModel)]="model.last_name"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <mat-label> Birth Date </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [max]="today"
+              placeholder="mm/dd/yyyy"
+              formControlName="dob"
+              [(ngModel)]="model.dob"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr />
+      <div class="form-row mb-12">
+        <h5 class="form-section">Contact Information</h5>
       </div>
       <div class="form-row mb-12">
-         <h5 class="form-section"> Contact Information </h5>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Street Number"
+              formControlName="address_number"
+              [(ngModel)]="model.address_number"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Street Name"
+              formControlName="address_street"
+              [(ngModel)]="model.address_street"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="City"
+              formControlName="address_city"
+              [(ngModel)]="model.address_city"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
       </div>
       <div class="form-row mb-12">
-         <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Postal Code"
+              formControlName="address_postal_code"
+              [(ngModel)]="model.address_postal_code"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              [(ngModel)]="model.email"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Phone Number"
+              formControlName="phone_number"
+              [(ngModel)]="model.phone_number"
+            />
+            <mat-error>Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <hr>
+        <div>
+          <section class="Emergency-checkbox">
+            <mat-checkbox (change)="changeCheck($event)" class="Info-checkbox"
+              >Include Emergency Contact Information</mat-checkbox>
+          </section>
+        </div>
+          <hr [hidden]="!disabledAgreement"/>
+          <div  [hidden]="!disabledAgreement" class="form-group col-md-4">
             <mat-form-field>
-               <input matInput placeholder="Street Number" formControlName="address_number" [(ngModel)]="model.address_number">
-               <mat-error>Required!</mat-error>
+              <input
+                matInput
+                placeholder="Emergency Contact"
+                formControlName="emergency_contact_name"
+                [(ngModel)]="model.emergency_contact_name"
+              />
+              <mat-error>Required!</mat-error>
             </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
+          </div>
+          <div [hidden]="!disabledAgreement" class="form-group col-md-4">
             <mat-form-field>
-               <input matInput placeholder="Street Name" formControlName="address_street" [(ngModel)]="model.address_street">
-               <mat-error>Required!</mat-error>
+              <input
+                matInput
+                placeholder="Emergency Relation"
+                formControlName="emergency_relationship"
+                [(ngModel)]="model.emergency_relationship"
+              />
+              <mat-error>Required!</mat-error>
             </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
+          </div>
+          <div [hidden]="!disabledAgreement" class="form-group col-md-4">
             <mat-form-field>
-               <input matInput placeholder="City" formControlName="address_city" [(ngModel)]="model.address_city">
-               <mat-error>Required!</mat-error>
+              <input
+                matInput
+                placeholder="Emergency Number"
+                formControlName="emergency_contact_number"
+                [(ngModel)]="model.emergency_contact_number"
+              />
+              <mat-error>Required!</mat-error>
             </mat-form-field>
-         </div>
+        </div>
       </div>
-      <div class="form-row mb-12">
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <input matInput placeholder="Postal Code" formControlName="address_postal_code" [(ngModel)]="model.address_postal_code">
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <input matInput placeholder="Email" formControlName="email" [(ngModel)]="model.email">
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
-         <div class="form-group col-md-4">
-            <mat-form-field>
-               <input matInput placeholder="Phone Number" formControlName="phone_number" [(ngModel)]="model.phone_number">
-               <mat-error>Required!</mat-error>
-            </mat-form-field>
-         </div>
-      </div>
-      </form>
-   </div>
-   <div class="footer">
-      <button type="submit" class="btn btn-xl btn-outline-primary btn-add-volunteer" (click)="onSubmit()">Create Volunteer</button>
-   </div>
+    </form>
+  </div>
+  <div class="footer">
+    <button
+      type="submit"
+      class="btn btn-xl btn-outline-primary btn-add-volunteer"
+      (click)="onSubmit()"
+    >
+      Create Volunteer
+    </button>
+  </div>
 </ng-template>
 
-<button class="btn-add"
-   mat-icon-button
-   matTooltip="Click to add new volunteer"
-   (click)="open(content)">
-   <mat-icon>person_add</mat-icon>
+<button
+  class="btn-add"
+  mat-icon-button
+  onclick="this.blur()"
+  matTooltip="Click to add new volunteer"
+  (click)="open(content)"
+>
+  <mat-icon>person_add</mat-icon>
 </button>
