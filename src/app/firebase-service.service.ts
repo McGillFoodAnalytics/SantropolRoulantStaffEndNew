@@ -123,7 +123,7 @@ export class FirebaseService {
       });
     }
 
-    async addNewBug(description): void {
+    addNewBug(description) {
     var a;
     this.bugsRef = this.db.list('bug');
     this.bugs= this.bugsRef.snapshotChanges().pipe(

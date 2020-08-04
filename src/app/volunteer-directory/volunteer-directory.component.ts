@@ -30,8 +30,9 @@ export class VolunteerDirectoryComponent implements OnInit {
   expandableColumns;
   events: any = [];
   eventsObservable;
-  dataSource;
+  dataSource = new MatTableDataSource();
   errorMessage;
+  source;
   expandedElement: Event;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -39,21 +40,20 @@ export class VolunteerDirectoryComponent implements OnInit {
 
   constructor(private fs: FirebaseService,  private db: AngularFireDatabase) {
     this.errorMessage = "";
+
   }
 
   ngOnInit() {
 
   }
   ngAfterViewInit() {
-    this.fs.getUsers().subscribe(snapshots => {
-
-    //console.log(this.volunteers);
-    this.dataSource = new MatTableDataSource(snapshots);
-    this.dataSource.sort = this.sort;
-  // let temp = Object.keys(this.volunteers[0]);
-  // temp = temp.filter(e => !this.displayedColumns.includes(e));
-  });
-
+    setTimeout(() => {
+      this.fs.getUsers().subscribe(snapshots => {
+        this.dataSource = new MatTableDataSource(snapshots);
+        //this.dataSource.sort = this.sort;
+        // let temp = Object.keys(this.volunteers[0]);
+      });
+    });
 
   }
 
