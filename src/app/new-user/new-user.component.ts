@@ -17,7 +17,7 @@ export class NewUserComponent implements OnInit {
   private myForm: FormGroup;
   private modalReference;
   private today: Date;
-  disabledAgreement: boolean = true;
+  //disabledAgreement: boolean = true;
 
   constructor(private modalService: NgbModal, private db: AngularFireDatabase, private formBuilder: FormBuilder) {
     this.today = new Date();
