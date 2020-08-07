@@ -69,6 +69,7 @@ export class NewUserComponent implements OnInit {
       emergency_contact_name: user.emergency_contact_name,
       emergency_relationship: user.emergency_relationship,
       signup_date: formatDate(new Date(), 'yy/MM/dd', 'en'),
+      cancellations: 0
      });
   }
 
