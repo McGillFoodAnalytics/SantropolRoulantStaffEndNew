@@ -14,5 +14,5 @@ export class User {
   public emergency_contact_number: string;
   public emergency_contact_name: string;
   public emergency_relationship: string;
-  public cancellations: number;
+  public cancellation: number;
 }
