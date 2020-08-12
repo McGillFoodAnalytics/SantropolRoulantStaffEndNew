@@ -49,7 +49,6 @@ export class VolunteerDirectoryComponent implements OnInit {
       snapshots.forEach(element => {
         element.phone_number = this.prettifyPhoneNumber(element.phone_number)
       });
-    console.log(snapshots);
     this.dataSource = new MatTableDataSource(snapshots);
     this.dataSource.sort = this.sort;
   // let temp = Object.keys(this.volunteers[0]);
@@ -76,6 +75,7 @@ export class VolunteerDirectoryComponent implements OnInit {
     return str1;
   }
 
+  // reformat the birth date displayed 
   reverseDate(str: string){
     let year = str.charAt(0)+str.charAt(1)+str.charAt(2)+str.charAt(3);
     let month = str.charAt(5)+str.charAt(6);
@@ -83,6 +83,8 @@ export class VolunteerDirectoryComponent implements OnInit {
     let date = day + '-' + month + '-' + year;
     return date;
   }
+
+  
 
   capitalize(str: string) {
     return str.toUpperCase();
