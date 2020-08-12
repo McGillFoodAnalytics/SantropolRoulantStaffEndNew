@@ -107,8 +107,9 @@ export class FirebaseService {
     this.db.object('/event/' + event_id).update({
         first_name:  '',
         last_name:  '',
-        uid: 'nan'
-     });
+        uid: 'nan',
+        staff_note: ''
+     });   
    }
 
 

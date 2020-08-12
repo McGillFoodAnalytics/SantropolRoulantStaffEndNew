@@ -34,7 +34,6 @@ export class RemoveUserFromEventComponent implements OnInit {
   }
 
   cancellationCounter(){
-
     var userId = this.firstName.charAt[0].toLowerCase + 
     this.db.object('/user/' + userId)
     .update({

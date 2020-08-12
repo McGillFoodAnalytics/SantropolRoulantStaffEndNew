@@ -64,11 +64,10 @@ p {
 [contenteditable] {
   border: 1px solid black;
   padding: 16px;
-  white-space: pre;
   outline: 0;
   line-height: 30px;
   height: 300px;
-  overflow: auto;
+  overflow-y: auto;
   white-space: pre-wrap;
 }
 
