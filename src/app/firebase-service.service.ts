@@ -151,11 +151,11 @@ export class FirebaseService {
   }
 
   addCancellation(eventId: string, uid: string, reason: string){
-   this.db.object('cancellation/1').update({
+   this.db.object('cancellation/'+eventId + '_' + uid).update({
      event_id: eventId,
      user_id: uid,
      reason: reason
-   })
+   });
   }
 
    addUserToEvent(event_id: string, first_name: string, last_name: string, uid: string): void {
