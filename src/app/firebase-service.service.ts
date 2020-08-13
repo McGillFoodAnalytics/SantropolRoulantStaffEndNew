@@ -43,6 +43,14 @@ export class FirebaseService {
     return this.volunteers;
   }
 
+  getUser(userId): Observable<any[]> {
+    this.volunteerRef = this.db.list('user/'+userId);
+    this.volunteers = this.volunteerRef.snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
+      
+    return this.volunteers;
+  }
+
   getPermanentEvents(): Observable<any[]> {
     this.permanentEventsRef = this.db.list('permanent_events');
     this.permanentEvents = this.permanentEventsRef.snapshotChanges().pipe(

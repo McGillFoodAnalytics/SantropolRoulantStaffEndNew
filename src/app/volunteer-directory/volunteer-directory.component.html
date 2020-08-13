@@ -32,8 +32,7 @@
               {{capitalize(element.first_name)}}  {{capitalize(element.last_name)}}
               </span>
               <span class="actions">
-                 <mat-icon>edit</mat-icon>
-                 <app-user-event [userId]="element.id"></app-user-event>
+                 <mat-icon [routerLink]="['/volunteer', element.id]">edit</mat-icon>
               </span>
            </div>
            <!-- Expanded element body -->

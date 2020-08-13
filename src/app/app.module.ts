@@ -87,6 +87,7 @@ import {UserEventComponent} from './user-event/user-event.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewScheduleComponent } from './sign-up-sheet/new-schedule/new-schedule.component';
 import { WeekGeneratorComponent } from './week-generator/week-generator.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -105,6 +106,10 @@ const appRoutes: Routes = [
   {
     path: 'volunteer-directory',
     component: VolunteerDirectoryComponent
+  },
+  {
+    path: 'volunteer/:id',
+    component: UserProfileComponent
   },
   {
     path: '**',
@@ -135,7 +140,8 @@ const appRoutes: Routes = [
     VolunteerDirectoryComponent,
     UserEventComponent,
     NewScheduleComponent,
-    WeekGeneratorComponent
+    WeekGeneratorComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

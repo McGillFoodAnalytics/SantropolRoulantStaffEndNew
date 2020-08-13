@@ -21,6 +21,7 @@ export class UserEventComponent implements OnInit {
   pastEvents: Observable<any[]>;
   pastEventsUser: any;
   currentEventsUser: any;
+  element:any;
 
   private modalReference;
 
@@ -33,11 +34,14 @@ export class UserEventComponent implements OnInit {
 
     this.events = this.firebase.getEvents();
     this.pastEvents = this.firebase.getPastEvents();
+    this.element = this.firebase.getUser(this.userId);
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
 
   }
-
+  capitalize(str: string) {
+    return str.toUpperCase();
+  }
   open(content) {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
   }
