@@ -8,38 +8,6 @@
   <div class="modal-body">
     <!-- 2 tabs avec chacune un mat table des events (soit past soit current) -->
     <mat-tab-group>
-      <mat-tab label="Volunteer information">
-        <div class="row">
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="User ID">account_circle</mat-icon>
-              {{element.id}}
-           </div>
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="Birth date">cake</mat-icon>
-              {{element.dob}}
-           </div>
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="Sign up date">how_to_reg</mat-icon>
-              {{element.signup_date}}
-           </div>
-        </div>
-        <div class="row" style="padding-top: 0.5rem">
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="Address">home</mat-icon>
-              <span>{{element.address_number}} {{element.address_street}}, {{element.address_city}}, {{element.address_postal_code}}</span>
-              <!-- <span>{{element.address_number}} {{element.address_street}}, {{element.address_city}}, {{capitalize(element.address_postal_code)}}</span> -->
-           </div>
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="Number">phone_android</mat-icon>
-              {{element.phone_number }}
-           </div>
-           <div class="col-4 valign-center">
-              <mat-icon matTooltip="Email">email</mat-icon>
-              {{element.email}}
-           </div>
-        </div>
-
-      </mat-tab>
       <mat-tab label="Past Events">
         <h2 id="no_event" *ngIf="pastEventsUser.length ==0">This volunteer doesn't have any past events!</h2>
 
@@ -97,6 +65,6 @@
 </ng-template>
 
 <button mat-menu-item (click)="open(content)">
-  <mat-icon>person</mat-icon>
-  <span>View Volunteer</span>
+  <mat-icon>history</mat-icon>
+  <span>View Events</span>
 </button>
