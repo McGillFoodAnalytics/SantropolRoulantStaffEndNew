@@ -54,6 +54,7 @@
 
 .mat-form-field {
   width: 100%;
+
 }
 
 p {
@@ -63,9 +64,11 @@ p {
 [contenteditable] {
   border: 1px solid black;
   padding: 16px;
-  white-space: pre;
   outline: 0;
   line-height: 30px;
+  height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
 }
 
 [contenteditable]:focus {
@@ -75,3 +78,5 @@ p {
 .close:focus {
   outline: none;
 }
+
+

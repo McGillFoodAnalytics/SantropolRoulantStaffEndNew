@@ -61,11 +61,13 @@ p {
 }
 
 [contenteditable] {
+  white-space: pre-wrap;
   border: 1px solid black;
   padding: 16px;
-  white-space: pre;
   outline: 0;
+  overflow-y:auto;
   line-height: 30px;
+  height: 200px;
 }
 
 [contenteditable]:focus {

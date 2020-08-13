@@ -47,19 +47,46 @@ export class VolunteerDirectoryComponent implements OnInit {
 
   }
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.fs.getUsers().subscribe(snapshots => {
-        this.dataSource = new MatTableDataSource(snapshots);
-        //this.dataSource.sort = this.sort;
-        // let temp = Object.keys(this.volunteers[0]);
+    this.fs.getUsers().subscribe(snapshots => {
+      snapshots.forEach(element => {
+        element.phone_number = this.prettifyPhoneNumber(element.phone_number)
       });
-    });
-
+    this.dataSource = new MatTableDataSource(snapshots);
+    this.dataSource.sort = this.sort;
+  // let temp = Object.keys(this.volunteers[0]);
+  // temp = temp.filter(e => !this.displayedColumns.includes(e));
+  });
   }
 
   prettify(str: string) {
-    return str.replace('_', ' ');
+    let string = str.replace('_', ' ');
+    return string.charAt(0). toUpperCase() + string.slice(1);
   }
+
+  prettifyPhoneNumber(str: string){
+    let a = str.charAt(0)+str.charAt(1)+str.charAt(2);
+    let b = str.charAt(3)+str.charAt(4)+str.charAt(5);
+    let c = str.charAt(6)+str.charAt(7)+str.charAt(8)+str.charAt(9);
+    let phoneNumber = '(' + a + ') ' + b + '-' + c;
+    return phoneNumber;
+  }
+
+  prettifyBirthDate(str: string){
+    let str1 = str.slice(0,10);
+    str1 = this.reverseDate(str1);
+    return str1;
+  }
+
+  // reformat the birth date displayed
+  reverseDate(str: string){
+    let year = str.charAt(0)+str.charAt(1)+str.charAt(2)+str.charAt(3);
+    let month = str.charAt(5)+str.charAt(6);
+    let day = str.charAt(8)+str.charAt(9);
+    let date = day + '-' + month + '-' + year;
+    return date;
+  }
+
+
 
   capitalize(str: string) {
     return str.toUpperCase();
