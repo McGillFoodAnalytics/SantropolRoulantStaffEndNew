@@ -24,6 +24,8 @@
 
           <mat-menu #menu="matMenu">
             <app-remove-user-from-event firstName={{element.first_name}}
+                                        eventId={{element.id}}
+                                        userId={{element.uid}}
                                         lastName={{element.last_name}}
                                         date={{element.event_date_txt}}
                                         [eventType]="eventType"

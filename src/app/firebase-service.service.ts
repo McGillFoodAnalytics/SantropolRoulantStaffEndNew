@@ -103,8 +103,8 @@ export class FirebaseService {
     );
   }
 
-  async removeUserFromEvent(event_id: string) {
-    let a = await this.updateCancellations(event_id);
+ removeUserFromEvent(event_id: string) {
+    this.updateCancellations(event_id);
     this.db.object('/event/' + event_id).update({
         first_name:  '',
         last_name:  '',
@@ -124,7 +124,6 @@ export class FirebaseService {
           if(snapshot.id == event_id){
             //console.log(snapshot);
             userId = snapshot.uid;
-           // console.log(userId + "hellooo");
           }
         });
     });
@@ -141,7 +140,6 @@ export class FirebaseService {
             if (isNaN(count)){
               count = 0;
             }
-            console.log(count + "  HII");
             count++;
             this.db.object('/user/' + userId )
             .update({
@@ -150,7 +148,14 @@ export class FirebaseService {
           }
         });
     });
+  }
 
+  addCancellation(eventId: string, uid: string, reason: string){
+   this.db.object('cancellation/1').update({
+     event_id: eventId,
+     user_id: uid,
+     reason: reason
+   })
   }
 
    addUserToEvent(event_id: string, first_name: string, last_name: string, uid: string): void {
