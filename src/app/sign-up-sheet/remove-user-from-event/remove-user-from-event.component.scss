@@ -31,6 +31,8 @@
 
 .btn-cancel {
   margin-right:1rem;
+  border: blue;
+  color:blue;
 }
 
 .btn-remove-volunteer {
@@ -49,4 +51,24 @@
 .footer{
   padding-bottom: 2.5rem;
   text-align: center;
+}
+
+[contenteditable] {
+  border: 1px solid black;
+  padding: 16px;
+  white-space: pre-wrap;
+  outline: 0;
+  line-height: 30px;
+  width: 360px;
+  height: 150px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+
+  
+}
+
+[contenteditable]:focus {
+  border: 3px solid red;
+
 }

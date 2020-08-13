@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,7 +17,7 @@ export class RemoveUserFromEventComponent implements OnInit {
   private modalReference;
   private model: any = {};
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private db: AngularFireDatabase) { }
 
   ngOnInit() {}
 
@@ -30,6 +31,15 @@ export class RemoveUserFromEventComponent implements OnInit {
   onSubmit() {
     this.confirmRemove.emit('true');
     this.modalReference.close();
+  }
+
+  cancellationCounter(){
+    var userId = this.firstName.charAt[0].toLowerCase + 
+    this.db.object('/user/' + userId)
+    .update({
+
+     });
+
   }
 
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../../core/services/modalService';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-sign-up-table',
@@ -17,9 +20,11 @@ export class EventSignUpTableComponent implements OnInit {
   @Input() volunteerList: [];
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() insertStaffNote: EventEmitter<any> = new EventEmitter<any>();
+  usersRef:  AngularFireList<any>;
+  users: Observable<any[]>;
 
 
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService, private db: AngularFireDatabase) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.slots);
@@ -35,6 +40,20 @@ export class EventSignUpTableComponent implements OnInit {
 
   onRemoveUserFromEvent(id: string) {
     this.removeUserFromEvent.emit(id);
+    // var a;
+    // this.usersRef = this.db.list('user');
+    // this.users= this.usersRef.snapshotChanges().pipe(
+    //   map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
+    // this.users.subscribe(snapshots => {
+    //     snapshots.forEach(snapshot => {
+    //       if(snapshot.id === id){
+    //        a = snapshot.email;
+    //        console.log("helllloooo");
+    //        console.log(a);
+        
+    //       }
+    //     });
+    // });
   }
 
   onInsertStaffNote(eventId: string, staffNote: string) {

@@ -17,6 +17,9 @@
             </div>
         </div>
     </div>
+    <div contenteditable="true"
+            [textContent]="cancellationNote" (input)="cancellationNote=$event.target.textContent; touch()">
+          </div> 
     <div class="footer">
         <button type="button" class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal.dismiss()">Cancel</button>
         <button type="submit" class="btn btn-xl btn-outline-danger btn-remove-volunteer" (click)="onSubmit()">Remove Volunteer</button>
