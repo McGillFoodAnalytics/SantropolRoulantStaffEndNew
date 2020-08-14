@@ -15,13 +15,14 @@ import { map } from 'rxjs/operators';
 export class UserEventComponent implements OnInit {
 
   private displayedColumns: string[] = [ 'event_data_text', 'event_type', 'event_time_start', 'event_time_end'];
-
   volunteers: Observable<any[]>;
   events: Observable<any[]>;
   pastEvents: Observable<any[]>;
   pastEventsUser: any;
   currentEventsUser: any;
   element:any;
+  user: any;
+
 
   private modalReference;
 
@@ -31,13 +32,13 @@ export class UserEventComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.events = this.firebase.getEvents();
     this.pastEvents = this.firebase.getPastEvents();
     this.element = this.firebase.getUser(this.userId);
+    console.log(this.element);
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
-
+    
   }
   capitalize(str: string) {
     return str.toUpperCase();
@@ -61,9 +62,14 @@ export class UserEventComponent implements OnInit {
     })
   }
 
+  displayFirstName(){
+    this.element = this.firebase.getUser(this.userId);
+    console.log(this.element);
+    
+  }
+
   displayCurrentEvents(userId){
     this.currentEventsUser = [];
-
     this.events.subscribe(snapshots=>{
         snapshots.forEach(snapshot => {
       if(!this.containsObject(snapshot, this.currentEventsUser)){

@@ -23,6 +23,7 @@ export class FirebaseService {
   eventChanges: Observable<any[]>;
   bugsRef:  AngularFireList<any>;
   bugs: Observable<any[]>;
+  user: Observable<any>;
 
   constructor(private db: AngularFireDatabase) {}
 
@@ -43,12 +44,19 @@ export class FirebaseService {
     return this.volunteers;
   }
 
-  getUser(userId): Observable<any[]> {
-    this.volunteerRef = this.db.list('user/'+userId);
+  getUser(userId): Observable<any> {
+     this.volunteerRef = this.db.list('user');
     this.volunteers = this.volunteerRef.snapshotChanges().pipe(
       map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-      
-    return this.volunteers;
+      this.volunteers.subscribe(snapshots => {
+        snapshots.forEach(snapshot => {
+          if(snapshot.id == userId){  
+            this.user = snapshot;
+            //console.log(this.user);
+            }
+        });
+    });
+    return this.user;
   }
 
   getPermanentEvents(): Observable<any[]> {
@@ -134,7 +142,6 @@ export class FirebaseService {
           if(snapshot.id == event_id){
             //console.log(snapshot);
             userId = snapshot.uid;
-           // console.log(userId + "hellooo");
           }
         });
     });
@@ -145,13 +152,11 @@ export class FirebaseService {
       
     this.volunteers.subscribe(snapshots => {
         snapshots.forEach(snapshot => {
-          if(snapshot.id == userId){
-            console.log(snapshot);
+          if(snapshot.id == userId){  
             count = snapshot.cancellations;
             if (isNaN(count)){
               count = 0;
             }
-            console.log(count + "  HII");
             count++;
             this.db.object('/user/' + userId )
             .update({

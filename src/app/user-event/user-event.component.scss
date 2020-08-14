@@ -5,3 +5,30 @@
   margin-bottom: 100px;
 
 }
+
+h4 {
+  margin: 0;
+  display: inline-block;
+}
+
+#title{
+  font-size: 200px;
+}
+
+#profile{
+  width: 1000px;
+}
+
+#colored{
+  background-color:lightgray;
+}
+
+#historyBtn{
+  width: 200px;
+  float: right;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 50px;
+  color: white;
+  background-color: #449afe;
+}
