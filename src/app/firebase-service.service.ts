@@ -121,8 +121,8 @@ export class FirebaseService {
     );
   }
 
-  async removeUserFromEvent(event_id: string) {
-    let a = await this.updateCancellations(event_id);
+ removeUserFromEvent(event_id: string) {
+    this.updateCancellations(event_id);
     this.db.object('/event/' + event_id).update({
         first_name:  '',
         last_name:  '',
@@ -165,7 +165,14 @@ export class FirebaseService {
           }
         });
     });
+  }
 
+  addCancellation(eventId: string, uid: string, reason: string){
+   this.db.object('cancellation/'+eventId + '_' + uid).update({
+     event_id: eventId,
+     user_id: uid,
+     reason: reason
+   });
   }
 
    addUserToEvent(event_id: string, first_name: string, last_name: string, uid: string): void {
