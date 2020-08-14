@@ -68,25 +68,26 @@
             <span>View Events</span>
           </button>
           <tr>
-            <td id='colored'>User ID: {{element.id}} </td>
+            <td id='colored'><mat-icon>account_box</mat-icon>User ID: {{element.id}}</td>
           </tr>
           <tr>
-            <td>Date of Birth: {{element.dob}}</td>
+            <td><mat-icon>cake</mat-icon>Date of Birth: {{element.dob}}</td>
           </tr>
           <tr>
-            <td id='colored'>Address: {{element.address_number}} {{element.address_street}}, {{element.address_city}}</td>
+            <td id='colored'><mat-icon>home</mat-icon>Address: {{element.address_number}} {{element.address_street}}, {{element.address_city}}</td>
           </tr>
           <tr>
-            <td>Phone Number: {{element.phone_number}}</td>
+            <td> <mat-icon>phone_android</mat-icon>Phone Number: {{element.phone_number}}</td>
           </tr>
           <tr>
-            <td id='colored'>Email: {{element.email}}</td>
+            <td id='colored'><mat-icon>email</mat-icon>Email: {{element.email}}</td>
           </tr>
           <tr>
             <td></td>
           </tr>
         </tbody>
       </table>
+      <h5>Cancellations: {{element.cancellations}}</h5>
 </div>
 
 <!-- <button mat-menu-item (click)="open(content)" id="historyBtn">
