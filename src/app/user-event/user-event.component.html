@@ -16,16 +16,12 @@
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Type</th>
-              <th scope="col">Start Time</th>
-              <th scope="col">End Time</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let event of pastEventsUser">
               <td>{{event.event_date_txt}}</td>
               <td>{{event.event_type}}</td>
-              <td>{{event.event_time_start}}</td>
-              <td>{{event.event_time_end}}</td>
             </tr>
           </tbody>
         </table>
@@ -41,16 +37,12 @@
             <tr>
               <th scope="col">Date</th>
               <th scope="col">Type</th>
-              <th scope="col">Start Time</th>
-              <th scope="col">End Time</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let event of currentEventsUser">
               <td>{{event.event_date_txt}}</td>
               <td>{{event.event_type}}</td>
-              <td>{{event.event_time_start}}</td>
-              <td>{{event.event_time_end}}</td>
             </tr>
           </tbody>
         </table>
@@ -62,16 +54,16 @@
 <div class="modal-body" id='profile'>
       <table class="table">
         <tbody>
-          <h4 >{{element.first_name}} {{element.last_name}} </h4>
+          <h4 >{{element.first_name | async}} {{element.last_name | async}} </h4>
           <button mat-menu-item (click)="open(content)" id="historyBtn">
             <mat-icon>history</mat-icon>
             <span>View Events</span>
           </button>
           <tr>
-            <td id='colored'><mat-icon>account_box</mat-icon>User ID: {{element.id}}</td>
+            <td id='colored'><mat-icon>account_box</mat-icon>User ID: {{userId}}</td>
           </tr>
           <tr>
-            <td><mat-icon>cake</mat-icon>Date of Birth: {{element.dob}}</td>
+            <td><mat-icon>cake</mat-icon>Date of Birth: {{element.dob | async}}</td>
           </tr>
           <tr>
             <td id='colored'><mat-icon>home</mat-icon>Address: {{element.address_number}} {{element.address_street}}, {{element.address_city}}</td>

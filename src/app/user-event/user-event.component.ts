@@ -20,6 +20,7 @@ export class UserEventComponent implements OnInit {
   pastEvents: Observable<any[]>;
   pastEventsUser: any;
   currentEventsUser: any;
+  elementA:any;
   element:any;
   user: any;
 
@@ -34,11 +35,12 @@ export class UserEventComponent implements OnInit {
   ngOnInit() {
     this.events = this.firebase.getEvents();
     this.pastEvents = this.firebase.getPastEvents();
-    this.element = this.firebase.getUser(this.userId);
+    this.firebase.getUser(this.userId).subscribe(element=> {
+    this.element = element    });
     console.log(this.element);
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
-    
+
   }
   capitalize(str: string) {
     return str.toUpperCase();
@@ -65,7 +67,7 @@ export class UserEventComponent implements OnInit {
   displayFirstName(){
     this.element = this.firebase.getUser(this.userId);
     console.log(this.element);
-    
+
   }
 
   displayCurrentEvents(userId){

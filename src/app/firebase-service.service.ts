@@ -45,18 +45,7 @@ export class FirebaseService {
   }
 
   getUser(userId): Observable<any> {
-     this.volunteerRef = this.db.list('user');
-    this.volunteers = this.volunteerRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-      this.volunteers.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          if(snapshot.id == userId){  
-            this.user = snapshot;
-            //console.log(this.user);
-            }
-        });
-    });
-    return this.user;
+    return this.db.object('user/' + userId).valueChanges();
   }
 
   getPermanentEvents(): Observable<any[]> {
@@ -128,7 +117,7 @@ export class FirebaseService {
         last_name:  '',
         uid: 'nan',
         staff_note: ''
-     });   
+     });
    }
 
    updateCancellations(event_id: string): void{
@@ -149,10 +138,10 @@ export class FirebaseService {
     this.volunteerRef = this.db.list('user');
     this.volunteers= this.volunteerRef.snapshotChanges().pipe(
       map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-      
+
     this.volunteers.subscribe(snapshots => {
         snapshots.forEach(snapshot => {
-          if(snapshot.id == userId){  
+          if(snapshot.id == userId){
             count = snapshot.cancellations;
             if (isNaN(count)){
               count = 0;
