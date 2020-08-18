@@ -30,8 +30,9 @@ export class VolunteerDirectoryComponent implements OnInit {
   expandableColumns;
   events: any = [];
   eventsObservable;
-  dataSource;
+  dataSource = new MatTableDataSource();
   errorMessage;
+  source;
   expandedElement: Event;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -39,6 +40,7 @@ export class VolunteerDirectoryComponent implements OnInit {
 
   constructor(private fs: FirebaseService,  private db: AngularFireDatabase) {
     this.errorMessage = "";
+
   }
 
   ngOnInit() {
@@ -75,7 +77,7 @@ export class VolunteerDirectoryComponent implements OnInit {
     return str1;
   }
 
-  // reformat the birth date displayed 
+  // reformat the birth date displayed
   reverseDate(str: string){
     let year = str.charAt(0)+str.charAt(1)+str.charAt(2)+str.charAt(3);
     let month = str.charAt(5)+str.charAt(6);
@@ -84,7 +86,7 @@ export class VolunteerDirectoryComponent implements OnInit {
     return date;
   }
 
-  
+
 
   capitalize(str: string) {
     return str.toUpperCase();

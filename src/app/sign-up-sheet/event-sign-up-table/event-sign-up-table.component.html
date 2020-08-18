@@ -38,6 +38,10 @@
                             staffNote={{element.staff_note}}
                             (insertStaffNote)="onInsertStaffNote(element.id, $event)">
             </app-staff-note>
+            <button mat-menu-item [routerLink]="['/volunteer', element.uid]">
+                <mat-icon>person</mat-icon>
+                <span>View Volunteer</span>
+            </button>
           </mat-menu>
         </td>
     </ng-container>

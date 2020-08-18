@@ -21,6 +21,9 @@ export class FirebaseService {
   volunteerSampleRef: AngularFireList<any>;
   volunteerSamples: Observable<any[]>;
   eventChanges: Observable<any[]>;
+  bugsRef:  AngularFireList<any>;
+  bugs: Observable<any[]>;
+  user: Observable<any>;
 
   constructor(private db: AngularFireDatabase) {}
 
@@ -39,6 +42,10 @@ export class FirebaseService {
     this.volunteers = this.volunteerRef.snapshotChanges().pipe(
       map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
     return this.volunteers;
+  }
+
+  getUser(userId): Observable<any> {
+    return this.db.object('user/' + userId).valueChanges();
   }
 
   getPermanentEvents(): Observable<any[]> {
@@ -110,7 +117,7 @@ export class FirebaseService {
         last_name:  '',
         uid: 'nan',
         staff_note: ''
-     });   
+     });
    }
 
    updateCancellations(event_id: string): void{
@@ -131,11 +138,10 @@ export class FirebaseService {
     this.volunteerRef = this.db.list('user');
     this.volunteers= this.volunteerRef.snapshotChanges().pipe(
       map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-      
+
     this.volunteers.subscribe(snapshots => {
         snapshots.forEach(snapshot => {
           if(snapshot.id == userId){
-            console.log(snapshot);
             count = snapshot.cancellations;
             if (isNaN(count)){
               count = 0;
@@ -167,17 +173,32 @@ export class FirebaseService {
       });
     }
 
-    addNewBug(description): void {
-    this.getBugCount();
-    this.db.object('/bug/1')
-      .update({
-        description: description
-       });
+    addNewBug(description) {
+    var a;
+    this.bugsRef = this.db.list('bug');
+    this.bugs= this.bugsRef.snapshotChanges().pipe(
+      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
+    this.bugs.subscribe(snapshots => {
+        snapshots.forEach(snapshot => {
+          if(snapshot.id == "count"){
+            console.log(snapshot);
+            a = snapshot.number;
+            console.log(a);
+            a++;
+            this.db.object('/bug/count')
+              .update({
+                number: a
+               });
+            this.db.object('/bug/' + a)
+              .update({
+                description: description
+               });
+          }
+        });
+    });
+
     }
 
-  getBugCount() {
-       console.log(this.db.list('bug/count'));
-    }
 
 
   addPermanentVolunteer(event_type: string, user_id, start_date: Date, end_date: Date, frequency: Number) {
