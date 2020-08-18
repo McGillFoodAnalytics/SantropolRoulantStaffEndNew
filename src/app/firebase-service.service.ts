@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import {Subject, merge} from 'rxjs';
-import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { Observable } from "rxjs";
+import { Subject, merge } from "rxjs";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+} from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
-
 export class FirebaseService {
   volunteerRef: AngularFireList<any>;
   volunteers: Observable<any[]>;
@@ -17,239 +21,306 @@ export class FirebaseService {
   events: Observable<any[]>;
   pastEventRef: AngularFireList<any>;
   pastEvents: Observable<any[]>;
+  cancelledEvents: Observable<any[]>;
   eventDates = {};
   volunteerSampleRef: AngularFireList<any>;
   volunteerSamples: Observable<any[]>;
   eventChanges: Observable<any[]>;
-  bugsRef:  AngularFireList<any>;
+  bugsRef: AngularFireList<any>;
   bugs: Observable<any[]>;
   user: Observable<any>;
 
   constructor(private db: AngularFireDatabase) {}
 
   getUserSamples(): Observable<any[]> {
-    this.volunteerSampleRef = this.db.list('userSample');
-    this.volunteerSamples = this.volunteerSampleRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))
-      )
-    );
+    this.volunteerSampleRef = this.db.list("userSample");
+    this.volunteerSamples = this.volunteerSampleRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
     return this.volunteerSamples;
   }
 
   getUsers(): Observable<any[]> {
-    this.volunteerRef = this.db.list('user');
-    this.volunteers = this.volunteerRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
+    this.volunteerRef = this.db.list("user");
+    this.volunteers = this.volunteerRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
     return this.volunteers;
   }
 
   getUser(userId): Observable<any> {
-    return this.db.object('user/' + userId).valueChanges();
+    return this.db.object("user/" + userId).valueChanges();
   }
 
   getPermanentEvents(): Observable<any[]> {
-    this.permanentEventsRef = this.db.list('permanent_events');
-    this.permanentEvents = this.permanentEventsRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
+    this.permanentEventsRef = this.db.list("permanent_events");
+    this.permanentEvents = this.permanentEventsRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
     return this.permanentEvents;
   }
 
   getEvents(): Observable<any[]> {
-    this.eventRef = this.db.list('event');
-    this.events = this.eventRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val()}))));
+    this.eventRef = this.db.list("event");
+    this.events = this.eventRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
     return this.events;
   }
 
   getPastEvents(): Observable<any[]> {
-    this.pastEventRef = this.db.list('past_events');
-    this.pastEvents = this.pastEventRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))
-      )
-    );
+    this.pastEventRef = this.db.list("past_events");
+    this.pastEvents = this.pastEventRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
     return this.pastEvents;
   }
 
   getEventsJson(): {} {
     this.events = this.getEvents();
-    this.events.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          let event_date = snapshot.event_date.toString();
-          const event_type = snapshot.event_type.toString();
-          event_date = this.formatDate(event_date);
-          if (!(event_date in this.eventDates)) {
-            this.eventDates[event_date] = {};
+    this.events.subscribe((snapshots) => {
+      snapshots.forEach((snapshot) => {
+        let event_date = snapshot.event_date.toString();
+        const event_type = snapshot.event_type.toString();
+        event_date = this.formatDate(event_date);
+        if (!(event_date in this.eventDates)) {
+          this.eventDates[event_date] = {};
+          this.eventDates[event_date][event_type] = [snapshot.id];
+        } else {
+          if (!(event_type in this.eventDates[event_date])) {
             this.eventDates[event_date][event_type] = [snapshot.id];
           } else {
-            if (!(event_type in this.eventDates[event_date])) {
-              this.eventDates[event_date][event_type] = [snapshot.id];
-            } else {
-              this.eventDates[event_date][event_type].push(snapshot.id);
-            }
+            this.eventDates[event_date][event_type].push(snapshot.id);
           }
-        });
+        }
+      });
     });
     return this.eventDates;
   }
 
   formatDate(date: string) {
-    const year = '20' + date.substring(0, 2);
+    const year = "20" + date.substring(0, 2);
     const month = date.substring(2, 4);
     const day = date.substring(4, 6);
-    date = month + '/' + day + '/' + year;
+    date = month + "/" + day + "/" + year;
     return date;
   }
 
   changeEventImportance(event_id: string, is_important_event: boolean) {
-    this.db.object('/event/' + event_id).update(
-      {
-        is_important_event: is_important_event
-      }
+    this.db.object("/event/" + event_id).update({
+      is_important_event: is_important_event,
+    });
+  }
+
+  removeUserFromEvent(event_id: string) {
+    this.updateCancellations(event_id);
+    this.db.object("/event/" + event_id).update({
+      first_name: "",
+      last_name: "",
+      uid: "nan",
+      staff_note: "",
+    });
+  }
+
+  updateCancellations(event_id: string): void {
+    var userId;
+    var count;
+    this.eventRef = this.db.list("event");
+    this.events = this.eventRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
+    this.events.subscribe((snapshots) => {
+      snapshots.forEach((snapshot) => {
+        if (snapshot.id == event_id) {
+          //console.log(snapshot);
+          userId = snapshot.uid;
+        }
+      });
+    });
+
+    this.volunteerRef = this.db.list("user");
+    this.volunteers = this.volunteerRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
+
+    this.volunteers.subscribe((snapshots) => {
+      snapshots.forEach((snapshot) => {
+        if (snapshot.id == userId) {
+          count = snapshot.cancellations;
+          if (isNaN(count)) {
+            count = 0;
+          }
+          count++;
+          this.db.object("/user/" + userId).update({
+            cancellations: count,
+          });
+        }
+      });
+    });
+  }
+
+  addCancellation(eventId: string, uid: string, reason: string) {
+    if (reason == "" || reason == null) {
+      this.db.object("cancellation/" + eventId + "_" + uid).update({
+        event_id: eventId,
+        user_id: uid
+      });
+    } else {
+      this.db.object("cancellation/" + eventId + "_" + uid).update({
+        event_id: eventId,
+        user_id: uid,
+        reason: reason,
+      });
+    }
+  }
+
+  addUserToEvent(
+    event_id: string,
+    first_name: string,
+    last_name: string,
+    uid: string
+  ): void {
+    console.log("from firebase service");
+    this.db.object("/event/" + event_id).update({
+      first_name: first_name,
+      last_name: last_name,
+      uid: uid,
+    });
+  }
+
+  addNewBug(description) {
+    var a;
+    this.bugsRef = this.db.list("bug");
+    this.bugs = this.bugsRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
+    this.bugs.subscribe((snapshots) => {
+      snapshots.forEach((snapshot) => {
+        if (snapshot.id == "count") {
+          console.log(snapshot);
+          a = snapshot.number;
+          console.log(a);
+          a++;
+          this.db.object("/bug/count").update({
+            number: a,
+          });
+          this.db.object("/bug/" + a).update({
+            description: description,
+          });
+        }
+      });
+    });
+  }
+
+  addPermanentVolunteer(
+    event_type: string,
+    user_id,
+    start_date: Date,
+    end_date: Date,
+    frequency: Number
+  ) {
+    const permanent_event_id =
+      event_type +
+      "_" +
+      start_date.getDate() +
+      frequency +
+      end_date.getMonth() +
+      "_" +
+      user_id[0];
+    this.db.object("/permanent_events/" + permanent_event_id).update({
+      event_type: event_type,
+      user_id: user_id[0],
+      first_name: user_id[1],
+      last_name: user_id[2],
+      start_date: start_date,
+      end_date: end_date,
+      frequency: frequency,
+    });
+    console.log("EVENT CREATED");
+  }
+
+  addPermanentVolunteerEvents(
+    associatedPermanentEvents: [],
+    user_id: string,
+    first_name: string,
+    last_name: string,
+    permanent_event_id: string
+  ) {
+    for (let i = 0; i < associatedPermanentEvents.length; i++) {
+      this.db.object("/event/" + associatedPermanentEvents[i]).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: user_id,
+        permanent_event_id: permanent_event_id,
+      });
+    }
+  }
+
+  removePermanentVolunteer(permanent_event_id) {
+    this.db.object("/permanent_events/" + permanent_event_id).remove();
+  }
+
+  removePermanentVolunteerEvents(event_id) {
+    console.log(event_id);
+
+    console.log(
+      this.db.object("/event/" + event_id + "/permanent_event_id").remove()
     );
   }
 
- removeUserFromEvent(event_id: string) {
-    this.updateCancellations(event_id);
-    this.db.object('/event/' + event_id).update({
-        first_name:  '',
-        last_name:  '',
-        uid: 'nan',
-        staff_note: ''
-     });
-   }
-
-   updateCancellations(event_id: string): void{
-    var userId;
-    var count;
-    this.eventRef = this.db.list('event');
-    this.events= this.eventRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-    this.events.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          if(snapshot.id == event_id){
-            //console.log(snapshot);
-            userId = snapshot.uid;
-          }
-        });
-    });
-
-    this.volunteerRef = this.db.list('user');
-    this.volunteers= this.volunteerRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-
-    this.volunteers.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          if(snapshot.id == userId){
-            count = snapshot.cancellations;
-            if (isNaN(count)){
-              count = 0;
-            }
-            count++;
-            this.db.object('/user/' + userId )
-            .update({
-              cancellations: count,
-             });
-          }
-        });
+  addStaffNoteToEvent(event_id: string, staff_note: string): void {
+    this.db.object("/event/" + event_id).update({
+      staff_note: staff_note,
     });
   }
 
-  addCancellation(eventId: string, uid: string, reason: string){
-   this.db.object('cancellation/'+eventId + '_' + uid).update({
-     event_id: eventId,
-     user_id: uid,
-     reason: reason
-   });
-  }
-
-   addUserToEvent(event_id: string, first_name: string, last_name: string, uid: string): void {
-     console.log("from firebase service");
-     this.db.object('/event/' + event_id).update({
-         first_name: first_name,
-         last_name: last_name,
-         uid: uid
-      });
-    }
-
-    addNewBug(description) {
-    var a;
-    this.bugsRef = this.db.list('bug');
-    this.bugs= this.bugsRef.snapshotChanges().pipe(
-      map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-    this.bugs.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          if(snapshot.id == "count"){
-            console.log(snapshot);
-            a = snapshot.number;
-            console.log(a);
-            a++;
-            this.db.object('/bug/count')
-              .update({
-                number: a
-               });
-            this.db.object('/bug/' + a)
-              .update({
-                description: description
-               });
-          }
-        });
+  updateEventNote(event_id: string, event_note: string): void {
+    this.db.object("/event/" + event_id).update({
+      event_note: event_note,
     });
-
-    }
-
-
-
-  addPermanentVolunteer(event_type: string, user_id, start_date: Date, end_date: Date, frequency: Number) {
-    const permanent_event_id = event_type + "_" + start_date.getDate()+frequency+end_date.getMonth() + "_" +  user_id[0];
-    this.db.object('/permanent_events/' + permanent_event_id).update({
-        event_type: event_type,
-        user_id: user_id[0],
-        first_name:user_id[1],
-        last_name: user_id[2],
-        start_date: start_date,
-        end_date: end_date,
-        frequency: frequency
-     });
-     console.log("EVENT CREATED");
-   }
-
-    addPermanentVolunteerEvents(associatedPermanentEvents: [], user_id: string, first_name: string, last_name: string, permanent_event_id: string) {
-        for( let i = 0; i < associatedPermanentEvents.length; i++ ) {
-           this.db.object('/event/' + associatedPermanentEvents[i]).update({
-             first_name: first_name,
-             last_name: last_name,
-             uid: user_id,
-             permanent_event_id: permanent_event_id
-        });
-      }
-    }
-
-
-    removePermanentVolunteer(permanent_event_id) {
-      this.db.object('/permanent_events/' + permanent_event_id).remove();
-    }
-
-
-    removePermanentVolunteerEvents(event_id) {
-      console.log(event_id);
-
-      console.log(this.db.object('/event/'+event_id+'/permanent_event_id').remove());
-    }
-
-    addStaffNoteToEvent(event_id: string, staff_note: string): void {
-    this.db.object('/event/' + event_id).update({
-        staff_note: staff_note
-     });
-    }
-
-    updateEventNote(event_id: string, event_note: string): void {
-      this.db.object('/event/' + event_id).update({
-          event_note: event_note
-       });
-    }
-
-
-
   }
+
+  getCancelledEvents(): Observable<any[]> {
+    this.eventRef = this.db.list("cancellation");
+    this.cancelledEvents = this.eventRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
+        )
+      );
+    return this.cancelledEvents;
+  }
+}

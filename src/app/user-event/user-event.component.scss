@@ -26,7 +26,14 @@ h5{
 
 td{
   font-size: 18px;
+
 }
+
+tr{
+  white-space: pre;
+}
+
+
 #profile{
   width: 1000px;
 }
@@ -36,11 +43,17 @@ td{
 }
 
 #historyBtn{
-  width: 200px;
+  width: 180px;
   float: right;
   text-align: center;
   font-size: 18px;
   margin-left: 50px;
   color: white;
   background-color: #449afe;
+}
+
+pre{
+  display: inline;
+  font-family: inherit;
+  font-size: 18px;
 }
