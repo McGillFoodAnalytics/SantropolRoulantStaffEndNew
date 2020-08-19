@@ -46,7 +46,6 @@ export class UserEventComponent implements OnInit {
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
     });
-    console.log(this.element);
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
@@ -129,7 +128,7 @@ export class UserEventComponent implements OnInit {
 
   indentRight(str: string, label: string) {
     let buffer = "";
-    let amount = 35 - label.length;
+    let amount = 40 - label.length;
     //console.log(amount);
 
     for (let i = 0; i < amount - 1; i++) {
@@ -139,6 +138,9 @@ export class UserEventComponent implements OnInit {
   }
 
   prettifyNumber(str: string) {
+    if (str == null) {
+      return "-";
+    }
     let a = str.substring(0, 3);
     let b = str.substring(3, 6);
     let c = str.substring(6, 10);
@@ -146,14 +148,24 @@ export class UserEventComponent implements OnInit {
     return phoneNumber;
   }
 
+  emergency(user) {
+    let contact_name;
+    let contact_rel;
+    if (user.emergency_contact_name == null) {
+      return "-";
+    } else {
+      contact_name = user.emergency_contact_name;
+      contact_rel = user.emergency_relationship;
+    }
+    return contact_name + " (" + contact_rel + ")";
+  }
+
   //function is used to display 0 if cancellations property does not exists on user
-  valid(num: number){
-    if(num){
+  valid(num: number) {
+    if (num) {
       return num;
+    } else {
+      return 0;
     }
-      else{
-        return 0;
-      }
-    }
-  
+  }
 }

@@ -3,7 +3,6 @@
   justify-content: center;
   margin-top: 100px;
   margin-bottom: 100px;
-
 }
 
 h4 {
@@ -16,8 +15,8 @@ h5{
 }
 .mat-icon{
   vertical-align: middle;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin-left: 8px;
+  margin-right: 12px;
 }
 
 #title{
@@ -26,7 +25,6 @@ h5{
 
 td{
   font-size: 18px;
-
 }
 
 tr{
@@ -43,11 +41,21 @@ tr{
 }
 
 #historyBtn{
-  width: 180px;
+  width: 170px;
   float: right;
   text-align: center;
   font-size: 18px;
-  margin-left: 50px;
+  color: white;
+  background-color: #449afe;
+}
+
+#editBtn{
+  width: 170px;
+  float: right;
+  text-align: center;
+  font-size: 18px;
+  margin-right: 5px;
+  border-color: cadetblue;;
   color: white;
   background-color: #449afe;
 }
@@ -56,4 +64,9 @@ pre{
   display: inline;
   font-family: inherit;
   font-size: 18px;
+}
+
+text{
+position: fixed;
+left: 300px;
 }
