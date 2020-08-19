@@ -60,21 +60,62 @@
   </div>
 </ng-template>
 
+<ng-template #content2 let-modal2>
+  <input value="{{ element.email }}" id="editInput1" />
+  <input value="{{ element.address_number }}" id="editInput2" />
+  <input value="{{ element.address_street }}" id="editInput3" />
+  <input value="{{ element.address_city }}" id="editInput4" />
+  <input value="{{ element.address_postal_code }}" id="editInput5" />
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [max]="today"
+    id="editDate"
+    value="{{ element.dob }}"
+  />
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="picker"
+    id="picker"
+  ></mat-datepicker-toggle>
+  <mat-datepicker #picker id="picker"></mat-datepicker>
+
+  <input value="{{ element.phone_number }}" id="editInput6" />
+  <input value="{{ element.emergency_contact_name}}" id="editInput7" />
+  <input value="{{ element.emergency_relationship }}" id="editInput8" />
+  <input value="{{ element.emergency_contact_number }}" id="editInput9" />
+
+  <button mat-menu-item (click)="modal2.dismiss()" id="saveBtn">
+    <mat-icon>edit</mat-icon>
+    <span>Save</span>
+  </button>
+</ng-template>
+
+
 <div class="modal-body" id="profile">
   <table class="table">
     <tbody>
       <h4>{{ element.first_name }} {{ element.last_name }}</h4>
-      <button mat-menu-item (click)="open(content)" id="historyBtn">
+      <button
+        mat-menu-item
+        (click)="open(content)"
+        onclick="this.blur()"
+        id="historyBtn"
+      >
         <mat-icon>history</mat-icon>
         <span>View Events</span>
       </button>
-      <button mat-menu-item (click)="open(content)" id="editBtn">
+      <button
+        mat-menu-item
+        (click)="open(content2)"
+        onclick="this.blur()"
+        id="editBtn"
+      >
         <mat-icon>edit</mat-icon>
         <span>Edit Profile</span>
       </button>
       <tr>
         <td id="colored">
-          <!-- spacing here is important, do not remove for the time being -->
           <mat-icon>account_box</mat-icon>
           <pre>User ID:<text>{{ userId }}</text> </pre>
         </td>
