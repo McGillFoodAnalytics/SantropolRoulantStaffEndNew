@@ -5,6 +5,7 @@ import { FirebaseService } from "../firebase-service.service";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
 import { map } from "rxjs/operators";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-user-event",
@@ -28,6 +29,7 @@ export class UserEventComponent implements OnInit {
   elementA: any;
   element: any;
   user: any;
+  private myForm: FormGroup;
 
   private modalReference;
 
@@ -36,7 +38,8 @@ export class UserEventComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private db: AngularFireDatabase,
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -50,9 +53,11 @@ export class UserEventComponent implements OnInit {
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
   }
+
   capitalize(str: string) {
     return str.toUpperCase();
   }
+
   open(content) {
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
@@ -167,5 +172,9 @@ export class UserEventComponent implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  onSave(){
+    
   }
 }

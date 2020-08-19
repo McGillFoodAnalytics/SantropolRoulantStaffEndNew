@@ -61,17 +61,24 @@
 </ng-template>
 
 <ng-template #content2 let-modal2>
+  <form class="form" id="form1">
   <input value="{{ element.email }}" id="editInput1" />
-  <input value="{{ element.address_number }}" id="editInput2" />
+
+  <input value="{{ element.address_number }}" id="editInput2"  />
+
   <input value="{{ element.address_street }}" id="editInput3" />
+
   <input value="{{ element.address_city }}" id="editInput4" />
-  <input value="{{ element.address_postal_code }}" id="editInput5" />
+
+  <input value="{{ element.address_postal_code }}" id="editInput5"  />
+
   <input
     matInput
     [matDatepicker]="picker"
     [max]="today"
     id="editDate"
     value="{{ element.dob }}"
+    
   />
   <mat-datepicker-toggle
     matSuffix
@@ -80,12 +87,16 @@
   ></mat-datepicker-toggle>
   <mat-datepicker #picker id="picker"></mat-datepicker>
 
-  <input value="{{ element.phone_number }}" id="editInput6" />
-  <input value="{{ element.emergency_contact_name}}" id="editInput7" />
-  <input value="{{ element.emergency_relationship }}" id="editInput8" />
-  <input value="{{ element.emergency_contact_number }}" id="editInput9" />
+  <input value="{{ element.phone_number }}" id="editInput6"  />
 
-  <button mat-menu-item (click)="modal2.dismiss()" id="saveBtn">
+  <input value="{{ element.emergency_contact_name}}" id="editInput7"  />
+
+  <input value="{{ element.emergency_relationship }}" id="editInput8"  />
+
+  <input value="{{ element.emergency_contact_number }}" id="editInput9" />
+</form>
+
+  <button mat-menu-item (click)="modal2.dismiss();onSave()"  form="form1" id="saveBtn">
     <mat-icon>edit</mat-icon>
     <span>Save</span>
   </button>
