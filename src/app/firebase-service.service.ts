@@ -323,4 +323,8 @@ export class FirebaseService {
       );
     return this.cancelledEvents;
   }
+
+  updateUser(user){
+    
+  }
 }

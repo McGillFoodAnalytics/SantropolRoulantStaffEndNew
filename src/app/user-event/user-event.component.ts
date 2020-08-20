@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
 import { map } from "rxjs/operators";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from "../shared/models/user";
 
 @Component({
   selector: "app-user-event",
@@ -30,6 +31,7 @@ export class UserEventComponent implements OnInit {
   element: any;
   user: any;
   private myForm: FormGroup;
+  private model = new User();
 
   private modalReference;
 
@@ -42,16 +44,21 @@ export class UserEventComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    
     this.events = this.firebase.getEvents();
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
-    this.firebase.getUser(this.userId).subscribe((element) => {
+   this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
+      this.model = element;
     });
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
+
+    
+    
   }
 
   capitalize(str: string) {
@@ -81,10 +88,7 @@ export class UserEventComponent implements OnInit {
     });
   }
 
-  displayFirstName() {
-    this.element = this.firebase.getUser(this.userId);
-    console.log(this.element);
-  }
+ 
 
   displayCurrentEvents(userId) {
     this.currentEventsUser = [];
@@ -174,7 +178,29 @@ export class UserEventComponent implements OnInit {
     }
   }
 
+  updateUser(user){
+    this.db.object('/user/' + this.userId)
+    .update({
+      // address_city: user.address_city,
+      // address_number: user.address_number,
+      // address_postal_code: user.address_postal_code,
+      // address_street: user.address_street,
+      //dob: user.dob,
+      // email: user.email,
+      // first_name: user.first_name,
+      // key: user.id,
+      // last_name: user.last_name,
+      // no_show: 0,
+       phone_number: user.phone_number,
+      // emergency_contact_number: user.emergency_contact_number,
+      // emergency_contact_name: user.emergency_contact_name,
+      // emergency_relationship: user.emergency_relationship,
+     });
+  }
+
   onSave(){
+    console.log(this.model.phone_number);
+    this.updateUser(this.model);
     
   }
 }

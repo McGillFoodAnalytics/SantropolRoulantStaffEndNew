@@ -61,10 +61,11 @@
 </ng-template>
 
 <ng-template #content2 let-modal2>
-  <form class="form" id="form1">
+  
+  <form class="form" (ngSubmit)="onSave()" id="form1">
   <input value="{{ element.email }}" id="editInput1" />
 
-  <input value="{{ element.address_number }}" id="editInput2"  />
+  <input value="{{ element.address_number }}" id='editInput2'  />
 
   <input value="{{ element.address_street }}" id="editInput3" />
 
@@ -87,16 +88,20 @@
   ></mat-datepicker-toggle>
   <mat-datepicker #picker id="picker"></mat-datepicker>
 
-  <input value="{{ element.phone_number }}" id="editInput6"  />
+  <input id="editInput6" 
+  value="{{ element.phone_number }}"
+  [(ngModel)]="model.phone_number"
+  [ngModelOptions]="{standalone: true}">
+  />
 
-  <input value="{{ element.emergency_contact_name}}" id="editInput7"  />
+  <input value="{{ element.emergency_contact_name}}"  id="editInput7"  />
 
   <input value="{{ element.emergency_relationship }}" id="editInput8"  />
 
   <input value="{{ element.emergency_contact_number }}" id="editInput9" />
 </form>
 
-  <button mat-menu-item (click)="modal2.dismiss();onSave()"  form="form1" id="saveBtn">
+  <button mat-menu-item (click)="modal2.dismiss();onSave()" form="form1"  type="submit" id="saveBtn">
     <mat-icon>edit</mat-icon>
     <span>Save</span>
   </button>
