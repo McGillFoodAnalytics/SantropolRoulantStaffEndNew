@@ -57,6 +57,19 @@ export class UserEventComponent implements OnInit {
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
 
+    this.myForm = this.formBuilder.group({
+      dob: ['', Validators.required],
+      address_number: ['', Validators.required],
+      address_street: ['', Validators.required],
+      address_city: ['', Validators.required],
+      address_postal_code: ['', Validators.required],
+      email: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      emergency_contact_name: ['', Validators.required],
+      emergency_relationship: ['', Validators.required],
+      emergency_contact_number: ['', Validators.required]
+    });
+
     
     
   }
@@ -181,26 +194,27 @@ export class UserEventComponent implements OnInit {
   updateUser(user){
     this.db.object('/user/' + this.userId)
     .update({
-      // address_city: user.address_city,
-      // address_number: user.address_number,
-      // address_postal_code: user.address_postal_code,
-      // address_street: user.address_street,
-      //dob: user.dob,
-      // email: user.email,
-      // first_name: user.first_name,
-      // key: user.id,
-      // last_name: user.last_name,
-      // no_show: 0,
-       phone_number: user.phone_number,
-      // emergency_contact_number: user.emergency_contact_number,
-      // emergency_contact_name: user.emergency_contact_name,
-      // emergency_relationship: user.emergency_relationship,
+      address_city: user.address_city,
+      address_number: user.address_number,
+      address_postal_code: user.address_postal_code,
+      address_street: user.address_street,
+      dob: user.dob,
+      email: user.email,
+      phone_number: user.phone_number,
+      emergency_contact_number: user.emergency_contact_number,
+      emergency_contact_name: user.emergency_contact_name,
+      emergency_relationship: user.emergency_relationship,
      });
   }
 
   onSave(){
-    console.log(this.model.phone_number);
-    this.updateUser(this.model);
+    //console.log(this.model.phone_number);
+    this.myForm.markAllAsTouched();
     
+
+    if (this.myForm.valid) {
+      this.updateUser(this.model);
+      this.modalReference.close();
+    }
   }
 }

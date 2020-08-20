@@ -61,52 +61,100 @@
 </ng-template>
 
 <ng-template #content2 let-modal2>
-  
-  <form class="form" (ngSubmit)="onSave()" id="form1">
-  <input value="{{ element.email }}" id="editInput1" />
+  <section class="editProfile">
+    <form
+      class="form"
+      (ngSubmit)="onSave()"
+      *ngIf="myForm"
+      [formGroup]="myForm"
+    >
+      <input
+        value="{{ element.email }}"
+        id="editInput1"
+        email="true"
+        formControlName="email"
+        [(ngModel)]="model.email"
+      />
 
-  <input value="{{ element.address_number }}" id='editInput2'  />
+      <input
+        value="{{ element.address_number }}"
+        id="editInput2"
+        formControlName="address_number"
+        [(ngModel)]="model.address_number"
+      />
 
-  <input value="{{ element.address_street }}" id="editInput3" />
+      <input
+        value="{{ element.address_street }}"
+        id="editInput3"
+        formControlName="address_street"
+        [(ngModel)]="model.address_street"
+      />
 
-  <input value="{{ element.address_city }}" id="editInput4" />
+      <input
+        value="{{ element.address_city }}"
+        id="editInput4"
+        formControlName="address_city"
+        [(ngModel)]="model.address_city"
+      />
 
-  <input value="{{ element.address_postal_code }}" id="editInput5"  />
+      <input
+        value="{{ element.address_postal_code }}"
+        id="editInput5"
+        formControlName="address_postal_code"
+        [(ngModel)]="model.address_postal_code"
+      />
 
-  <input
-    matInput
-    [matDatepicker]="picker"
-    [max]="today"
-    id="editDate"
-    value="{{ element.dob }}"
-    
-  />
-  <mat-datepicker-toggle
-    matSuffix
-    [for]="picker"
-    id="picker"
-  ></mat-datepicker-toggle>
-  <mat-datepicker #picker id="picker"></mat-datepicker>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [max]="today"
+        id="editDate"
+        value="{{ element.dob }}"
+        formControlName="dob"
+        [(ngModel)]="model.dob"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+        id="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker id="picker"></mat-datepicker>
 
-  <input id="editInput6" 
-  value="{{ element.phone_number }}"
-  [(ngModel)]="model.phone_number"
-  [ngModelOptions]="{standalone: true}">
-  />
+      <input
+        id="editInput6"
+        value="{{ element.phone_number }}"
+        [(ngModel)]="model.phone_number"
+        formControlName="phone_number"
+      />
 
-  <input value="{{ element.emergency_contact_name}}"  id="editInput7"  />
+      <input
+        value="{{ element.emergency_contact_name }}"
+        id="editInput7"
+        [(ngModel)]="model.emergency_contact_name"
+        formControlName="emergency_contact_name"
+      />
 
-  <input value="{{ element.emergency_relationship }}" id="editInput8"  />
+      <input
+        value="{{ element.emergency_relationship }}"
+        id="editInput8"
+        formControlName="emergency_relationship"
+        [(ngModel)]="model.emergency_relationship"
+      />
 
-  <input value="{{ element.emergency_contact_number }}" id="editInput9" />
-</form>
+      <input
+        value="{{ element.emergency_contact_number }}"
+        id="editInput9"
+        formControlName="emergency_contact_number"
+        [(ngModel)]="model.emergency_contact_number"
+      />
+    </form>
+  </section>
 
-  <button mat-menu-item (click)="modal2.dismiss();onSave()" form="form1"  type="submit" id="saveBtn">
+  <button mat-menu-item (click)="onSave()" type="submit" id="saveBtn">
     <mat-icon>edit</mat-icon>
     <span>Save</span>
   </button>
 </ng-template>
-
 
 <div class="modal-body" id="profile">
   <table class="table">
@@ -185,7 +233,7 @@ Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</t
 
   <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
 
-  <table class="table" *ngIf="currentEventsUser.length != 0">
+  <table class="table" *ngIf="cancelledEventsUser.length != 0">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Event Id</th>
