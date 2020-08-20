@@ -10,37 +10,36 @@ h4 {
   display: inline-block;
 }
 
-h5{
+h5 {
   color: red;
 }
-.mat-icon{
+.mat-icon {
   vertical-align: middle;
   margin-left: 8px;
   margin-right: 12px;
 }
 
-#title{
+#title {
   font-size: 200px;
 }
 
-td{
+td {
   font-size: 18px;
 }
 
-tr{
+tr {
   white-space: pre;
 }
 
-
-#profile{
+#profile {
   width: 1000px;
 }
 
-#colored{
-  background-color:lightgray;
+#colored {
+  background-color: lightgray;
 }
 
-#historyBtn{
+#historyBtn {
   width: 170px;
   float: right;
   text-align: center;
@@ -49,7 +48,7 @@ tr{
   background-color: #449afe;
 }
 
-#editBtn{
+#editBtn {
   width: 170px;
   float: right;
   text-align: center;
@@ -58,8 +57,8 @@ tr{
   color: white;
   background-color: #449afe;
 }
-#saveBtn{
-  width: 170px;
+#saveBtn {
+  width: 150px;
   float: right;
   text-align: center;
   font-size: 18px;
@@ -67,100 +66,102 @@ tr{
   color: white;
   background-color: #5fce99;
   position: fixed;
-  left: 782px;
+  left: 802px;
   top: 517px;
 }
 
-#editInput1{
+#editInput1 {
   width: 310px;
   position: fixed;
   top: 215px;
   left: 295px;
 }
 
-#editInput2{
+#editInput2 {
   width: 110px;
   position: fixed;
   top: 268px;
   left: 295px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-#editInput3{
+#editInput3 {
   width: 170px;
   position: fixed;
   top: 268px;
   left: 405px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-#editInput4{
+#editInput4 {
   width: 170px;
   position: fixed;
   top: 268px;
   left: 575px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-#editInput5{
+#editInput5 {
   width: 170px;
   position: fixed;
   top: 268px;
   left: 745px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-
-
-#editDate{
+#editDate {
   position: fixed;
   top: 321px;
   left: 295px;
 }
 
-#picker{
+#picker {
   position: fixed;
   top: 314px;
   left: 425px;
 }
 
-#editInput6{
+#editInput6 {
   width: 170px;
   position: fixed;
   top: 372px;
   left: 295px;
 }
 
-#editInput7{
+#editInput7 {
   width: 170px;
   position: fixed;
   top: 425px;
   left: 295px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-#editInput8{
+#editInput8 {
   width: 170px;
   position: fixed;
   top: 425px;
   left: 465px;
-  border: 1px solid  #449afe;
+  border: 1px solid #449afe;
 }
 
-#editInput9{
+#editInput9 {
   width: 170px;
   position: fixed;
   top: 475px;
   left: 295px;
 }
 
-pre{
+pre {
   display: inline;
   font-family: inherit;
   font-size: 18px;
 }
 
-text{
-position: fixed;
-left: 300px;
+text {
+  position: fixed;
+  left: 300px;
+}
+
+input.ng-invalid {
+  border: 2px red solid !important;
 }

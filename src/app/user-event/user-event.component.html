@@ -63,6 +63,7 @@
 <ng-template #content2 let-modal2>
   <section class="editProfile">
     <form
+      name="editForm"
       class="form"
       (ngSubmit)="onSave()"
       *ngIf="myForm"
@@ -74,6 +75,7 @@
         email="true"
         formControlName="email"
         [(ngModel)]="model.email"
+        required
       />
 
       <input
@@ -81,6 +83,7 @@
         id="editInput2"
         formControlName="address_number"
         [(ngModel)]="model.address_number"
+        required
       />
 
       <input
@@ -88,6 +91,7 @@
         id="editInput3"
         formControlName="address_street"
         [(ngModel)]="model.address_street"
+        required
       />
 
       <input
@@ -95,6 +99,7 @@
         id="editInput4"
         formControlName="address_city"
         [(ngModel)]="model.address_city"
+        required
       />
 
       <input
@@ -102,16 +107,17 @@
         id="editInput5"
         formControlName="address_postal_code"
         [(ngModel)]="model.address_postal_code"
+        required
       />
 
       <input
-        matInput
         [matDatepicker]="picker"
         [max]="today"
         id="editDate"
         value="{{ element.dob }}"
         formControlName="dob"
         [(ngModel)]="model.dob"
+        required
       />
       <mat-datepicker-toggle
         matSuffix
@@ -121,17 +127,20 @@
       <mat-datepicker #picker id="picker"></mat-datepicker>
 
       <input
+        ng-model="name"
         id="editInput6"
         value="{{ element.phone_number }}"
         [(ngModel)]="model.phone_number"
         formControlName="phone_number"
+        required
       />
-
+      
       <input
         value="{{ element.emergency_contact_name }}"
         id="editInput7"
         [(ngModel)]="model.emergency_contact_name"
         formControlName="emergency_contact_name"
+        required
       />
 
       <input
@@ -139,6 +148,7 @@
         id="editInput8"
         formControlName="emergency_relationship"
         [(ngModel)]="model.emergency_relationship"
+        required
       />
 
       <input
@@ -146,12 +156,13 @@
         id="editInput9"
         formControlName="emergency_contact_number"
         [(ngModel)]="model.emergency_contact_number"
+        required
       />
     </form>
   </section>
 
   <button mat-menu-item (click)="onSave()" type="submit" id="saveBtn">
-    <mat-icon>edit</mat-icon>
+    <mat-icon>save</mat-icon>
     <span>Save</span>
   </button>
 </ng-template>
