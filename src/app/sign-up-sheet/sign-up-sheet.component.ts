@@ -356,8 +356,8 @@ export class SignUpSheetComponent implements OnInit {
 
   updateEventNote(event_id, event_note) {
     console.log("update event");
-    console.log(event_id);
-    console.log(event_note);
+    //console.log(event_id);
+    //console.log(event_note);
     this.fs.updateEventNote(event_id, event_note);
   }
 }

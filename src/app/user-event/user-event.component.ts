@@ -158,8 +158,16 @@ export class UserEventComponent implements OnInit {
     const day = date.substring(8, 10);
     date = month + "/" + day + "/" + year;
     return date;
-      
     }
+  }
+
+  formatSignupDate(date: string){
+    let year = "20" + date.substring(0,2);
+    let day = date.substring(6);
+    let month = date.substring(3,5);
+    return    month + '/' + day + '/' + year;
+    //console.log(year);
+    
   }
 
   prettifyNumber(str: string) {

@@ -12,6 +12,7 @@ h4 {
 
 h5 {
   color: red;
+  margin-top: 40px;
 }
 .mat-icon {
   vertical-align: middle;
@@ -67,20 +68,20 @@ tr {
   background-color: #5fce99;
   position: fixed;
   left: 802px;
-  top: 517px;
+  top: 570px;
 }
 
 #editInput1 {
   width: 310px;
   position: fixed;
-  top: 215px;
+  top: 268px;
   left: 295px;
 }
 
 #editInput2 {
   width: 110px;
   position: fixed;
-  top: 268px;
+  top: 320px;
   left: 295px;
   border: 1px solid #449afe;
 }
@@ -88,7 +89,7 @@ tr {
 #editInput3 {
   width: 170px;
   position: fixed;
-  top: 268px;
+  top: 320px;
   left: 405px;
   border: 1px solid #449afe;
 }
@@ -96,7 +97,7 @@ tr {
 #editInput4 {
   width: 170px;
   position: fixed;
-  top: 268px;
+  top: 320px;
   left: 575px;
   border: 1px solid #449afe;
 }
@@ -104,42 +105,46 @@ tr {
 #editInput5 {
   width: 170px;
   position: fixed;
-  top: 268px;
+  top: 320px;
   left: 745px;
   border: 1px solid #449afe;
 }
 
 #editDate {
   position: fixed;
-  top: 321px;
+  top: 372px;
   left: 295px;
 }
 
 #picker {
   position: fixed;
-  top: 314px;
+  top: 367px;
   left: 425px;
 }
 
 #editInput6 {
   width: 170px;
   position: fixed;
-  top: 372px;
+  top: 424px;
   left: 295px;
 }
 
 #editInput7 {
   width: 170px;
   position: fixed;
-  top: 425px;
+  top: 476px;
   left: 295px;
   border: 1px solid #449afe;
+}
+
+input{
+  padding-left: 5px;
 }
 
 #editInput8 {
   width: 170px;
   position: fixed;
-  top: 425px;
+  top: 476px;
   left: 465px;
   border: 1px solid #449afe;
 }
@@ -147,7 +152,7 @@ tr {
 #editInput9 {
   width: 170px;
   position: fixed;
-  top: 475px;
+  top: 528px;
   left: 295px;
 }
 
@@ -158,10 +163,11 @@ pre {
 }
 
 text {
-  position: fixed;
+  position: sticky; 
   left: 300px;
 }
 
 input.ng-invalid {
   border: 2px red solid !important;
 }
+

@@ -1,17 +1,18 @@
 <div class="container-fluid" style="padding:0">
     <div class="row" style="padding-top: 2rem; padding-bottom: 1rem">
-        <div class="col">
+        <div class="col" id="header">
+            <img src="../../../assets/santropol-logo.png" alt="" id="logo">
             <h1 class="header-text" style="padding:0.5rem; text-align: center; color: #60A4FF">
                 Volunteer Schedule
             </h1>
         </div>
     </div>
-    <div class="row" style="padding-bottom:2rem">
+    <div class="row" style="padding-bottom:2rem ">
         <div class="col">
-            <div class="card">
+            <div class="card" style="margin-top:-16px">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-8 offset-2" style="text-align:center">
+                    <div class="row" >
+                        <div class="col-8 offset-2" style="text-align:center margin-top:-50px">
                             <button class="btn" (click)="prevWeek()" *ngIf="currentWeek!='first'"><mat-icon>arrow_back_ios</mat-icon></button>
                             {{getWeekTitle()}}
                             <button class="btn" (click)="nextWeek()" *ngIf="currentWeek!='third'"><mat-icon>arrow_forward_ios</mat-icon></button>

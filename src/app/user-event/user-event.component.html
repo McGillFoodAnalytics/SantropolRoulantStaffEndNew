@@ -197,47 +197,50 @@
       </tr>
       <tr>
         <td>
+          <mat-icon>how_to_reg</mat-icon>
+          <pre>Registered Since:<text>{{ formatSignupDate(element.signup_date) }}</text> </pre>
+        </td>
+      </tr>
+      <tr>
+        <td id="colored">
           <mat-icon>email</mat-icon>
           <pre>Email:<text>{{ element.email }} </text></pre>
         </td>
       </tr>
       <tr>
-        <td id="colored">
+        <td >
           <mat-icon>home</mat-icon>
           <pre>
 Address:<text>{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</text></pre>
         </td>
       </tr>
       <tr>
-        <td>
+        <td id="colored">
           <mat-icon>cake</mat-icon>
           <pre>
  Date of Birth:<text >{{formatDate(element.dob)}}</text></pre>
         </td>
       </tr>
       <tr>
-        <td id="colored">
+        <td>
           <mat-icon>phone_android</mat-icon>
           <pre>
 Phone Number:<text>{{prettifyNumber(element.phone_number)}}</text></pre>
         </td>
       </tr>
       <tr>
-        <td>
+        <td id="colored">
           <mat-icon>local_hospital</mat-icon>
           <pre>
  Emergency Contact:<text>{{ emergency(element) }}</text></pre>
         </td>
       </tr>
       <tr>
-        <td id="colored">
+        <td>
           <mat-icon>perm_device_information</mat-icon>
           <pre>
 Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
         </td>
-      </tr>
-      <tr>
-        <td></td>
       </tr>
     </tbody>
   </table>
