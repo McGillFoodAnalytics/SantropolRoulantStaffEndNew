@@ -8,6 +8,7 @@ import { map } from "rxjs/operators";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from "../shared/models/user";
 
+
 @Component({
   selector: "app-user-event",
   templateUrl: "./user-event.component.html",
@@ -140,23 +141,25 @@ export class UserEventComponent implements OnInit {
   }
 
   //useful method
-  formatDate(date: string) {
+  formatDate(date) {
+    if(date == null){
+      return '';
+    }
+    if(date.constructor == Date){
+      let month  = date.getMonth().toString();
+      let day  = date.getDate().toString();
+      let year  = date.getFullYear().toString();
+      
+      return month + '/' + day + '/' + year;
+    }
+    else if(date.constructor == String){
     const year = date.substring(0, 4);
     const month = date.substring(5, 7);
     const day = date.substring(8, 10);
     date = month + "/" + day + "/" + year;
     return date;
-  }
-
-  indentRight(str: string, label: string) {
-    let buffer = "";
-    let amount = 40 - label.length;
-    //console.log(amount);
-
-    for (let i = 0; i < amount - 1; i++) {
-      buffer += " ";
+      
     }
-    return buffer + str;
   }
 
   prettifyNumber(str: string) {
@@ -210,8 +213,6 @@ export class UserEventComponent implements OnInit {
   onSave(){
     //console.log(this.model.phone_number);
     this.myForm.markAllAsTouched();
-    
-
     if (this.myForm.valid) {
       this.updateUser(this.model);
       this.modalReference.close();

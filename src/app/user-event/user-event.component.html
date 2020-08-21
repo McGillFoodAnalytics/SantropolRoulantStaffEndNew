@@ -114,7 +114,6 @@
         [matDatepicker]="picker"
         [max]="today"
         id="editDate"
-        value="{{ element.dob }}"
         formControlName="dob"
         [(ngModel)]="model.dob"
         required
@@ -124,8 +123,9 @@
         [for]="picker"
         id="picker"
       ></mat-datepicker-toggle>
-      <mat-datepicker #picker id="picker"></mat-datepicker>
+      <mat-datepicker #picker ></mat-datepicker>
 
+     
       <input
         ng-model="name"
         id="editInput6"
@@ -212,7 +212,7 @@ Address:<text>{{element.address_number }} {{element.address_street}}, {{ element
         <td>
           <mat-icon>cake</mat-icon>
           <pre>
- Date of Birth:<text>{{formatDate(element.dob)}}</text></pre>
+ Date of Birth:<text >{{formatDate(element.dob)}}</text></pre>
         </td>
       </tr>
       <tr>
@@ -231,7 +231,7 @@ Phone Number:<text>{{prettifyNumber(element.phone_number)}}</text></pre>
       </tr>
       <tr>
         <td id="colored">
-          <mat-icon>phone_android</mat-icon>
+          <mat-icon>perm_device_information</mat-icon>
           <pre>
 Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
         </td>
