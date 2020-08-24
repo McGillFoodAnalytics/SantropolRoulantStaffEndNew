@@ -5,9 +5,8 @@ import { FirebaseService } from "../firebase-service.service";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
 import { map } from "rxjs/operators";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
-
 
 @Component({
   selector: "app-user-event",
@@ -46,11 +45,10 @@ export class UserEventComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    
     this.events = this.firebase.getEvents();
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
-   this.firebase.getUser(this.userId).subscribe((element) => {
+    this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
       this.model = element;
     });
@@ -59,20 +57,17 @@ export class UserEventComponent implements OnInit {
     this.displayCancellation(this.userId);
 
     this.myForm = this.formBuilder.group({
-      dob: ['', Validators.required],
-      address_number: ['', Validators.required],
-      address_street: ['', Validators.required],
-      address_city: ['', Validators.required],
-      address_postal_code: ['', Validators.required],
-      email: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      emergency_contact_name: ['', Validators.required],
-      emergency_relationship: ['', Validators.required],
-      emergency_contact_number: ['', Validators.required]
+      dob: ["", Validators.required],
+      address_number: ["", Validators.required],
+      address_street: ["", Validators.required],
+      address_city: ["", Validators.required],
+      address_postal_code: ["", Validators.required],
+      email: ["", Validators.required],
+      phone_number: ["", Validators.required],
+      emergency_contact_name: ["", Validators.required],
+      emergency_relationship: ["", Validators.required],
+      emergency_contact_number: ["", Validators.required],
     });
-
-    
-    
   }
 
   capitalize(str: string) {
@@ -102,8 +97,6 @@ export class UserEventComponent implements OnInit {
     });
   }
 
- 
-
   displayCurrentEvents(userId) {
     this.currentEventsUser = [];
     this.events.subscribe((snapshots) => {
@@ -115,7 +108,7 @@ export class UserEventComponent implements OnInit {
           }
         }
       });
-    }); //
+    }); 
   }
 
   displayCancellation(userId) {
@@ -142,32 +135,45 @@ export class UserEventComponent implements OnInit {
 
   //useful method
   formatDate(date) {
-    if(date == null){
-      return '';
+    if (date == null) {
+      return "";
     }
-    if(date.constructor == Date){
-      let month  = date.getMonth().toString();
-      let day  = date.getDate().toString();
-      let year  = date.getFullYear().toString();
-      
-      return month + '/' + day + '/' + year;
-    }
-    else if(date.constructor == String){
-    const year = date.substring(0, 4);
-    const month = date.substring(5, 7);
-    const day = date.substring(8, 10);
-    date = month + "/" + day + "/" + year;
-    return date;
+    if (date.constructor == Date) {
+      let month = date.getMonth().toString();
+      let day = date.getDate().toString();
+      let year = date.getFullYear().toString();
+
+      return month + "/" + day + "/" + year;
+    } else if (date.constructor == String) {
+      const year = date.substring(0, 4);
+      const month = date.substring(5, 7);
+      const day = date.substring(8, 10);
+      date = month + "/" + day + "/" + year;
+      return date;
     }
   }
 
-  formatSignupDate(date: string){
-    let year = "20" + date.substring(0,2);
+  formatSignupDate(date: string) {
+    let year = "20" + date.substring(0, 2);
     let day = date.substring(6);
-    let month = date.substring(3,5);
-    return    month + '/' + day + '/' + year;
-    //console.log(year);
-    
+    let month = date.substring(3, 5);
+    return month + "/" + day + "/" + year;
+  }
+
+  formatEventId(eventId: string) {
+    let code1 = eventId.substring(0, 6);
+    let code2 = eventId.substring(11);
+    let event = eventId.substring(6, 11);
+    let newId;
+    switch (event) {
+      case "kitam":
+        newId = code1 + " Kitchen AM-" + code2;
+        break;
+      case "kitpm":
+        newId = code1 + " Kitchen PM-" + code2;
+        break
+    }
+    return newId;
   }
 
   prettifyNumber(str: string) {
@@ -202,9 +208,8 @@ export class UserEventComponent implements OnInit {
     }
   }
 
-  updateUser(user){
-    this.db.object('/user/' + this.userId)
-    .update({
+  updateUser(user) {
+    this.db.object("/user/" + this.userId).update({
       address_city: user.address_city,
       address_number: user.address_number,
       address_postal_code: user.address_postal_code,
@@ -215,7 +220,7 @@ export class UserEventComponent implements OnInit {
       emergency_contact_number: user.emergency_contact_number,
       emergency_contact_name: user.emergency_contact_name,
       emergency_relationship: user.emergency_relationship,
-     });
+    });
   }
 
   onSave(){

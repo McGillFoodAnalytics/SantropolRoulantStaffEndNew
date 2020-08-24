@@ -256,7 +256,7 @@ Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</t
     </thead>
     <tbody>
       <tr *ngFor="let event of cancelledEventsUser">
-        <td>{{ event.event_id }}</td>
+        <td>{{ formatEventId(event.event_id) }}</td>
         <td>{{ event.reason }}</td>
       </tr>
     </tbody>
