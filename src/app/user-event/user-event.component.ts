@@ -108,7 +108,7 @@ export class UserEventComponent implements OnInit {
           }
         }
       });
-    }); 
+    });
   }
 
   displayCancellation(userId) {
@@ -171,7 +171,25 @@ export class UserEventComponent implements OnInit {
         break;
       case "kitpm":
         newId = code1 + " Kitchen PM-" + code2;
-        break
+        break;
+      case "deldr":
+        newId = code1 + " Delivery Driver-" + code2;
+        break;
+      case "deliv":
+        newId = code1 + " Delivery-" + code2;
+        break;
+      case "kitas":
+        newId = code1 + " Kitchen AM Sat-" + code2;
+        break;
+      case "kitps":
+        newId = code1 + " Kitchen PM Sat-" + code2;
+        break;
+      case "delds":
+        newId = code1 + " Delivery Driver Sat-" + code2;
+        break;
+      case "delis":
+        newId = code1 + " Delivery Sat-" + code2;
+        break;
     }
     return newId;
   }
@@ -223,7 +241,7 @@ export class UserEventComponent implements OnInit {
     });
   }
 
-  onSave(){
+  onSave() {
     //console.log(this.model.phone_number);
     this.myForm.markAllAsTouched();
     if (this.myForm.valid) {
