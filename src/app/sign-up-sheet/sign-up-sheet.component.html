@@ -31,7 +31,7 @@
         <app-slider [activePane]="currentWeek">
             <div firstPane>
                 <div class="row" style="padding-bottom:2rem">
-                    <div class="col-3" *ngFor="let day of getEventList() | keyvalue" style="padding-bottom:2rem">
+                    <div class="col-2" *ngFor="let day of getEventList() | keyvalue" style="padding-bottom:2rem">
                         <div class="card">
                             <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->
                             <div class="card-header" *ngIf="day.value.is_important_event; else importantEventFalseHeader" style="background-color:#f24a5a">

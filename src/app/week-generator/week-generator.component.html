@@ -12,9 +12,14 @@
       <form class="form" (ngSubmit)="onSubmit()" [formGroup]="addPermanentForm">
         <div class="form-row mb-12">
           <div class="form-group col-md-12" style="margin-bottom:1rem;">
-            Add permanent volunteer markers:
+            Generate new week:
           </div>
         </div>
+        <mat-select formControlName="startDate" [(ngModel)]="model.startDate">
+          <mat-option *ngFor="let day of threeMondays" [value]="monday">
+        {{day}}
+        </mat-option>
+      </mat-select>
         <div class="row">
           <div class="col-2">Weekday</div>
           <div class="col-1">Monday</div>
