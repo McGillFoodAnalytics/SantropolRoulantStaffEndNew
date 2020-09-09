@@ -162,33 +162,38 @@ export class UserEventComponent implements OnInit {
 
   formatEventId(eventId: string) {
     let code1 = eventId.substring(0, 6);
+    let day = code1.substring(4);
+    let month = code1.substring(2,4);
+    let year = code1.substring(0,2);
+    let date = month + '/' + day + '/' + year;
+    
     let code2 = eventId.substring(11);
     let event = eventId.substring(6, 11);
     let newId;
     switch (event) {
       case "kitam":
-        newId = code1 + " Kitchen AM-" + code2;
+        newId = date + " Kitchen AM-" + code2;
         break;
       case "kitpm":
-        newId = code1 + " Kitchen PM-" + code2;
+        newId = date + " Kitchen PM-" + code2;
         break;
       case "deldr":
-        newId = code1 + " Delivery Driver-" + code2;
+        newId = date + " Delivery Driver-" + code2;
         break;
       case "deliv":
-        newId = code1 + " Delivery-" + code2;
+        newId = date + " Delivery-" + code2;
         break;
       case "kitas":
-        newId = code1 + " Kitchen AM Sat-" + code2;
+        newId = date + " Kitchen AM Sat-" + code2;
         break;
       case "kitps":
-        newId = code1 + " Kitchen PM Sat-" + code2;
+        newId = date + " Kitchen PM Sat-" + code2;
         break;
       case "delds":
-        newId = code1 + " Delivery Driver Sat-" + code2;
+        newId = date + " Delivery Driver Sat-" + code2;
         break;
       case "delis":
-        newId = code1 + " Delivery Sat-" + code2;
+        newId = date + " Delivery Sat-" + code2;
         break;
     }
     return newId;

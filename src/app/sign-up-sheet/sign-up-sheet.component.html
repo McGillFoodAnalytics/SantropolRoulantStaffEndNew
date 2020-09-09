@@ -161,7 +161,7 @@
           style="margin-bottom: -30px; float: right; margin-right: 13%;"
           *ngFor="let coolEvent of eventArray"
         >
-        <h3 *ngIf='currentWeek == "second"'>{{coolEvent}}</h3>
+        <h3 id="eventTitle" *ngIf='currentWeek == "second"'>{{coolEvent}}</h3>
           <div
             class="row-2"
             *ngFor="
@@ -170,11 +170,11 @@
             "
             style="padding-bottom: 2rem; font-size: 15px;"
           >
-            <div class="card" style="width: 175px;">
+            <div class="card" [class.eventCardImportant]="day.value.is_important_event === true" style="width: 175px;">
               <div
                 class="card-header"
                 *ngIf="
-                  day.value.is_important_event;
+                  (coolEvent == 'Kitchen AM' && day.value.is_important_event);
                   else importantEventFalseHeader
                 "
                 style="background-color: #f24a5a;"
@@ -182,7 +182,8 @@
                 {{ day.value.display_date | date: "EEEE, MMM d" }}
               </div>
               <ng-template #importantEventFalseHeader>
-                <div class="card-header">
+                <div class="card-header"
+                *ngIf="coolEvent == 'Kitchen AM'">
                   {{ day.value.display_date | date: "EEEE, MMM d" }}
                 </div>
               </ng-template>
@@ -241,7 +242,7 @@
                   matTooltip="Click to view & edit the event note"
                 >
                 </app-event-note>
-                <mat-icon
+                <mat-icon style="margin-left: 5px; margin-top: -8px; transform: scale(0.8);"
                   *ngIf="
                     day.value.slots[0].event_note != null &&
                     day.value.slots[0].event_note.length > 0

@@ -185,8 +185,13 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   getWeekTitle() {
+    this.weekRange1 = this.setWeekRange(this.week1);
+    this.weekRange2 = this.setWeekRange(this.week2);
+    this.weekRange3 = this.setWeekRange(this.week3);
+      
     if (this.currentWeek == "first") {
       return this.weekRange1;
+      
     } else if (this.currentWeek == "second") {
       return this.weekRange2;
     } else {
