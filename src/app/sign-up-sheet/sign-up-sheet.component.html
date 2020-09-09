@@ -170,7 +170,7 @@
             "
             style="padding-bottom: 2rem; font-size: 15px;"
           >
-            <div class="card" [class.eventCardImportant]="day.value.is_important_event === true" style="width: 175px;">
+            <div class="card" [class.eventCardImportant]="day.value.is_important_event" style="width: 175px;">
               <div
                 class="card-header"
                 *ngIf="
@@ -215,7 +215,7 @@
                   src="assets/important-event-true.png"
                   width="30px"
                   style="margin-right: 1rem;"
-                  (click)="changeEventImportance(day.key)"
+                  (click)="changeEventImportanceCool(day.key, coolEvent)"
                   matTooltip="Click to mark this event as unimportant"
                 />
                 <ng-template #importantEventFalse>
@@ -224,7 +224,7 @@
                     src="assets/important-event-false.png"
                     width="30px"
                     style="margin-right: 1rem;"
-                    (click)="changeEventImportance(day.key)"
+                    (click)="changeEventImportance(day.key, coolEvent)"
                     matTooltip="Click to mark this event as important"
                   />
                 </ng-template>

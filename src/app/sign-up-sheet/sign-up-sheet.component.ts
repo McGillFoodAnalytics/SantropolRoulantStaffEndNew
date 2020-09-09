@@ -356,6 +356,41 @@ export class SignUpSheetComponent implements OnInit {
       this.fs.changeEventImportance(slot["id"], is_important_event);
     }
   }
+  changeEventImportanceCool(day: string, eventType: string) {
+    var slots;
+    var is_important_event;
+    var currentEventValue = this.eventTypes[eventType];
+    console.log(currentEventValue + "    sssss");
+    
+    if (this.currentWeek == "first") {
+      is_important_event = !this.week1[currentEventValue][day][
+        "is_important_event"
+      ];
+      this.week1[currentEventValue][day][
+        "is_important_event"
+      ] = is_important_event;
+      slots = this.week1[currentEventValue][day]["slots"];
+    } else if (this.currentWeek == "second") {
+      is_important_event = this.week2[currentEventValue][day][
+        "is_important_event"
+      ];
+      this.week2[currentEventValue][day][
+        "is_important_event"
+      ] = !is_important_event;
+      slots = this.week2[currentEventValue][day]["slots"];
+    } else {
+      is_important_event = this.week3[currentEventValue][day][
+        "is_important_event"
+      ];
+      this.week3[currentEventValue][day][
+        "is_important_event"
+      ] = !is_important_event;
+      slots = this.week3[currentEventValue][day]["slots"];
+    }
+    for (var slot of slots) {
+      this.fs.changeEventImportance(slot["id"], is_important_event);
+    }
+  }
 
   getVolunteerList() {
     return this.volunteerList;
