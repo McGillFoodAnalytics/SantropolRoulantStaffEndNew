@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../../core/services/modalService';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
@@ -17,6 +17,7 @@ export class EventSignUpTableComponent implements OnInit {
   selectedRow;
   @Input() slots: [];
   @Input() eventType: string;
+  @Input() id: string;
   @Input() volunteerList: [];
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() insertStaffNote: EventEmitter<any> = new EventEmitter<any>();
@@ -26,7 +27,7 @@ export class EventSignUpTableComponent implements OnInit {
 
   constructor(private modalService: ModalService, private db: AngularFireDatabase) {}
 
-  ngOnInit() {
+  ngOnInit() {    
     this.dataSource = new MatTableDataSource(this.slots);
   }
 
@@ -34,7 +35,10 @@ export class EventSignUpTableComponent implements OnInit {
     return parseInt(slot, 10);
   }
 
-  isEmpty(firstName: string, lastName: string) {
+  isEmpty(firstName: string, lastName: string, id: string) {
+    if(id == 'N/A'){
+      return false;
+    }
     return !(firstName && lastName);
   }
 

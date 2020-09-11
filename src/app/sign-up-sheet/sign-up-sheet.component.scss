@@ -1,10 +1,10 @@
-.card-header{
+.card-header {
   text-align: center;
   color: white;
 }
 
 .card-header {
-  background-color: #60A4FF;
+  background-color: #60a4ff;
 }
 
 .card-body {
@@ -12,24 +12,50 @@
 }
 
 .kitchenPM .card-body {
-  background-color: #F4ABAA;
+  background-color: #f4abaa;
 }
 
 .row {
   justify-content: center;
- }
+}
 
- .img-important-event-false {
-   cursor: pointer;
- }
+.img-important-event-false {
+  cursor: pointer;
+}
 
- app-permanent-volunteer {
-   float:right;
-   margin-right:0.5rem;
-   margin-top:0.2rem;
-   cursor: pointer;
- }
+app-permanent-volunteer {
+  float: right;
+  margin-right: 0.5rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
 
 .img-important-event-true {
   cursor: pointer;
+}
+
+#logo {
+  margin-top: -30px;
+  margin-right: 20%;
+  max-width: 120px;
+  margin-left: -30%;
+  z-index: -1;
+}
+
+h1 {
+  display: inline;
+text-align: center;
+}
+
+h3{
+margin-right: 15px;
+margin-left: -180px;
+color: #99169D;
+position: relative; 
+top: 50%;
+font-size: 22px !important;
+}
+
+.eventCardImportant{
+  border: 2px solid #f24a5a !important;
 }

@@ -3,7 +3,6 @@
   justify-content: center;
   margin-top: 100px;
   margin-bottom: 100px;
-
 }
 
 h4 {
@@ -11,36 +10,164 @@ h4 {
   display: inline-block;
 }
 
-h5{
+h5 {
   color: red;
+  margin-top: 40px;
 }
-.mat-icon{
+.mat-icon {
   vertical-align: middle;
-  margin-left: 10px;
-  margin-right: 20px;
+  margin-left: 8px;
+  margin-right: 12px;
 }
 
-#title{
+#title {
   font-size: 200px;
 }
 
-td{
+td {
   font-size: 18px;
 }
-#profile{
+
+tr {
+  white-space: pre;
+}
+
+#profile {
   width: 1000px;
 }
 
-#colored{
-  background-color:lightgray;
+#colored {
+  background-color: lightgray;
 }
 
-#historyBtn{
-  width: 200px;
+#historyBtn {
+  width: 170px;
   float: right;
   text-align: center;
   font-size: 18px;
-  margin-left: 50px;
   color: white;
   background-color: #449afe;
 }
+
+#editBtn {
+  width: 170px;
+  float: right;
+  text-align: center;
+  font-size: 18px;
+  margin-right: 5px;
+  color: white;
+  background-color: #449afe;
+}
+#saveBtn {
+  width: 150px;
+  float: right;
+  text-align: center;
+  font-size: 18px;
+  margin-right: 5px;
+  color: white;
+  background-color: #5fce99;
+  position: fixed;
+  left: 802px;
+  top: 570px;
+}
+
+#editInput1 {
+  width: 310px;
+  position: fixed;
+  top: 268px;
+  left: 295px;
+}
+
+#editInput2 {
+  width: 110px;
+  position: fixed;
+  top: 320px;
+  left: 295px;
+  border: 1px solid #449afe;
+}
+
+#editInput3 {
+  width: 170px;
+  position: fixed;
+  top: 320px;
+  left: 405px;
+  border: 1px solid #449afe;
+}
+
+#editInput4 {
+  width: 170px;
+  position: fixed;
+  top: 320px;
+  left: 575px;
+  border: 1px solid #449afe;
+}
+
+#editInput5 {
+  width: 170px;
+  position: fixed;
+  top: 320px;
+  left: 745px;
+  border: 1px solid #449afe;
+}
+
+#editDate {
+  position: fixed;
+  top: 372px;
+  left: 295px;
+}
+
+#picker {
+  position: fixed;
+  top: 367px;
+  left: 425px;
+}
+
+#editInput6 {
+  width: 170px;
+  position: fixed;
+  top: 424px;
+  left: 295px;
+}
+
+#editInput7 {
+  width: 170px;
+  position: fixed;
+  top: 476px;
+  left: 295px;
+  border: 1px solid #449afe;
+}
+
+input{
+  padding-left: 5px;
+}
+
+#editInput8 {
+  width: 170px;
+  position: fixed;
+  top: 476px;
+  left: 465px;
+  border: 1px solid #449afe;
+}
+
+#editInput9 {
+  width: 170px;
+  position: fixed;
+  top: 528px;
+  left: 295px;
+}
+
+pre {
+  display: inline;
+  font-family: inherit;
+  font-size: 18px;
+}
+
+text {
+  position: sticky; 
+  left: 300px;
+}
+
+input.ng-invalid {
+  border: 2px red solid !important;
+}
+

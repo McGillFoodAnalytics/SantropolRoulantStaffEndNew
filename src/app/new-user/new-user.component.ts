@@ -41,14 +41,9 @@ export class NewUserComponent implements OnInit {
   }
 
   open(content) {
-    //this.disabledAgreement = false;
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
   }
   
-  //enable adding emergency contact information inputs
-  // changeCheck(event){
-  //   this.disabledAgreement = !this.disabledAgreement;
-  // }
 
   newUser(user: any): void {
   user.id = user.first_name.charAt(0).toLowerCase() + user.last_name.charAt(0).toLowerCase() + user.phone_number;
