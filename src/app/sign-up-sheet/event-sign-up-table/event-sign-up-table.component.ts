@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 
 export class EventSignUpTableComponent implements OnInit {
-  displayedColumns: string[] = ['slot', 'volunteer', 'actions'];
+  displayedColumns: string[] = ['volunteer', 'actions'];
   dataSource;
   selectedRow;
   @Input() slots: [];

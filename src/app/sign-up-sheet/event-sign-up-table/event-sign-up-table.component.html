@@ -1,9 +1,9 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
     <!-- Slot Column -->
-    <ng-container matColumnDef="slot">
+    <!-- <ng-container matColumnDef="slot">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element"></td>
-    </ng-container>
+    </ng-container> -->
     <!-- Volunteer Column -->
     <ng-container matColumnDef="volunteer">
       <div *ngIf="id == 'N/A'; else vol"><th mat-header-cell *matHeaderCellDef >No Event</th></div>

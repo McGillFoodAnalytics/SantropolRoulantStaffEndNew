@@ -49,11 +49,11 @@ export class SignUpSheetComponent implements OnInit {
     "Kitchen AM": "kitam",
     "Kitchen PM": "kitpm",
     "Delivery Driver": "deldr",
-    Delivery: "deliv",
-    "Kitcham AM Sat": "kitas",
-    "Kitchem PM Sat": "kitps",
-    "Delivery Driver Sat": "delds",
-    "Delivery Sat": "delis",
+    "Delivery": "deliv",
+    // "Kitcham AM Sat": "kitas",
+    // "Kitchem PM Sat": "kitps",
+    // "Delivery Driver Sat": "delds",
+    // "Delivery Sat": "delis",
   };
   eventArray = ["Kitchen AM", "Kitchen PM", "Delivery Driver", "Delivery"];
 
@@ -200,6 +200,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   setWeekRange(week) {
+    if(week){
     var week_title = "";
     const event = Object.keys(week)[0];
     const monday = new Date(Object.keys(week[event])[0]);
@@ -249,6 +250,7 @@ export class SignUpSheetComponent implements OnInit {
         monday_year;
     }
     return week_title;
+   }
   }
 
   getLastDate(week) {
@@ -360,7 +362,7 @@ export class SignUpSheetComponent implements OnInit {
     var slots;
     var is_important_event;
     var currentEventValue = this.eventTypes[eventType];
-    console.log(currentEventValue + "    sssss");
+    //console.log(currentEventValue + "    sssss");
     
     if (this.currentWeek == "first") {
       is_important_event = !this.week1[currentEventValue][day][
@@ -371,20 +373,20 @@ export class SignUpSheetComponent implements OnInit {
       ] = is_important_event;
       slots = this.week1[currentEventValue][day]["slots"];
     } else if (this.currentWeek == "second") {
-      is_important_event = this.week2[currentEventValue][day][
+      is_important_event = !this.week2[currentEventValue][day][
         "is_important_event"
       ];
       this.week2[currentEventValue][day][
         "is_important_event"
-      ] = !is_important_event;
+      ] = is_important_event;
       slots = this.week2[currentEventValue][day]["slots"];
     } else {
-      is_important_event = this.week3[currentEventValue][day][
+      is_important_event = !this.week3[currentEventValue][day][
         "is_important_event"
       ];
       this.week3[currentEventValue][day][
         "is_important_event"
-      ] = !is_important_event;
+      ] = is_important_event;
       slots = this.week3[currentEventValue][day]["slots"];
     }
     for (var slot of slots) {
