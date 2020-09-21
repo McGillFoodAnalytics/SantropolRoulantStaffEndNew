@@ -127,7 +127,6 @@ export class FirebaseService {
   }
 
   changeEventImportance(event_id: string, is_important_event: boolean) {
-    console.log(event_id + is_important_event);
     this.db.object("/event/" + event_id).update({
       is_important_event: is_important_event,
     });
