@@ -1,3 +1,103 @@
+// Page title
+.page-title {
+  padding-top: 1rem;
+  padding-bottom: 0;
+}
+.page-title h1 {
+  padding:0.5rem;
+  text-align: center;
+  color: #60A4FF;
+}
+
+
+// Search container
+.container-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.volunteer-search {
+  margin-left: 2.5%;
+  margin-top: 1%;
+  width: 400px;
+}
+
+// Volunteer table
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+
+// Expanded Element
+.container {
+  max-width: none;
+  padding: 0;
+}
+.container .header {
+  background-color: #5fce99;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: inherit;
+  margin: 0;
+}
+.volunteer-name {
+  font-weight: bold;
+  font-size: 16;
+  margin-left: 1rem;
+}
+.actions {
+  position: absolute;
+  right: 5%;
+}
+.valign-center {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+}
+.body {
+  background-color:#c1ecd7;
+  padding: 1rem;
+}
+.valign-center mat-icon {
+  margin-right: 0.5rem;
+}
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+.element-row {
+  position: relative;
+}
+.element-row:not(.expanded) {
+  cursor: pointer;
+}
+.element-row:not(.expanded):hover {
+  background: #f5f5f5;
+}
+.element-row.expanded {
+  border-bottom-color: transparent;
+}
+tr.detail-row {
+  height: 0;
+}
+tr.element-row:not(.expanded-row):hover {
+  background: #f5f5f5;
+}
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+.element-row td {
+  border-bottom-width: 0;
+}
+
 .card-header {
   text-align: center;
   color: white;
@@ -51,7 +151,7 @@ h3{
 margin-right: 15px;
 margin-left: -180px;
 color: #99169D;
-position: relative; 
+position: relative;
 top: 50%;
 font-size: 22px !important;
 }

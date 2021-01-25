@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
   trigger,
   state,
@@ -10,6 +10,8 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { map } from "rxjs/operators";
 import "bootstrap/dist/js/bootstrap.bundle";
 import { FirebaseService } from "../firebase-service.service";
@@ -31,8 +33,16 @@ export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   providers: [
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: myCustomTooltipDefaults },
   ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class SignUpSheetComponent implements OnInit {
+  displayedColumns: string[] = [ 'event_date_txt', 'first_name', 'last_name','event_type','actions'];
   private events: Observable<any[]>;
   private volunteers: Observable<any[]>;
   private permanent_events: Observable<any[]>;
@@ -44,12 +54,27 @@ export class SignUpSheetComponent implements OnInit {
   private weekRange1: string;
   private weekRange2: string;
   private weekRange3: string;
+  source;
+  expandedElement: Event;
+  dataSource = new MatTableDataSource();
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   currentWeek = "first";
   eventTypes = {
     "Kitchen AM": "kitam",
     "Kitchen PM": "kitpm",
     "Delivery Driver": "deldr",
     "Delivery": "deliv",
+    // "Kitcham AM Sat": "kitas",
+    // "Kitchem PM Sat": "kitps",
+    // "Delivery Driver Sat": "delds",
+    // "Delivery Sat": "delis",
+  };
+  eventTypesCool = {
+    "kitam": "Kitchen AM",
+    "kitpm": "Kitchen PM",
+    "deldr": "Delivery Driver",
+    "deliv": "Delivery",
     // "Kitcham AM Sat": "kitas",
     // "Kitchem PM Sat": "kitps",
     // "Delivery Driver Sat": "delds",
@@ -64,7 +89,17 @@ export class SignUpSheetComponent implements OnInit {
   constructor(private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+
     this.events = this.fs.getEvents();
+    this.fs.getEvents().subscribe(snapshots => {
+      // snapshots.forEach(element => {
+      //   element.phone_number = this.prettifyPhoneNumber(element.phone_number)
+      // });
+    this.dataSource = new MatTableDataSource(snapshots);
+    this.dataSource.sort = this.sort;
+  // let temp = Object.keys(this.volunteers[0]);
+  // temp = temp.filter(e => !this.displayedColumns.includes(e));
+    });
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
@@ -72,6 +107,19 @@ export class SignUpSheetComponent implements OnInit {
     //   // changes.forEach(c => console.log({ id: c.payload.key, ...c.payload.val() }))
     //
     // });
+  }
+
+  prettify(str: string) {
+    let string = str.replace('_', ' ');
+    return string.charAt(0). toUpperCase() + string.slice(1);
+  }
+
+  prettifyPhoneNumber(str: string){
+    let a = str.charAt(0)+str.charAt(1)+str.charAt(2);
+    let b = str.charAt(3)+str.charAt(4)+str.charAt(5);
+    let c = str.charAt(6)+str.charAt(7)+str.charAt(8)+str.charAt(9);
+    let phoneNumber = '(' + a + ') ' + b + '-' + c;
+    return phoneNumber;
   }
 
   setVolunteerList() {
@@ -188,10 +236,10 @@ export class SignUpSheetComponent implements OnInit {
     this.weekRange1 = this.setWeekRange(this.week1);
     this.weekRange2 = this.setWeekRange(this.week2);
     this.weekRange3 = this.setWeekRange(this.week3);
-      
+
     if (this.currentWeek == "first") {
       return this.weekRange1;
-      
+
     } else if (this.currentWeek == "second") {
       return this.weekRange2;
     } else {
@@ -252,6 +300,9 @@ export class SignUpSheetComponent implements OnInit {
     return week_title;
    }
   }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   getLastDate(week) {
     const event = Object.keys(week)[0];
@@ -272,6 +323,10 @@ export class SignUpSheetComponent implements OnInit {
     } else {
       return this.week3[currentEventValue];
     }
+  }
+
+  getEventName(eventType){
+    return this.eventTypesCool[eventType];
   }
 
   getEventListCool(eventType) {
@@ -363,7 +418,7 @@ export class SignUpSheetComponent implements OnInit {
     var is_important_event;
     var currentEventValue = this.eventTypes[eventType];
     //console.log(currentEventValue + "    sssss");
-    
+
     if (this.currentWeek == "first") {
       is_important_event = !this.week1[currentEventValue][day][
         "is_important_event"
