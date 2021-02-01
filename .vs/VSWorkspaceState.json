@@ -6,8 +6,9 @@
     "\\src\\app\\account",
     "\\src\\app\\new-user",
     "\\src\\app\\service",
+    "\\src\\app\\sign-up-sheet",
     "\\src\\app\\toolbar"
   ],
-  "SelectedNode": "\\src\\app\\toolbar\\toolbar.component.html",
+  "SelectedNode": "\\src\\app\\sign-up-sheet\\sign-up-sheet.component.scss",
   "PreviewInSolutionExplorer": false
 }

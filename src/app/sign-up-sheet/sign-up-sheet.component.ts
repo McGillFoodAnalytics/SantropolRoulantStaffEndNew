@@ -103,10 +103,13 @@ export class SignUpSheetComponent implements OnInit {
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-    // this.db.list('event').auditTrail().subscribe(changes => { console.log(changes);
-    //   // changes.forEach(c => console.log({ id: c.payload.key, ...c.payload.val() }))
-    //
-    // });
+    this.db.list('event').auditTrail().subscribe(changes => {
+
+    this.formatEventDates();
+    this.volunteers = this.fs.getUsers();
+    this.setVolunteerList();
+    
+    });
   }
 
   prettify(str: string) {
