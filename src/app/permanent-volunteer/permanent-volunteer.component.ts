@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FirebaseService} from '../firebase-service.service';
 import { Observable } from 'rxjs';
+import {FormControl} from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-permanent-volunteer',
@@ -23,6 +25,9 @@ export class PermanentVolunteerComponent implements OnInit {
   result: Observable<any>
   today: Date;
   aYearFromNow: Date;
+
+  myControl = new FormControl();
+  filteredOptions: Observable<any[]>;
 
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private fs: FirebaseService){
     this.today = new Date();
@@ -51,6 +56,18 @@ export class PermanentVolunteerComponent implements OnInit {
       volunteer:[['','',''], Validators.required],
       eventType:['', Validators.required]
     });
+
+    this.filteredOptions = this.addPermanentForm.get('volunteer').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: any): any[] {
+    const filterValue = value.toString().toLowerCase();
+
+    return this.volunteers.filter(option => (option.first_name + " " + option.last_name).toLowerCase().includes(filterValue));
   }
 
   endDateRequiredError() {

@@ -17,14 +17,19 @@
         </div>
         <div class="form-row mb-12">
            <div class="form-group col-md-4">
-             <mat-form-field>
-               <mat-label>Existing Volunteer</mat-label>
-               <mat-select formControlName="volunteer" [(ngModel)]="model.volunteer">
-                 <mat-option disabled>--Select the volunteer--</mat-option>
-                 <mat-option *ngFor="let volunteer of volunteers" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
-               </mat-select>
-               <mat-error>Required!</mat-error>
-             </mat-form-field>
+               <mat-form-field>
+                   <mat-label>Existing Volunteer</mat-label>
+                   <input type="text"
+                          matInput
+                          [formControl]="addPermanentForm.get('volunteer')"
+                          [matAutocomplete]="auto"
+                          [ngModel]="model.volunteer">
+                   <mat-autocomplete #auto="matAutocomplete">
+                       <mat-option disabled>--Select the volunteer--</mat-option>
+                       <mat-option *ngFor="let volunteer of filteredOptions | async" [value]="[volunteer.key, volunteer.first_name, volunteer.last_name]"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>
+                   </mat-autocomplete>
+                   <mat-error>Required!</mat-error>
+               </mat-form-field>
            </div>
            <div class="form-group col-md-4">
              <mat-form-field>

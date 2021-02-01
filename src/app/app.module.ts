@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppConfig } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 // NG Translate
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -88,6 +89,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewScheduleComponent } from './sign-up-sheet/new-schedule/new-schedule.component';
 import { WeekGeneratorComponent } from './week-generator/week-generator.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AccountComponent } from './account/account.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -97,7 +99,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 const appRoutes: Routes = [
   {
     path: '',
-    component: SignUpSheetComponent
+    component: AccountComponent//SignUpSheetComponent
+  },
+    {
+    path: 'volunteer-account',
+    component: AccountComponent
   },
   {
     path: 'volunteer-schedule',
@@ -113,8 +119,8 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    component: SignUpSheetComponent
-  }
+    component: AccountComponent//SignUpSheetComponent
+  },
 ];
 
 @NgModule({
@@ -141,7 +147,8 @@ const appRoutes: Routes = [
     UserEventComponent,
     NewScheduleComponent,
     WeekGeneratorComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +157,7 @@ const appRoutes: Routes = [
     MatBadgeModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(AppConfig.firebase),
+    AngularFireAuthModule,
     HttpClientModule,
     CoreModule,
     FlexLayoutModule,

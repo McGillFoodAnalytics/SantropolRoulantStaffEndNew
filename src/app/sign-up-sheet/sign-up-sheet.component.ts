@@ -57,6 +57,11 @@ export class SignUpSheetComponent implements OnInit {
   };
   eventArray = ["Kitchen AM", "Kitchen PM", "Delivery Driver", "Delivery"];
 
+  /*
+  TODO
+  week1, week2, week3 initialize with empty
+  */
+
   currentEvent = "Kitchen AM";
   private pane = "left";
   items: Observable<any[]>;
@@ -64,14 +69,28 @@ export class SignUpSheetComponent implements OnInit {
   constructor(private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+
+    /*
     this.events = this.fs.getEvents();
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-    // this.db.list('event').auditTrail().subscribe(changes => { console.log(changes);
-    //   // changes.forEach(c => console.log({ id: c.payload.key, ...c.payload.val() }))
-    //
-    // });
+    */
+
+    this.events = this.fs.getEvents();
+    this.formatEventDates();
+    this.volunteers = this.fs.getUsers();
+    this.setVolunteerList();
+
+    this.db.list('event').auditTrail().subscribe(changes => { //console.log(changes);
+      //changes.forEach(c => console.log({ id: c.payload.key, ...c.payload.val() }))
+    
+    this.formatEventDates();
+    this.volunteers = this.fs.getUsers();
+    this.setVolunteerList();
+
+    });
+
   }
 
   setVolunteerList() {
@@ -89,6 +108,9 @@ export class SignUpSheetComponent implements OnInit {
   formatEventDates() {
     const events_per_week = 134;
     this.events.subscribe((snapshots) => {
+
+      console.log("Change detected");
+
       let i = 0;
       this.week1 = [];
       this.week2 = [];
@@ -264,6 +286,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   getEventList() {
+    //kitam
     var currentEventValue = this.eventTypes[this.currentEvent];
     if (this.currentWeek == "first") {
       return this.week1[currentEventValue];
