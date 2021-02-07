@@ -45,6 +45,7 @@ export class SignUpSheetComponent implements OnInit {
   displayedColumns: string[] = [ 'event_date_txt', 'first_name', 'last_name','event_type','actions'];
   private events: Observable<any[]>;
   private volunteers: Observable<any[]>;
+  public isCollapsed = true;
   private permanent_events: Observable<any[]>;
   private volunteerList = [];
   private volunteerListInitialized = false;
@@ -108,7 +109,7 @@ export class SignUpSheetComponent implements OnInit {
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-    
+
     });
   }
 

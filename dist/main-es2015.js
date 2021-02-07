@@ -209,6 +209,19 @@ _global.$localize = $localize;
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/account/account.component.html":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/account/account.component.html ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"page-title\">\n    <h1>Account</h1>\n</div>\n\n<body>\n\n    <div class=\"container\">\n        <div class=\"backbox\">\n            <div class=\"loginMsg\" [class.visibility]=\"loginMsgVisibility\">\n                <div class=\"textcontent\">\n                    <p class=\"title\">Don't have an account?</p>\n                    <button id=\"switch1\" (click)=\"signupMode()\">Sign Up</button>\n                </div>\n            </div>\n            <div class=\"signupMsg\" [class.visibility]=\"signupMsgVisibility\">\n                <div class=\"textcontent\">\n                    <p class=\"title\">Have an<br>account?</p>\n                    <button id=\"switch2\" (click)=\"loginMode()\">Login</button>\n                </div>\n            </div>\n        </div>\n\n        <div class=\"frontbox\" [class.animated]=\"shake\" [class.shake]=\"shake\" [class.moving]=\"frontBoxMoving\" [class.center]=\"center\">\n            <div class=\"login\" [class.hide]=\"loginHide\">\n                <h2>Login</h2>\n                <div class=\"inputbox\">\n                    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" placeholder=\"Email\">\n                    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" placeholder=\"Password\">\n                </div>\n                <p (click)=\"resetMode()\">Recover Password</p>\n                <button (click)=\"login()\" class=\"frontbutton\">LOG IN</button>\n            </div>\n\n            <div class=\"signup\" [class.hide]=\"signupHide\">\n                <h2>Sign up</h2>\n                <div class=\"inputbox\">\n                    <input type=\"text\" style=\"width: 50%; float: left;\" [(ngModel)]=\"firstName\" placeholder=\"First Name\">\n                    <input type=\"text\" style=\"width: 45%; float: right;\" [(ngModel)]=\"lastName\" placeholder=\"Last Name\">\n\n                    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" placeholder=\"Email\">\n                    <input type=\"password\" style=\"width: 70%; float: left;\" [(ngModel)]=\"password\" name=\"password\" placeholder=\"Password\">\n                    <input type=\"text\" style=\"width: 25%; float: right;\" [(ngModel)]=\"code\" name=\"code\" placeholder=\"Code\">\n\n                    <p class=\"displayname\" style=\"color: white; font-size: 12px; position: absolute; top: 71%;\">{{this.authService.error}}</p>\n\n                </div>\n                <button (click)=\"signup()\" class=\"frontbutton\">SIGN UP</button>\n            </div>\n\n            <div *ngIf=\"!loggedinHide\" class=\"loggedin\" [class.hide]=\"loggedinHide\">\n                <img class=\"profileicon\" src=\"https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile\">\n                <p class=\"displayname\">{{user.email}}</p>\n                <button class=\"leftbutton\">MANAGE</button>\n                <button (click)=\"logout()\" class=\"frontbutton\">LOGOUT</button>\n            </div>\n\n            <div class=\"reset\" [class.hide]=\"resetHide\">\n                <h2>Password Reset</h2>\n                <p>You will receive recovery instructions by email</p>\n                <div class=\"inputbox\">\n                    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" placeholder=\"Email\">\n                </div>\n                <button (click)=\"loginMode()\" class=\"leftbutton\">CANCEL</button>\n                <button (click)=\"reset()\" class=\"frontbutton\">SUBMIT</button>\n            </div>\n\n        </div>\n    </div>\n</body>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html":
 /*!**************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html ***!
@@ -309,7 +322,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ng-template #addPermanentModal let-modal>\n  <div class=\"modal-header text-center\">\n    <h4 class=\"modal-title w-100\"><i class=\"fa fa-map-marker\"></i>Permanent Volunteer</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss()\" #closeModal>\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n\n  <div class=\"modal-body text-center\">\n\n\n      <form class=\"form\" (ngSubmit)=\"onSubmit()\" [formGroup]=\"addPermanentForm\">\n        <div class=\"form-row mb-12\">\n          <div class=\"form-group col-md-12\" style=\"margin-bottom:1rem;\">\n            Add permanent volunteer markers:\n          </div>\n        </div>\n        <div class=\"form-row mb-12\">\n           <div class=\"form-group col-md-4\">\n             <mat-form-field>\n               <mat-label>Existing Volunteer</mat-label>\n               <mat-select formControlName=\"volunteer\" [(ngModel)]=\"model.volunteer\">\n                 <mat-option disabled>--Select the volunteer--</mat-option>\n                 <mat-option *ngFor=\"let volunteer of volunteers\" [value]=\"[volunteer.key, volunteer.first_name, volunteer.last_name]\"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>\n               </mat-select>\n               <mat-error>Required!</mat-error>\n             </mat-form-field>\n           </div>\n           <div class=\"form-group col-md-4\">\n             <mat-form-field>\n               <mat-label>Frequency</mat-label>\n               <mat-select formControlName=\"frequency\" [(ngModel)]=\"model.frequency\">\n                 <mat-option disabled>--Select the frequency--</mat-option>\n                 <mat-option [value]=\"1\"> Weekly </mat-option>\n                 <mat-option [value]=\"2\"> Biweekly </mat-option>\n                 <mat-option [value]=\"3\"> Triweekly </mat-option>\n                 <mat-option [value]=\"4\"> Monthly </mat-option>\n               </mat-select>\n               <mat-error>Required!</mat-error>\n             </mat-form-field>\n           </div>\n           <div class=\"form-group col-md-4\">\n             <mat-form-field>\n               <mat-label>Event Type</mat-label>\n               <mat-select formControlName=\"eventType\" [(ngModel)]=\"model.eventType\">\n                 <mat-option disabled>--Select the event type--</mat-option>\n                 <mat-option [value]=\"'kitam'\"> Kitchen AM </mat-option>\n                 <mat-option [value]=\"'kitpm'\"> Kitchen PM </mat-option>\n                 <mat-option [value]=\"'kitas'\"> Kitchen AM Sat </mat-option>\n                 <mat-option [value]=\"'kitps'\"> Kitchen PM Sat </mat-option>\n                 <mat-option [value]=\"'delds'\"> Delivery Driver Sat </mat-option>\n                 <mat-option [value]=\"'delis'\"> Delivery Sat </mat-option>\n                 <mat-option [value]=\"'deldr'\"> Delivery Driver </mat-option>\n                 <mat-option [value]=\"'deliv'\"> Delivery </mat-option>\n               </mat-select>\n               <mat-error>Required!</mat-error>\n             </mat-form-field>\n           </div>\n           <div class=\"form-group col-md-6\">\n              <mat-form-field>\n                 <mat-label>Start Date</mat-label>\n                 <input matInput [matDatepicker]=\"picker1\" [min]=\"today\" [max]=\"aYearFromNow\" placeholder=\"mm/dd/yyyy\" formControlName=\"startDate\" [(ngModel)]=\"model.startDate\">\n                 <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n                 <mat-datepicker #picker1></mat-datepicker>\n                 <mat-error *ngIf=\"startDateRequiredError()\">Required!</mat-error>\n              </mat-form-field>\n           </div>\n           <div class=\"form-group col-md-6\">\n              <mat-form-field>\n                 <mat-label>End Date</mat-label>\n                 <input matInput [matDatepicker]=\"picker\" [min]=\"today\" [max]=\"aYearFromNow\" placeholder=\"mm/dd/yyyy\" formControlName=\"endDate\" [(ngModel)]=\"model.endDate\">\n                 <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                 <mat-datepicker #picker></mat-datepicker>\n                 <mat-error *ngIf=\"endDateRequiredError()\">Required!</mat-error>\n              </mat-form-field>\n           </div>\n        </div>\n      </form>\n      <button type=\"submit\" class=\"btn btn-xl btn-outline-success btn-change-registration-code\"  (click)=\"onSubmit('add')\">Add Permanent Volunteer</button>\n\n\n\n  </div>\n\n\n</ng-template>\n\n<button mat-menu-item (click)=\"open(addPermanentModal)\">\n  <mat-icon>alarm</mat-icon>\n  <span>Add Permanent Volunteer</span>\n</button>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ng-template #addPermanentModal let-modal>\n    <div class=\"modal-header text-center\">\n        <h4 class=\"modal-title w-100\"><i class=\"fa fa-map-marker\"></i>Permanent Volunteer</h4>\n        <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss()\" #closeModal>\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n\n    <div class=\"modal-body text-center\">\n\n\n        <form class=\"form\" (ngSubmit)=\"onSubmit()\" [formGroup]=\"addPermanentForm\">\n            <div class=\"form-row mb-12\">\n                <div class=\"form-group col-md-12\" style=\"margin-bottom:1rem;\">\n                    Add permanent volunteer markers:\n                </div>\n            </div>\n            <div class=\"form-row mb-12\">\n                <div class=\"form-group col-md-4\">\n                    <mat-form-field>\n                        <mat-label>Existing Volunteer</mat-label>\n                        <mat-select formControlName=\"volunteer\" [(ngModel)]=\"model.volunteer\">\n                            <mat-option disabled>--Select the volunteer--</mat-option>\n                            <mat-option *ngFor=\"let volunteer of volunteers\" [value]=\"[volunteer.key, volunteer.first_name, volunteer.last_name]\"> {{volunteer.first_name}} {{volunteer.last_name}} </mat-option>\n                        </mat-select>\n                        <mat-error>Required!</mat-error>\n                    </mat-form-field>\n                </div>\n                <div class=\"form-group col-md-4\">\n                    <mat-form-field>\n                        <mat-label>Frequency</mat-label>\n                        <mat-select formControlName=\"frequency\" [(ngModel)]=\"model.frequency\">\n                            <mat-option disabled>--Select the frequency--</mat-option>\n                            <mat-option [value]=\"1\"> Weekly </mat-option>\n                            <mat-option [value]=\"2\"> Biweekly </mat-option>\n                            <mat-option [value]=\"3\"> Triweekly </mat-option>\n                            <mat-option [value]=\"4\"> Monthly </mat-option>\n                        </mat-select>\n                        <mat-error>Required!</mat-error>\n                    </mat-form-field>\n                </div>\n                <div class=\"form-group col-md-4\">\n                    <mat-form-field>\n                        <mat-label>Event Type</mat-label>\n                        <mat-select formControlName=\"eventType\" [(ngModel)]=\"model.eventType\">\n                            <mat-option disabled>--Select the event type--</mat-option>\n                            <mat-option [value]=\"'kitam'\"> Kitchen AM </mat-option>\n                            <mat-option [value]=\"'kitpm'\"> Kitchen PM </mat-option>\n                            <mat-option [value]=\"'kitas'\"> Kitchen AM Sat </mat-option>\n                            <mat-option [value]=\"'kitps'\"> Kitchen PM Sat </mat-option>\n                            <mat-option [value]=\"'delds'\"> Delivery Driver Sat </mat-option>\n                            <mat-option [value]=\"'delis'\"> Delivery Sat </mat-option>\n                            <mat-option [value]=\"'deldr'\"> Delivery Driver </mat-option>\n                            <mat-option [value]=\"'deliv'\"> Delivery </mat-option>\n                        </mat-select>\n                        <mat-error>Required!</mat-error>\n                    </mat-form-field>\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <mat-form-field>\n                        <mat-label>Start Date</mat-label>\n                        <input matInput [matDatepicker]=\"picker1\" [min]=\"today\" [max]=\"aYearFromNow\" placeholder=\"mm/dd/yyyy\" formControlName=\"startDate\" [(ngModel)]=\"model.startDate\">\n                        <mat-datepicker-toggle matSuffix [for]=\"picker1\"></mat-datepicker-toggle>\n                        <mat-datepicker #picker1></mat-datepicker>\n                        <mat-error *ngIf=\"startDateRequiredError()\">Required!</mat-error>\n                    </mat-form-field>\n                </div>\n                <div class=\"form-group col-md-6\">\n                    <mat-form-field>\n                        <mat-label>End Date</mat-label>\n                        <input matInput [matDatepicker]=\"picker\" [min]=\"today\" [max]=\"aYearFromNow\" placeholder=\"mm/dd/yyyy\" formControlName=\"endDate\" [(ngModel)]=\"model.endDate\">\n                        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                        <mat-datepicker #picker></mat-datepicker>\n                        <mat-error *ngIf=\"endDateRequiredError()\">Required!</mat-error>\n                    </mat-form-field>\n                </div>\n            </div>\n        </form>\n        <button type=\"submit\" class=\"btn btn-xl btn-outline-success btn-change-registration-code\" (click)=\"onSubmit('add')\">Add Permanent Volunteer</button>\n\n\n\n    </div>\n\n\n</ng-template>\n\n<button mat-menu-item (click)=\"open(addPermanentModal)\">\n    <mat-icon>alarm</mat-icon>\n    <span>Add Permanent Volunteer</span>\n</button>");
 
 /***/ }),
 
@@ -361,7 +374,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z0\">\n    <!-- Slot Column -->\n    <!-- <ng-container matColumnDef=\"slot\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\"></td>\n    </ng-container> -->\n    <!-- Volunteer Column -->\n    <ng-container matColumnDef=\"volunteer\">\n      <div *ngIf=\"id == 'N/A'; else vol\"><th mat-header-cell *matHeaderCellDef >No Event</th></div>\n        <th mat-header-cell *matHeaderCellDef #vol> Volunteer </th>\n        <td mat-cell *matCellDef=\"let element\">\n          <div style=\"height: 1px;\" *ngIf=\"id == 'N/A'; else shortNote\" ></div>\n          <div #shortNote style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 30; else noNote\"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>\n          <ng-template #noNote>\n            <div style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note == null || element.staff_note.length == 0; else longNote\"> {{ element.first_name }} {{ element.last_name }} </div>\n            <ng-template #longNote> <div style=\"font-size: 11.5px !important; margin-left: -5px; margin-top: -10px;\"> {{ element.first_name }} {{ element.last_name }} \n              <button \n              matTooltip=\"Click to view note\" \n              onclick=\"this.blur()\" \n              style=\"margin-bottom: -8px; border: none ;width: 12px;\">\n              <mat-icon style=\"transform: scale(0.8)\">chat</mat-icon> \n              <app-staff-note id=\"noteBtn\"\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note> \n             </button>\n           </div>\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\">\n          <button class=\"menu\" mat-icon-button [matMenuTriggerFor]=\"menu\" #MenuTrigger=\"matMenuTrigger\" *ngIf=\"!isEmpty(element.first_name, element.last_name);\" style=\"float:right; transform: scale(0.87); margin-right: -10px; \">\n              <mat-icon>more_vert</mat-icon>\n          </button>\n\n          <mat-menu #menu=\"matMenu\">\n            <app-remove-user-from-event firstName={{element.first_name}}\n                                        eventId={{element.id}}\n                                        userId={{element.uid}}\n                                        lastName={{element.last_name}}\n                                        date={{element.event_date_txt}}\n                                        [eventType]=\"eventType\"\n                                        (confirmRemove)=\"onRemoveUserFromEvent(element.id)\">\n            </app-remove-user-from-event>\n            <app-staff-note \n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n            <button mat-menu-item [routerLink]=\"['/volunteer', element.uid]\">\n                <mat-icon>person</mat-icon>\n                <span>View Volunteer</span>\n            </button>\n          </mat-menu>\n        </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\n                class=\"table-row\"\n                [attr.isEmpty]=\"isEmpty(row.first_name, row.last_name, id)\"\n                (click)=\"isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)\"\n                ></tr>\n</table>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z0\">\n    <!-- Slot Column -->\n    <!-- <ng-container matColumnDef=\"slot\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\"></td>\n    </ng-container> -->\n    <!-- Volunteer Column -->\n    <ng-container matColumnDef=\"volunteer\">\n      <div *ngIf=\"id == 'N/A'; else vol\"><th mat-header-cell *matHeaderCellDef >No Event</th></div>\n        <th mat-header-cell *matHeaderCellDef #vol> Volunteer </th>\n        <td mat-cell *matCellDef=\"let element\">\n          <div style=\"height: 1px;\" *ngIf=\"id == 'N/A'; else shortNote\" ></div>\n          <div #shortNote style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 30; else noNote\"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>\n          <ng-template #noNote>\n            <div style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note == null || element.staff_note.length == 0; else longNote\"> {{ element.first_name }} {{ element.last_name }} </div>\n            <ng-template #longNote> <div style=\"font-size: 11.5px !important; margin-left: -5px; margin-top: -10px;\"> {{ element.first_name }} {{ element.last_name }}\n              <button\n              matTooltip=\"Click to view note\"\n              onclick=\"this.blur()\"\n              style=\"margin-bottom: -8px; border: none ;width: 12px;\">\n              <mat-icon style=\"transform: scale(0.8)\">chat</mat-icon>\n              <app-staff-note id=\"noteBtn\"\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n             </button>\n           </div>\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\">\n          <button class=\"menu\" mat-icon-button [matMenuTriggerFor]=\"menu\" #MenuTrigger=\"matMenuTrigger\" *ngIf=\"!isEmpty(element.first_name, element.last_name);\" style=\"float:right; transform: scale(0.87); margin-right: -10px; \">\n              <mat-icon>more_vert</mat-icon>\n          </button>\n\n          <mat-menu #menu=\"matMenu\">\n            <app-remove-user-from-event firstName={{element.first_name}}\n                                        eventId={{element.id}}\n                                        userId={{element.uid}}\n                                        lastName={{element.last_name}}\n                                        date={{element.event_date_txt}}\n                                        [eventType]=\"eventType\"\n                                        (confirmRemove)=\"onRemoveUserFromEvent(element.id)\">\n            </app-remove-user-from-event>\n            <app-staff-note\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n            <button mat-menu-item [routerLink]=\"['/volunteer', element.uid]\">\n                <mat-icon>person</mat-icon>\n                <span>View Volunteer</span>\n            </button>\n          </mat-menu>\n        </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\n                class=\"table-row\"\n                [attr.isEmpty]=\"isEmpty(row.first_name, row.last_name, id)\"\n                (click)=\"isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)\"\n                ></tr>\n</table>\n");
 
 /***/ }),
 
@@ -413,7 +426,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\" style=\"padding: 0;\">\n  <div class=\"row\" style=\"padding-top: 2rem; padding-bottom: 1rem;\">\n    <div class=\"col\" id=\"header\" style=\"text-align: center;\">\n      <img src=\"../../../assets/santropol-logo.png\" alt=\"\" id=\"logo\" />\n      <h1\n        class=\"header-text\"\n        style=\"padding: 0.5rem; text-align: center; color: #60a4ff;\"\n      >\n        Volunteer Schedule\n      </h1>\n    </div>\n  </div>\n  <div class=\"row\" style=\"padding-bottom: 2rem;\">\n    <div class=\"col\">\n      <div class=\"card\" style=\"margin-top: -16px;\">\n        <div class=\"card-header\">\n          <div class=\"row\">\n            <div\n              class=\"col-8 offset-2\"\n              style=\"text-align:center\"\n            >\n              <button\n                class=\"btn\"\n                (click)=\"prevWeek()\"\n                onclick=\"this.blur()\"\n                *ngIf=\"currentWeek != 'first'\"\n              >\n                <mat-icon>arrow_back_ios</mat-icon>\n              </button>\n              {{ getWeekTitle() }}\n              <button\n                class=\"btn\"\n                (click)=\"nextWeek()\"\n                onclick=\"this.blur()\"\n                *ngIf=\"currentWeek != 'third'\"\n              >\n                <mat-icon>arrow_forward_ios</mat-icon>\n              </button>\n            </div>\n            <div class=\"col-2\" style=\"text-align: right;\">\n              <select *ngIf=\"currentWeek != 'second'\"\n                class=\"browser-default custom-select\"\n                [(ngModel)]=\"currentEvent\"\n                style=\"\n                  background-color: #5fce99 !important;\n                  color: white;\n                  border: none;\n                \"\n              >\n                <option disabled> Event Type </option>\n                <option\n                  *ngFor=\"let event of eventTypes | keyvalue\"\n                  [ngValue]=\"event.key\"\n                >\n                  {{ event.key }}\n                </option>\n              </select>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid\">\n    <app-slider [activePane]=\"currentWeek\">\n      <div firstPane>\n        <div class=\"row\" style=\"padding-bottom: 2rem;\">\n          <div\n            class=\"col-3\"\n            *ngFor=\"let day of getEventList() | keyvalue\"\n            style=\"padding-bottom: 2rem;\"\n          >\n            <div class=\"card\">\n              <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->\n              <div\n                class=\"card-header\"\n                *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                style=\"background-color: #f24a5a;\"\n              >\n                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n              </div>\n              <ng-template #importantEventFalseHeader>\n                <div class=\"card-header\">\n                  {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                </div>\n              </ng-template>\n              <div class=\"card-body\">\n                <app-event-sign-up-table\n                  [slots]=\"day.value.slots\"\n                  [eventType]=\"currentEvent\"\n                  [volunteerList]=\"volunteerList\"\n                  (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                  (insertStaffNote)=\"insertStaffNote($event)\"\n                >\n                </app-event-sign-up-table>\n                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                <ng-template #volunteersRegistered>\n                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                        </li>\n                                    </ul>\n                                </ng-template> -->\n              </div>\n              <div class=\"card-footer\" style=\"text-align: center;\">\n                <img\n                  class=\"img-important-event-true\"\n                  *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                  src=\"assets/important-event-true.png\"\n                  width=\"35px\"\n                  style=\"margin-right: 1rem;\"\n                  (click)=\"changeEventImportance(day.key)\"\n                  matTooltip=\"Click to mark this event as unimportant\"\n                />\n                <ng-template #importantEventFalse>\n                  <img\n                    class=\"img-important-event-false\"\n                    src=\"assets/important-event-false.png\"\n                    width=\"35px\"\n                    style=\"margin-right: 1rem;\"\n                    (click)=\"changeEventImportance(day.key)\"\n                    matTooltip=\"Click to mark this event as important\"\n                  />\n                </ng-template>\n                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\"  matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                <ng-template #fullEvent>\n                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                </ng-template> -->\n                <app-event-note\n                  date=\"{{ day.value.slots[0].event_date_txt }}\"\n                  [eventType]=\"currentEvent\"\n                  eventNote=\"{{ day.value.slots[0].event_note }}\"\n                  (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                  matTooltip=\"Click to view & edit the event note\"\n                >\n                </app-event-note>\n                <mat-icon\n                  *ngIf=\"\n                    day.value.slots[0].event_note != null &&\n                    day.value.slots[0].event_note.length > 0\n                  \"\n                  >announcement</mat-icon\n                >\n                <app-add-user-to-event></app-add-user-to-event>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div secondPane>\n        <div\n          class=\"row\"\n          style=\"margin-bottom: -30px; float: right; margin-right: 13%;\"\n          *ngFor=\"let coolEvent of eventArray\"\n        >\n        <h3 id=\"eventTitle\" *ngIf='currentWeek == \"second\"'>{{coolEvent}}</h3>\n          <div\n            class=\"row-2\"\n            *ngFor=\"\n              let day of getEventListCool(coolEvent) | keyvalue;\n              let i = index\n            \"\n            style=\"padding-bottom: 2rem; font-size: 15px;\"\n          >\n            <div class=\"card\" [class.eventCardImportant]=\"day.value.is_important_event\" style=\"width: 177px;\">\n              <div\n                class=\"card-header\"\n                *ngIf=\"\n                  (coolEvent == 'Kitchen AM' && day.value.is_important_event);\n                  else importantEventFalseHeader\n                \"\n                style=\"background-color: #f24a5a;\"\n              >\n                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n              </div>\n              <ng-template #importantEventFalseHeader>\n                <div class=\"card-header\"\n                *ngIf=\"coolEvent == 'Kitchen AM'\">\n                  {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                </div>\n              </ng-template>\n              <div class=\"card-body\">\n                <app-event-sign-up-table\n                  [slots]=\"day.value.slots\"\n                  [id]=\"day.value.slots[0].id\"\n                  [eventType]=\"coolEvent\"\n                  [volunteerList]=\"volunteerList\"\n                  (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                  (insertStaffNote)=\"insertStaffNote($event)\"\n                >\n                </app-event-sign-up-table>\n                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                <ng-template #volunteersRegistered>\n                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                        </li>\n                                    </ul>\n                                </ng-template> -->\n              </div>\n              <div class=\"card-footer\" style=\"text-align: center;\" *ngIf='day.value.slots[0].id != \"N/A\"'>\n                <img\n                  class=\"img-important-event-true\"\n                  *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                  src=\"assets/important-event-true.png\"\n                  width=\"30px\"\n                  style=\"margin-right: 1rem;\"\n                  (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                  matTooltip=\"Click to mark this event as unimportant\"\n                />\n                <ng-template #importantEventFalse>\n                  <img\n                    class=\"img-important-event-false\"\n                    src=\"assets/important-event-false.png\"\n                    width=\"30px\"\n                    style=\"margin-right: 1rem;\"\n                    (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                    matTooltip=\"Click to mark this event as important\"\n                  />\n                </ng-template>\n                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                <ng-template #fullEvent>\n                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                </ng-template> -->\n                <app-event-note\n                  date=\"{{ day.value.slots[0].event_date_txt }}\"\n                  [eventType]=\"coolEvent\"\n                  eventNote=\"{{ day.value.slots[0].event_note }}\"\n                  (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                  matTooltip=\"Click to view & edit the event note\"\n                >\n                </app-event-note>\n                <mat-icon style=\"margin-left: 5px; margin-top: -8px; transform: scale(0.8);\"\n                  *ngIf=\"\n                    day.value.slots[0].event_note != null &&\n                    day.value.slots[0].event_note.length > 0\n                  \"\n                  >announcement</mat-icon\n                >\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div thirdPane>\n        <div class=\"row\" style=\"padding-bottom: 2rem;\">\n          <div\n            class=\"col-3\"\n            *ngFor=\"let day of getEventList() | keyvalue; let i = index\"\n            style=\"padding-bottom: 2rem;\"\n          >\n            <div class=\"card\">\n              <div\n                class=\"card-header\"\n                *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                style=\"background-color: #f24a5a;\"\n              >\n                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n              </div>\n              <ng-template #importantEventFalseHeader>\n                <div class=\"card-header\">\n                  {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                </div>\n              </ng-template>\n              <div class=\"card-body\">\n                <app-event-sign-up-table\n                  [slots]=\"day.value.slots\"\n                  [eventType]=\"currentEvent\"\n                  [volunteerList]=\"volunteerList\"\n                  (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                  (insertStaffNote)=\"insertStaffNote($event)\"\n                >\n                </app-event-sign-up-table>\n                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                <ng-template #volunteersRegistered>\n                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                        </li>\n                                    </ul>\n                                </ng-template> -->\n              </div>\n              <div class=\"card-footer\" style=\"text-align: center;\">\n                <img\n                  class=\"img-important-event-true\"\n                  *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                  src=\"assets/important-event-true.png\"\n                  width=\"30px\"\n                  style=\"margin-right: 1rem;\"\n                  (click)=\"changeEventImportance(day.key)\"\n                  matTooltip=\"Click to mark this event as unimportant\"\n                />\n                <ng-template #importantEventFalse>\n                  <img\n                    class=\"img-important-event-false\"\n                    src=\"assets/important-event-false.png\"\n                    width=\"30px\"\n                    style=\"margin-right: 1rem;\"\n                    (click)=\"changeEventImportance(day.key)\"\n                    matTooltip=\"Click to mark this event as important\"\n                  />\n                </ng-template>\n                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                <ng-template #fullEvent>\n                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                </ng-template> -->\n                <app-event-note\n                  date=\"{{ day.value.slots[0].event_date_txt }}\"\n                  [eventType]=\"currentEvent\"\n                  eventNote=\"{{ day.value.slots[0].event_note }}\"\n                  (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                  matTooltip=\"Click to view & edit the event note\"\n                >\n                </app-event-note>\n                <mat-icon\n                  *ngIf=\"\n                    day.value.slots[0].event_note != null &&\n                    day.value.slots[0].event_note.length > 0\n                  \"\n                  >announcement</mat-icon\n                >\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </app-slider>\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"container-fluid\" style=\"padding: 0;\">\n    <div class=\"row\" style=\"padding-top: 2rem; padding-bottom: 1rem;\">\n        <div class=\"col\" id=\"header\" style=\"text-align: center;\">\n            <img src=\"../../../assets/santropol-logo.png\" alt=\"\" id=\"logo\" />\n            <h1 class=\"header-text\"\n                style=\"padding: 0.5rem; text-align: center; color: #60a4ff;\">\n                Volunteer Schedule\n            </h1>\n        </div>\n    </div>\n    <div class=\"row\" style=\"padding-bottom: 2rem;\">\n        <div class=\"col\">\n            <div class=\"card\" style=\"margin-top: -16px;\">\n                <div class=\"card-header\">\n                    <div class=\"row\">\n                        <div class=\"col-8 offset-2\"\n                             style=\"text-align:center\">\n                            <button class=\"btn\"\n                                    (click)=\"prevWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'first'\">\n                                <mat-icon>arrow_back_ios</mat-icon>\n                            </button>\n                            {{ getWeekTitle() }}\n                            <button class=\"btn\"\n                                    (click)=\"nextWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'third'\">\n                                <mat-icon>arrow_forward_ios</mat-icon>\n                            </button>\n                        </div>\n                        <div class=\"col-2\" style=\"text-align: right;\">\n                            <select *ngIf=\"currentWeek != 'second'\"\n                                    class=\"browser-default custom-select\"\n                                    [(ngModel)]=\"currentEvent\"\n                                    style=\"\n                  background-color: #5fce99 !important;\n                  color: white;\n                  border: none;\n                \">\n                                <option disabled> Event Type </option>\n                                <option *ngFor=\"let event of eventTypes | keyvalue\"\n                                        [ngValue]=\"event.key\">\n                                    {{ event.key }}\n                                </option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <app-slider [activePane]=\"currentWeek\">\n            <div firstPane>\n                <div class=\"row\" style=\"padding-bottom: 2rem;\">\n                    <div class=\"col-3\"\n                         *ngFor=\"let day of getEventList() | keyvalue\"\n                         style=\"padding-bottom: 2rem;\">\n                        <div class=\"card\">\n                            <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [eventType]=\"currentEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\">\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"35px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportance(day.key)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"35px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportance(day.key)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\"  matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"currentEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                                <app-add-user-to-event></app-add-user-to-event>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div secondPane>\n                <div class=\"row\"\n                     style=\"margin-bottom: -30px; float: right; margin-right: 13%;\"\n                     *ngFor=\"let coolEvent of eventArray\">\n                    <h3 id=\"eventTitle\" *ngIf='currentWeek == \"second\"'>{{coolEvent}}</h3>\n                    <div class=\"row-2\"\n                         *ngFor=\"\n              let day of getEventListCool(coolEvent) | keyvalue;\n              let i = index\n            \"\n                         style=\"padding-bottom: 2rem; font-size: 15px;\">\n                        <div class=\"card\" [class.eventCardImportant]=\"day.value.is_important_event\" style=\"width: 177px;\">\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  (coolEvent == 'Kitchen AM' && day.value.is_important_event);\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\"\n                                     *ngIf=\"coolEvent == 'Kitchen AM'\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [id]=\"day.value.slots[0].id\"\n                                                         [eventType]=\"coolEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\" *ngIf='day.value.slots[0].id != \"N/A\"'>\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"coolEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon style=\"margin-left: 5px; margin-top: -8px; transform: scale(0.8);\"\n                                          *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div thirdPane>\n                <div class=\"row\" style=\"padding-bottom: 2rem;\">\n                    <div class=\"col-3\"\n                         *ngFor=\"let day of getEventList() | keyvalue; let i = index\"\n                         style=\"padding-bottom: 2rem;\">\n                        <div class=\"card\">\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [eventType]=\"currentEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\">\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportance(day.key)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportance(day.key)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"currentEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </app-slider>\n    </div>\n</div>\n");
 
 /***/ }),
 
@@ -465,7 +478,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\" style=\"display:flex; background-color: #449afe\">\n  <button class=\"menu-btn\" #r=\"matMenuTrigger\" mat-icon-button [matMenuTriggerFor]=\"menu\" >\n    <mat-icon (onClick)=\"open(r)\">menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\">\n    <app-change-registration-code></app-change-registration-code>\n    <app-bug-report></app-bug-report>\n    <app-permanent-volunteer></app-permanent-volunteer>\n    <app-week-generator></app-week-generator>\n    <app-permanent-volunteer-directory></app-permanent-volunteer-directory>\n  </mat-menu>\n  <div style=\"padding-left:0.5rem\"> Santropol Roulant </div>\n  <div style=\"margin-left:auto;\">\n    <a style=\"padding-right:1rem\" routerLink=\"/volunteer-schedule\"> <span>Volunteer Schedule </span></a>\n    <a style=\"padding-right:1rem\" routerLink=\"/volunteer-directory\"><span> Volunteer Directory </span> </a>\n    <app-notifications></app-notifications>\n  </div>\n</mat-toolbar>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar [hidden]=\"!show\" color=\"primary\" style=\"display:flex; background-color: #449afe\">\n  <button class=\"menu-btn\" #r=\"matMenuTrigger\" mat-icon-button [matMenuTriggerFor]=\"menu\" >\n    <mat-icon (onClick)=\"open(r)\">menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\">\n    <app-change-registration-code></app-change-registration-code>\n    <app-bug-report></app-bug-report>\n    <app-permanent-volunteer></app-permanent-volunteer>\n    <!-- <app-week-generator></app-week-generator> -->\n    <app-permanent-volunteer-directory></app-permanent-volunteer-directory>\n  </mat-menu>\n  <div style=\"padding-left:0.5rem\"> Santropol Roulant </div>\n  <div style=\"margin-left:auto;\">\n      <a style=\"padding-right:1rem\" routerLink=\"/volunteer-schedule\"> <span>Volunteer Schedule </span></a>\n      <a style=\"padding-right:1rem\" routerLink=\"/volunteer-directory\"><span> Volunteer Directory </span> </a>\n      <a style=\"padding-right:1rem\" routerLink=\"/volunteer-account\"><span> Account </span> </a>\n      <app-notifications></app-notifications>\n  </div>\n</mat-toolbar>\n");
 
 /***/ }),
 
@@ -504,7 +517,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title -->\n<div class=\"page-title\">\n   <h1>Volunteer Directory</h1>\n</div>\n<!-- Search container -->\n<div class=\"container-search\">\n   <mat-form-field class=\"volunteer-search\">\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Search\">\n      <mat-icon matSuffix>search</mat-icon>\n   </mat-form-field>\n   <app-new-user></app-new-user>\n</div>\n<!-- Volunteer table -->\n<table mat-table\n       [dataSource]=\"dataSource\"\n       multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n   <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of displayedColumns\">\n      <th mat-header-cell *matHeaderCellDef>{{prettify(column)}}</th>\n      <td mat-cell *matCellDef=\"let element\">{{element[column]}}</td>\n   </ng-container>\n   <!-- Expanded Element Content - The detail row is made up of this one column that spans across all columns -->\n\n   <ng-container matColumnDef=\"expandedDetail\">\n      <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"displayedColumns.length\">\n      </td>\n   </ng-container>\n   <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n   <tr mat-row *matRowDef=\"let element; columns: displayedColumns;\"\n       class=\"element-row\"\n       [routerLink]=\"['/volunteer', element.id]\"\n       >\n   </tr>\n   <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"detail-row\"></tr>\n</table>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- Page title -->\n<div class=\"page-title\">\n   <h1>Volunteer Directory</h1>\n</div>\n<!-- Search container -->\n<div class=\"container-search\">\n   <mat-form-field class=\"volunteer-search\">\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Search\">\n      <mat-icon matSuffix>search</mat-icon>\n   </mat-form-field>\n   <app-new-user></app-new-user>\n</div>\n<!-- Volunteer table -->\n\n<table mat-table\n       [dataSource]=\"dataSource\"\n       multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n   <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of displayedColumns\">\n      <th mat-header-cell *matHeaderCellDef>{{prettify(column)}}</th>\n      <td mat-cell *matCellDef=\"let element\">{{element[column]}}</td>\n   </ng-container>\n   <!-- Expanded Element Content - The detail row is made up of this one column that spans across all columns -->\n\n   <ng-container matColumnDef=\"expandedDetail\">\n      <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"displayedColumns.length\">\n      </td>\n   </ng-container>\n   <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n   <tr mat-row *matRowDef=\"let element; columns: displayedColumns;\"\n       class=\"element-row\"\n       [routerLink]=\"['/volunteer', element.id]\"\n       >\n   </tr>\n   <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"detail-row\"></tr>\n</table>\n");
 
 /***/ }),
 
@@ -3499,6 +3512,182 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/account/account.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/account/account.component.css ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("body {\n    font-family: 'Roboto', sans-serif;\n}\n\n.container {\n    width: 600px;\n    height: 350px;\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    display: inline-flex;\n}\n\n.backbox {\n    background-color: white;\n    width: 100%;\n    height: 80%;\n    position: absolute;\n    transform: translate(0,-50%);\n    top: 50%;\n    display: inline-flex;\n}\n\n.frontbox {\n    background-color: #60A4FF;\n    border-radius: 20px;\n    height: 100%;\n    width: 50%;\n    right: 0;\n    z-index: 10;\n    position: absolute;\n    margin-right: 3%;\n    margin-left: 3%;\n    transition: right .8s ease-in-out;\n}\n\n.moving {\n    right: 45%;\n}\n\n.center {\n    right: 21%;\n}\n\n.profileicon {\n    width: 30%;\n    position: absolute;\n    left: 35%;\n    top: 15%;\n}\n\n.loggedin {\n    text-align: center;\n}\n\n.displayname {\n    color: white;\n    top: 50%;\n    left: 0px;\n    width: 100%;\n    position: absolute;\n}\n\n.loginMsg, .signupMsg {\n    width: 50%;\n    height: 100%;\n    font-size: 15px;\n    box-sizing: border-box;\n}\n\n.loginMsg .title,\n    .signupMsg .title{\n        font-weight: 300;\n        font-size: 23px;\n    }\n\n.loginMsg p,\n    .signupMsg p {\n        font-weight: 100;\n    }\n\n.reset p{\n    margin-top: 30px;\n    color: white;\n    margin-bottom: 50px;\n}\n\n.textcontent {\n    color: #60A4FF;\n    margin-top: 65px;\n    margin-left: 12%;\n}\n\n.textcontent p {\n        color: #60A4FF;\n    }\n\n.loginMsg button,\n.signupMsg button{\n    background-color: #60A4FF;\n    border: 2px solid white;\n    border-radius: 10px;\n    color: white;\n    font-size: 12px;\n    box-sizing: content-box;\n    font-weight: 300;\n    padding: 10px;\n    margin-top: 12px;\n    margin-left: 15px;\n}\n\n.login, .signup, .reset {\n    padding: 20px;\n    text-align: center;\n}\n\n.login h2,\n    .signup h2,\n    .reset h2 {\n        color: white;\n        font-size: 22px;\n    }\n\n.inputbox {\n    margin-top: 30px;\n}\n\ninput {\n    display: block;\n    width: 100%;\n    height: 40px;\n    background-color: white;\n    border: none;\n    margin-bottom: 20px;\n    font-size: 12px;\n    border-radius: 7px;\n    padding-left: 10px;\n}\n\n.frontbutton, .leftbutton {\n    background-color: white;\n    border: none;\n    color: #60A4FF;\n    font-size: 12px;\n    font-weight: 300;\n    box-sizing: content-box;\n    padding: 10px;\n    border-radius: 10px;\n    width: 60px;\n    position: absolute;\n    right: 30px;\n    bottom: 30px;\n    cursor: pointer;\n}\n\n.leftbutton {\n    left: 30px;\n}\n\n.login p {\n    cursor: pointer;\n    color: white;\n    font-size: 15px;\n}\n\n.loginMsg, .signupMsg {\n    transition: opacity .8s ease-in-out;\n}\n\n.visibility {\n    opacity: 0;\n}\n\n.hide {\n    display: none;\n}\n\n.animated {\n    -webkit-animation-duration: 0.5s;\n    animation-duration: 0.5s;\n    -webkit-animation-fill-mode: both;\n    animation-fill-mode: both;\n}\n\n@-webkit-keyframes shake {\n    from, to {\n        transform: translate3d(0, 0, 0);\n    }\n\n    10%, 50%, 90% {\n        transform: translate3d(-10px, 0, 0);\n    }\n\n    30%, 70% {\n        transform: translate3d(10px, 0, 0);\n    }\n}\n\n@keyframes shake {\n    from, to {\n        transform: translate3d(0, 0, 0);\n    }\n\n    10%, 50%, 90% {\n        transform: translate3d(-10px, 0, 0);\n    }\n\n    30%, 70% {\n        transform: translate3d(10px, 0, 0);\n    }\n}\n\n.shake {\n    -webkit-animation-name: shake;\n    animation-name: shake;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9hY2NvdW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQ0FBaUM7QUFDckM7O0FBRUE7SUFDSSxZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsU0FBUztJQUNULGdDQUFnQztJQUNoQyxvQkFBb0I7QUFDeEI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsV0FBVztJQUNYLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsNEJBQTRCO0lBQzVCLFFBQVE7SUFDUixvQkFBb0I7QUFDeEI7O0FBRUE7SUFDSSx5QkFBeUI7SUFDekIsbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixVQUFVO0lBQ1YsUUFBUTtJQUNSLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLGVBQWU7SUFDZixpQ0FBaUM7QUFDckM7O0FBRUE7SUFDSSxVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxVQUFVO0lBQ1Ysa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxRQUFRO0FBQ1o7O0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osUUFBUTtJQUNSLFNBQVM7SUFDVCxXQUFXO0lBQ1gsa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksVUFBVTtJQUNWLFlBQVk7SUFDWixlQUFlO0lBQ2Ysc0JBQXNCO0FBQzFCOztBQUVJOztRQUVJLGdCQUFnQjtRQUNoQixlQUFlO0lBQ25COztBQUVBOztRQUVJLGdCQUFnQjtJQUNwQjs7QUFFSjtJQUNJLGdCQUFnQjtJQUNoQixZQUFZO0lBQ1osbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksY0FBYztJQUNkLGdCQUFnQjtJQUNoQixnQkFBZ0I7QUFDcEI7O0FBRUk7UUFDSSxjQUFjO0lBQ2xCOztBQUVKOztJQUVJLHlCQUF5QjtJQUN6Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixlQUFlO0lBQ2YsdUJBQXVCO0lBQ3ZCLGdCQUFnQjtJQUNoQixhQUFhO0lBQ2IsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLGFBQWE7SUFDYixrQkFBa0I7QUFDdEI7O0FBRUk7OztRQUdJLFlBQVk7UUFDWixlQUFlO0lBQ25COztBQUVKO0lBQ0ksZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFdBQVc7SUFDWCxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsZUFBZTtJQUNmLGtCQUFrQjtJQUNsQixrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsWUFBWTtJQUNaLGNBQWM7SUFDZCxlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLHVCQUF1QjtJQUN2QixhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWixlQUFlO0FBQ25COztBQUVBO0lBQ0ksVUFBVTtBQUNkOztBQUVBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7SUFDWixlQUFlO0FBQ25COztBQUVBO0lBQ0ksbUNBQW1DO0FBQ3ZDOztBQUVBO0lBQ0ksVUFBVTtBQUNkOztBQUVBO0lBQ0ksYUFBYTtBQUNqQjs7QUFFQTtJQUNJLGdDQUFnQztJQUNoQyx3QkFBd0I7SUFDeEIsaUNBQWlDO0lBQ2pDLHlCQUF5QjtBQUM3Qjs7QUFFQTtJQUNJO1FBRUksK0JBQStCO0lBQ25DOztJQUVBO1FBRUksbUNBQW1DO0lBQ3ZDOztJQUVBO1FBRUksa0NBQWtDO0lBQ3RDO0FBQ0o7O0FBR0E7SUFDSTtRQUVJLCtCQUErQjtJQUNuQzs7SUFFQTtRQUVJLG1DQUFtQztJQUN2Qzs7SUFFQTtRQUVJLGtDQUFrQztJQUN0QztBQUNKOztBQUdBO0lBQ0ksNkJBQTZCO0lBQzdCLHFCQUFxQjtBQUN6QiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvYWNjb3VudC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBzYW5zLXNlcmlmO1xufVxuXG4uY29udGFpbmVyIHtcbiAgICB3aWR0aDogNjAwcHg7XG4gICAgaGVpZ2h0OiAzNTBweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiA1MCU7XG4gICAgbGVmdDogNTAlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xufVxuXG4uYmFja2JveCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiA4MCU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKDAsLTUwJSk7XG4gICAgdG9wOiA1MCU7XG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG59XG5cbi5mcm9udGJveCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzYwQTRGRjtcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICAgIGhlaWdodDogMTAwJTtcbiAgICB3aWR0aDogNTAlO1xuICAgIHJpZ2h0OiAwO1xuICAgIHotaW5kZXg6IDEwO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tcmlnaHQ6IDMlO1xuICAgIG1hcmdpbi1sZWZ0OiAzJTtcbiAgICB0cmFuc2l0aW9uOiByaWdodCAuOHMgZWFzZS1pbi1vdXQ7XG59XG5cbi5tb3Zpbmcge1xuICAgIHJpZ2h0OiA0NSU7XG59XG5cbi5jZW50ZXIge1xuICAgIHJpZ2h0OiAyMSU7XG59XG5cbi5wcm9maWxlaWNvbiB7XG4gICAgd2lkdGg6IDMwJTtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbGVmdDogMzUlO1xuICAgIHRvcDogMTUlO1xufVxuXG4ubG9nZ2VkaW4ge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmRpc3BsYXluYW1lIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdG9wOiA1MCU7XG4gICAgbGVmdDogMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cblxuLmxvZ2luTXNnLCAuc2lnbnVwTXNnIHtcbiAgICB3aWR0aDogNTAlO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbn1cblxuICAgIC5sb2dpbk1zZyAudGl0bGUsXG4gICAgLnNpZ251cE1zZyAudGl0bGV7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiAzMDA7XG4gICAgICAgIGZvbnQtc2l6ZTogMjNweDtcbiAgICB9XG5cbiAgICAubG9naW5Nc2cgcCxcbiAgICAuc2lnbnVwTXNnIHAge1xuICAgICAgICBmb250LXdlaWdodDogMTAwO1xuICAgIH1cblxuLnJlc2V0IHB7XG4gICAgbWFyZ2luLXRvcDogMzBweDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgbWFyZ2luLWJvdHRvbTogNTBweDtcbn1cblxuLnRleHRjb250ZW50IHtcbiAgICBjb2xvcjogIzYwQTRGRjtcbiAgICBtYXJnaW4tdG9wOiA2NXB4O1xuICAgIG1hcmdpbi1sZWZ0OiAxMiU7XG59XG5cbiAgICAudGV4dGNvbnRlbnQgcCB7XG4gICAgICAgIGNvbG9yOiAjNjBBNEZGO1xuICAgIH1cblxuLmxvZ2luTXNnIGJ1dHRvbixcbi5zaWdudXBNc2cgYnV0dG9ue1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM2MEE0RkY7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICAgIGJveC1zaXppbmc6IGNvbnRlbnQtYm94O1xuICAgIGZvbnQtd2VpZ2h0OiAzMDA7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBtYXJnaW4tdG9wOiAxMnB4O1xuICAgIG1hcmdpbi1sZWZ0OiAxNXB4O1xufVxuXG4ubG9naW4sIC5zaWdudXAsIC5yZXNldCB7XG4gICAgcGFkZGluZzogMjBweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbiAgICAubG9naW4gaDIsXG4gICAgLnNpZ251cCBoMixcbiAgICAucmVzZXQgaDIge1xuICAgICAgICBjb2xvcjogd2hpdGU7XG4gICAgICAgIGZvbnQtc2l6ZTogMjJweDtcbiAgICB9XG5cbi5pbnB1dGJveCB7XG4gICAgbWFyZ2luLXRvcDogMzBweDtcbn1cblxuaW5wdXQge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGhlaWdodDogNDBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgYm9yZGVyLXJhZGl1czogN3B4O1xuICAgIHBhZGRpbmctbGVmdDogMTBweDtcbn1cblxuLmZyb250YnV0dG9uLCAubGVmdGJ1dHRvbiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGNvbG9yOiAjNjBBNEZGO1xuICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICBmb250LXdlaWdodDogMzAwO1xuICAgIGJveC1zaXppbmc6IGNvbnRlbnQtYm94O1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgICB3aWR0aDogNjBweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgcmlnaHQ6IDMwcHg7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmxlZnRidXR0b24ge1xuICAgIGxlZnQ6IDMwcHg7XG59XG5cbi5sb2dpbiBwIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtc2l6ZTogMTVweDtcbn1cblxuLmxvZ2luTXNnLCAuc2lnbnVwTXNnIHtcbiAgICB0cmFuc2l0aW9uOiBvcGFjaXR5IC44cyBlYXNlLWluLW91dDtcbn1cblxuLnZpc2liaWxpdHkge1xuICAgIG9wYWNpdHk6IDA7XG59XG5cbi5oaWRlIHtcbiAgICBkaXNwbGF5OiBub25lO1xufVxuXG4uYW5pbWF0ZWQge1xuICAgIC13ZWJraXQtYW5pbWF0aW9uLWR1cmF0aW9uOiAwLjVzO1xuICAgIGFuaW1hdGlvbi1kdXJhdGlvbjogMC41cztcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1maWxsLW1vZGU6IGJvdGg7XG4gICAgYW5pbWF0aW9uLWZpbGwtbW9kZTogYm90aDtcbn1cblxuQC13ZWJraXQta2V5ZnJhbWVzIHNoYWtlIHtcbiAgICBmcm9tLCB0byB7XG4gICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcbiAgICB9XG5cbiAgICAxMCUsIDUwJSwgOTAlIHtcbiAgICAgICAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKC0xMHB4LCAwLCAwKTtcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgtMTBweCwgMCwgMCk7XG4gICAgfVxuXG4gICAgMzAlLCA3MCUge1xuICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMTBweCwgMCwgMCk7XG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMTBweCwgMCwgMCk7XG4gICAgfVxufVxuXG5cbkBrZXlmcmFtZXMgc2hha2Uge1xuICAgIGZyb20sIHRvIHtcbiAgICAgICAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIDAsIDApO1xuICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIDAsIDApO1xuICAgIH1cblxuICAgIDEwJSwgNTAlLCA5MCUge1xuICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogdHJhbnNsYXRlM2QoLTEwcHgsIDAsIDApO1xuICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKC0xMHB4LCAwLCAwKTtcbiAgICB9XG5cbiAgICAzMCUsIDcwJSB7XG4gICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgxMHB4LCAwLCAwKTtcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgxMHB4LCAwLCAwKTtcbiAgICB9XG59XG5cblxuLnNoYWtlIHtcbiAgICAtd2Via2l0LWFuaW1hdGlvbi1uYW1lOiBzaGFrZTtcbiAgICBhbmltYXRpb24tbmFtZTogc2hha2U7XG59XG4iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/account/account.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/account/account.component.ts ***!
+  \**********************************************/
+/*! exports provided: AccountComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountComponent", function() { return AccountComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service/auth.service */ "./src/app/service/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+let AccountComponent = class AccountComponent {
+    constructor(authService) {
+        this.authService = authService;
+        this.email = "";
+        this.password = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.code = "";
+        this.shake = false;
+        this.loginMsgVisibility = false;
+        this.signupMsgVisibility = true;
+        this.loggedinMsgVisibility = true;
+        this.frontBoxMoving = false;
+        this.loggedinHide = true;
+        this.loginHide = false;
+        this.signupHide = true;
+        this.resetHide = true;
+        this.center = false;
+    }
+    //error = "test";
+    ngOnInit() {
+        this.authService.currentAuthStatus.subscribe((authStatus) => {
+            this.user = authStatus;
+            if (this.user) {
+                this.loggedinMode();
+            }
+            else {
+                this.loginMode();
+            }
+        });
+    }
+    signup() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.clearError();
+            if (this.firstName.length == 0 || this.lastName.length == 0 || this.email.length == 0 || this.password.length == 0 || this.code.length == 0) {
+                this.authService.error = "Please fill all fields.";
+                this.shake = true;
+                setTimeout(() => this.shake = false, 1000);
+                return;
+            }
+            if (!(yield this.authService.signup(this.firstName, this.lastName, this.email, this.password, this.code))) {
+                this.shake = true;
+                setTimeout(() => this.shake = false, 1000);
+            }
+            this.email = this.password = this.code = '';
+        });
+    }
+    login() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!(yield this.authService.login(this.email, this.password))) {
+                this.shake = true;
+                setTimeout(() => this.shake = false, 1000);
+            }
+            this.email = this.password = '';
+        });
+    }
+    logout() {
+        this.authService.logout();
+    }
+    reset() {
+        this.authService.reset(this.email);
+        this.loginMode();
+    }
+    resetMode() {
+        this.clearError();
+        this.loginMsgVisibility = true;
+        this.signupMsgVisibility = true;
+        this.loginHide = true;
+        this.signupHide = true;
+        this.loggedinHide = true;
+        this.resetHide = false;
+        this.frontBoxMoving = false;
+        this.center = true;
+    }
+    signupMode() {
+        this.clearError();
+        this.loginMsgVisibility = true;
+        this.signupMsgVisibility = false;
+        this.loginHide = true;
+        this.signupHide = false;
+        this.loggedinHide = true;
+        this.resetHide = true;
+        this.frontBoxMoving = true;
+        this.center = false;
+    }
+    loginMode() {
+        this.clearError();
+        this.loginMsgVisibility = false;
+        this.signupMsgVisibility = true;
+        this.loginHide = false;
+        this.signupHide = true;
+        this.loggedinHide = true;
+        this.resetHide = true;
+        this.frontBoxMoving = false;
+        this.center = false;
+    }
+    loggedinMode() {
+        this.clearError();
+        //console.log("hiar");
+        this.loginMsgVisibility = true;
+        this.signupMsgVisibility = true;
+        this.loginHide = true;
+        this.signupHide = true;
+        this.loggedinHide = false;
+        this.resetHide = true;
+        this.frontBoxMoving = false;
+        this.center = true;
+    }
+    clearError() {
+        this.authService.error = "";
+    }
+};
+AccountComponent.ctorParameters = () => [
+    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }
+];
+AccountComponent = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        selector: 'app-account',
+        template: __importDefault(__webpack_require__(/*! raw-loader!./account.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/account/account.component.html")).default,
+        styles: [__importDefault(__webpack_require__(/*! ./account.component.css */ "./src/app/account/account.component.css")).default, __importDefault(__webpack_require__(/*! ../volunteer-directory/volunteer-directory.component.scss */ "./src/app/volunteer-directory/volunteer-directory.component.scss")).default]
+    }),
+    __metadata("design:paramtypes", [_service_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+], AccountComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -3654,70 +3843,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/__ivy_ngcc__/fesm2015/ngx-translate-http-loader.js");
-/* harmony import */ var _detail_detail_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./detail/detail.module */ "./src/app/detail/detail.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./volunteer-directory/volunteer-directory.component */ "./src/app/volunteer-directory/volunteer-directory.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/checkbox.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/input.js");
-/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/autocomplete.js");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/datepicker.js");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/form-field.js");
-/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/radio.js");
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/select.js");
-/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/slider.js");
-/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/slide-toggle.js");
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/menu.js");
-/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/sidenav.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/toolbar.js");
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/list.js");
-/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/grid-list */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/grid-list.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js");
-/* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/stepper */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/stepper.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tabs.js");
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/expansion.js");
-/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button-toggle.js");
-/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/chips.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
-/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/progress-spinner.js");
-/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/progress-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/progress-bar.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/dialog.js");
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tooltip.js");
-/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
-/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/sort.js");
-/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/paginator.js");
-/* harmony import */ var _new_user_new_user_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./new-user/new-user.component */ "./src/app/new-user/new-user.component.ts");
-/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @angular/material/badge */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/badge.js");
-/* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ag-grid-angular */ "./node_modules/ag-grid-angular/__ivy_ngcc__/fesm2015/ag-grid-angular.js");
-/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/__ivy_ngcc__/fesm2015/angular-bootstrap-md.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/__ivy_ngcc__/esm2015/flex-layout.js");
-/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _change_registration_code_change_registration_code_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./change-registration-code/change-registration-code.component */ "./src/app/change-registration-code/change-registration-code.component.ts");
-/* harmony import */ var _mark_important_event_mark_important_event_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./mark-important-event/mark-important-event.component */ "./src/app/mark-important-event/mark-important-event.component.ts");
-/* harmony import */ var _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./sign-up-sheet/sign-up-sheet.component */ "./src/app/sign-up-sheet/sign-up-sheet.component.ts");
-/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
-/* harmony import */ var _sign_up_sheet_add_user_to_event_add_user_to_event_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./sign-up-sheet/add-user-to-event/add-user-to-event.component */ "./src/app/sign-up-sheet/add-user-to-event/add-user-to-event.component.ts");
-/* harmony import */ var _sign_up_sheet_remove_user_from_event_remove_user_from_event_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./sign-up-sheet/remove-user-from-event/remove-user-from-event.component */ "./src/app/sign-up-sheet/remove-user-from-event/remove-user-from-event.component.ts");
-/* harmony import */ var _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./toolbar/toolbar.component */ "./src/app/toolbar/toolbar.component.ts");
-/* harmony import */ var _sign_up_sheet_mark_permanent_event_mark_permanent_event_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./sign-up-sheet/mark-permanent-event/mark-permanent-event.component */ "./src/app/sign-up-sheet/mark-permanent-event/mark-permanent-event.component.ts");
-/* harmony import */ var _permanent_volunteer_permanent_volunteer_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./permanent-volunteer/permanent-volunteer.component */ "./src/app/permanent-volunteer/permanent-volunteer.component.ts");
-/* harmony import */ var _permanent_volunteer_directory_permanent_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./permanent-volunteer-directory/permanent-volunteer-directory.component */ "./src/app/permanent-volunteer-directory/permanent-volunteer-directory.component.ts");
-/* harmony import */ var _sign_up_sheet_event_sign_up_table_event_sign_up_table_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./sign-up-sheet/event-sign-up-table/event-sign-up-table.component */ "./src/app/sign-up-sheet/event-sign-up-table/event-sign-up-table.component.ts");
-/* harmony import */ var _bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./bug-report/bug-report.component */ "./src/app/bug-report/bug-report.component.ts");
-/* harmony import */ var _sign_up_sheet_staff_note_staff_note_component__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./sign-up-sheet/staff-note/staff-note.component */ "./src/app/sign-up-sheet/staff-note/staff-note.component.ts");
-/* harmony import */ var _toolbar_notifications_notifications_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./toolbar/notifications/notifications.component */ "./src/app/toolbar/notifications/notifications.component.ts");
-/* harmony import */ var _sign_up_sheet_event_note_event_note_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./sign-up-sheet/event-note/event-note.component */ "./src/app/sign-up-sheet/event-note/event-note.component.ts");
-/* harmony import */ var _user_event_user_event_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./user-event/user-event.component */ "./src/app/user-event/user-event.component.ts");
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/__ivy_ngcc__/fesm2015/angular-fontawesome.js");
-/* harmony import */ var _sign_up_sheet_new_schedule_new_schedule_component__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! ./sign-up-sheet/new-schedule/new-schedule.component */ "./src/app/sign-up-sheet/new-schedule/new-schedule.component.ts");
-/* harmony import */ var _week_generator_week_generator_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./week-generator/week-generator.component */ "./src/app/week-generator/week-generator.component.ts");
-/* harmony import */ var _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./user-profile/user-profile.component */ "./src/app/user-profile/user-profile.component.ts");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-auth.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ngx-translate/http-loader */ "./node_modules/@ngx-translate/http-loader/__ivy_ngcc__/fesm2015/ngx-translate-http-loader.js");
+/* harmony import */ var _detail_detail_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./detail/detail.module */ "./src/app/detail/detail.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./volunteer-directory/volunteer-directory.component */ "./src/app/volunteer-directory/volunteer-directory.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/animations.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/checkbox.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/input.js");
+/* harmony import */ var _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/autocomplete */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/autocomplete.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/datepicker.js");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/form-field.js");
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/radio.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/select.js");
+/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/slider.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/slide-toggle.js");
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/menu.js");
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/sidenav.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/toolbar.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/list.js");
+/* harmony import */ var _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/material/grid-list */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/grid-list.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js");
+/* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/material/stepper */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/stepper.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tabs.js");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/expansion.js");
+/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/button-toggle.js");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/chips */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/chips.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js");
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/progress-spinner.js");
+/* harmony import */ var _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/progress-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/progress-bar.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/dialog.js");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tooltip.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/snack-bar.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/sort.js");
+/* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/paginator.js");
+/* harmony import */ var _new_user_new_user_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./new-user/new-user.component */ "./src/app/new-user/new-user.component.ts");
+/* harmony import */ var _angular_material_badge__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @angular/material/badge */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/badge.js");
+/* harmony import */ var ag_grid_angular__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ag-grid-angular */ "./node_modules/ag-grid-angular/__ivy_ngcc__/fesm2015/ag-grid-angular.js");
+/* harmony import */ var angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! angular-bootstrap-md */ "./node_modules/angular-bootstrap-md/__ivy_ngcc__/fesm2015/angular-bootstrap-md.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/__ivy_ngcc__/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/__ivy_ngcc__/esm2015/flex-layout.js");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! @angular/material/core */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _change_registration_code_change_registration_code_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./change-registration-code/change-registration-code.component */ "./src/app/change-registration-code/change-registration-code.component.ts");
+/* harmony import */ var _mark_important_event_mark_important_event_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./mark-important-event/mark-important-event.component */ "./src/app/mark-important-event/mark-important-event.component.ts");
+/* harmony import */ var _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./sign-up-sheet/sign-up-sheet.component */ "./src/app/sign-up-sheet/sign-up-sheet.component.ts");
+/* harmony import */ var _slider_slider_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./slider/slider.component */ "./src/app/slider/slider.component.ts");
+/* harmony import */ var _sign_up_sheet_add_user_to_event_add_user_to_event_component__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ./sign-up-sheet/add-user-to-event/add-user-to-event.component */ "./src/app/sign-up-sheet/add-user-to-event/add-user-to-event.component.ts");
+/* harmony import */ var _sign_up_sheet_remove_user_from_event_remove_user_from_event_component__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ./sign-up-sheet/remove-user-from-event/remove-user-from-event.component */ "./src/app/sign-up-sheet/remove-user-from-event/remove-user-from-event.component.ts");
+/* harmony import */ var _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ./toolbar/toolbar.component */ "./src/app/toolbar/toolbar.component.ts");
+/* harmony import */ var _sign_up_sheet_mark_permanent_event_mark_permanent_event_component__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ./sign-up-sheet/mark-permanent-event/mark-permanent-event.component */ "./src/app/sign-up-sheet/mark-permanent-event/mark-permanent-event.component.ts");
+/* harmony import */ var _permanent_volunteer_permanent_volunteer_component__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ./permanent-volunteer/permanent-volunteer.component */ "./src/app/permanent-volunteer/permanent-volunteer.component.ts");
+/* harmony import */ var _permanent_volunteer_directory_permanent_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ./permanent-volunteer-directory/permanent-volunteer-directory.component */ "./src/app/permanent-volunteer-directory/permanent-volunteer-directory.component.ts");
+/* harmony import */ var _sign_up_sheet_event_sign_up_table_event_sign_up_table_component__WEBPACK_IMPORTED_MODULE_66__ = __webpack_require__(/*! ./sign-up-sheet/event-sign-up-table/event-sign-up-table.component */ "./src/app/sign-up-sheet/event-sign-up-table/event-sign-up-table.component.ts");
+/* harmony import */ var _bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_67__ = __webpack_require__(/*! ./bug-report/bug-report.component */ "./src/app/bug-report/bug-report.component.ts");
+/* harmony import */ var _sign_up_sheet_staff_note_staff_note_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./sign-up-sheet/staff-note/staff-note.component */ "./src/app/sign-up-sheet/staff-note/staff-note.component.ts");
+/* harmony import */ var _toolbar_notifications_notifications_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./toolbar/notifications/notifications.component */ "./src/app/toolbar/notifications/notifications.component.ts");
+/* harmony import */ var _sign_up_sheet_event_note_event_note_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./sign-up-sheet/event-note/event-note.component */ "./src/app/sign-up-sheet/event-note/event-note.component.ts");
+/* harmony import */ var _user_event_user_event_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./user-event/user-event.component */ "./src/app/user-event/user-event.component.ts");
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_72__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/__ivy_ngcc__/fesm2015/angular-fontawesome.js");
+/* harmony import */ var _sign_up_sheet_new_schedule_new_schedule_component__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./sign-up-sheet/new-schedule/new-schedule.component */ "./src/app/sign-up-sheet/new-schedule/new-schedule.component.ts");
+/* harmony import */ var _week_generator_week_generator_component__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./week-generator/week-generator.component */ "./src/app/week-generator/week-generator.component.ts");
+/* harmony import */ var _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_75__ = __webpack_require__(/*! ./user-profile/user-profile.component */ "./src/app/user-profile/user-profile.component.ts");
+/* harmony import */ var _account_account_component__WEBPACK_IMPORTED_MODULE_76__ = __webpack_require__(/*! ./account/account.component */ "./src/app/account/account.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3727,6 +3918,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+
 
 
 
@@ -3809,121 +4001,128 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 //translate:
 function HttpLoaderFactory(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_13__["TranslateHttpLoader"](http, './assets/i18n/', '.json');
+    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_14__["TranslateHttpLoader"](http, './assets/i18n/', '.json');
 }
 const appRoutes = [
     {
         path: '',
-        component: _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_57__["SignUpSheetComponent"]
+        component: _account_account_component__WEBPACK_IMPORTED_MODULE_76__["AccountComponent"] //SignUpSheetComponent
+    },
+    {
+        path: 'volunteer-account',
+        component: _account_account_component__WEBPACK_IMPORTED_MODULE_76__["AccountComponent"]
     },
     {
         path: 'volunteer-schedule',
-        component: _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_57__["SignUpSheetComponent"]
+        component: _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_58__["SignUpSheetComponent"]
     },
     {
         path: 'volunteer-directory',
-        component: _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_16__["VolunteerDirectoryComponent"]
+        component: _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_17__["VolunteerDirectoryComponent"]
     },
     {
         path: 'volunteer/:id',
-        component: _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_74__["UserProfileComponent"]
+        component: _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_75__["UserProfileComponent"]
     },
     {
         path: '**',
-        component: _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_57__["SignUpSheetComponent"]
-    }
+        component: _account_account_component__WEBPACK_IMPORTED_MODULE_76__["AccountComponent"] //SignUpSheetComponent
+    },
 ];
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
-            _new_user_new_user_component__WEBPACK_IMPORTED_MODULE_48__["NewUserComponent"],
-            _change_registration_code_change_registration_code_component__WEBPACK_IMPORTED_MODULE_55__["ChangeRegistrationCodeComponent"],
-            _mark_important_event_mark_important_event_component__WEBPACK_IMPORTED_MODULE_56__["MarkImportantEventComponent"],
-            _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_57__["SignUpSheetComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"],
+            _new_user_new_user_component__WEBPACK_IMPORTED_MODULE_49__["NewUserComponent"],
+            _change_registration_code_change_registration_code_component__WEBPACK_IMPORTED_MODULE_56__["ChangeRegistrationCodeComponent"],
+            _mark_important_event_mark_important_event_component__WEBPACK_IMPORTED_MODULE_57__["MarkImportantEventComponent"],
+            _sign_up_sheet_sign_up_sheet_component__WEBPACK_IMPORTED_MODULE_58__["SignUpSheetComponent"],
             //HomeComponent,
-            _slider_slider_component__WEBPACK_IMPORTED_MODULE_58__["SliderComponent"],
-            _sign_up_sheet_add_user_to_event_add_user_to_event_component__WEBPACK_IMPORTED_MODULE_59__["AddUserToEventComponent"],
-            _sign_up_sheet_remove_user_from_event_remove_user_from_event_component__WEBPACK_IMPORTED_MODULE_60__["RemoveUserFromEventComponent"],
-            _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_61__["ToolbarComponent"],
-            _sign_up_sheet_mark_permanent_event_mark_permanent_event_component__WEBPACK_IMPORTED_MODULE_62__["MarkPermanentEventComponent"],
-            _permanent_volunteer_permanent_volunteer_component__WEBPACK_IMPORTED_MODULE_63__["PermanentVolunteerComponent"],
-            _permanent_volunteer_directory_permanent_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_64__["PermanentVolunteerDirectoryComponent"],
-            _sign_up_sheet_event_sign_up_table_event_sign_up_table_component__WEBPACK_IMPORTED_MODULE_65__["EventSignUpTableComponent"],
-            _bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_66__["BugReportComponent"],
-            _sign_up_sheet_staff_note_staff_note_component__WEBPACK_IMPORTED_MODULE_67__["StaffNoteComponent"],
-            _toolbar_notifications_notifications_component__WEBPACK_IMPORTED_MODULE_68__["NotificationsComponent"],
-            _sign_up_sheet_event_note_event_note_component__WEBPACK_IMPORTED_MODULE_69__["EventNoteComponent"],
-            _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_16__["VolunteerDirectoryComponent"],
-            _user_event_user_event_component__WEBPACK_IMPORTED_MODULE_70__["UserEventComponent"],
-            _sign_up_sheet_new_schedule_new_schedule_component__WEBPACK_IMPORTED_MODULE_72__["NewScheduleComponent"],
-            _week_generator_week_generator_component__WEBPACK_IMPORTED_MODULE_73__["WeekGeneratorComponent"],
-            _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_74__["UserProfileComponent"]
+            _slider_slider_component__WEBPACK_IMPORTED_MODULE_59__["SliderComponent"],
+            _sign_up_sheet_add_user_to_event_add_user_to_event_component__WEBPACK_IMPORTED_MODULE_60__["AddUserToEventComponent"],
+            _sign_up_sheet_remove_user_from_event_remove_user_from_event_component__WEBPACK_IMPORTED_MODULE_61__["RemoveUserFromEventComponent"],
+            _toolbar_toolbar_component__WEBPACK_IMPORTED_MODULE_62__["ToolbarComponent"],
+            _sign_up_sheet_mark_permanent_event_mark_permanent_event_component__WEBPACK_IMPORTED_MODULE_63__["MarkPermanentEventComponent"],
+            _permanent_volunteer_permanent_volunteer_component__WEBPACK_IMPORTED_MODULE_64__["PermanentVolunteerComponent"],
+            _permanent_volunteer_directory_permanent_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_65__["PermanentVolunteerDirectoryComponent"],
+            _sign_up_sheet_event_sign_up_table_event_sign_up_table_component__WEBPACK_IMPORTED_MODULE_66__["EventSignUpTableComponent"],
+            _bug_report_bug_report_component__WEBPACK_IMPORTED_MODULE_67__["BugReportComponent"],
+            _sign_up_sheet_staff_note_staff_note_component__WEBPACK_IMPORTED_MODULE_68__["StaffNoteComponent"],
+            _toolbar_notifications_notifications_component__WEBPACK_IMPORTED_MODULE_69__["NotificationsComponent"],
+            _sign_up_sheet_event_note_event_note_component__WEBPACK_IMPORTED_MODULE_70__["EventNoteComponent"],
+            _volunteer_directory_volunteer_directory_component__WEBPACK_IMPORTED_MODULE_17__["VolunteerDirectoryComponent"],
+            _user_event_user_event_component__WEBPACK_IMPORTED_MODULE_71__["UserEventComponent"],
+            _sign_up_sheet_new_schedule_new_schedule_component__WEBPACK_IMPORTED_MODULE_73__["NewScheduleComponent"],
+            _week_generator_week_generator_component__WEBPACK_IMPORTED_MODULE_74__["WeekGeneratorComponent"],
+            _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_75__["UserProfileComponent"],
+            _account_account_component__WEBPACK_IMPORTED_MODULE_76__["AccountComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-            _angular_material_badge__WEBPACK_IMPORTED_MODULE_49__["MatBadgeModule"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forRoot(appRoutes),
+            _angular_material_badge__WEBPACK_IMPORTED_MODULE_50__["MatBadgeModule"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_12__["RouterModule"].forRoot(appRoutes),
             _angular_fire__WEBPACK_IMPORTED_MODULE_10__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_8__["AppConfig"].firebase),
+            _angular_fire_auth__WEBPACK_IMPORTED_MODULE_11__["AngularFireAuthModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
             _core_core_module__WEBPACK_IMPORTED_MODULE_6__["CoreModule"],
-            _angular_flex_layout__WEBPACK_IMPORTED_MODULE_53__["FlexLayoutModule"],
-            ag_grid_angular__WEBPACK_IMPORTED_MODULE_50__["AgGridModule"].withComponents([]),
+            _angular_flex_layout__WEBPACK_IMPORTED_MODULE_54__["FlexLayoutModule"],
+            ag_grid_angular__WEBPACK_IMPORTED_MODULE_51__["AgGridModule"].withComponents([]),
             _shared_shared_module__WEBPACK_IMPORTED_MODULE_7__["SharedModule"],
-            _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_71__["FontAwesomeModule"],
-            _detail_detail_module__WEBPACK_IMPORTED_MODULE_14__["DetailModule"],
+            _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_72__["FontAwesomeModule"],
+            _detail_detail_module__WEBPACK_IMPORTED_MODULE_15__["DetailModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_9__["AppRoutingModule"],
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_17__["BrowserAnimationsModule"],
-            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__["MatCheckboxModule"],
-            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_18__["MatCheckboxModule"],
-            _angular_material_button__WEBPACK_IMPORTED_MODULE_19__["MatButtonModule"],
-            _angular_material_input__WEBPACK_IMPORTED_MODULE_20__["MatInputModule"],
-            _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_21__["MatAutocompleteModule"],
-            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_22__["MatDatepickerModule"],
-            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_23__["MatFormFieldModule"],
-            _angular_material_radio__WEBPACK_IMPORTED_MODULE_24__["MatRadioModule"],
-            _angular_material_select__WEBPACK_IMPORTED_MODULE_25__["MatSelectModule"],
-            _angular_material_slider__WEBPACK_IMPORTED_MODULE_26__["MatSliderModule"],
-            _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_27__["MatSlideToggleModule"],
-            _angular_material_menu__WEBPACK_IMPORTED_MODULE_28__["MatMenuModule"],
-            _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_29__["MatSidenavModule"],
-            _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_30__["MatToolbarModule"],
-            _angular_material_list__WEBPACK_IMPORTED_MODULE_31__["MatListModule"],
-            _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_32__["MatGridListModule"],
-            _angular_material_card__WEBPACK_IMPORTED_MODULE_33__["MatCardModule"],
-            _angular_material_stepper__WEBPACK_IMPORTED_MODULE_34__["MatStepperModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_35__["MatTabsModule"],
-            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_36__["MatExpansionModule"],
-            _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_37__["MatButtonToggleModule"],
-            _angular_material_chips__WEBPACK_IMPORTED_MODULE_38__["MatChipsModule"],
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_39__["MatIconModule"],
-            _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_40__["MatProgressSpinnerModule"],
-            _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_41__["MatProgressBarModule"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_42__["MatDialogModule"],
-            _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_43__["MatTooltipModule"],
-            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_44__["MatSnackBarModule"],
-            _angular_material_table__WEBPACK_IMPORTED_MODULE_45__["MatTableModule"],
-            _angular_material_sort__WEBPACK_IMPORTED_MODULE_46__["MatSortModule"],
-            _angular_material_paginator__WEBPACK_IMPORTED_MODULE_47__["MatPaginatorModule"],
-            _angular_material_core__WEBPACK_IMPORTED_MODULE_54__["MatNativeDateModule"],
-            angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_51__["MDBBootstrapModule"].forRoot(),
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_52__["NgbModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_18__["BrowserAnimationsModule"],
+            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_19__["MatCheckboxModule"],
+            _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_19__["MatCheckboxModule"],
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_20__["MatButtonModule"],
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_21__["MatInputModule"],
+            _angular_material_autocomplete__WEBPACK_IMPORTED_MODULE_22__["MatAutocompleteModule"],
+            _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_23__["MatDatepickerModule"],
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_24__["MatFormFieldModule"],
+            _angular_material_radio__WEBPACK_IMPORTED_MODULE_25__["MatRadioModule"],
+            _angular_material_select__WEBPACK_IMPORTED_MODULE_26__["MatSelectModule"],
+            _angular_material_slider__WEBPACK_IMPORTED_MODULE_27__["MatSliderModule"],
+            _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_28__["MatSlideToggleModule"],
+            _angular_material_menu__WEBPACK_IMPORTED_MODULE_29__["MatMenuModule"],
+            _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_30__["MatSidenavModule"],
+            _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_31__["MatToolbarModule"],
+            _angular_material_list__WEBPACK_IMPORTED_MODULE_32__["MatListModule"],
+            _angular_material_grid_list__WEBPACK_IMPORTED_MODULE_33__["MatGridListModule"],
+            _angular_material_card__WEBPACK_IMPORTED_MODULE_34__["MatCardModule"],
+            _angular_material_stepper__WEBPACK_IMPORTED_MODULE_35__["MatStepperModule"],
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_36__["MatTabsModule"],
+            _angular_material_expansion__WEBPACK_IMPORTED_MODULE_37__["MatExpansionModule"],
+            _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_38__["MatButtonToggleModule"],
+            _angular_material_chips__WEBPACK_IMPORTED_MODULE_39__["MatChipsModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_40__["MatIconModule"],
+            _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_41__["MatProgressSpinnerModule"],
+            _angular_material_progress_bar__WEBPACK_IMPORTED_MODULE_42__["MatProgressBarModule"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_43__["MatDialogModule"],
+            _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_44__["MatTooltipModule"],
+            _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_45__["MatSnackBarModule"],
+            _angular_material_table__WEBPACK_IMPORTED_MODULE_46__["MatTableModule"],
+            _angular_material_sort__WEBPACK_IMPORTED_MODULE_47__["MatSortModule"],
+            _angular_material_paginator__WEBPACK_IMPORTED_MODULE_48__["MatPaginatorModule"],
+            _angular_material_core__WEBPACK_IMPORTED_MODULE_55__["MatNativeDateModule"],
+            angular_bootstrap_md__WEBPACK_IMPORTED_MODULE_52__["MDBBootstrapModule"].forRoot(),
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_53__["NgbModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__["TranslateModule"].forRoot({
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__["TranslateModule"].forRoot({
                 loader: {
-                    provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__["TranslateLoader"],
+                    provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_13__["TranslateLoader"],
                     useFactory: HttpLoaderFactory,
                     deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]]
                 }
             })
         ],
         providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_16__["AppComponent"]]
     })
 ], AppModule);
 
@@ -5095,7 +5294,7 @@ PermanentVolunteerDirectoryComponent = __decorate([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep .permanent-volunteer .modal-dialog {\n  max-width: 80% !important;\n  width: 80% !important;\n}\n\n::ng-deep .cdk-global-overlay-wrapper, ::ng-deep .cdk-overlay-container {\n  z-index: 9999 !important;\n}\n\n.cdk-overlay-connected-position-bounding-box {\n  z-index: 99999 !important;\n}\n\n.fa {\n  padding-right: 0.5rem;\n}\n\n.form {\n  padding-bottom: 0;\n}\n\n.modal-header {\n  background-color: #5fce99;\n}\n\n.modal-title {\n  color: white;\n}\n\n.img-warning {\n  margin-bottom: 1rem;\n  margin: auto;\n  margin-top: 1.5rem;\n}\n\n.modal-body {\n  padding: 1rem 2rem 0 2rem;\n  padding-top: 2rem;\n  padding-bottom: 2rem;\n}\n\n.btn-cancel {\n  margin-right: 1rem;\n}\n\n.btn-remove-volunteer {\n  color: white;\n  background: #dc3545;\n}\n\n.btn-remove-volunteer:hover {\n  background: #bb202f;\n}\n\n.footer {\n  padding-bottom: 2.5rem;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGVybWFuZW50LXZvbHVudGVlci9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxwZXJtYW5lbnQtdm9sdW50ZWVyXFxwZXJtYW5lbnQtdm9sdW50ZWVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9wZXJtYW5lbnQtdm9sdW50ZWVyL3Blcm1hbmVudC12b2x1bnRlZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSyx5QkFBQTtFQUNBLHFCQUFBO0FDQ0w7O0FERVk7RUFBc0Qsd0JBQUE7QUNFbEU7O0FEREE7RUFDRSx5QkFBQTtBQ0lGOztBREZBO0VBQ0UscUJBQUE7QUNLRjs7QURGQTtFQUNFLGlCQUFBO0FDS0Y7O0FERkE7RUFDRSx5QkFBQTtBQ0tGOztBRERBO0VBQ0UsWUFBQTtBQ0lGOztBRERBO0VBQ0UsbUJBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNJRjs7QUREQTtFQUNFLHlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxvQkFBQTtBQ0lGOztBREZBO0VBQ0Usa0JBQUE7QUNLRjs7QURGQTtFQUNFLFlBQUE7RUFDQSxtQkFBQTtBQ0tGOztBREZBO0VBQ0UsbUJBQUE7QUNLRjs7QURGQTtFQUNFLHNCQUFBO0VBQ0Esa0JBQUE7QUNLRiIsImZpbGUiOiJzcmMvYXBwL3Blcm1hbmVudC12b2x1bnRlZXIvcGVybWFuZW50LXZvbHVudGVlci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjo6bmctZGVlcCAucGVybWFuZW50LXZvbHVudGVlciAubW9kYWwtZGlhbG9nIHtcbiAgICAgbWF4LXdpZHRoOiA4MCUgIWltcG9ydGFudDtcbiAgICAgd2lkdGg6IDgwJSAhaW1wb3J0YW50O1xuXG59XG46Om5nLWRlZXAgeyAuY2RrLWdsb2JhbC1vdmVybGF5LXdyYXBwZXIsIC5jZGstb3ZlcmxheS1jb250YWluZXIgeyB6LWluZGV4OiA5OTk5IWltcG9ydGFudDsgfSB9XG4uY2RrLW92ZXJsYXktY29ubmVjdGVkLXBvc2l0aW9uLWJvdW5kaW5nLWJveCB7XG4gIHotaW5kZXg6IDk5OTk5ICFpbXBvcnRhbnQ7XG59XG4uZmEge1xuICBwYWRkaW5nLXJpZ2h0OiAwLjVyZW07XG59XG5cbi5mb3Jte1xuICBwYWRkaW5nLWJvdHRvbTogMDtcbn1cblxuLm1vZGFsLWhlYWRlcntcbiAgYmFja2dyb3VuZC1jb2xvcjogIzVmY2U5OTtcbn1cblxuXG4ubW9kYWwtdGl0bGV7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmltZy13YXJuaW5nIHtcbiAgbWFyZ2luLWJvdHRvbToxcmVtO1xuICBtYXJnaW46YXV0bztcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xufVxuXG4ubW9kYWwtYm9keXtcbiAgcGFkZGluZzogMXJlbSAycmVtIDAgMnJlbTtcbiAgcGFkZGluZy10b3A6MnJlbTtcbiAgcGFkZGluZy1ib3R0b206MnJlbTtcbn1cbi5idG4tY2FuY2VsIHtcbiAgbWFyZ2luLXJpZ2h0OjFyZW07XG59XG5cbi5idG4tcmVtb3ZlLXZvbHVudGVlciB7XG4gIGNvbG9yOndoaXRlO1xuICBiYWNrZ3JvdW5kOiNkYzM1NDU7XG59XG5cbi5idG4tcmVtb3ZlLXZvbHVudGVlcjpob3ZlciB7XG4gIGJhY2tncm91bmQ6ICNiYjIwMmY7XG59XG5cbi5mb290ZXJ7XG4gIHBhZGRpbmctYm90dG9tOiAyLjVyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiIsIjo6bmctZGVlcCAucGVybWFuZW50LXZvbHVudGVlciAubW9kYWwtZGlhbG9nIHtcbiAgbWF4LXdpZHRoOiA4MCUgIWltcG9ydGFudDtcbiAgd2lkdGg6IDgwJSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLmNkay1nbG9iYWwtb3ZlcmxheS13cmFwcGVyLCA6Om5nLWRlZXAgLmNkay1vdmVybGF5LWNvbnRhaW5lciB7XG4gIHotaW5kZXg6IDk5OTkgIWltcG9ydGFudDtcbn1cblxuLmNkay1vdmVybGF5LWNvbm5lY3RlZC1wb3NpdGlvbi1ib3VuZGluZy1ib3gge1xuICB6LWluZGV4OiA5OTk5OSAhaW1wb3J0YW50O1xufVxuXG4uZmEge1xuICBwYWRkaW5nLXJpZ2h0OiAwLjVyZW07XG59XG5cbi5mb3JtIHtcbiAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5tb2RhbC1oZWFkZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWZjZTk5O1xufVxuXG4ubW9kYWwtdGl0bGUge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5pbWctd2FybmluZyB7XG4gIG1hcmdpbi1ib3R0b206IDFyZW07XG4gIG1hcmdpbjogYXV0bztcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xufVxuXG4ubW9kYWwtYm9keSB7XG4gIHBhZGRpbmc6IDFyZW0gMnJlbSAwIDJyZW07XG4gIHBhZGRpbmctdG9wOiAycmVtO1xuICBwYWRkaW5nLWJvdHRvbTogMnJlbTtcbn1cblxuLmJ0bi1jYW5jZWwge1xuICBtYXJnaW4tcmlnaHQ6IDFyZW07XG59XG5cbi5idG4tcmVtb3ZlLXZvbHVudGVlciB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYmFja2dyb3VuZDogI2RjMzU0NTtcbn1cblxuLmJ0bi1yZW1vdmUtdm9sdW50ZWVyOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2JiMjAyZjtcbn1cblxuLmZvb3RlciB7XG4gIHBhZGRpbmctYm90dG9tOiAyLjVyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("::ng-deep .permanent-volunteer .modal-dialog {\n  max-width: 80% !important;\n  width: 80% !important;\n}\n\n::ng-deep .cdk-global-overlay-wrapper, ::ng-deep .cdk-overlay-container {\n  z-index: 9999 !important;\n}\n\n.cdk-overlay-connected-position-bounding-box {\n  z-index: 99999 !important;\n}\n\n.fa {\n  padding-right: 0.5rem;\n}\n\n.form {\n  padding-bottom: 0;\n}\n\n.modal-header {\n  background-color: #5fce99;\n}\n\n.modal-title {\n  color: white;\n}\n\n.img-warning {\n  margin-bottom: 1rem;\n  margin: auto;\n  margin-top: 1.5rem;\n}\n\n.modal-body {\n  padding: 1rem 2rem 0 2rem;\n  padding-top: 2rem;\n  padding-bottom: 2rem;\n}\n\n.btn-cancel {\n  margin-right: 1rem;\n}\n\n.btn-remove-volunteer {\n  color: white;\n  background: #dc3545;\n}\n\n.btn-remove-volunteer:hover {\n  background: #bb202f;\n}\n\n.footer {\n  padding-bottom: 2.5rem;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGVybWFuZW50LXZvbHVudGVlci9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxwZXJtYW5lbnQtdm9sdW50ZWVyXFxwZXJtYW5lbnQtdm9sdW50ZWVyLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9wZXJtYW5lbnQtdm9sdW50ZWVyL3Blcm1hbmVudC12b2x1bnRlZXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSx5QkFBQTtFQUNBLHFCQUFBO0FDQ0o7O0FER0k7RUFDSSx3QkFBQTtBQ0FSOztBRElBO0VBQ0kseUJBQUE7QUNESjs7QURJQTtFQUNJLHFCQUFBO0FDREo7O0FESUE7RUFDSSxpQkFBQTtBQ0RKOztBRElBO0VBQ0kseUJBQUE7QUNESjs7QURLQTtFQUNJLFlBQUE7QUNGSjs7QURLQTtFQUNJLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FDRko7O0FES0E7RUFDSSx5QkFBQTtFQUNBLGlCQUFBO0VBQ0Esb0JBQUE7QUNGSjs7QURLQTtFQUNJLGtCQUFBO0FDRko7O0FES0E7RUFDSSxZQUFBO0VBQ0EsbUJBQUE7QUNGSjs7QURLQTtFQUNJLG1CQUFBO0FDRko7O0FES0E7RUFDSSxzQkFBQTtFQUNBLGtCQUFBO0FDRkoiLCJmaWxlIjoic3JjL2FwcC9wZXJtYW5lbnQtdm9sdW50ZWVyL3Blcm1hbmVudC12b2x1bnRlZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6Om5nLWRlZXAgLnBlcm1hbmVudC12b2x1bnRlZXIgLm1vZGFsLWRpYWxvZyB7XG4gICAgbWF4LXdpZHRoOiA4MCUgIWltcG9ydGFudDtcbiAgICB3aWR0aDogODAlICFpbXBvcnRhbnQ7XG59XG5cbjo6bmctZGVlcCB7XG4gICAgLmNkay1nbG9iYWwtb3ZlcmxheS13cmFwcGVyLCAuY2RrLW92ZXJsYXktY29udGFpbmVyIHtcbiAgICAgICAgei1pbmRleDogOTk5OSAhaW1wb3J0YW50O1xuICAgIH1cbn1cblxuLmNkay1vdmVybGF5LWNvbm5lY3RlZC1wb3NpdGlvbi1ib3VuZGluZy1ib3gge1xuICAgIHotaW5kZXg6IDk5OTk5ICFpbXBvcnRhbnQ7XG59XG5cbi5mYSB7XG4gICAgcGFkZGluZy1yaWdodDogMC41cmVtO1xufVxuXG4uZm9ybSB7XG4gICAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5tb2RhbC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICM1ZmNlOTk7XG59XG5cblxuLm1vZGFsLXRpdGxlIHtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5cbi5pbWctd2FybmluZyB7XG4gICAgbWFyZ2luLWJvdHRvbTogMXJlbTtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgbWFyZ2luLXRvcDogMS41cmVtO1xufVxuXG4ubW9kYWwtYm9keSB7XG4gICAgcGFkZGluZzogMXJlbSAycmVtIDAgMnJlbTtcbiAgICBwYWRkaW5nLXRvcDogMnJlbTtcbiAgICBwYWRkaW5nLWJvdHRvbTogMnJlbTtcbn1cblxuLmJ0bi1jYW5jZWwge1xuICAgIG1hcmdpbi1yaWdodDogMXJlbTtcbn1cblxuLmJ0bi1yZW1vdmUtdm9sdW50ZWVyIHtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgYmFja2dyb3VuZDogI2RjMzU0NTtcbn1cblxuLmJ0bi1yZW1vdmUtdm9sdW50ZWVyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjYmIyMDJmO1xufVxuXG4uZm9vdGVyIHtcbiAgICBwYWRkaW5nLWJvdHRvbTogMi41cmVtO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiIsIjo6bmctZGVlcCAucGVybWFuZW50LXZvbHVudGVlciAubW9kYWwtZGlhbG9nIHtcbiAgbWF4LXdpZHRoOiA4MCUgIWltcG9ydGFudDtcbiAgd2lkdGg6IDgwJSAhaW1wb3J0YW50O1xufVxuXG46Om5nLWRlZXAgLmNkay1nbG9iYWwtb3ZlcmxheS13cmFwcGVyLCA6Om5nLWRlZXAgLmNkay1vdmVybGF5LWNvbnRhaW5lciB7XG4gIHotaW5kZXg6IDk5OTkgIWltcG9ydGFudDtcbn1cblxuLmNkay1vdmVybGF5LWNvbm5lY3RlZC1wb3NpdGlvbi1ib3VuZGluZy1ib3gge1xuICB6LWluZGV4OiA5OTk5OSAhaW1wb3J0YW50O1xufVxuXG4uZmEge1xuICBwYWRkaW5nLXJpZ2h0OiAwLjVyZW07XG59XG5cbi5mb3JtIHtcbiAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5tb2RhbC1oZWFkZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWZjZTk5O1xufVxuXG4ubW9kYWwtdGl0bGUge1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5pbWctd2FybmluZyB7XG4gIG1hcmdpbi1ib3R0b206IDFyZW07XG4gIG1hcmdpbjogYXV0bztcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xufVxuXG4ubW9kYWwtYm9keSB7XG4gIHBhZGRpbmc6IDFyZW0gMnJlbSAwIDJyZW07XG4gIHBhZGRpbmctdG9wOiAycmVtO1xuICBwYWRkaW5nLWJvdHRvbTogMnJlbTtcbn1cblxuLmJ0bi1jYW5jZWwge1xuICBtYXJnaW4tcmlnaHQ6IDFyZW07XG59XG5cbi5idG4tcmVtb3ZlLXZvbHVudGVlciB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYmFja2dyb3VuZDogI2RjMzU0NTtcbn1cblxuLmJ0bi1yZW1vdmUtdm9sdW50ZWVyOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2JiMjAyZjtcbn1cblxuLmZvb3RlciB7XG4gIHBhZGRpbmctYm90dG9tOiAyLjVyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */");
 
 /***/ }),
 
@@ -5200,6 +5399,154 @@ PermanentVolunteerComponent = __decorate([
     }),
     __metadata("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__["NgbModal"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _firebase_service_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"]])
 ], PermanentVolunteerComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/auth.service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/service/auth.service.ts ***!
+  \*****************************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-auth.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-database.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.cjs.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_firebase_app__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/auth.esm.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (undefined && undefined.__importDefault) || function (mod) {
+  return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+
+
+
+
+
+
+
+let AuthService = class AuthService {
+    constructor(firebaseAuth, db) {
+        //this.user = firebaseAuth.authState;
+        this.firebaseAuth = firebaseAuth;
+        this.db = db;
+        this.authStatusSub = new rxjs__WEBPACK_IMPORTED_MODULE_6__["BehaviorSubject"](this.currentUser);
+        this.currentAuthStatus = this.authStatusSub.asObservable();
+        this.error = "";
+        this.firebaseAuth.onAuthStateChanged((credential) => {
+            if (credential) {
+                console.log(credential);
+                this.authStatusSub.next(credential);
+                console.log('User is logged in');
+            }
+            else {
+                this.authStatusSub.next(null);
+                console.log('User is logged out');
+            }
+        });
+    }
+    signup(firstName, lastName, email, password, code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.db.object('/registration_code').valueChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1)).toPromise().then(details => {
+                if (details == code) {
+                    return this.firebaseAuth
+                        .createUserWithEmailAndPassword(email, password)
+                        .then((value) => __awaiter(this, void 0, void 0, function* () {
+                        console.log('Success!', value);
+                        //firebase.auth().currentUser.sendEmailVerification();
+                        this.newUser = yield this.firebaseAuth.currentUser;
+                        this.addUser(this.newUser.uid, firstName, lastName, email, "staff");
+                        this.newUser.sendEmailVerification().then(() => {
+                            console.log('email sent');
+                        });
+                        return true;
+                    }))
+                        .catch(err => {
+                        this.error = err.message;
+                        console.log('Something went wrong:', err.message);
+                        return false;
+                    });
+                }
+                else {
+                    this.error = "Registration code is incorrect.";
+                    return false;
+                }
+            });
+        });
+    }
+    login(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.firebaseAuth.setPersistence(_firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a.auth.Auth.Persistence.LOCAL).then(() => {
+                return this.firebaseAuth
+                    .signInWithEmailAndPassword(email, password)
+                    .then(value => {
+                    console.log('Nice, it worked!');
+                    return true;
+                })
+                    .catch(err => {
+                    console.log('Something went wrong:', err.message);
+                    return false;
+                });
+            })
+                .catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.error(errorCode, errorMessage);
+                return false;
+            });
+        });
+    }
+    logout() {
+        this.firebaseAuth.signOut();
+    }
+    reset(email) {
+        this.firebaseAuth.sendPasswordResetEmail(email);
+    }
+    addUser(uid, firstName, lastName, email, privilege) {
+        this.db.object('/staff/' + uid)
+            .update({
+            email: email,
+            first_name: firstName,
+            last_name: lastName,
+            privilege: privilege,
+        });
+    }
+};
+AuthService.ctorParameters = () => [
+    { type: _angular_fire_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"] },
+    { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"] }
+];
+AuthService = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [_angular_fire_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]])
+], AuthService);
 
 
 
@@ -5980,7 +6327,7 @@ RemoveUserFromEventComponent = __decorate([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".card-header {\n  text-align: center;\n  color: white;\n}\n\n.card-header {\n  background-color: #60a4ff;\n}\n\n.card-body {\n  padding: 0;\n}\n\n.kitchenPM .card-body {\n  background-color: #f4abaa;\n}\n\n.row {\n  justify-content: center;\n}\n\n.img-important-event-false {\n  cursor: pointer;\n}\n\napp-permanent-volunteer {\n  float: right;\n  margin-right: 0.5rem;\n  margin-top: 0.2rem;\n  cursor: pointer;\n}\n\n.img-important-event-true {\n  cursor: pointer;\n}\n\n#logo {\n  margin-top: -30px;\n  margin-right: 20%;\n  max-width: 120px;\n  margin-left: -30%;\n  z-index: -1;\n}\n\nh1 {\n  display: inline;\n  text-align: center;\n}\n\nh3 {\n  margin-right: 15px;\n  margin-left: -180px;\n  color: #99169D;\n  position: relative;\n  top: 50%;\n  font-size: 22px !important;\n}\n\n.eventCardImportant {\n  border: 2px solid #f24a5a !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxzaWduLXVwLXNoZWV0XFxzaWduLXVwLXNoZWV0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBQTtFQUNBLFlBQUE7QUNDRjs7QURFQTtFQUNFLHlCQUFBO0FDQ0Y7O0FERUE7RUFDRSxVQUFBO0FDQ0Y7O0FERUE7RUFDRSx5QkFBQTtBQ0NGOztBREVBO0VBQ0UsdUJBQUE7QUNDRjs7QURFQTtFQUNFLGVBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxvQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsZUFBQTtBQ0NGOztBREVBO0VBQ0UsaUJBQUE7RUFDQSxpQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDQ0Y7O0FERUE7RUFDRSxlQUFBO0VBQ0Ysa0JBQUE7QUNDQTs7QURFQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsMEJBQUE7QUNDQTs7QURFQTtFQUNFLG9DQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZC1oZWFkZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzYwYTRmZjtcbn1cblxuLmNhcmQtYm9keSB7XG4gIHBhZGRpbmc6IDA7XG59XG5cbi5raXRjaGVuUE0gLmNhcmQtYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmltZy1pbXBvcnRhbnQtZXZlbnQtZmFsc2Uge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmFwcC1wZXJtYW5lbnQtdm9sdW50ZWVyIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbiAgbWFyZ2luLXRvcDogMC4ycmVtO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNsb2dvIHtcbiAgbWFyZ2luLXRvcDogLTMwcHg7XG4gIG1hcmdpbi1yaWdodDogMjAlO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xuICBtYXJnaW4tbGVmdDogLTMwJTtcbiAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgZGlzcGxheTogaW5saW5lO1xudGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5oM3tcbm1hcmdpbi1yaWdodDogMTVweDtcbm1hcmdpbi1sZWZ0OiAtMTgwcHg7XG5jb2xvcjogIzk5MTY5RDtcbnBvc2l0aW9uOiByZWxhdGl2ZTsgXG50b3A6IDUwJTtcbmZvbnQtc2l6ZTogMjJweCAhaW1wb3J0YW50O1xufVxuXG4uZXZlbnRDYXJkSW1wb3J0YW50e1xuICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59IiwiLmNhcmQtaGVhZGVyIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogd2hpdGU7XG59XG5cbi5jYXJkLWhlYWRlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICM2MGE0ZmY7XG59XG5cbi5jYXJkLWJvZHkge1xuICBwYWRkaW5nOiAwO1xufVxuXG4ua2l0Y2hlblBNIC5jYXJkLWJvZHkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjRhYmFhO1xufVxuXG4ucm93IHtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LWZhbHNlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5hcHAtcGVybWFuZW50LXZvbHVudGVlciB7XG4gIGZsb2F0OiByaWdodDtcbiAgbWFyZ2luLXJpZ2h0OiAwLjVyZW07XG4gIG1hcmdpbi10b3A6IDAuMnJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaW1nLWltcG9ydGFudC1ldmVudC10cnVlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4jbG9nbyB7XG4gIG1hcmdpbi10b3A6IC0zMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwJTtcbiAgbWF4LXdpZHRoOiAxMjBweDtcbiAgbWFyZ2luLWxlZnQ6IC0zMCU7XG4gIHotaW5kZXg6IC0xO1xufVxuXG5oMSB7XG4gIGRpc3BsYXk6IGlubGluZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5oMyB7XG4gIG1hcmdpbi1yaWdodDogMTVweDtcbiAgbWFyZ2luLWxlZnQ6IC0xODBweDtcbiAgY29sb3I6ICM5OTE2OUQ7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiA1MCU7XG4gIGZvbnQtc2l6ZTogMjJweCAhaW1wb3J0YW50O1xufVxuXG4uZXZlbnRDYXJkSW1wb3J0YW50IHtcbiAgYm9yZGVyOiAycHggc29saWQgI2YyNGE1YSAhaW1wb3J0YW50O1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".page-title {\n  padding-top: 1rem;\n  padding-bottom: 0;\n}\n\n.page-title h1 {\n  padding: 0.5rem;\n  text-align: center;\n  color: #60A4FF;\n}\n\n.container-search {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.volunteer-search {\n  margin-left: 2.5%;\n  margin-top: 1%;\n  width: 400px;\n}\n\n.mat-table {\n  overflow: auto;\n  max-height: 500px;\n  width: 95%;\n  margin-left: 2.5%;\n  margin-right: 2.5%;\n}\n\nth.mat-sort-header-sorted {\n  color: black;\n}\n\n.container {\n  max-width: none;\n  padding: 0;\n}\n\n.container .header {\n  background-color: #5fce99;\n  color: white;\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  width: inherit;\n  margin: 0;\n}\n\n.volunteer-name {\n  font-weight: bold;\n  font-size: 16;\n  margin-left: 1rem;\n}\n\n.actions {\n  position: absolute;\n  right: 5%;\n}\n\n.valign-center {\n  display: inline-flex;\n  vertical-align: middle;\n  align-items: center;\n}\n\n.body {\n  background-color: #c1ecd7;\n  padding: 1rem;\n}\n\n.valign-center mat-icon {\n  margin-right: 0.5rem;\n}\n\n.element-detail {\n  overflow: hidden;\n  display: flex;\n}\n\n.element-row {\n  position: relative;\n}\n\n.element-row:not(.expanded) {\n  cursor: pointer;\n}\n\n.element-row:not(.expanded):hover {\n  background: #f5f5f5;\n}\n\n.element-row.expanded {\n  border-bottom-color: transparent;\n}\n\ntr.detail-row {\n  height: 0;\n}\n\ntr.element-row:not(.expanded-row):hover {\n  background: #f5f5f5;\n}\n\ntr.element-row:not(.expanded-row):active {\n  background: #efefef;\n}\n\n.element-row td {\n  border-bottom-width: 0;\n}\n\n.card-header {\n  text-align: center;\n  color: white;\n}\n\n.card-header {\n  background-color: #60a4ff;\n}\n\n.card-body {\n  padding: 0;\n}\n\n.kitchenPM .card-body {\n  background-color: #f4abaa;\n}\n\n.row {\n  justify-content: center;\n}\n\n.img-important-event-false {\n  cursor: pointer;\n}\n\napp-permanent-volunteer {\n  float: right;\n  margin-right: 0.5rem;\n  margin-top: 0.2rem;\n  cursor: pointer;\n}\n\n.img-important-event-true {\n  cursor: pointer;\n}\n\n#logo {\n  margin-top: -30px;\n  margin-right: 20%;\n  max-width: 120px;\n  margin-left: -30%;\n  z-index: -1;\n}\n\nh1 {\n  display: inline;\n  text-align: center;\n}\n\nh3 {\n  margin-right: 15px;\n  margin-left: -180px;\n  color: #99169D;\n  position: relative;\n  top: 50%;\n  font-size: 22px !important;\n}\n\n.eventCardImportant {\n  border: 2px solid #f24a5a !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxzaWduLXVwLXNoZWV0XFxzaWduLXVwLXNoZWV0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxpQkFBQTtFQUNBLGlCQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDQUo7O0FES0E7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQ0ZKOztBREtBO0VBQ0ksaUJBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtBQ0ZKOztBRE1BO0VBQ0ksY0FBQTtFQUNBLGlCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUNISjs7QURNQTtFQUNJLFlBQUE7QUNISjs7QURRQTtFQUNJLGVBQUE7RUFDQSxVQUFBO0FDTEo7O0FEUUE7RUFDSSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsY0FBQTtFQUNBLFNBQUE7QUNMSjs7QURRQTtFQUNJLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLGlCQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtFQUNBLFNBQUE7QUNMSjs7QURRQTtFQUNJLG9CQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtBQ0xKOztBRFFBO0VBQ0kseUJBQUE7RUFDQSxhQUFBO0FDTEo7O0FEUUE7RUFDSSxvQkFBQTtBQ0xKOztBRFFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtBQ0xKOztBRFFBO0VBQ0ksZUFBQTtBQ0xKOztBRFFBO0VBQ0ksbUJBQUE7QUNMSjs7QURRQTtFQUNJLGdDQUFBO0FDTEo7O0FEUUE7RUFDSSxTQUFBO0FDTEo7O0FEUUE7RUFDSSxtQkFBQTtBQ0xKOztBRFFBO0VBQ0ksbUJBQUE7QUNMSjs7QURRQTtFQUNJLHNCQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7QUNMSjs7QURRQTtFQUNJLHlCQUFBO0FDTEo7O0FEUUE7RUFDSSxVQUFBO0FDTEo7O0FEUUE7RUFDSSx5QkFBQTtBQ0xKOztBRFFBO0VBQ0ksdUJBQUE7QUNMSjs7QURRQTtFQUNJLGVBQUE7QUNMSjs7QURRQTtFQUNJLFlBQUE7RUFDQSxvQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ0xKOztBRFFBO0VBQ0ksZUFBQTtBQ0xKOztBRFFBO0VBQ0ksaUJBQUE7RUFDQSxpQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDTEo7O0FEUUE7RUFDSSxlQUFBO0VBQ0Esa0JBQUE7QUNMSjs7QURRQTtFQUNJLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsMEJBQUE7QUNMSjs7QURRQTtFQUNJLG9DQUFBO0FDTEoiLCJmaWxlIjoic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBQYWdlIHRpdGxlXG4ucGFnZS10aXRsZSB7XG4gICAgcGFkZGluZy10b3A6IDFyZW07XG4gICAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5wYWdlLXRpdGxlIGgxIHtcbiAgICBwYWRkaW5nOiAwLjVyZW07XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiAjNjBBNEZGO1xufVxuXG5cbi8vIFNlYXJjaCBjb250YWluZXJcbi5jb250YWluZXItc2VhcmNoIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4udm9sdW50ZWVyLXNlYXJjaCB7XG4gICAgbWFyZ2luLWxlZnQ6IDIuNSU7XG4gICAgbWFyZ2luLXRvcDogMSU7XG4gICAgd2lkdGg6IDQwMHB4O1xufVxuXG4vLyBWb2x1bnRlZXIgdGFibGVcbi5tYXQtdGFibGUge1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICAgIG1heC1oZWlnaHQ6IDUwMHB4O1xuICAgIHdpZHRoOiA5NSU7XG4gICAgbWFyZ2luLWxlZnQ6IDIuNSU7XG4gICAgbWFyZ2luLXJpZ2h0OiAyLjUlO1xufVxuXG50aC5tYXQtc29ydC1oZWFkZXItc29ydGVkIHtcbiAgICBjb2xvcjogYmxhY2s7XG59XG5cblxuLy8gRXhwYW5kZWQgRWxlbWVudFxuLmNvbnRhaW5lciB7XG4gICAgbWF4LXdpZHRoOiBub25lO1xuICAgIHBhZGRpbmc6IDA7XG59XG5cbi5jb250YWluZXIgLmhlYWRlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzVmY2U5OTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgcGFkZGluZy10b3A6IDAuNXJlbTtcbiAgICBwYWRkaW5nLWJvdHRvbTogMC41cmVtO1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICAgIG1hcmdpbjogMDtcbn1cblxuLnZvbHVudGVlci1uYW1lIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBmb250LXNpemU6IDE2O1xuICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xufVxuXG4uYWN0aW9ucyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHJpZ2h0OiA1JTtcbn1cblxuLnZhbGlnbi1jZW50ZXIge1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNjMWVjZDc7XG4gICAgcGFkZGluZzogMXJlbTtcbn1cblxuLnZhbGlnbi1jZW50ZXIgbWF0LWljb24ge1xuICAgIG1hcmdpbi1yaWdodDogMC41cmVtO1xufVxuXG4uZWxlbWVudC1kZXRhaWwge1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgZGlzcGxheTogZmxleDtcbn1cblxuLmVsZW1lbnQtcm93IHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkKSB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZCk6aG92ZXIge1xuICAgIGJhY2tncm91bmQ6ICNmNWY1ZjU7XG59XG5cbi5lbGVtZW50LXJvdy5leHBhbmRlZCB7XG4gICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdHJhbnNwYXJlbnQ7XG59XG5cbnRyLmRldGFpbC1yb3cge1xuICAgIGhlaWdodDogMDtcbn1cblxudHIuZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xufVxuXG50ci5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkLXJvdyk6YWN0aXZlIHtcbiAgICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZWxlbWVudC1yb3cgdGQge1xuICAgIGJvcmRlci1ib3R0b20td2lkdGg6IDA7XG59XG5cbi5jYXJkLWhlYWRlciB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNjBhNGZmO1xufVxuXG4uY2FyZC1ib2R5IHtcbiAgICBwYWRkaW5nOiAwO1xufVxuXG4ua2l0Y2hlblBNIC5jYXJkLWJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uaW1nLWltcG9ydGFudC1ldmVudC1mYWxzZSB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5hcHAtcGVybWFuZW50LXZvbHVudGVlciB7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIG1hcmdpbi1yaWdodDogMC41cmVtO1xuICAgIG1hcmdpbi10b3A6IDAuMnJlbTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuI2xvZ28ge1xuICAgIG1hcmdpbi10b3A6IC0zMHB4O1xuICAgIG1hcmdpbi1yaWdodDogMjAlO1xuICAgIG1heC13aWR0aDogMTIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IC0zMCU7XG4gICAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgICBkaXNwbGF5OiBpbmxpbmU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5oMyB7XG4gICAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICAgIG1hcmdpbi1sZWZ0OiAtMTgwcHg7XG4gICAgY29sb3I6ICM5OTE2OUQ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHRvcDogNTAlO1xuICAgIGZvbnQtc2l6ZTogMjJweCAhaW1wb3J0YW50O1xufVxuXG4uZXZlbnRDYXJkSW1wb3J0YW50IHtcbiAgICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59XG4iLCIucGFnZS10aXRsZSB7XG4gIHBhZGRpbmctdG9wOiAxcmVtO1xuICBwYWRkaW5nLWJvdHRvbTogMDtcbn1cblxuLnBhZ2UtdGl0bGUgaDEge1xuICBwYWRkaW5nOiAwLjVyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6ICM2MEE0RkY7XG59XG5cbi5jb250YWluZXItc2VhcmNoIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4udm9sdW50ZWVyLXNlYXJjaCB7XG4gIG1hcmdpbi1sZWZ0OiAyLjUlO1xuICBtYXJnaW4tdG9wOiAxJTtcbiAgd2lkdGg6IDQwMHB4O1xufVxuXG4ubWF0LXRhYmxlIHtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIG1heC1oZWlnaHQ6IDUwMHB4O1xuICB3aWR0aDogOTUlO1xuICBtYXJnaW4tbGVmdDogMi41JTtcbiAgbWFyZ2luLXJpZ2h0OiAyLjUlO1xufVxuXG50aC5tYXQtc29ydC1oZWFkZXItc29ydGVkIHtcbiAgY29sb3I6IGJsYWNrO1xufVxuXG4uY29udGFpbmVyIHtcbiAgbWF4LXdpZHRoOiBub25lO1xuICBwYWRkaW5nOiAwO1xufVxuXG4uY29udGFpbmVyIC5oZWFkZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWZjZTk5O1xuICBjb2xvcjogd2hpdGU7XG4gIHBhZGRpbmctdG9wOiAwLjVyZW07XG4gIHBhZGRpbmctYm90dG9tOiAwLjVyZW07XG4gIHdpZHRoOiBpbmhlcml0O1xuICBtYXJnaW46IDA7XG59XG5cbi52b2x1bnRlZXItbmFtZSB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBmb250LXNpemU6IDE2O1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cblxuLmFjdGlvbnMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiA1JTtcbn1cblxuLnZhbGlnbi1jZW50ZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJvZHkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjYzFlY2Q3O1xuICBwYWRkaW5nOiAxcmVtO1xufVxuXG4udmFsaWduLWNlbnRlciBtYXQtaWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMC41cmVtO1xufVxuXG4uZWxlbWVudC1kZXRhaWwge1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBmbGV4O1xufVxuXG4uZWxlbWVudC1yb3cge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkKSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQpOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2Y1ZjVmNTtcbn1cblxuLmVsZW1lbnQtcm93LmV4cGFuZGVkIHtcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdHJhbnNwYXJlbnQ7XG59XG5cbnRyLmRldGFpbC1yb3cge1xuICBoZWlnaHQ6IDA7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTpob3ZlciB7XG4gIGJhY2tncm91bmQ6ICNmNWY1ZjU7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTphY3RpdmUge1xuICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZWxlbWVudC1yb3cgdGQge1xuICBib3JkZXItYm90dG9tLXdpZHRoOiAwO1xufVxuXG4uY2FyZC1oZWFkZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzYwYTRmZjtcbn1cblxuLmNhcmQtYm9keSB7XG4gIHBhZGRpbmc6IDA7XG59XG5cbi5raXRjaGVuUE0gLmNhcmQtYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmltZy1pbXBvcnRhbnQtZXZlbnQtZmFsc2Uge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmFwcC1wZXJtYW5lbnQtdm9sdW50ZWVyIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbiAgbWFyZ2luLXRvcDogMC4ycmVtO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNsb2dvIHtcbiAgbWFyZ2luLXRvcDogLTMwcHg7XG4gIG1hcmdpbi1yaWdodDogMjAlO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xuICBtYXJnaW4tbGVmdDogLTMwJTtcbiAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgZGlzcGxheTogaW5saW5lO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbmgzIHtcbiAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICBtYXJnaW4tbGVmdDogLTE4MHB4O1xuICBjb2xvcjogIzk5MTY5RDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDUwJTtcbiAgZm9udC1zaXplOiAyMnB4ICFpbXBvcnRhbnQ7XG59XG5cbi5ldmVudENhcmRJbXBvcnRhbnQge1xuICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59Il19 */");
 
 /***/ }),
 
@@ -5996,11 +6343,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "myCustomTooltipDefaults", function() { return myCustomTooltipDefaults; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpSheetComponent", function() { return SignUpSheetComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-database.js");
-/* harmony import */ var bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap.bundle */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
-/* harmony import */ var bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _firebase_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../firebase-service.service */ "./src/app/firebase-service.service.ts");
-/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tooltip.js");
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/__ivy_ngcc__/fesm2015/animations.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/__ivy_ngcc__/fesm2015/angular-fire-database.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/table.js");
+/* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/sort.js");
+/* harmony import */ var bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap.bundle */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
+/* harmony import */ var bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap_bundle__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _firebase_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../firebase-service.service */ "./src/app/firebase-service.service.ts");
+/* harmony import */ var _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tooltip */ "./node_modules/@angular/material/__ivy_ngcc__/fesm2015/tooltip.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6018,6 +6368,9 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
+
+
 const myCustomTooltipDefaults = {
     showDelay: 1000,
     hideDelay: 500,
@@ -6027,8 +6380,11 @@ let SignUpSheetComponent = class SignUpSheetComponent {
     constructor(db, fs) {
         this.db = db;
         this.fs = fs;
+        this.displayedColumns = ['event_date_txt', 'first_name', 'last_name', 'event_type', 'actions'];
+        this.isCollapsed = true;
         this.volunteerList = [];
         this.volunteerListInitialized = false;
+        this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"]();
         this.currentWeek = "first";
         this.eventTypes = {
             "Kitchen AM": "kitam",
@@ -6036,19 +6392,46 @@ let SignUpSheetComponent = class SignUpSheetComponent {
             "Delivery Driver": "deldr",
             "Delivery": "deliv",
         };
+        this.eventTypesCool = {
+            "kitam": "Kitchen AM",
+            "kitpm": "Kitchen PM",
+            "deldr": "Delivery Driver",
+            "deliv": "Delivery",
+        };
         this.eventArray = ["Kitchen AM", "Kitchen PM", "Delivery Driver", "Delivery"];
         this.currentEvent = "Kitchen AM";
         this.pane = "left";
     }
     ngOnInit() {
         this.events = this.fs.getEvents();
+        this.fs.getEvents().subscribe(snapshots => {
+            // snapshots.forEach(element => {
+            //   element.phone_number = this.prettifyPhoneNumber(element.phone_number)
+            // });
+            this.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](snapshots);
+            this.dataSource.sort = this.sort;
+            // let temp = Object.keys(this.volunteers[0]);
+            // temp = temp.filter(e => !this.displayedColumns.includes(e));
+        });
         this.formatEventDates();
         this.volunteers = this.fs.getUsers();
         this.setVolunteerList();
-        // this.db.list('event').auditTrail().subscribe(changes => { console.log(changes);
-        //   // changes.forEach(c => console.log({ id: c.payload.key, ...c.payload.val() }))
-        //
-        // });
+        this.db.list('event').auditTrail().subscribe(changes => {
+            this.formatEventDates();
+            this.volunteers = this.fs.getUsers();
+            this.setVolunteerList();
+        });
+    }
+    prettify(str) {
+        let string = str.replace('_', ' ');
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    prettifyPhoneNumber(str) {
+        let a = str.charAt(0) + str.charAt(1) + str.charAt(2);
+        let b = str.charAt(3) + str.charAt(4) + str.charAt(5);
+        let c = str.charAt(6) + str.charAt(7) + str.charAt(8) + str.charAt(9);
+        let phoneNumber = '(' + a + ') ' + b + '-' + c;
+        return phoneNumber;
     }
     setVolunteerList() {
         this.volunteers.subscribe((snapshots) => {
@@ -6224,6 +6607,9 @@ let SignUpSheetComponent = class SignUpSheetComponent {
             return week_title;
         }
     }
+    applyFilter(filterValue) {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
     getLastDate(week) {
         const event = Object.keys(week)[0];
         const monday = new Date(Object.keys(week[event])[0]);
@@ -6244,6 +6630,9 @@ let SignUpSheetComponent = class SignUpSheetComponent {
         else {
             return this.week3[currentEventValue];
         }
+    }
+    getEventName(eventType) {
+        return this.eventTypesCool[eventType];
     }
     getEventListCool(eventType) {
         var currentEventValue = this.eventTypes[eventType];
@@ -6433,19 +6822,30 @@ let SignUpSheetComponent = class SignUpSheetComponent {
     }
 };
 SignUpSheetComponent.ctorParameters = () => [
-    { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"] },
-    { type: _firebase_service_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"] }
+    { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"] },
+    { type: _firebase_service_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"] }
 ];
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material_sort__WEBPACK_IMPORTED_MODULE_4__["MatSort"], { static: true }),
+    __metadata("design:type", _angular_material_sort__WEBPACK_IMPORTED_MODULE_4__["MatSort"])
+], SignUpSheetComponent.prototype, "sort", void 0);
 SignUpSheetComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: "app-sign-up-sheet",
         template: __importDefault(__webpack_require__(/*! raw-loader!./sign-up-sheet.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/sign-up-sheet/sign-up-sheet.component.html")).default,
         providers: [
-            { provide: _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_4__["MAT_TOOLTIP_DEFAULT_OPTIONS"], useValue: myCustomTooltipDefaults },
+            { provide: _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_7__["MAT_TOOLTIP_DEFAULT_OPTIONS"], useValue: myCustomTooltipDefaults },
+        ],
+        animations: [
+            Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["trigger"])('detailExpand', [
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["state"])('collapsed', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["style"])({ height: '0px', minHeight: '0', display: 'none' })),
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["state"])('expanded', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["style"])({ height: '*' })),
+                Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["transition"])('expanded <=> collapsed', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_1__["animate"])('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+            ]),
         ],
         styles: [__importDefault(__webpack_require__(/*! ./sign-up-sheet.component.scss */ "./src/app/sign-up-sheet/sign-up-sheet.component.scss")).default]
     }),
-    __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"], _firebase_service_service__WEBPACK_IMPORTED_MODULE_3__["FirebaseService"]])
+    __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"], _firebase_service_service__WEBPACK_IMPORTED_MODULE_6__["FirebaseService"]])
 ], SignUpSheetComponent);
 
 
@@ -6774,6 +7174,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToolbarComponent", function() { return ToolbarComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _service_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service/auth.service */ "./src/app/service/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6787,20 +7188,36 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
   return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 
+
 let ToolbarComponent = class ToolbarComponent {
-    constructor() { }
-    ngOnInit() { }
+    constructor(authService) {
+        this.authService = authService;
+        this.show = false;
+    }
+    ngOnInit() {
+        this.authService.currentAuthStatus.subscribe((authStatus) => {
+            if (authStatus) {
+                this.show = true;
+            }
+            else {
+                this.show = false;
+            }
+        });
+    }
     open(menu) {
         menu.openMenu();
     }
 };
+ToolbarComponent.ctorParameters = () => [
+    { type: _service_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"] }
+];
 ToolbarComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'app-toolbar',
         template: __importDefault(__webpack_require__(/*! raw-loader!./toolbar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/toolbar/toolbar.component.html")).default,
         styles: [__importDefault(__webpack_require__(/*! ./toolbar.component.scss */ "./src/app/toolbar/toolbar.component.scss")).default]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [_service_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
 ], ToolbarComponent);
 
 
