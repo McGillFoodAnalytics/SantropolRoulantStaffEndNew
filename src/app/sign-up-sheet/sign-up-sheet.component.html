@@ -31,7 +31,7 @@
                             </button>
                         </div>
                         <div class="col-2" style="text-align: right;">
-                            <select *ngIf="currentWeek != 'second'"
+                            <select *ngIf="currentWeek == 'third'"
                                     class="browser-default custom-select"
                                     [(ngModel)]="currentEvent"
                                     style="
@@ -51,31 +51,38 @@
             </div>
         </div>
     </div>
+
     <div class="container-fluid">
         <app-slider [activePane]="currentWeek">
             <div firstPane>
-                <div class="row" style="padding-bottom: 2rem;">
-                    <div class="col-3"
-                         *ngFor="let day of getEventList() | keyvalue"
-                         style="padding-bottom: 2rem;">
-                        <div class="card">
-                            <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->
-                            <div class="card-header"
-                                 *ngIf="
-                  day.value.is_important_event;
-                  else importantEventFalseHeader
-                "
+                <div class="row"
+                style="margin-bottom: -30px; float: right; margin-right: 13%;"
+                *ngFor="let coolEvent of eventArray">
+               <h3 id="eventTitle" *ngIf='currentWeek == "first"'>{{coolEvent}}</h3>
+               <div class="row-2 "
+                    *ngFor="
+         let day of getEventListCool(coolEvent) | keyvalue;
+         let i = index
+       "
+                    style="padding-bottom: 2rem">
+                   <div class="card" [class.eventCardImportant]="day.value.is_important_event">
+                       <div class="card-header" id="cardTitle"
+                            *ngIf="
+             (coolEvent == 'Kitchen AM' && day.value.is_important_event);
+             else importantEventFalseHeader
+           "
                                  style="background-color: #f24a5a;">
                                 {{ day.value.display_date | date: "EEEE, MMM d" }}
                             </div>
                             <ng-template #importantEventFalseHeader>
-                                <div class="card-header">
+                                <div class="card-header" *ngIf="coolEvent == 'Kitchen AM'" id="cardTitle">
                                     {{ day.value.display_date | date: "EEEE, MMM d" }}
                                 </div>
                             </ng-template>
                             <div class="card-body">
                                 <app-event-sign-up-table [slots]="day.value.slots"
-                                                         [eventType]="currentEvent"
+                                                         [id]="day.value.slots[0].id"
+                                                         [eventType]="coolEvent"
                                                          [volunteerList]="volunteerList"
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
@@ -91,20 +98,20 @@
                                                     </ul>
                                                 </ng-template> -->
                             </div>
-                            <div class="card-footer" style="text-align: center;">
+                            <div class="card-footer" style="text-align: center;" *ngIf='day.value.slots[0].id != "N/A"'>
                                 <img class="img-important-event-true"
                                      *ngIf="day.value.is_important_event; else importantEventFalse"
                                      src="assets/important-event-true.png"
-                                     width="35px"
+                                     width="30px"
                                      style="margin-right: 1rem;"
-                                     (click)="changeEventImportance(day.key)"
+                                     (click)="changeEventImportanceCool(day.key, coolEvent)"
                                      matTooltip="Click to mark this event as unimportant" />
                                 <ng-template #importantEventFalse>
                                     <img class="img-important-event-false"
                                          src="assets/important-event-false.png"
-                                         width="35px"
+                                         width="30px"
                                          style="margin-right: 1rem;"
-                                         (click)="changeEventImportance(day.key)"
+                                         (click)="changeEventImportanceCool(day.key, coolEvent)"
                                          matTooltip="Click to mark this event as important" />
                                 </ng-template>
                                 <!-- <app-add-user-to-event *ngIf="day.value.num_volunteers < day.value.num_slots; else fullEvent" [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="false" (onAddUser)="addUserToEvent($event, day.value)" style="cursor: pointer;"  matTooltip="Click to add a volunteer to this event"></app-add-user-to-event>
@@ -112,14 +119,15 @@
                                                   <app-add-user-to-event [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="true" (onAddUser)="addUserToEvent($event, day.value)" style="opacity:0.4"></app-add-user-to-event>
                                                 </ng-template> -->
                                 <app-event-note date="{{ day.value.slots[0].event_date_txt }}"
-                                                [eventType]="currentEvent"
+                                                [eventType]="coolEvent"
                                                 eventNote="{{ day.value.slots[0].event_note }}"
                                                 (updateEventNote)="
                     updateEventNote(day.value.slots[0].id, $event)
                   "
                                                 matTooltip="Click to view & edit the event note">
                                 </app-event-note>
-                                <mat-icon *ngIf="
+                                <mat-icon style="margin-left: 5px; margin-top: -8px; transform: scale(0.8);"
+                                    *ngIf="
                                           day.value.slots[0].event_note !=null &&
                                           day.value.slots[0].event_note.length>
                                     0
@@ -139,13 +147,11 @@
                      *ngFor="let coolEvent of eventArray">
                     <h3 id="eventTitle" *ngIf='currentWeek == "second"'>{{coolEvent}}</h3>
                     <div class="row-2"
-                         *ngFor="
-              let day of getEventListCool(coolEvent) | keyvalue;
-              let i = index
-            "
+                         *ngFor="let day of getEventListCool(coolEvent) | keyvalue;
+              let i = index"
                          style="padding-bottom: 2rem; font-size: 15px;">
-                        <div class="card" [class.eventCardImportant]="day.value.is_important_event" style="width: 177px;">
-                            <div class="card-header"
+                        <div class="card" [class.eventCardImportant]="day.value.is_important_event" >
+                            <div class="card-header" id="cardTitle"
                                  *ngIf="
                   (coolEvent == 'Kitchen AM' && day.value.is_important_event);
                   else importantEventFalseHeader
@@ -154,7 +160,7 @@
                                 {{ day.value.display_date | date: "EEEE, MMM d" }}
                             </div>
                             <ng-template #importantEventFalseHeader>
-                                <div class="card-header"
+                                <div class="card-header" id="cardTitle"
                                      *ngIf="coolEvent == 'Kitchen AM'">
                                     {{ day.value.display_date | date: "EEEE, MMM d" }}
                                 </div>

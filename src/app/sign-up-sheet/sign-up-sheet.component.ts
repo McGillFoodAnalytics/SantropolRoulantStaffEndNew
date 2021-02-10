@@ -113,6 +113,8 @@ export class SignUpSheetComponent implements OnInit {
     });
   }
 
+
+
   prettify(str: string) {
     let string = str.replace('_', ' ');
     return string.charAt(0). toUpperCase() + string.slice(1);
@@ -336,14 +338,21 @@ export class SignUpSheetComponent implements OnInit {
   getEventListCool(eventType) {
     var currentEventValue = this.eventTypes[eventType];
     if (this.currentWeek == "first") {
+
+      let week1 = Object.keys(this.week1[currentEventValue]);
+      if (week1.length == 5) {
+        this.addEmptyThursday(this.week1[currentEventValue]);
+      }
       return this.week1[currentEventValue];
+
     } else if (this.currentWeek == "second") {
       let week2 = Object.keys(this.week2[currentEventValue]);
       if (week2.length == 5) {
         this.addEmptyThursday(this.week2[currentEventValue]);
       }
       return this.week2[currentEventValue];
-    } else {
+    } 
+    else {
       return this.week3[currentEventValue];
     }
   }
@@ -380,7 +389,6 @@ export class SignUpSheetComponent implements OnInit {
       is_important_event: false,
       display_date: this.getDisplayDate(date),
     };
-
     //console.log(obj);
   }
 

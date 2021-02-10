@@ -9,18 +9,18 @@
     <!-- Volunteer Column -->
     <ng-container matColumnDef="volunteer">
       <div *ngIf="id == 'N/A'; else vol"><th mat-header-cell *matHeaderCellDef >No Event</th></div>
-        <th mat-header-cell *matHeaderCellDef #vol> Volunteer </th>
+        <th mat-header-cell *matHeaderCellDef #vol > Volunteer </th>
         <td mat-cell *matCellDef="let element">
           <div style="height: 1px;" *ngIf="id == 'N/A'; else shortNote" ></div>
-          <div #shortNote style="font-size: 12px !important; margin-left: -5px;" *ngIf="element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 30; else noNote"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>
+          <div #shortNote style="font-size: 10px !important; margin-left: -5px;" *ngIf="element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 20; else noNote"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>
           <ng-template #noNote>
-            <div style="font-size: 12px !important; margin-left: -5px;" *ngIf="element.staff_note == null || element.staff_note.length == 0; else longNote"> {{ element.first_name }} {{ element.last_name }} </div>
-            <ng-template #longNote> <div style="font-size: 11.5px !important; margin-left: -5px; margin-top: -10px;"> {{ element.first_name }} {{ element.last_name }}
+            <div style="font-size: 10px !important; margin-left: -5px;" *ngIf="element.staff_note == null || element.staff_note.length == 0; else longNote"> {{ element.first_name }} {{ element.last_name }} </div>
+            <ng-template #longNote> <div style="font-size: 9px !important; margin-left: -5px; margin-top: -10px;"> {{ element.first_name }} {{ element.last_name }}
               <button
               matTooltip="Click to view note"
               onclick="this.blur()"
-              style="margin-bottom: -8px; border: none ;width: 12px;">
-              <mat-icon style="transform: scale(0.8)">chat</mat-icon>
+              style="margin-bottom: -10px; width: 12px; height: 1px; border: none ; transform: scale(0.78); ">
+              <mat-icon style=" margin-left: -4px; ">chat</mat-icon>
               <app-staff-note id="noteBtn"
                             firstName={{element.first_name}}
                             lastName={{element.last_name}}

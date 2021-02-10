@@ -119,14 +119,19 @@ tr.element-row:not(.expanded-row):active {
 .card-header {
     text-align: center;
     color: white;
+    background-color: #60a4ff;
 }
 
-.card-header {
-    background-color: #60a4ff;
+#cardTitle {
+    width: 12vw;
+    font-size: 0.96vw;
 }
 
 .card-body {
     padding: 0;
+    width: 12vw;
+    font-size: 0.96vw;
+    
 }
 
 .kitchenPM .card-body {
@@ -167,11 +172,11 @@ h1 {
 
 h3 {
     margin-right: 15px;
-    margin-left: -180px;
+    margin-left: -3vw;
     color: #99169D;
     position: relative;
     top: 50%;
-    font-size: 22px !important;
+    font-size: 1.8vw !important;
 }
 
 .eventCardImportant {
