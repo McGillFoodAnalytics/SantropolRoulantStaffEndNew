@@ -141,7 +141,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   formatEventDates() {
-    const events_per_week = 134;
+    const events_per_week = 124;
     this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
