@@ -231,8 +231,8 @@
                     <div class="col-3"
                          *ngFor="let day of getEventList() | keyvalue; let i = index"
                          style="padding-bottom: 2rem;">
-                        <div class="card">
-                            <div class="card-header"
+                        <div class="card" id="cardTitle3">
+                            <div class="card-header" id="cardTitle3"
                                  *ngIf="
                   day.value.is_important_event;
                   else importantEventFalseHeader
@@ -241,11 +241,11 @@
                                 {{ day.value.display_date | date: "EEEE, MMM d" }}
                             </div>
                             <ng-template #importantEventFalseHeader>
-                                <div class="card-header">
+                                <div class="card-header" id="cardTitle3">
                                     {{ day.value.display_date | date: "EEEE, MMM d" }}
                                 </div>
                             </ng-template>
-                            <div class="card-body">
+                            <div class="card-body" style="width: 100%;">
                                 <app-event-sign-up-table [slots]="day.value.slots"
                                                          [eventType]="currentEvent"
                                                          [volunteerList]="volunteerList"
