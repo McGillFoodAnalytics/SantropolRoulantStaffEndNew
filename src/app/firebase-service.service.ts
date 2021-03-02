@@ -409,4 +409,10 @@ getDateNumber(date) {
       );
     return this.cancelledEvents;
   }
+
+  changeActiveStatus(userid: string, isActive: boolean){
+    this.db.object("/user/" + userid).update({
+      active_status: isActive,
+    });
+  }
 }

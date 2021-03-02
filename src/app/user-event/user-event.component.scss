@@ -7,7 +7,8 @@
 
 h4 {
   margin: 0;
-  display: inline-block;
+  display: block;
+  float: left;
 }
 
 h5 {
@@ -25,7 +26,7 @@ h5 {
 }
 
 td {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 tr {
@@ -33,18 +34,42 @@ tr {
 }
 
 #profile {
-  width: 1000px;
+  width: 60vw;
+  position: absolute; /* or absolute */
+  margin-top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#editProfile {
+  width: 60vw;
+  position: absolute; /* or absolute */
+  margin-top: 8px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #colored {
   background-color: lightgray;
 }
 
+button {
+  border-radius: 10px;
+}
+#activeBtn {
+  width: 60px;
+  float: left;
+  text-align: center;
+  font-size: 1.25vw;
+  color: white;
+  border-radius: 20px;
+}
+
 #historyBtn {
   width: 170px;
   float: right;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.25vw;
   color: white;
   background-color: #449afe;
 }
@@ -53,117 +78,134 @@ tr {
   width: 170px;
   float: right;
   text-align: center;
-  font-size: 18px;
+  font-size: 1.25vw;
   margin-right: 5px;
   color: white;
   background-color: #449afe;
 }
+
 #saveBtn {
-  width: 150px;
+  width: 18%;
   float: right;
   text-align: center;
-  font-size: 18px;
-  margin-right: 5px;
+  font-size: 1.25vw;
   color: white;
   background-color: #5fce99;
-  position: fixed;
-  left: 802px;
-  top: 570px;
+  position: absolute;
+  margin-left: 74%;
+  margin-top: 570px;
+  transition: all 0.5s;
 }
 
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.input-group {
+  position: fixed;
+  top: 316px;
+  left: 295px;
+  width: 40vw;
+  min-width: 100px;
+}
+
+.group2 {
+  top: 467px;
+}
+
+input {
+  font-size: 15px;
+}
+::placeholder {
+  font-size: 12px;
+}
 #editInput1 {
-  width: 310px;
+  width: 15vw;
   position: fixed;
   top: 268px;
   left: 295px;
 }
-
 #editInput2 {
-  width: 110px;
-  position: fixed;
-  top: 320px;
-  left: 295px;
-  border: 1px solid #449afe;
+  width: 6vw;
 }
 
 #editInput3 {
-  width: 170px;
-  position: fixed;
-  top: 320px;
-  left: 405px;
-  border: 1px solid #449afe;
+  width: 10vw;
 }
 
 #editInput4 {
-  width: 170px;
-  position: fixed;
-  top: 320px;
-  left: 575px;
-  border: 1px solid #449afe;
+  width: 10vw;
 }
 
 #editInput5 {
-  width: 170px;
-  position: fixed;
-  top: 320px;
-  left: 745px;
-  border: 1px solid #449afe;
+  width: 7vw;
 }
 
 #editDate {
+  width: 170px;
   position: fixed;
-  top: 372px;
+  top: 368px;
   left: 295px;
 }
 
 #picker {
   position: fixed;
-  top: 367px;
-  left: 425px;
+  top: 362px;
+  left: 415px;
 }
 
 #editInput6 {
   width: 170px;
   position: fixed;
-  top: 424px;
+  top: 418px;
   left: 295px;
 }
 
 #editInput7 {
-  width: 170px;
-  position: fixed;
-  top: 476px;
-  left: 295px;
-  border: 1px solid #449afe;
-}
-
-input{
-  padding-left: 5px;
+  width: 10vw;
 }
 
 #editInput8 {
-  width: 170px;
-  position: fixed;
-  top: 476px;
-  left: 465px;
-  border: 1px solid #449afe;
+  width: 10vw;
 }
 
 #editInput9 {
   width: 170px;
   position: fixed;
-  top: 528px;
+  top: 518px;
   left: 295px;
 }
 
 pre {
   display: inline;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 text {
-  position: sticky; 
+  margin-left: 1vw;
+  position: absolute;
   left: 300px;
 }
 
@@ -171,3 +213,21 @@ input.ng-invalid {
   border: 2px red solid !important;
 }
 
+#activeIcon {
+  font-size: 40px;
+  margin-top: -28px;
+  margin-left: -8px;
+}
+
+#scrollable-area {
+  width: 53.8vw;
+  height: 200px;
+  border: 1px solid #ccc;
+  overflow-y: scroll; /* <-- here is what is important*/
+}
+status {
+  font-size: 11px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 65px;
+}

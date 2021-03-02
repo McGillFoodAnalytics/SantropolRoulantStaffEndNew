@@ -29,6 +29,7 @@ export class UserEventComponent implements OnInit {
   cancelledEventsUser: any;
   elementA: any;
   element: any;
+  //status: boolean;
   user: any;
   private myForm: FormGroup;
   private model = new User();
@@ -83,6 +84,15 @@ export class UserEventComponent implements OnInit {
 
   prettify(str: string) {
     return str.replace("_", " ");
+  }
+
+  changeActiveStatus(){
+    if(this.element.active_status == null){
+    this.firebase.changeActiveStatus(this.userId, false);
+    }
+    else{
+      this.firebase.changeActiveStatus(this.userId, !this.element.active_status);
+    }
   }
 
   displayPastEvents(userId) {
