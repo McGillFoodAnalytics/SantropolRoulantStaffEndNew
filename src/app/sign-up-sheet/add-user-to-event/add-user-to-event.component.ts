@@ -32,6 +32,7 @@ export class AddUserToEventComponent implements OnInit {
     this.eventType = eventType;
     this.date = date;
     this.event_id = event_id;
+    
     this.dataSource = new MatTableDataSource(volunteerList);
     this.modalReference = this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'modal-basic-title',
                                                                        size: 'lg',

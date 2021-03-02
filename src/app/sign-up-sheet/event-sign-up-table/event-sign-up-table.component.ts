@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../../core/services/modalService';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import{FirebaseService} from '../../firebase-service.service'
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -18,17 +19,20 @@ export class EventSignUpTableComponent implements OnInit {
   @Input() slots: [];
   @Input() eventType: string;
   @Input() id: string;
-  @Input() volunteerList: [];
+  volunteerList;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() insertStaffNote: EventEmitter<any> = new EventEmitter<any>();
   usersRef:  AngularFireList<any>;
   users: Observable<any[]>;
 
 
-  constructor(private modalService: ModalService, private db: AngularFireDatabase) {}
+  constructor(private modalService: ModalService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
-  ngOnInit() {    
+  ngOnInit() {
     this.dataSource = new MatTableDataSource(this.slots);
+    this.fs.getUsers().subscribe(val=>{
+      this.volunteerList = val;
+    });
   }
 
   prettySlot(slot: string) {
@@ -54,7 +58,7 @@ export class EventSignUpTableComponent implements OnInit {
     //        a = snapshot.email;
     //        console.log("helllloooo");
     //        console.log(a);
-        
+
     //       }
     //     });
     // });

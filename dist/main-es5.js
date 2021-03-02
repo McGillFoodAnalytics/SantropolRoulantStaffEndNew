@@ -493,7 +493,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z0\">\n    <!-- Slot Column -->\n    <!-- <ng-container matColumnDef=\"slot\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\"></td>\n    </ng-container> -->\n    <!-- Volunteer Column -->\n    <ng-container matColumnDef=\"volunteer\">\n      <div *ngIf=\"id == 'N/A'; else vol\"><th mat-header-cell *matHeaderCellDef >No Event</th></div>\n        <th mat-header-cell *matHeaderCellDef #vol> Volunteer </th>\n        <td mat-cell *matCellDef=\"let element\">\n          <div style=\"height: 1px;\" *ngIf=\"id == 'N/A'; else shortNote\" ></div>\n          <div #shortNote style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 30; else noNote\"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>\n          <ng-template #noNote>\n            <div style=\"font-size: 12px !important; margin-left: -5px;\" *ngIf=\"element.staff_note == null || element.staff_note.length == 0; else longNote\"> {{ element.first_name }} {{ element.last_name }} </div>\n            <ng-template #longNote> <div style=\"font-size: 11.5px !important; margin-left: -5px; margin-top: -10px;\"> {{ element.first_name }} {{ element.last_name }}\n              <button\n              matTooltip=\"Click to view note\"\n              onclick=\"this.blur()\"\n              style=\"margin-bottom: -8px; border: none ;width: 12px;\">\n              <mat-icon style=\"transform: scale(0.8)\">chat</mat-icon>\n              <app-staff-note id=\"noteBtn\"\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n             </button>\n           </div>\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\">\n          <button class=\"menu\" mat-icon-button [matMenuTriggerFor]=\"menu\" #MenuTrigger=\"matMenuTrigger\" *ngIf=\"!isEmpty(element.first_name, element.last_name);\" style=\"float:right; transform: scale(0.87); margin-right: -10px; \">\n              <mat-icon>more_vert</mat-icon>\n          </button>\n\n          <mat-menu #menu=\"matMenu\">\n            <app-remove-user-from-event firstName={{element.first_name}}\n                                        eventId={{element.id}}\n                                        userId={{element.uid}}\n                                        lastName={{element.last_name}}\n                                        date={{element.event_date_txt}}\n                                        [eventType]=\"eventType\"\n                                        (confirmRemove)=\"onRemoveUserFromEvent(element.id)\">\n            </app-remove-user-from-event>\n            <app-staff-note\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n            <button mat-menu-item [routerLink]=\"['/volunteer', element.uid]\">\n                <mat-icon>person</mat-icon>\n                <span>View Volunteer</span>\n            </button>\n          </mat-menu>\n        </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\n                class=\"table-row\"\n                [attr.isEmpty]=\"isEmpty(row.first_name, row.last_name, id)\"\n                (click)=\"isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)\"\n                ></tr>\n</table>\n";
+    __webpack_exports__["default"] = "\n\n<table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z0\">\n    <!-- Slot Column -->\n    <!-- <ng-container matColumnDef=\"slot\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\"></td>\n    </ng-container> -->\n    <!-- Volunteer Column -->\n    <ng-container matColumnDef=\"volunteer\">\n      <div *ngIf=\"id == 'N/A'; else vol\"><th mat-header-cell *matHeaderCellDef >No Event</th></div>\n        <th mat-header-cell *matHeaderCellDef #vol > Volunteer </th>\n        <td mat-cell *matCellDef=\"let element\">\n          <div style=\"height: 1px;\" *ngIf=\"id == 'N/A'; else shortNote\" ></div>\n          <div #shortNote style=\"font-size: 10px !important; margin-left: -5px;\" *ngIf=\"element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 20; else noNote\"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>\n          <ng-template #noNote>\n            <div style=\"font-size: 10px !important; margin-left: -5px;\" *ngIf=\"element.staff_note == null || element.staff_note.length == 0; else longNote\"> {{ element.first_name }} {{ element.last_name }} </div>\n            <ng-template #longNote> <div style=\"font-size: 9px !important; margin-left: -5px; margin-top: -10px;\"> {{ element.first_name }} {{ element.last_name }}\n              <button\n              matTooltip=\"Click to view note\"\n              onclick=\"this.blur()\"\n              style=\"margin-bottom: -10px; width: 12px; height: 1px; border: none ; transform: scale(0.78); \">\n              <mat-icon style=\" margin-left: -4px; \">chat</mat-icon>\n              <app-staff-note id=\"noteBtn\"\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n             </button>\n           </div>\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let element\">\n          <button class=\"menu\" mat-icon-button [matMenuTriggerFor]=\"menu\" #MenuTrigger=\"matMenuTrigger\" *ngIf=\"!isEmpty(element.first_name, element.last_name);\" style=\"float:right; transform: scale(0.87); margin-right: -10px; \">\n              <mat-icon>more_vert</mat-icon>\n          </button>\n\n          <mat-menu #menu=\"matMenu\">\n            <app-remove-user-from-event firstName={{element.first_name}}\n                                        eventId={{element.id}}\n                                        userId={{element.uid}}\n                                        lastName={{element.last_name}}\n                                        date={{element.event_date_txt}}\n                                        [eventType]=\"eventType\"\n                                        (confirmRemove)=\"onRemoveUserFromEvent(element.id)\">\n            </app-remove-user-from-event>\n            <app-staff-note\n                            firstName={{element.first_name}}\n                            lastName={{element.last_name}}\n                            date={{element.event_date_txt}}\n                            [eventType]=\"eventType\"\n                            staffNote={{element.staff_note}}\n                            (insertStaffNote)=\"onInsertStaffNote(element.id, $event)\">\n            </app-staff-note>\n            <button mat-menu-item [routerLink]=\"['/volunteer', element.uid]\">\n                <mat-icon>person</mat-icon>\n                <span>View Volunteer</span>\n            </button>\n          </mat-menu>\n        </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"\n                class=\"table-row\"\n                [attr.isEmpty]=\"isEmpty(row.first_name, row.last_name, id)\"\n                (click)=\"isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)\"\n                ></tr>\n</table>\n";
     /***/
   },
 
@@ -573,7 +573,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<div class=\"container-fluid\" style=\"padding: 0;\">\n    <div class=\"row\" style=\"padding-top: 2rem; padding-bottom: 1rem;\">\n        <div class=\"col\" id=\"header\" style=\"text-align: center;\">\n            <img src=\"../../../assets/santropol-logo.png\" alt=\"\" id=\"logo\" />\n            <h1 class=\"header-text\"\n                style=\"padding: 0.5rem; text-align: center; color: #60a4ff;\">\n                Volunteer Schedule\n            </h1>\n        </div>\n    </div>\n    <div class=\"row\" style=\"padding-bottom: 2rem;\">\n        <div class=\"col\">\n            <div class=\"card\" style=\"margin-top: -16px;\">\n                <div class=\"card-header\">\n                    <div class=\"row\">\n                        <div class=\"col-8 offset-2\"\n                             style=\"text-align:center\">\n                            <button class=\"btn\"\n                                    (click)=\"prevWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'first'\">\n                                <mat-icon>arrow_back_ios</mat-icon>\n                            </button>\n                            {{ getWeekTitle() }}\n                            <button class=\"btn\"\n                                    (click)=\"nextWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'third'\">\n                                <mat-icon>arrow_forward_ios</mat-icon>\n                            </button>\n                        </div>\n                        <div class=\"col-2\" style=\"text-align: right;\">\n                            <select *ngIf=\"currentWeek != 'second'\"\n                                    class=\"browser-default custom-select\"\n                                    [(ngModel)]=\"currentEvent\"\n                                    style=\"\n                  background-color: #5fce99 !important;\n                  color: white;\n                  border: none;\n                \">\n                                <option disabled> Event Type </option>\n                                <option *ngFor=\"let event of eventTypes | keyvalue\"\n                                        [ngValue]=\"event.key\">\n                                    {{ event.key }}\n                                </option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"container-fluid\">\n        <app-slider [activePane]=\"currentWeek\">\n            <div firstPane>\n                <div class=\"row\" style=\"padding-bottom: 2rem;\">\n                    <div class=\"col-3\"\n                         *ngFor=\"let day of getEventList() | keyvalue\"\n                         style=\"padding-bottom: 2rem;\">\n                        <div class=\"card\">\n                            <!-- <button mat-mini-fab>{{day.value.num_volunteers}}/{{day.value.num_slots}}</button> -->\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [eventType]=\"currentEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\">\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"35px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportance(day.key)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"35px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportance(day.key)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\"  matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"currentEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                                <app-add-user-to-event></app-add-user-to-event>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div secondPane>\n                <div class=\"row\"\n                     style=\"margin-bottom: -30px; float: right; margin-right: 13%;\"\n                     *ngFor=\"let coolEvent of eventArray\">\n                    <h3 id=\"eventTitle\" *ngIf='currentWeek == \"second\"'>{{coolEvent}}</h3>\n                    <div class=\"row-2\"\n                         *ngFor=\"\n              let day of getEventListCool(coolEvent) | keyvalue;\n              let i = index\n            \"\n                         style=\"padding-bottom: 2rem; font-size: 15px;\">\n                        <div class=\"card\" [class.eventCardImportant]=\"day.value.is_important_event\" style=\"width: 177px;\">\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  (coolEvent == 'Kitchen AM' && day.value.is_important_event);\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\"\n                                     *ngIf=\"coolEvent == 'Kitchen AM'\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [id]=\"day.value.slots[0].id\"\n                                                         [eventType]=\"coolEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\" *ngIf='day.value.slots[0].id != \"N/A\"'>\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"coolEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon style=\"margin-left: 5px; margin-top: -8px; transform: scale(0.8);\"\n                                          *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div thirdPane>\n                <div class=\"row\" style=\"padding-bottom: 2rem;\">\n                    <div class=\"col-3\"\n                         *ngFor=\"let day of getEventList() | keyvalue; let i = index\"\n                         style=\"padding-bottom: 2rem;\">\n                        <div class=\"card\">\n                            <div class=\"card-header\"\n                                 *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [eventType]=\"currentEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\">\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportance(day.key)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportance(day.key)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"currentEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </app-slider>\n    </div>\n</div>\n";
+    __webpack_exports__["default"] = "\n<div class=\"container-fluid\" style=\"padding: 0;\">\n    <div class=\"row\" style=\"padding-top: 2rem; padding-bottom: 1rem;\">\n        <div class=\"col\" id=\"header\" style=\"text-align: center;\">\n            <img src=\"../../../assets/santropol-logo.png\" alt=\"\" id=\"logo\" />\n            <h1 class=\"header-text\"\n                style=\"padding: 0.5rem; text-align: center; color: #60a4ff;\">\n                Volunteer Schedule\n            </h1>\n        </div>\n    </div>\n    <div class=\"row\" style=\"padding-bottom: 2rem;\">\n        <div class=\"col\">\n            <div class=\"card\" style=\"margin-top: -16px;\">\n                <div class=\"card-header\">\n                    <div class=\"row\">\n                        <div class=\"col-8 offset-2\"\n                             style=\"text-align:center\">\n                            <button class=\"btn\"\n                                    (click)=\"prevWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'first'\">\n                                <mat-icon>arrow_back_ios</mat-icon>\n                            </button>\n                            {{ getWeekTitle() }}\n                            <button class=\"btn\"\n                                    (click)=\"nextWeek()\"\n                                    onclick=\"this.blur()\"\n                                    *ngIf=\"currentWeek != 'third'\">\n                                <mat-icon>arrow_forward_ios</mat-icon>\n                            </button>\n                        </div>\n                        <div class=\"col-2\" style=\"text-align: right;\">\n                            <select *ngIf=\"currentWeek == 'third'\"\n                                    class=\"browser-default custom-select\"\n                                    [(ngModel)]=\"currentEvent\"\n                                    style=\"\n                  background-color: #5fce99 !important;\n                  color: white;\n                  border: none;\n                \">\n                                <option disabled> Event Type </option>\n                                <option *ngFor=\"let event of eventTypes | keyvalue\"\n                                        [ngValue]=\"event.key\">\n                                    {{ event.key }}\n                                </option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"container-fluid\">\n        <app-slider [activePane]=\"currentWeek\">\n            <div firstPane>\n                <div class=\"row\"\n                style=\"margin-bottom: -30px; float: right; margin-right: 13%;\"\n                *ngFor=\"let coolEvent of eventArray\">\n               <h3 id=\"eventTitle\" *ngIf='currentWeek == \"first\"'>{{coolEvent}}</h3>\n               <div class=\"row-2 \"\n                    *ngFor=\"\n         let day of getEventListCool(coolEvent) | keyvalue;\n         let i = index\n       \"\n                    style=\"padding-bottom: 2rem\">\n                   <div class=\"card\" [class.eventCardImportant]=\"day.value.is_important_event\">\n                       <div class=\"card-header\" id=\"cardTitle\"\n                            *ngIf=\"\n             (coolEvent == 'Kitchen AM' && day.value.is_important_event);\n             else importantEventFalseHeader\n           \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\" *ngIf=\"coolEvent == 'Kitchen AM'\" id=\"cardTitle\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [id]=\"day.value.slots[0].id\"\n                                                         [eventType]=\"coolEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\" *ngIf='day.value.slots[0].id != \"N/A\"'>\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\"  matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"coolEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon style=\"margin-left: 5px; margin-top: -8px; transform: scale(0.8);\"\n                                    *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                                <app-add-user-to-event></app-add-user-to-event>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div secondPane>\n                <div class=\"row\"\n                     style=\"margin-bottom: -30px; float: right; margin-right: 13%;\"\n                     *ngFor=\"let coolEvent of eventArray\">\n                    <h3 id=\"eventTitle\" *ngIf='currentWeek == \"second\"'>{{coolEvent}}</h3>\n                    <div class=\"row-2\"\n                         *ngFor=\"let day of getEventListCool(coolEvent) | keyvalue;\n              let i = index\"\n                         style=\"padding-bottom: 2rem; font-size: 15px;\">\n                        <div class=\"card\" [class.eventCardImportant]=\"day.value.is_important_event\" >\n                            <div class=\"card-header\" id=\"cardTitle\"\n                                 *ngIf=\"\n                  (coolEvent == 'Kitchen AM' && day.value.is_important_event);\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\" id=\"cardTitle\"\n                                     *ngIf=\"coolEvent == 'Kitchen AM'\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [id]=\"day.value.slots[0].id\"\n                                                         [eventType]=\"coolEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\" *ngIf='day.value.slots[0].id != \"N/A\"'>\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportanceCool(day.key, coolEvent)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"coolEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon style=\"margin-left: 5px; margin-top: -8px; transform: scale(0.8);\"\n                                          *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div thirdPane>\n                <div class=\"row\" style=\"padding-bottom: 2rem;\">\n                    <div class=\"col-3\"\n                         *ngFor=\"let day of getEventList() | keyvalue; let i = index\"\n                         style=\"padding-bottom: 2rem;\">\n                        <div class=\"card\" id=\"cardTitle3\">\n                            <div class=\"card-header\" id=\"cardTitle3\"\n                                 *ngIf=\"\n                  day.value.is_important_event;\n                  else importantEventFalseHeader\n                \"\n                                 style=\"background-color: #f24a5a;\">\n                                {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                            </div>\n                            <ng-template #importantEventFalseHeader>\n                                <div class=\"card-header\" id=\"cardTitle3\">\n                                    {{ day.value.display_date | date: \"EEEE, MMM d\" }}\n                                </div>\n                            </ng-template>\n                            <div class=\"card-body\" style=\"width: 100%;\">\n                                <app-event-sign-up-table [slots]=\"day.value.slots\"\n                                                         [eventType]=\"currentEvent\"\n                                                         [volunteerList]=\"volunteerList\"\n                                                         (removeUserFromEvent)=\"removeUserFromEvent($event)\"\n                                                         (insertStaffNote)=\"insertStaffNote($event)\">\n                                </app-event-sign-up-table>\n                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}\n                                                <div *ngIf=\"day.value.num_volunteers === 0; else volunteersRegistered\" style=\"text-align:center\"> No volunteers registered </div>\n                                                <ng-template #volunteersRegistered>\n                                                    <ul class=\"list-group list-group-flush\" *ngFor=\"let slot of day.value.slots\">\n                                                        <li class=\"list-group-item\" *ngIf=\"slot.first_name\">{{slot.first_name}} {{slot.last_name}}\n                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]=\"currentEvent\" style=\"float:right\" (onConfirm)=\"removeUserFromEvent(slot.id)\" matTooltip=\"Click to remove this volunteer from this event\"></app-remove-user-from-event>\n                                                            <app-permanent-volunteer [isPermanent]=\"isPermanentEvent(slot)\" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]=\"currentEvent\" (onPermanentVolunteerEvent)=\"permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)\"></app-permanent-volunteer>\n                                                        </li>\n                                                    </ul>\n                                                </ng-template> -->\n                            </div>\n                            <div class=\"card-footer\" style=\"text-align: center;\">\n                                <img class=\"img-important-event-true\"\n                                     *ngIf=\"day.value.is_important_event; else importantEventFalse\"\n                                     src=\"assets/important-event-true.png\"\n                                     width=\"30px\"\n                                     style=\"margin-right: 1rem;\"\n                                     (click)=\"changeEventImportance(day.key)\"\n                                     matTooltip=\"Click to mark this event as unimportant\" />\n                                <ng-template #importantEventFalse>\n                                    <img class=\"img-important-event-false\"\n                                         src=\"assets/important-event-false.png\"\n                                         width=\"30px\"\n                                         style=\"margin-right: 1rem;\"\n                                         (click)=\"changeEventImportance(day.key)\"\n                                         matTooltip=\"Click to mark this event as important\" />\n                                </ng-template>\n                                <!-- <app-add-user-to-event *ngIf=\"day.value.num_volunteers < day.value.num_slots; else fullEvent\" [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"false\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"cursor: pointer;\" matTooltip=\"Click to add a volunteer to this event\"></app-add-user-to-event>\n                                                <ng-template #fullEvent>\n                                                  <app-add-user-to-event [volunteerList]=\"volunteerList\" date={{day.value.slots[0].event_date_txt}} [eventType]=\"currentEvent\" [fullEvent]=\"true\" (onAddUser)=\"addUserToEvent($event, day.value)\" style=\"opacity:0.4\"></app-add-user-to-event>\n                                                </ng-template> -->\n                                <app-event-note date=\"{{ day.value.slots[0].event_date_txt }}\"\n                                                [eventType]=\"currentEvent\"\n                                                eventNote=\"{{ day.value.slots[0].event_note }}\"\n                                                (updateEventNote)=\"\n                    updateEventNote(day.value.slots[0].id, $event)\n                  \"\n                                                matTooltip=\"Click to view & edit the event note\">\n                                </app-event-note>\n                                <mat-icon *ngIf=\"\n                                          day.value.slots[0].event_note !=null &&\n                                          day.value.slots[0].event_note.length>\n                                    0\n                                    \"\n                                    >announcement\n                                </mat-icon>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </app-slider>\n    </div>\n</div>\n";
     /***/
   },
 
@@ -6287,6 +6287,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
 
+    var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+          resolve(value);
+        });
+      }
+
+      return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function rejected(value) {
+          try {
+            step(generator["throw"](value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+
     var __importDefault = undefined && undefined.__importDefault || function (mod) {
       return mod && mod.__esModule ? mod : {
         "default": mod
@@ -6299,6 +6331,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         this.db = db;
         this.eventDates = {};
+        this.eventTypesCool = {
+          "kitam": 5,
+          "kitpm": 5,
+          "deldr": 4,
+          "deliv": 10 // "Kitcham AM Sat": "kitas",
+          // "Kitchem PM Sat": "kitps",
+          // "Delivery Driver Sat": "delds",
+          // "Delivery Sat": "delis",
+
+        };
       }
 
       _createClass(FirebaseService, [{
@@ -6535,17 +6577,175 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addPermanentVolunteer",
         value: function addPermanentVolunteer(event_type, user_id, start_date, end_date, frequency) {
-          var permanent_event_id = event_type + "_" + start_date.getDate() + frequency + end_date.getMonth() + "_" + user_id[0];
-          this.db.object("/permanent_events/" + permanent_event_id).update({
-            event_type: event_type,
-            user_id: user_id[0],
-            first_name: user_id[1],
-            last_name: user_id[2],
-            start_date: start_date,
-            end_date: end_date,
-            frequency: frequency
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+            var _this9 = this;
+
+            var permanent_event_id, validDates, _loop4, i, a;
+
+            return regeneratorRuntime.wrap(function _callee3$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    permanent_event_id = event_type + "_" + start_date.getDate() + frequency + end_date.getMonth() + "_" + user_id[0];
+                    this.db.object("/recurring_events/" + permanent_event_id).update({
+                      event_type: event_type,
+                      user_id: user_id[0],
+                      first_name: user_id[1],
+                      last_name: user_id[2],
+                      start_date: start_date,
+                      end_date: end_date,
+                      frequency: frequency
+                    });
+                    validDates = this.getDates(new Date(start_date), new Date(end_date), frequency);
+                    _loop4 = /*#__PURE__*/regeneratorRuntime.mark(function _loop4(i) {
+                      var flag, _loop5, j;
+
+                      return regeneratorRuntime.wrap(function _loop4$(_context4) {
+                        while (1) {
+                          switch (_context4.prev = _context4.next) {
+                            case 0:
+                              flag = false;
+                              _loop5 = /*#__PURE__*/regeneratorRuntime.mark(function _loop5(j) {
+                                return regeneratorRuntime.wrap(function _loop5$(_context3) {
+                                  while (1) {
+                                    switch (_context3.prev = _context3.next) {
+                                      case 0:
+                                        a = _this9.db.object("event/" + validDates[i] + event_type + _this9.pad(j + 1, 2)).valueChanges().subscribe(function (news) {
+                                          //console.log(news.uid);
+                                          if (news.uid == user_id[0]) {
+                                            console.log("in here: " + news.uid);
+                                            flag = true;
+                                          } else if (flag == false && news.uid == "nan") {
+                                            flag = true;
+                                            console.log("in here:" + validDates[i] + event_type + _this9.pad(j + 1, 2) + " " + flag);
+
+                                            _this9.addUserToEvent(validDates[i] + event_type + _this9.pad(j + 1, 2), user_id[1], user_id[2], user_id[0]);
+                                          }
+                                        });
+                                        _context3.next = 3;
+                                        return _this9.delay(500);
+
+                                      case 3:
+                                      case "end":
+                                        return _context3.stop();
+                                    }
+                                  }
+                                }, _loop5);
+                              });
+                              j = 0;
+
+                            case 3:
+                              if (!(j < _this9.eventTypesCool[event_type])) {
+                                _context4.next = 8;
+                                break;
+                              }
+
+                              return _context4.delegateYield(_loop5(j), "t0", 5);
+
+                            case 5:
+                              j++;
+                              _context4.next = 3;
+                              break;
+
+                            case 8:
+                            case "end":
+                              return _context4.stop();
+                          }
+                        }
+                      }, _loop4);
+                    });
+                    i = 0;
+
+                  case 5:
+                    if (!(i < validDates.length)) {
+                      _context5.next = 10;
+                      break;
+                    }
+
+                    return _context5.delegateYield(_loop4(i), "t0", 7);
+
+                  case 7:
+                    i++;
+                    _context5.next = 5;
+                    break;
+
+                  case 10:
+                    console.log("EVENT CREATED");
+
+                  case 11:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee3, this);
+          }));
+        }
+      }, {
+        key: "delay",
+        value: function delay(ms) {
+          return new Promise(function (resolve) {
+            return setTimeout(resolve, ms);
           });
-          console.log("EVENT CREATED");
+        }
+      }, {
+        key: "getDates",
+        value: function getDates(firstDate, lastDate, freq) {
+          var validDates = []; //console.log("First date: " + firstDate.toString() + ", Last date: " + lastDate.toString());
+
+          while (firstDate <= lastDate) {
+            //push the first Date
+            validDates.push(this.getDateNumber(firstDate)); //console.log(firstDate);
+            //console.log(freq);
+
+            var incrementInMilliseconds = freq * 7 * 24 * 60 * 60 * 1000;
+            firstDate.setTime(firstDate.getTime() + incrementInMilliseconds); //console.log(firstDate);
+          }
+
+          console.log(validDates);
+          return validDates;
+        }
+      }, {
+        key: "pad",
+        value: function pad(num, size) {
+          var s = num + "";
+
+          while (s.length < size) {
+            s = "0" + s;
+          }
+
+          return s;
+        }
+      }, {
+        key: "getDateString",
+        value: function getDateString(dateval) {
+          var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+          var dayName = days[dateval.getDay()];
+          var monthName = months[dateval.getMonth()];
+          var dateString = dayName + ", " + monthName + " " + dateval.getDate() + ", " + dateval.getFullYear();
+          return dateString;
+        }
+      }, {
+        key: "getDateNumber",
+        value: function getDateNumber(date) {
+          var month = "";
+          var day = "";
+
+          if (date.getMonth() + 1 < 10) {
+            month = "0" + (date.getMonth() + 1).toString();
+          } else {
+            month = (date.getMonth() + 1).toString();
+          }
+
+          if (date.getDate() < 10) {
+            day = "0" + date.getDate().toString();
+          } else {
+            day = date.getDate().toString();
+          }
+
+          var dateString = date.getFullYear().toString().substring(2, 4) + month + day;
+          var intDate = +dateString;
+          return intDate;
         }
       }, {
         key: "addPermanentVolunteerEvents",
@@ -6751,22 +6951,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "formatEventDates",
         value: function formatEventDates() {
-          var _this9 = this;
+          var _this10 = this;
 
           this.events.subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
               var event_date = snapshot.event_date.toString();
               var event_type = snapshot.event_type.toString();
-              event_date = _this9.formatDate(event_date);
+              event_date = _this10.formatDate(event_date);
 
-              if (!(event_date in _this9.eventDates)) {
-                _this9.eventDates[event_date] = {};
-                _this9.eventDates[event_date][event_type] = [snapshot.id];
+              if (!(event_date in _this10.eventDates)) {
+                _this10.eventDates[event_date] = {};
+                _this10.eventDates[event_date][event_type] = [snapshot.id];
               } else {
-                if (!(event_type in _this9.eventDates[event_date])) {
-                  _this9.eventDates[event_date][event_type] = [snapshot.id];
+                if (!(event_type in _this10.eventDates[event_date])) {
+                  _this10.eventDates[event_date][event_type] = [snapshot.id];
                 } else {
-                  _this9.eventDates[event_date][event_type].push(snapshot.id);
+                  _this10.eventDates[event_date][event_type].push(snapshot.id);
                 }
               }
             });
@@ -7151,13 +7351,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PermanentVolunteerDirectoryComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this10 = this;
+          var _this11 = this;
 
           this.volunteersObservable = this.fs.getUsers();
           this.eventsObservable = this.fs.getPermanentEvents();
           this.volunteersObservable.subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
-              _this10.volunteers.push(snapshot);
+              _this11.volunteers.push(snapshot);
             });
           });
           this.eventsObservable.subscribe(function (snapshots) {
@@ -7173,7 +7373,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               //   }
               // }
 
-              _this10.events.push(snapshot);
+              _this11.events.push(snapshot);
             });
           });
           this.addPermanentForm = this.formBuilder.group({
@@ -7357,18 +7557,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(PermanentVolunteerComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this11 = this;
+          var _this12 = this;
 
           this.volunteersObservable = this.fs.getUsers();
           this.eventsObservable = this.fs.getPermanentEvents();
           this.volunteersObservable.subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
-              _this11.volunteers.push(snapshot);
+              _this12.volunteers.push(snapshot);
             });
           });
           this.eventsObservable.subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
-              _this11.events.push(snapshot);
+              _this12.events.push(snapshot);
             });
           });
           this.addPermanentForm = this.formBuilder.group({
@@ -7564,7 +7764,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(firebaseAuth, db) {
-        var _this12 = this;
+        var _this13 = this;
 
         _classCallCheck(this, AuthService);
 
@@ -7578,11 +7778,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (credential) {
             console.log(credential);
 
-            _this12.authStatusSub.next(credential);
+            _this13.authStatusSub.next(credential);
 
             console.log('User is logged in');
           } else {
-            _this12.authStatusSub.next(null);
+            _this13.authStatusSub.next(null);
 
             console.log('User is logged out');
           }
@@ -7592,77 +7792,77 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AuthService, [{
         key: "signup",
         value: function signup(firstName, lastName, email, password, code) {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            var _this13 = this;
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var _this14 = this;
 
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            return regeneratorRuntime.wrap(function _callee5$(_context7) {
               while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context7.prev = _context7.next) {
                   case 0:
-                    _context4.next = 2;
+                    _context7.next = 2;
                     return this.db.object('/registration_code').valueChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1)).toPromise().then(function (details) {
                       if (details == code) {
-                        return _this13.firebaseAuth.createUserWithEmailAndPassword(email, password).then(function (value) {
-                          return __awaiter(_this13, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-                            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                        return _this14.firebaseAuth.createUserWithEmailAndPassword(email, password).then(function (value) {
+                          return __awaiter(_this14, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+                            return regeneratorRuntime.wrap(function _callee4$(_context6) {
                               while (1) {
-                                switch (_context3.prev = _context3.next) {
+                                switch (_context6.prev = _context6.next) {
                                   case 0:
                                     console.log('Success!', value); //firebase.auth().currentUser.sendEmailVerification();
 
-                                    _context3.next = 3;
+                                    _context6.next = 3;
                                     return this.firebaseAuth.currentUser;
 
                                   case 3:
-                                    this.newUser = _context3.sent;
+                                    this.newUser = _context6.sent;
                                     this.addUser(this.newUser.uid, firstName, lastName, email, "staff");
                                     this.newUser.sendEmailVerification().then(function () {
                                       console.log('email sent');
                                     });
-                                    return _context3.abrupt("return", true);
+                                    return _context6.abrupt("return", true);
 
                                   case 7:
                                   case "end":
-                                    return _context3.stop();
+                                    return _context6.stop();
                                 }
                               }
-                            }, _callee3, this);
+                            }, _callee4, this);
                           }));
                         })["catch"](function (err) {
-                          _this13.error = err.message;
+                          _this14.error = err.message;
                           console.log('Something went wrong:', err.message);
                           return false;
                         });
                       } else {
-                        _this13.error = "Registration code is incorrect.";
+                        _this14.error = "Registration code is incorrect.";
                         return false;
                       }
                     });
 
                   case 2:
-                    return _context4.abrupt("return", _context4.sent);
+                    return _context7.abrupt("return", _context7.sent);
 
                   case 3:
                   case "end":
-                    return _context4.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee4, this);
+            }, _callee5, this);
           }));
         }
       }, {
         key: "login",
         value: function login(email, password) {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-            var _this14 = this;
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var _this15 = this;
 
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            return regeneratorRuntime.wrap(function _callee6$(_context8) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context8.prev = _context8.next) {
                   case 0:
-                    _context5.next = 2;
+                    _context8.next = 2;
                     return this.firebaseAuth.setPersistence(_firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a.auth.Auth.Persistence.LOCAL).then(function () {
-                      return _this14.firebaseAuth.signInWithEmailAndPassword(email, password).then(function (value) {
+                      return _this15.firebaseAuth.signInWithEmailAndPassword(email, password).then(function (value) {
                         console.log('Nice, it worked!');
                         return true;
                       })["catch"](function (err) {
@@ -7677,14 +7877,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     });
 
                   case 2:
-                    return _context5.abrupt("return", _context5.sent);
+                    return _context8.abrupt("return", _context8.sent);
 
                   case 3:
                   case "end":
-                    return _context5.stop();
+                    return _context8.stop();
                 }
               }
-            }, _callee5, this);
+            }, _callee6, this);
           }));
         }
       }, {
@@ -8394,7 +8594,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".mat-table {\n  width: 100% !important;\n  margin: auto;\n}\n\napp-add-user-to-event {\n  cursor: pointer;\n  float: right;\n}\n\ntd.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {\n  padding-right: 5px;\n}\n\n.menu:focus {\n  outline: none;\n}\n\n.table-row[isEmpty=true]:hover {\n  background-color: #dfe0df;\n  cursor: pointer;\n}\n\n#noteBtn {\n  width: 1px;\n  height: 3px;\n  z-index: -10px;\n  position: fixed;\n  margin-top: -50px;\n  margin-left: -7px;\n  opacity: 1%;\n}\n\n.menu:hover {\n  background-color: lightgrey;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9ldmVudC1zaWduLXVwLXRhYmxlL0M6XFxVc2Vyc1xceW91c3VcXGFuZ3VsYXItZWxlY3Ryb24vc3JjXFxhcHBcXHNpZ24tdXAtc2hlZXRcXGV2ZW50LXNpZ24tdXAtdGFibGVcXGV2ZW50LXNpZ24tdXAtdGFibGUuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3NpZ24tdXAtc2hlZXQvZXZlbnQtc2lnbi11cC10YWJsZS9ldmVudC1zaWduLXVwLXRhYmxlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksc0JBQUE7RUFDQSxZQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsWUFBQTtBQ0NKOztBREVBO0VBQ0Usa0JBQUE7QUNDRjs7QURFQTtFQUNDLGFBQUE7QUNDRDs7QURFQTtFQUNFLHlCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsVUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDQ0Y7O0FERUE7RUFDRSwyQkFBQTtBQ0NGIiwiZmlsZSI6InNyYy9hcHAvc2lnbi11cC1zaGVldC9ldmVudC1zaWduLXVwLXRhYmxlL2V2ZW50LXNpZ24tdXAtdGFibGUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LXRhYmxlIHtcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICAgIG1hcmdpbjogYXV0bztcbn1cblxuYXBwLWFkZC11c2VyLXRvLWV2ZW50IHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgZmxvYXQ6IHJpZ2h0O1xufVxuXG50ZC5tYXQtY2VsbDpsYXN0LW9mLXR5cGUsIHRkLm1hdC1mb290ZXItY2VsbDpsYXN0LW9mLXR5cGUsIHRoLm1hdC1oZWFkZXItY2VsbDpsYXN0LW9mLXR5cGUge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbi5tZW51OmZvY3VzIHtcblx0b3V0bGluZTogbm9uZTtcbn1cblxuLnRhYmxlLXJvd1tpc0VtcHR5PSd0cnVlJ106aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiNkZmUwZGY7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuI25vdGVCdG57XG4gIHdpZHRoOiAxcHg7XG4gIGhlaWdodDogM3B4O1xuICB6LWluZGV4OiAtMTBweDtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBtYXJnaW4tdG9wOiAtNTBweDtcbiAgbWFyZ2luLWxlZnQ6IC03cHg7XG4gIG9wYWNpdHk6IDElO1xufVxuXG4ubWVudTpob3ZlcntcbiAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmV5O1xufSIsIi5tYXQtdGFibGUge1xuICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xuICBtYXJnaW46IGF1dG87XG59XG5cbmFwcC1hZGQtdXNlci10by1ldmVudCB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgZmxvYXQ6IHJpZ2h0O1xufVxuXG50ZC5tYXQtY2VsbDpsYXN0LW9mLXR5cGUsIHRkLm1hdC1mb290ZXItY2VsbDpsYXN0LW9mLXR5cGUsIHRoLm1hdC1oZWFkZXItY2VsbDpsYXN0LW9mLXR5cGUge1xuICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59XG5cbi5tZW51OmZvY3VzIHtcbiAgb3V0bGluZTogbm9uZTtcbn1cblxuLnRhYmxlLXJvd1tpc0VtcHR5PXRydWVdOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2RmZTBkZjtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4jbm90ZUJ0biB7XG4gIHdpZHRoOiAxcHg7XG4gIGhlaWdodDogM3B4O1xuICB6LWluZGV4OiAtMTBweDtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBtYXJnaW4tdG9wOiAtNTBweDtcbiAgbWFyZ2luLWxlZnQ6IC03cHg7XG4gIG9wYWNpdHk6IDElO1xufVxuXG4ubWVudTpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JleTtcbn0iXX0= */";
+    __webpack_exports__["default"] = ".mat-table {\n  width: 100% !important;\n  margin: auto;\n}\n\napp-add-user-to-event {\n  cursor: pointer;\n  float: right;\n}\n\ntd.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {\n  padding-right: 5px;\n}\n\n.menu:focus {\n  outline: none;\n}\n\n.table-row[isEmpty=true]:hover {\n  background-color: #dfe0df;\n  cursor: pointer;\n}\n\n#noteBtn {\n  width: 1px;\n  height: 1px;\n  z-index: -10px;\n  position: fixed;\n  margin-top: -35px;\n  margin-left: -7px;\n  opacity: 1%;\n  border: 2px;\n}\n\n.menu:hover {\n  background-color: lightgrey;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9ldmVudC1zaWduLXVwLXRhYmxlL0M6XFxVc2Vyc1xceW91c3VcXGFuZ3VsYXItZWxlY3Ryb24vc3JjXFxhcHBcXHNpZ24tdXAtc2hlZXRcXGV2ZW50LXNpZ24tdXAtdGFibGVcXGV2ZW50LXNpZ24tdXAtdGFibGUuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL3NpZ24tdXAtc2hlZXQvZXZlbnQtc2lnbi11cC10YWJsZS9ldmVudC1zaWduLXVwLXRhYmxlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksc0JBQUE7RUFDQSxZQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsWUFBQTtBQ0NKOztBREVBO0VBQ0Usa0JBQUE7QUNDRjs7QURFQTtFQUNDLGFBQUE7QUNDRDs7QURFQTtFQUNFLHlCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBREVBO0VBQ0UsVUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtBQ0NGOztBREVBO0VBQ0UsMkJBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL3NpZ24tdXAtc2hlZXQvZXZlbnQtc2lnbi11cC10YWJsZS9ldmVudC1zaWduLXVwLXRhYmxlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC10YWJsZSB7XG4gICAgd2lkdGg6IDEwMCUgIWltcG9ydGFudDtcbiAgICBtYXJnaW46IGF1dG87XG59XG5cbmFwcC1hZGQtdXNlci10by1ldmVudCB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGZsb2F0OiByaWdodDtcbn1cblxudGQubWF0LWNlbGw6bGFzdC1vZi10eXBlLCB0ZC5tYXQtZm9vdGVyLWNlbGw6bGFzdC1vZi10eXBlLCB0aC5tYXQtaGVhZGVyLWNlbGw6bGFzdC1vZi10eXBlIHtcbiAgcGFkZGluZy1yaWdodDogNXB4O1xufVxuXG4ubWVudTpmb2N1cyB7XG5cdG91dGxpbmU6IG5vbmU7XG59XG5cbi50YWJsZS1yb3dbaXNFbXB0eT0ndHJ1ZSddOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjojZGZlMGRmO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNub3RlQnRue1xuICB3aWR0aDogMXB4O1xuICBoZWlnaHQ6IDFweDtcbiAgei1pbmRleDogLTEwcHg7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgbWFyZ2luLXRvcDogLTM1cHg7XG4gIG1hcmdpbi1sZWZ0OiAtN3B4O1xuICBvcGFjaXR5OiAxJTtcbiAgYm9yZGVyOiAycHg7XG59XG5cbi5tZW51OmhvdmVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyZXk7XG59IiwiLm1hdC10YWJsZSB7XG4gIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XG4gIG1hcmdpbjogYXV0bztcbn1cblxuYXBwLWFkZC11c2VyLXRvLWV2ZW50IHtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBmbG9hdDogcmlnaHQ7XG59XG5cbnRkLm1hdC1jZWxsOmxhc3Qtb2YtdHlwZSwgdGQubWF0LWZvb3Rlci1jZWxsOmxhc3Qtb2YtdHlwZSwgdGgubWF0LWhlYWRlci1jZWxsOmxhc3Qtb2YtdHlwZSB7XG4gIHBhZGRpbmctcmlnaHQ6IDVweDtcbn1cblxuLm1lbnU6Zm9jdXMge1xuICBvdXRsaW5lOiBub25lO1xufVxuXG4udGFibGUtcm93W2lzRW1wdHk9dHJ1ZV06aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZGZlMGRmO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNub3RlQnRuIHtcbiAgd2lkdGg6IDFweDtcbiAgaGVpZ2h0OiAxcHg7XG4gIHotaW5kZXg6IC0xMHB4O1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIG1hcmdpbi10b3A6IC0zNXB4O1xuICBtYXJnaW4tbGVmdDogLTdweDtcbiAgb3BhY2l0eTogMSU7XG4gIGJvcmRlcjogMnB4O1xufVxuXG4ubWVudTpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JleTtcbn0iXX0= */";
     /***/
   },
 
@@ -8935,7 +9135,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".page-title {\n  padding-top: 1rem;\n  padding-bottom: 0;\n}\n\n.page-title h1 {\n  padding: 0.5rem;\n  text-align: center;\n  color: #60A4FF;\n}\n\n.container-search {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.volunteer-search {\n  margin-left: 2.5%;\n  margin-top: 1%;\n  width: 400px;\n}\n\n.mat-table {\n  overflow: auto;\n  max-height: 500px;\n  width: 95%;\n  margin-left: 2.5%;\n  margin-right: 2.5%;\n}\n\nth.mat-sort-header-sorted {\n  color: black;\n}\n\n.container {\n  max-width: none;\n  padding: 0;\n}\n\n.container .header {\n  background-color: #5fce99;\n  color: white;\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  width: inherit;\n  margin: 0;\n}\n\n.volunteer-name {\n  font-weight: bold;\n  font-size: 16;\n  margin-left: 1rem;\n}\n\n.actions {\n  position: absolute;\n  right: 5%;\n}\n\n.valign-center {\n  display: inline-flex;\n  vertical-align: middle;\n  align-items: center;\n}\n\n.body {\n  background-color: #c1ecd7;\n  padding: 1rem;\n}\n\n.valign-center mat-icon {\n  margin-right: 0.5rem;\n}\n\n.element-detail {\n  overflow: hidden;\n  display: flex;\n}\n\n.element-row {\n  position: relative;\n}\n\n.element-row:not(.expanded) {\n  cursor: pointer;\n}\n\n.element-row:not(.expanded):hover {\n  background: #f5f5f5;\n}\n\n.element-row.expanded {\n  border-bottom-color: transparent;\n}\n\ntr.detail-row {\n  height: 0;\n}\n\ntr.element-row:not(.expanded-row):hover {\n  background: #f5f5f5;\n}\n\ntr.element-row:not(.expanded-row):active {\n  background: #efefef;\n}\n\n.element-row td {\n  border-bottom-width: 0;\n}\n\n.card-header {\n  text-align: center;\n  color: white;\n}\n\n.card-header {\n  background-color: #60a4ff;\n}\n\n.card-body {\n  padding: 0;\n}\n\n.kitchenPM .card-body {\n  background-color: #f4abaa;\n}\n\n.row {\n  justify-content: center;\n}\n\n.img-important-event-false {\n  cursor: pointer;\n}\n\napp-permanent-volunteer {\n  float: right;\n  margin-right: 0.5rem;\n  margin-top: 0.2rem;\n  cursor: pointer;\n}\n\n.img-important-event-true {\n  cursor: pointer;\n}\n\n#logo {\n  margin-top: -30px;\n  margin-right: 20%;\n  max-width: 120px;\n  margin-left: -30%;\n  z-index: -1;\n}\n\nh1 {\n  display: inline;\n  text-align: center;\n}\n\nh3 {\n  margin-right: 15px;\n  margin-left: -180px;\n  color: #99169D;\n  position: relative;\n  top: 50%;\n  font-size: 22px !important;\n}\n\n.eventCardImportant {\n  border: 2px solid #f24a5a !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxzaWduLXVwLXNoZWV0XFxzaWduLXVwLXNoZWV0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDSSxpQkFBQTtFQUNBLGlCQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDQUo7O0FES0E7RUFDSSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQ0ZKOztBREtBO0VBQ0ksaUJBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtBQ0ZKOztBRE1BO0VBQ0ksY0FBQTtFQUNBLGlCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUNISjs7QURNQTtFQUNJLFlBQUE7QUNISjs7QURRQTtFQUNJLGVBQUE7RUFDQSxVQUFBO0FDTEo7O0FEUUE7RUFDSSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsY0FBQTtFQUNBLFNBQUE7QUNMSjs7QURRQTtFQUNJLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLGlCQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtFQUNBLFNBQUE7QUNMSjs7QURRQTtFQUNJLG9CQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtBQ0xKOztBRFFBO0VBQ0kseUJBQUE7RUFDQSxhQUFBO0FDTEo7O0FEUUE7RUFDSSxvQkFBQTtBQ0xKOztBRFFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtBQ0xKOztBRFFBO0VBQ0ksZUFBQTtBQ0xKOztBRFFBO0VBQ0ksbUJBQUE7QUNMSjs7QURRQTtFQUNJLGdDQUFBO0FDTEo7O0FEUUE7RUFDSSxTQUFBO0FDTEo7O0FEUUE7RUFDSSxtQkFBQTtBQ0xKOztBRFFBO0VBQ0ksbUJBQUE7QUNMSjs7QURRQTtFQUNJLHNCQUFBO0FDTEo7O0FEUUE7RUFDSSxrQkFBQTtFQUNBLFlBQUE7QUNMSjs7QURRQTtFQUNJLHlCQUFBO0FDTEo7O0FEUUE7RUFDSSxVQUFBO0FDTEo7O0FEUUE7RUFDSSx5QkFBQTtBQ0xKOztBRFFBO0VBQ0ksdUJBQUE7QUNMSjs7QURRQTtFQUNJLGVBQUE7QUNMSjs7QURRQTtFQUNJLFlBQUE7RUFDQSxvQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ0xKOztBRFFBO0VBQ0ksZUFBQTtBQ0xKOztBRFFBO0VBQ0ksaUJBQUE7RUFDQSxpQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDTEo7O0FEUUE7RUFDSSxlQUFBO0VBQ0Esa0JBQUE7QUNMSjs7QURRQTtFQUNJLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSxRQUFBO0VBQ0EsMEJBQUE7QUNMSjs7QURRQTtFQUNJLG9DQUFBO0FDTEoiLCJmaWxlIjoic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBQYWdlIHRpdGxlXG4ucGFnZS10aXRsZSB7XG4gICAgcGFkZGluZy10b3A6IDFyZW07XG4gICAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5wYWdlLXRpdGxlIGgxIHtcbiAgICBwYWRkaW5nOiAwLjVyZW07XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiAjNjBBNEZGO1xufVxuXG5cbi8vIFNlYXJjaCBjb250YWluZXJcbi5jb250YWluZXItc2VhcmNoIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4udm9sdW50ZWVyLXNlYXJjaCB7XG4gICAgbWFyZ2luLWxlZnQ6IDIuNSU7XG4gICAgbWFyZ2luLXRvcDogMSU7XG4gICAgd2lkdGg6IDQwMHB4O1xufVxuXG4vLyBWb2x1bnRlZXIgdGFibGVcbi5tYXQtdGFibGUge1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICAgIG1heC1oZWlnaHQ6IDUwMHB4O1xuICAgIHdpZHRoOiA5NSU7XG4gICAgbWFyZ2luLWxlZnQ6IDIuNSU7XG4gICAgbWFyZ2luLXJpZ2h0OiAyLjUlO1xufVxuXG50aC5tYXQtc29ydC1oZWFkZXItc29ydGVkIHtcbiAgICBjb2xvcjogYmxhY2s7XG59XG5cblxuLy8gRXhwYW5kZWQgRWxlbWVudFxuLmNvbnRhaW5lciB7XG4gICAgbWF4LXdpZHRoOiBub25lO1xuICAgIHBhZGRpbmc6IDA7XG59XG5cbi5jb250YWluZXIgLmhlYWRlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzVmY2U5OTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgcGFkZGluZy10b3A6IDAuNXJlbTtcbiAgICBwYWRkaW5nLWJvdHRvbTogMC41cmVtO1xuICAgIHdpZHRoOiBpbmhlcml0O1xuICAgIG1hcmdpbjogMDtcbn1cblxuLnZvbHVudGVlci1uYW1lIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBmb250LXNpemU6IDE2O1xuICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xufVxuXG4uYWN0aW9ucyB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHJpZ2h0OiA1JTtcbn1cblxuLnZhbGlnbi1jZW50ZXIge1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNjMWVjZDc7XG4gICAgcGFkZGluZzogMXJlbTtcbn1cblxuLnZhbGlnbi1jZW50ZXIgbWF0LWljb24ge1xuICAgIG1hcmdpbi1yaWdodDogMC41cmVtO1xufVxuXG4uZWxlbWVudC1kZXRhaWwge1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgZGlzcGxheTogZmxleDtcbn1cblxuLmVsZW1lbnQtcm93IHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkKSB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZCk6aG92ZXIge1xuICAgIGJhY2tncm91bmQ6ICNmNWY1ZjU7XG59XG5cbi5lbGVtZW50LXJvdy5leHBhbmRlZCB7XG4gICAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdHJhbnNwYXJlbnQ7XG59XG5cbnRyLmRldGFpbC1yb3cge1xuICAgIGhlaWdodDogMDtcbn1cblxudHIuZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xufVxuXG50ci5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkLXJvdyk6YWN0aXZlIHtcbiAgICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZWxlbWVudC1yb3cgdGQge1xuICAgIGJvcmRlci1ib3R0b20td2lkdGg6IDA7XG59XG5cbi5jYXJkLWhlYWRlciB7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNjBhNGZmO1xufVxuXG4uY2FyZC1ib2R5IHtcbiAgICBwYWRkaW5nOiAwO1xufVxuXG4ua2l0Y2hlblBNIC5jYXJkLWJvZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uaW1nLWltcG9ydGFudC1ldmVudC1mYWxzZSB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5hcHAtcGVybWFuZW50LXZvbHVudGVlciB7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIG1hcmdpbi1yaWdodDogMC41cmVtO1xuICAgIG1hcmdpbi10b3A6IDAuMnJlbTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuI2xvZ28ge1xuICAgIG1hcmdpbi10b3A6IC0zMHB4O1xuICAgIG1hcmdpbi1yaWdodDogMjAlO1xuICAgIG1heC13aWR0aDogMTIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IC0zMCU7XG4gICAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgICBkaXNwbGF5OiBpbmxpbmU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5oMyB7XG4gICAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICAgIG1hcmdpbi1sZWZ0OiAtMTgwcHg7XG4gICAgY29sb3I6ICM5OTE2OUQ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHRvcDogNTAlO1xuICAgIGZvbnQtc2l6ZTogMjJweCAhaW1wb3J0YW50O1xufVxuXG4uZXZlbnRDYXJkSW1wb3J0YW50IHtcbiAgICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59XG4iLCIucGFnZS10aXRsZSB7XG4gIHBhZGRpbmctdG9wOiAxcmVtO1xuICBwYWRkaW5nLWJvdHRvbTogMDtcbn1cblxuLnBhZ2UtdGl0bGUgaDEge1xuICBwYWRkaW5nOiAwLjVyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6ICM2MEE0RkY7XG59XG5cbi5jb250YWluZXItc2VhcmNoIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4udm9sdW50ZWVyLXNlYXJjaCB7XG4gIG1hcmdpbi1sZWZ0OiAyLjUlO1xuICBtYXJnaW4tdG9wOiAxJTtcbiAgd2lkdGg6IDQwMHB4O1xufVxuXG4ubWF0LXRhYmxlIHtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIG1heC1oZWlnaHQ6IDUwMHB4O1xuICB3aWR0aDogOTUlO1xuICBtYXJnaW4tbGVmdDogMi41JTtcbiAgbWFyZ2luLXJpZ2h0OiAyLjUlO1xufVxuXG50aC5tYXQtc29ydC1oZWFkZXItc29ydGVkIHtcbiAgY29sb3I6IGJsYWNrO1xufVxuXG4uY29udGFpbmVyIHtcbiAgbWF4LXdpZHRoOiBub25lO1xuICBwYWRkaW5nOiAwO1xufVxuXG4uY29udGFpbmVyIC5oZWFkZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWZjZTk5O1xuICBjb2xvcjogd2hpdGU7XG4gIHBhZGRpbmctdG9wOiAwLjVyZW07XG4gIHBhZGRpbmctYm90dG9tOiAwLjVyZW07XG4gIHdpZHRoOiBpbmhlcml0O1xuICBtYXJnaW46IDA7XG59XG5cbi52b2x1bnRlZXItbmFtZSB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBmb250LXNpemU6IDE2O1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cblxuLmFjdGlvbnMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiA1JTtcbn1cblxuLnZhbGlnbi1jZW50ZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJvZHkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjYzFlY2Q3O1xuICBwYWRkaW5nOiAxcmVtO1xufVxuXG4udmFsaWduLWNlbnRlciBtYXQtaWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMC41cmVtO1xufVxuXG4uZWxlbWVudC1kZXRhaWwge1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBmbGV4O1xufVxuXG4uZWxlbWVudC1yb3cge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkKSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQpOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2Y1ZjVmNTtcbn1cblxuLmVsZW1lbnQtcm93LmV4cGFuZGVkIHtcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdHJhbnNwYXJlbnQ7XG59XG5cbnRyLmRldGFpbC1yb3cge1xuICBoZWlnaHQ6IDA7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTpob3ZlciB7XG4gIGJhY2tncm91bmQ6ICNmNWY1ZjU7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTphY3RpdmUge1xuICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZWxlbWVudC1yb3cgdGQge1xuICBib3JkZXItYm90dG9tLXdpZHRoOiAwO1xufVxuXG4uY2FyZC1oZWFkZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiB3aGl0ZTtcbn1cblxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzYwYTRmZjtcbn1cblxuLmNhcmQtYm9keSB7XG4gIHBhZGRpbmc6IDA7XG59XG5cbi5raXRjaGVuUE0gLmNhcmQtYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmltZy1pbXBvcnRhbnQtZXZlbnQtZmFsc2Uge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmFwcC1wZXJtYW5lbnQtdm9sdW50ZWVyIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbiAgbWFyZ2luLXRvcDogMC4ycmVtO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNsb2dvIHtcbiAgbWFyZ2luLXRvcDogLTMwcHg7XG4gIG1hcmdpbi1yaWdodDogMjAlO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xuICBtYXJnaW4tbGVmdDogLTMwJTtcbiAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgZGlzcGxheTogaW5saW5lO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbmgzIHtcbiAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICBtYXJnaW4tbGVmdDogLTE4MHB4O1xuICBjb2xvcjogIzk5MTY5RDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICB0b3A6IDUwJTtcbiAgZm9udC1zaXplOiAyMnB4ICFpbXBvcnRhbnQ7XG59XG5cbi5ldmVudENhcmRJbXBvcnRhbnQge1xuICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59Il19 */";
+    __webpack_exports__["default"] = ".page-title {\n  padding-top: 1rem;\n  padding-bottom: 0;\n}\n\n.page-title h1 {\n  padding: 0.5rem;\n  text-align: center;\n  color: #60a4ff;\n}\n\n.container-search {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.volunteer-search {\n  margin-left: 2.5%;\n  margin-top: 1%;\n  width: 400px;\n}\n\n.mat-table {\n  overflow: auto;\n  max-height: 500px;\n  width: 95%;\n  margin-left: 2.5%;\n  margin-right: 2.5%;\n}\n\nth.mat-sort-header-sorted {\n  color: black;\n}\n\n.container {\n  max-width: none;\n  padding: 0;\n}\n\n.container .header {\n  background-color: #5fce99;\n  color: white;\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  width: inherit;\n  margin: 0;\n}\n\n.volunteer-name {\n  font-weight: bold;\n  font-size: 16;\n  margin-left: 1rem;\n}\n\n.actions {\n  position: absolute;\n  right: 5%;\n}\n\n.valign-center {\n  display: inline-flex;\n  vertical-align: middle;\n  align-items: center;\n}\n\n.body {\n  background-color: #c1ecd7;\n  padding: 1rem;\n}\n\n.valign-center mat-icon {\n  margin-right: 0.5rem;\n}\n\n.element-detail {\n  overflow: hidden;\n  display: flex;\n}\n\n.element-row {\n  position: relative;\n}\n\n.element-row:not(.expanded) {\n  cursor: pointer;\n}\n\n.element-row:not(.expanded):hover {\n  background: #f5f5f5;\n}\n\n.element-row.expanded {\n  border-bottom-color: transparent;\n}\n\ntr.detail-row {\n  height: 0;\n}\n\ntr.element-row:not(.expanded-row):hover {\n  background: #f5f5f5;\n}\n\ntr.element-row:not(.expanded-row):active {\n  background: #efefef;\n}\n\n.element-row td {\n  border-bottom-width: 0;\n}\n\n.card-header {\n  text-align: center;\n  color: white;\n  background-color: #60a4ff;\n}\n\n#cardTitle {\n  width: 12vw;\n  font-size: 0.96vw;\n}\n\n#cardTitle3 {\n  font-size: 0.96vw;\n}\n\n.card-body {\n  padding: 0;\n  width: 12vw;\n  font-size: 0.96vw;\n}\n\n.kitchenPM .card-body {\n  background-color: #f4abaa;\n}\n\n.row {\n  justify-content: center;\n}\n\n.img-important-event-false {\n  cursor: pointer;\n}\n\napp-permanent-volunteer {\n  float: right;\n  margin-right: 0.5rem;\n  margin-top: 0.2rem;\n  cursor: pointer;\n}\n\n.img-important-event-true {\n  cursor: pointer;\n}\n\n#logo {\n  margin-top: -30px;\n  margin-right: 20%;\n  max-width: 120px;\n  margin-left: -30%;\n  z-index: -1;\n}\n\nh1 {\n  display: inline;\n  text-align: center;\n}\n\nh3 {\n  margin-right: 15px;\n  margin-left: -3vw;\n  color: #99169d;\n  position: relative;\n  top: 50%;\n  font-size: 1.8vw !important;\n}\n\n.eventCardImportant {\n  border: 2px solid #f24a5a !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2lnbi11cC1zaGVldC9DOlxcVXNlcnNcXHlvdXN1XFxhbmd1bGFyLWVsZWN0cm9uL3NyY1xcYXBwXFxzaWduLXVwLXNoZWV0XFxzaWduLXVwLXNoZWV0LmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9zaWduLXVwLXNoZWV0L3NpZ24tdXAtc2hlZXQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRSxpQkFBQTtFQUNBLGlCQUFBO0FDQUY7O0FER0E7RUFDRSxlQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0FDQUY7O0FESUE7RUFDRSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQ0RGOztBRElBO0VBQ0UsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtBQ0RGOztBREtBO0VBQ0UsY0FBQTtFQUNBLGlCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUNGRjs7QURLQTtFQUNFLFlBQUE7QUNGRjs7QURNQTtFQUNFLGVBQUE7RUFDQSxVQUFBO0FDSEY7O0FETUE7RUFDRSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtFQUNBLHNCQUFBO0VBQ0EsY0FBQTtFQUNBLFNBQUE7QUNIRjs7QURNQTtFQUNFLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLGlCQUFBO0FDSEY7O0FETUE7RUFDRSxrQkFBQTtFQUNBLFNBQUE7QUNIRjs7QURNQTtFQUNFLG9CQUFBO0VBQ0Esc0JBQUE7RUFDQSxtQkFBQTtBQ0hGOztBRE1BO0VBQ0UseUJBQUE7RUFDQSxhQUFBO0FDSEY7O0FETUE7RUFDRSxvQkFBQTtBQ0hGOztBRE1BO0VBQ0UsZ0JBQUE7RUFDQSxhQUFBO0FDSEY7O0FETUE7RUFDRSxrQkFBQTtBQ0hGOztBRE1BO0VBQ0UsZUFBQTtBQ0hGOztBRE1BO0VBQ0UsbUJBQUE7QUNIRjs7QURNQTtFQUNFLGdDQUFBO0FDSEY7O0FETUE7RUFDRSxTQUFBO0FDSEY7O0FETUE7RUFDRSxtQkFBQTtBQ0hGOztBRE1BO0VBQ0UsbUJBQUE7QUNIRjs7QURNQTtFQUNFLHNCQUFBO0FDSEY7O0FETUE7RUFDRSxrQkFBQTtFQUNBLFlBQUE7RUFDQSx5QkFBQTtBQ0hGOztBRE1BO0VBQ0UsV0FBQTtFQUNBLGlCQUFBO0FDSEY7O0FETUE7RUFFRSxpQkFBQTtBQ0pGOztBRE9BO0VBQ0UsVUFBQTtFQUNBLFdBQUE7RUFDQSxpQkFBQTtBQ0pGOztBRE9BO0VBQ0UseUJBQUE7QUNKRjs7QURPQTtFQUNFLHVCQUFBO0FDSkY7O0FET0E7RUFDRSxlQUFBO0FDSkY7O0FET0E7RUFDRSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUNKRjs7QURPQTtFQUNFLGVBQUE7QUNKRjs7QURPQTtFQUNFLGlCQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsV0FBQTtBQ0pGOztBRE9BO0VBQ0UsZUFBQTtFQUNBLGtCQUFBO0FDSkY7O0FET0E7RUFDRSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtFQUNBLGtCQUFBO0VBQ0EsUUFBQTtFQUNBLDJCQUFBO0FDSkY7O0FET0E7RUFDRSxvQ0FBQTtBQ0pGIiwiZmlsZSI6InNyYy9hcHAvc2lnbi11cC1zaGVldC9zaWduLXVwLXNoZWV0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gUGFnZSB0aXRsZVxuLnBhZ2UtdGl0bGUge1xuICBwYWRkaW5nLXRvcDogMXJlbTtcbiAgcGFkZGluZy1ib3R0b206IDA7XG59XG5cbi5wYWdlLXRpdGxlIGgxIHtcbiAgcGFkZGluZzogMC41cmVtO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiAjNjBhNGZmO1xufVxuXG4vLyBTZWFyY2ggY29udGFpbmVyXG4uY29udGFpbmVyLXNlYXJjaCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLnZvbHVudGVlci1zZWFyY2gge1xuICBtYXJnaW4tbGVmdDogMi41JTtcbiAgbWFyZ2luLXRvcDogMSU7XG4gIHdpZHRoOiA0MDBweDtcbn1cblxuLy8gVm9sdW50ZWVyIHRhYmxlXG4ubWF0LXRhYmxlIHtcbiAgb3ZlcmZsb3c6IGF1dG87XG4gIG1heC1oZWlnaHQ6IDUwMHB4O1xuICB3aWR0aDogOTUlO1xuICBtYXJnaW4tbGVmdDogMi41JTtcbiAgbWFyZ2luLXJpZ2h0OiAyLjUlO1xufVxuXG50aC5tYXQtc29ydC1oZWFkZXItc29ydGVkIHtcbiAgY29sb3I6IGJsYWNrO1xufVxuXG4vLyBFeHBhbmRlZCBFbGVtZW50XG4uY29udGFpbmVyIHtcbiAgbWF4LXdpZHRoOiBub25lO1xuICBwYWRkaW5nOiAwO1xufVxuXG4uY29udGFpbmVyIC5oZWFkZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWZjZTk5O1xuICBjb2xvcjogd2hpdGU7XG4gIHBhZGRpbmctdG9wOiAwLjVyZW07XG4gIHBhZGRpbmctYm90dG9tOiAwLjVyZW07XG4gIHdpZHRoOiBpbmhlcml0O1xuICBtYXJnaW46IDA7XG59XG5cbi52b2x1bnRlZXItbmFtZSB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBmb250LXNpemU6IDE2O1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbn1cblxuLmFjdGlvbnMge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiA1JTtcbn1cblxuLnZhbGlnbi1jZW50ZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJvZHkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjYzFlY2Q3O1xuICBwYWRkaW5nOiAxcmVtO1xufVxuXG4udmFsaWduLWNlbnRlciBtYXQtaWNvbiB7XG4gIG1hcmdpbi1yaWdodDogMC41cmVtO1xufVxuXG4uZWxlbWVudC1kZXRhaWwge1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBmbGV4O1xufVxuXG4uZWxlbWVudC1yb3cge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5lbGVtZW50LXJvdzpub3QoLmV4cGFuZGVkKSB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQpOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2Y1ZjVmNTtcbn1cblxuLmVsZW1lbnQtcm93LmV4cGFuZGVkIHtcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogdHJhbnNwYXJlbnQ7XG59XG5cbnRyLmRldGFpbC1yb3cge1xuICBoZWlnaHQ6IDA7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTpob3ZlciB7XG4gIGJhY2tncm91bmQ6ICNmNWY1ZjU7XG59XG5cbnRyLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQtcm93KTphY3RpdmUge1xuICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZWxlbWVudC1yb3cgdGQge1xuICBib3JkZXItYm90dG9tLXdpZHRoOiAwO1xufVxuXG4uY2FyZC1oZWFkZXIge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzYwYTRmZjtcbn1cblxuI2NhcmRUaXRsZSB7XG4gIHdpZHRoOiAxMnZ3O1xuICBmb250LXNpemU6IDAuOTZ2dztcbn1cblxuI2NhcmRUaXRsZTMge1xuICBcbiAgZm9udC1zaXplOiAwLjk2dnc7XG59XG5cbi5jYXJkLWJvZHkge1xuICBwYWRkaW5nOiAwO1xuICB3aWR0aDogMTJ2dztcbiAgZm9udC1zaXplOiAwLjk2dnc7XG59XG5cbi5raXRjaGVuUE0gLmNhcmQtYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmNGFiYWE7XG59XG5cbi5yb3cge1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmltZy1pbXBvcnRhbnQtZXZlbnQtZmFsc2Uge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbmFwcC1wZXJtYW5lbnQtdm9sdW50ZWVyIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbiAgbWFyZ2luLXRvcDogMC4ycmVtO1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LXRydWUge1xuICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbiNsb2dvIHtcbiAgbWFyZ2luLXRvcDogLTMwcHg7XG4gIG1hcmdpbi1yaWdodDogMjAlO1xuICBtYXgtd2lkdGg6IDEyMHB4O1xuICBtYXJnaW4tbGVmdDogLTMwJTtcbiAgei1pbmRleDogLTE7XG59XG5cbmgxIHtcbiAgZGlzcGxheTogaW5saW5lO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbmgzIHtcbiAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuICBtYXJnaW4tbGVmdDogLTN2dztcbiAgY29sb3I6ICM5OTE2OWQ7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiA1MCU7XG4gIGZvbnQtc2l6ZTogMS44dncgIWltcG9ydGFudDtcbn1cblxuLmV2ZW50Q2FyZEltcG9ydGFudCB7XG4gIGJvcmRlcjogMnB4IHNvbGlkICNmMjRhNWEgIWltcG9ydGFudDtcbn1cbiIsIi5wYWdlLXRpdGxlIHtcbiAgcGFkZGluZy10b3A6IDFyZW07XG4gIHBhZGRpbmctYm90dG9tOiAwO1xufVxuXG4ucGFnZS10aXRsZSBoMSB7XG4gIHBhZGRpbmc6IDAuNXJlbTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogIzYwYTRmZjtcbn1cblxuLmNvbnRhaW5lci1zZWFyY2gge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi52b2x1bnRlZXItc2VhcmNoIHtcbiAgbWFyZ2luLWxlZnQ6IDIuNSU7XG4gIG1hcmdpbi10b3A6IDElO1xuICB3aWR0aDogNDAwcHg7XG59XG5cbi5tYXQtdGFibGUge1xuICBvdmVyZmxvdzogYXV0bztcbiAgbWF4LWhlaWdodDogNTAwcHg7XG4gIHdpZHRoOiA5NSU7XG4gIG1hcmdpbi1sZWZ0OiAyLjUlO1xuICBtYXJnaW4tcmlnaHQ6IDIuNSU7XG59XG5cbnRoLm1hdC1zb3J0LWhlYWRlci1zb3J0ZWQge1xuICBjb2xvcjogYmxhY2s7XG59XG5cbi5jb250YWluZXIge1xuICBtYXgtd2lkdGg6IG5vbmU7XG4gIHBhZGRpbmc6IDA7XG59XG5cbi5jb250YWluZXIgLmhlYWRlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICM1ZmNlOTk7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcGFkZGluZy10b3A6IDAuNXJlbTtcbiAgcGFkZGluZy1ib3R0b206IDAuNXJlbTtcbiAgd2lkdGg6IGluaGVyaXQ7XG4gIG1hcmdpbjogMDtcbn1cblxuLnZvbHVudGVlci1uYW1lIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGZvbnQtc2l6ZTogMTY7XG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xufVxuXG4uYWN0aW9ucyB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcmlnaHQ6IDUlO1xufVxuXG4udmFsaWduLWNlbnRlciB7XG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uYm9keSB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNjMWVjZDc7XG4gIHBhZGRpbmc6IDFyZW07XG59XG5cbi52YWxpZ24tY2VudGVyIG1hdC1pY29uIHtcbiAgbWFyZ2luLXJpZ2h0OiAwLjVyZW07XG59XG5cbi5lbGVtZW50LWRldGFpbCB7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IGZsZXg7XG59XG5cbi5lbGVtZW50LXJvdyB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmVsZW1lbnQtcm93Om5vdCguZXhwYW5kZWQpIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZCk6aG92ZXIge1xuICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xufVxuXG4uZWxlbWVudC1yb3cuZXhwYW5kZWQge1xuICBib3JkZXItYm90dG9tLWNvbG9yOiB0cmFuc3BhcmVudDtcbn1cblxudHIuZGV0YWlsLXJvdyB7XG4gIGhlaWdodDogMDtcbn1cblxudHIuZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogI2Y1ZjVmNTtcbn1cblxudHIuZWxlbWVudC1yb3c6bm90KC5leHBhbmRlZC1yb3cpOmFjdGl2ZSB7XG4gIGJhY2tncm91bmQ6ICNlZmVmZWY7XG59XG5cbi5lbGVtZW50LXJvdyB0ZCB7XG4gIGJvcmRlci1ib3R0b20td2lkdGg6IDA7XG59XG5cbi5jYXJkLWhlYWRlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6IHdoaXRlO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNjBhNGZmO1xufVxuXG4jY2FyZFRpdGxlIHtcbiAgd2lkdGg6IDEydnc7XG4gIGZvbnQtc2l6ZTogMC45NnZ3O1xufVxuXG4jY2FyZFRpdGxlMyB7XG4gIGZvbnQtc2l6ZTogMC45NnZ3O1xufVxuXG4uY2FyZC1ib2R5IHtcbiAgcGFkZGluZzogMDtcbiAgd2lkdGg6IDEydnc7XG4gIGZvbnQtc2l6ZTogMC45NnZ3O1xufVxuXG4ua2l0Y2hlblBNIC5jYXJkLWJvZHkge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjRhYmFhO1xufVxuXG4ucm93IHtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbi5pbWctaW1wb3J0YW50LWV2ZW50LWZhbHNlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5hcHAtcGVybWFuZW50LXZvbHVudGVlciB7XG4gIGZsb2F0OiByaWdodDtcbiAgbWFyZ2luLXJpZ2h0OiAwLjVyZW07XG4gIG1hcmdpbi10b3A6IDAuMnJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uaW1nLWltcG9ydGFudC1ldmVudC10cnVlIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4jbG9nbyB7XG4gIG1hcmdpbi10b3A6IC0zMHB4O1xuICBtYXJnaW4tcmlnaHQ6IDIwJTtcbiAgbWF4LXdpZHRoOiAxMjBweDtcbiAgbWFyZ2luLWxlZnQ6IC0zMCU7XG4gIHotaW5kZXg6IC0xO1xufVxuXG5oMSB7XG4gIGRpc3BsYXk6IGlubGluZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5oMyB7XG4gIG1hcmdpbi1yaWdodDogMTVweDtcbiAgbWFyZ2luLWxlZnQ6IC0zdnc7XG4gIGNvbG9yOiAjOTkxNjlkO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogNTAlO1xuICBmb250LXNpemU6IDEuOHZ3ICFpbXBvcnRhbnQ7XG59XG5cbi5ldmVudENhcmRJbXBvcnRhbnQge1xuICBib3JkZXI6IDJweCBzb2xpZCAjZjI0YTVhICFpbXBvcnRhbnQ7XG59Il19 */";
     /***/
   },
 
@@ -9075,26 +9275,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(SignUpSheetComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this15 = this;
+          var _this16 = this;
 
           this.events = this.fs.getEvents();
           this.fs.getEvents().subscribe(function (snapshots) {
             // snapshots.forEach(element => {
             //   element.phone_number = this.prettifyPhoneNumber(element.phone_number)
             // });
-            _this15.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](snapshots);
-            _this15.dataSource.sort = _this15.sort; // let temp = Object.keys(this.volunteers[0]);
+            _this16.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](snapshots);
+            _this16.dataSource.sort = _this16.sort; // let temp = Object.keys(this.volunteers[0]);
             // temp = temp.filter(e => !this.displayedColumns.includes(e));
           });
           this.formatEventDates();
           this.volunteers = this.fs.getUsers();
           this.setVolunteerList();
           this.db.list('event').auditTrail().subscribe(function (changes) {
-            _this15.formatEventDates();
+            _this16.formatEventDates();
 
-            _this15.volunteers = _this15.fs.getUsers();
+            _this16.volunteers = _this16.fs.getUsers();
 
-            _this15.setVolunteerList();
+            _this16.setVolunteerList();
           });
         }
       }, {
@@ -9115,108 +9315,108 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "setVolunteerList",
         value: function setVolunteerList() {
-          var _this16 = this;
+          var _this17 = this;
 
           this.volunteers.subscribe(function (snapshots) {
-            if (_this16.volunteerListInitialized === true) {
-              _this16.volunteerList = [];
+            if (_this17.volunteerListInitialized === true) {
+              _this17.volunteerList = [];
             }
 
-            _this16.volunteerListInitialized = false;
+            _this17.volunteerListInitialized = false;
             snapshots.forEach(function (snapshot) {
-              _this16.volunteerList.push(snapshot);
+              _this17.volunteerList.push(snapshot);
             });
           });
         }
       }, {
         key: "formatEventDates",
         value: function formatEventDates() {
-          var _this17 = this;
+          var _this18 = this;
 
-          var events_per_week = 134;
+          var events_per_week = 124;
           this.events.subscribe(function (snapshots) {
             var i = 0;
-            _this17.week1 = [];
-            _this17.week2 = [];
-            _this17.week3 = [];
+            _this18.week1 = [];
+            _this18.week2 = [];
+            _this18.week3 = [];
             snapshots.forEach(function (snapshot) {
-              snapshot.event_date = _this17.fs.formatDate(snapshot.event_date.toString());
+              snapshot.event_date = _this18.fs.formatDate(snapshot.event_date.toString());
               var event_type = snapshot.event_type.toString();
               var event_date = snapshot.event_date;
 
               if (i < events_per_week) {
-                if (!(event_type in _this17.week1)) {
-                  _this17.week1[event_type] = {};
+                if (!(event_type in _this18.week1)) {
+                  _this18.week1[event_type] = {};
                 }
 
-                if (!(event_date in _this17.week1[event_type])) {
-                  _this17.week1[event_type][event_date] = {
+                if (!(event_date in _this18.week1[event_type])) {
+                  _this18.week1[event_type][event_date] = {
                     slots: [],
                     num_volunteers: 0,
                     num_slots: 0,
                     is_important_event: snapshot.is_important_event,
-                    display_date: _this17.getDisplayDate(event_date)
+                    display_date: _this18.getDisplayDate(event_date)
                   };
                 }
 
                 if (snapshot.first_name) {
-                  _this17.week1[event_type][event_date]["num_volunteers"] = _this17.week1[event_type][event_date]["num_volunteers"] + 1;
+                  _this18.week1[event_type][event_date]["num_volunteers"] = _this18.week1[event_type][event_date]["num_volunteers"] + 1;
                 }
 
-                _this17.week1[event_type][event_date]["num_slots"] = _this17.week1[event_type][event_date]["num_slots"] + 1;
+                _this18.week1[event_type][event_date]["num_slots"] = _this18.week1[event_type][event_date]["num_slots"] + 1;
 
-                _this17.week1[event_type][event_date]["slots"].push(snapshot);
+                _this18.week1[event_type][event_date]["slots"].push(snapshot);
               } else if (i >= events_per_week && i < 2 * events_per_week) {
-                if (!(event_type in _this17.week2)) {
-                  _this17.week2[event_type] = {};
+                if (!(event_type in _this18.week2)) {
+                  _this18.week2[event_type] = {};
                 }
 
-                if (!(event_date in _this17.week2[event_type])) {
-                  _this17.week2[event_type][event_date] = {
+                if (!(event_date in _this18.week2[event_type])) {
+                  _this18.week2[event_type][event_date] = {
                     slots: [],
                     num_volunteers: 0,
                     num_slots: 0,
                     is_important_event: snapshot.is_important_event,
-                    display_date: _this17.getDisplayDate(event_date)
+                    display_date: _this18.getDisplayDate(event_date)
                   };
                 }
 
                 if (snapshot.first_name) {
-                  _this17.week2[event_type][event_date]["num_volunteers"] = _this17.week2[event_type][event_date]["num_volunteers"] + 1;
+                  _this18.week2[event_type][event_date]["num_volunteers"] = _this18.week2[event_type][event_date]["num_volunteers"] + 1;
                 }
 
-                _this17.week2[event_type][event_date]["num_slots"] = _this17.week2[event_type][event_date]["num_slots"] + 1;
+                _this18.week2[event_type][event_date]["num_slots"] = _this18.week2[event_type][event_date]["num_slots"] + 1;
 
-                _this17.week2[event_type][event_date]["slots"].push(snapshot);
+                _this18.week2[event_type][event_date]["slots"].push(snapshot);
               } else {
-                if (!(event_type in _this17.week3)) {
-                  _this17.week3[event_type] = {};
+                if (!(event_type in _this18.week3)) {
+                  _this18.week3[event_type] = {};
                 }
 
-                if (!(event_date in _this17.week3[event_type])) {
-                  _this17.week3[event_type][event_date] = {
+                if (!(event_date in _this18.week3[event_type])) {
+                  _this18.week3[event_type][event_date] = {
                     slots: [],
                     num_volunteers: 0,
                     num_slots: 0,
                     is_important_event: snapshot.is_important_event,
-                    display_date: _this17.getDisplayDate(event_date)
+                    display_date: _this18.getDisplayDate(event_date)
                   };
                 }
 
                 if (snapshot.first_name) {
-                  _this17.week3[event_type][event_date]["num_volunteers"] = _this17.week3[event_type][event_date]["num_volunteers"] + 1;
+                  _this18.week3[event_type][event_date]["num_volunteers"] = _this18.week3[event_type][event_date]["num_volunteers"] + 1;
                 }
 
-                _this17.week3[event_type][event_date]["num_slots"] = _this17.week3[event_type][event_date]["num_slots"] + 1;
+                _this18.week3[event_type][event_date]["num_slots"] = _this18.week3[event_type][event_date]["num_slots"] + 1;
 
-                _this17.week3[event_type][event_date]["slots"].push(snapshot);
+                _this18.week3[event_type][event_date]["slots"].push(snapshot);
               }
 
               i = i + 1;
             });
-            _this17.weekRange1 = _this17.setWeekRange(_this17.week1);
-            _this17.weekRange2 = _this17.setWeekRange(_this17.week2);
-            _this17.weekRange3 = _this17.setWeekRange(_this17.week3); //console.log(this.week1);
+            _this18.weekRange1 = _this18.setWeekRange(_this18.week1);
+            _this18.weekRange2 = _this18.setWeekRange(_this18.week2);
+            _this18.weekRange3 = _this18.setWeekRange(_this18.week3); //console.log(this.week1);
           });
         }
       }, {
@@ -9328,6 +9528,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var currentEventValue = this.eventTypes[eventType];
 
           if (this.currentWeek == "first") {
+            var week1 = Object.keys(this.week1[currentEventValue]);
+
+            if (week1.length == 5) {
+              this.addEmptyThursday(this.week1[currentEventValue]);
+            }
+
             return this.week1[currentEventValue];
           } else if (this.currentWeek == "second") {
             var week2 = Object.keys(this.week2[currentEventValue]);
@@ -9921,16 +10127,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
       _createClass(NotificationsComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {
-          var _this18 = this;
-
-          this.db.list('event').stateChanges(['child_changed']).subscribe(function (change) {
-            var updated_event = Object.assign({
-              id: change.payload.key
-            }, change.payload.val());
-
-            _this18.notifications.push(_this18.getNotificationMsg(updated_event));
-          });
+        value: function ngOnInit() {// this.db.list('event')
+          //        .stateChanges(['child_changed'])
+          //        .subscribe(change => {
+          //          const updated_event = {id: change.payload.key, ...(change.payload.val() as {})};
+          //          this.notifications.push(this.getNotificationMsg(updated_event));
+          //        });
         }
       }, {
         key: "getNotificationMsg",
@@ -10293,12 +10495,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UserEventComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
             var _this20 = this;
 
-            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+            return regeneratorRuntime.wrap(function _callee7$(_context9) {
               while (1) {
-                switch (_context6.prev = _context6.next) {
+                switch (_context9.prev = _context9.next) {
                   case 0:
                     this.events = this.firebase.getEvents();
                     this.cancelledEvents = this.firebase.getCancelledEvents();
@@ -10325,10 +10527,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
                   case 8:
                   case "end":
-                    return _context6.stop();
+                    return _context9.stop();
                 }
               }
-            }, _callee6, this);
+            }, _callee7, this);
           }));
         }
       }, {

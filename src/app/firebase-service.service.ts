@@ -30,6 +30,18 @@ export class FirebaseService {
   bugs: Observable<any[]>;
   user: Observable<any>;
 
+  eventTypesCool = {
+    "kitam": 5,
+    "kitpm": 5,
+    "deldr": 4,
+    "deliv": 10
+    // "Kitcham AM Sat": "kitas",
+    // "Kitchem PM Sat": "kitps",
+    // "Delivery Driver Sat": "delds",
+    // "Delivery Sat": "delis",
+  };
+
+
   constructor(private db: AngularFireDatabase) {}
 
   getUserSamples(): Observable<any[]> {
@@ -244,7 +256,7 @@ export class FirebaseService {
     });
   }
 
-  addPermanentVolunteer(
+  async addPermanentVolunteer(
     event_type: string,
     user_id,
     start_date: Date,
@@ -259,7 +271,7 @@ export class FirebaseService {
       end_date.getMonth() +
       "_" +
       user_id[0];
-    this.db.object("/permanent_events/" + permanent_event_id).update({
+    this.db.object("/recurring_events/" + permanent_event_id).update({
       event_type: event_type,
       user_id: user_id[0],
       first_name: user_id[1],
@@ -268,8 +280,82 @@ export class FirebaseService {
       end_date: end_date,
       frequency: frequency,
     });
+
+    let validDates = this.getDates(new Date(start_date), new Date(end_date), frequency);
+        for (let i = 0; i < validDates.length; i++) {
+          let flag = false;
+          for(let j = 0; j < this.eventTypesCool[event_type]; j++){
+            var a = this.db.object("event/" + validDates[i] + event_type + this.pad(j+1, 2)).valueChanges().subscribe((news:any) => {
+              //console.log(news.uid);
+                if(news.uid == user_id[0]){
+                  console.log("in here: " + news.uid);
+                  flag = true;
+                } else if (flag == false && news.uid == "nan"){
+                  flag = true;
+                  console.log("in here:" + validDates[i] + event_type + this.pad(j+1, 2) + " " + flag );
+                  this.addUserToEvent(validDates[i] + event_type + this.pad(j+1, 2), user_id[1], user_id[2], user_id[0]);
+                }
+              });
+              await this.delay(500);
+          }
+        }
+
     console.log("EVENT CREATED");
   }
+
+delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+getDates(firstDate, lastDate, freq) {
+    let validDates = [];
+    //console.log("First date: " + firstDate.toString() + ", Last date: " + lastDate.toString());
+    while (firstDate <= lastDate) {
+        //push the first Date
+        validDates.push(this.getDateNumber(firstDate));
+        //console.log(firstDate);
+        //console.log(freq);
+        let incrementInMilliseconds = (freq) * 7 * 24 * 60 * 60 * 1000;
+        firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
+        //console.log(firstDate);
+    }
+    console.log(validDates);
+    return validDates;
+}
+pad(num, size) {
+    let s = num + "";
+    while (s.length < size)
+        s = "0" + s;
+    return s;
+}
+getDateString(dateval) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var dayName = days[dateval.getDay()];
+    var monthName = months[dateval.getMonth()];
+    var dateString = dayName + ", " + monthName + " " + dateval.getDate() + ", " + dateval.getFullYear();
+    return dateString;
+}
+
+getDateNumber(date) {
+    let month = "";
+    let day = "";
+    if (date.getMonth() + 1 < 10) {
+        month = "0" + (date.getMonth() + 1).toString();
+    }
+    else {
+        month = (date.getMonth() + 1).toString();
+    }
+    if (date.getDate() < 10) {
+        day = "0" + date.getDate().toString();
+    }
+    else {
+        day = date.getDate().toString();
+    }
+    let dateString = (date.getFullYear().toString()).substring(2, 4) + month + day;
+    let intDate = +dateString;
+    return intDate;
+}
 
   addPermanentVolunteerEvents(
     associatedPermanentEvents: [],

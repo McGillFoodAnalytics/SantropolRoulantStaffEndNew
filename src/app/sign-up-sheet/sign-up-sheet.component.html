@@ -83,7 +83,6 @@
                                 <app-event-sign-up-table [slots]="day.value.slots"
                                                          [id]="day.value.slots[0].id"
                                                          [eventType]="coolEvent"
-                                                         [volunteerList]="volunteerList"
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>
@@ -169,7 +168,6 @@
                                 <app-event-sign-up-table [slots]="day.value.slots"
                                                          [id]="day.value.slots[0].id"
                                                          [eventType]="coolEvent"
-                                                         [volunteerList]="volunteerList"
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>
@@ -248,7 +246,6 @@
                             <div class="card-body" style="width: 100%;">
                                 <app-event-sign-up-table [slots]="day.value.slots"
                                                          [eventType]="currentEvent"
-                                                         [volunteerList]="volunteerList"
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>

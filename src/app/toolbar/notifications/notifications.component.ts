@@ -15,12 +15,12 @@ export class NotificationsComponent implements OnInit {
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.db.list('event')
-           .stateChanges(['child_changed'])
-           .subscribe(change => {
-             const updated_event = {id: change.payload.key, ...(change.payload.val() as {})};
-             this.notifications.push(this.getNotificationMsg(updated_event));
-           });
+    // this.db.list('event')
+    //        .stateChanges(['child_changed'])
+    //        .subscribe(change => {
+    //          const updated_event = {id: change.payload.key, ...(change.payload.val() as {})};
+    //          this.notifications.push(this.getNotificationMsg(updated_event));
+    //        });
   }
 
   getNotificationMsg(event) {

@@ -141,7 +141,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   formatEventDates() {
-    const events_per_week = 124;
+    const events_per_week = 125;
     this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
@@ -351,7 +351,7 @@ export class SignUpSheetComponent implements OnInit {
         this.addEmptyThursday(this.week2[currentEventValue]);
       }
       return this.week2[currentEventValue];
-    } 
+    }
     else {
       return this.week3[currentEventValue];
     }
