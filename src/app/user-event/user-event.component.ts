@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { FirebaseService } from "../firebase-service.service";
@@ -29,7 +29,6 @@ export class UserEventComponent implements OnInit {
   cancelledEventsUser: any;
   elementA: any;
   element: any;
-  //status: boolean;
   user: any;
   private myForm: FormGroup;
   private model = new User();
@@ -37,6 +36,7 @@ export class UserEventComponent implements OnInit {
   private modalReference;
 
   @Input() userId: string;
+  @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private modalService: NgbModal,
@@ -52,6 +52,7 @@ export class UserEventComponent implements OnInit {
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
       this.model = element;
+      this.checkBox();
     });
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
@@ -65,9 +66,9 @@ export class UserEventComponent implements OnInit {
       address_postal_code: ["", Validators.required],
       email: ["", Validators.required],
       phone_number: ["", Validators.required],
-      emergency_contact_name: ["", Validators.required],
-      emergency_relationship: ["", Validators.required],
-      emergency_contact_number: ["", Validators.required],
+      emergency_contact_name: ["", ],
+      emergency_relationship: ["", ],
+      emergency_contact_number: ["",],
     });
   }
 
@@ -139,7 +140,6 @@ export class UserEventComponent implements OnInit {
         return true;
       }
     }
-
     return false;
   }
 
@@ -171,59 +171,58 @@ export class UserEventComponent implements OnInit {
   }
 
   formatEventId(eventId: string) {
-    let code1 = eventId.substring(0, 6);
-    let day = code1.substring(4);
-    let month = code1.substring(2,4);
-    let year = code1.substring(0,2);
-    let date = month + '/' + day + '/' + year;
-    
     let code2 = eventId.substring(11);
     let event = eventId.substring(6, 11);
     let newId;
     switch (event) {
       case "kitam":
-        newId = date + " Kitchen AM-" + code2;
+        newId =  " Kitchen AM-" + code2;
         break;
       case "kitpm":
-        newId = date + " Kitchen PM-" + code2;
+        newId = " Kitchen PM-" + code2;
         break;
       case "deldr":
-        newId = date + " Delivery Driver-" + code2;
+        newId = " Delivery Driver-" + code2;
         break;
       case "deliv":
-        newId = date + " Delivery-" + code2;
+        newId = " Delivery-" + code2;
         break;
       case "kitas":
-        newId = date + " Kitchen AM Sat-" + code2;
+        newId = " Kitchen AM Sat-" + code2;
         break;
       case "kitps":
-        newId = date + " Kitchen PM Sat-" + code2;
+        newId = " Kitchen PM Sat-" + code2;
         break;
       case "delds":
-        newId = date + " Delivery Driver Sat-" + code2;
+        newId = " Delivery Driver Sat-" + code2;
         break;
       case "delis":
-        newId = date + " Delivery Sat-" + code2;
+        newId = " Delivery Sat-" + code2;
         break;
     }
     return newId;
   }
 
   prettifyNumber(str: string) {
-    if (str == null) {
+    if (str == null || str == "") {
       return "-";
     }
-    let a = str.substring(0, 3);
-    let b = str.substring(3, 6);
-    let c = str.substring(6, 10);
-    let phoneNumber = "(" + a + ") " + b + "-" + c;
-    return phoneNumber;
+    if(str.length == 10){
+      let a = str.substring(0, 3);
+      let b = str.substring(3, 6);
+      let c = str.substring(6, 10);
+      let phoneNumber = "(" + a + ") " + b + "-" + c;
+      return phoneNumber;
+    }
+    else{
+      return str;
+    }
   }
 
   emergency(user) {
     let contact_name;
     let contact_rel;
-    if (user.emergency_contact_name == null) {
+    if (user.emergency_contact_name == null || user.emergency_contact_name == "") {
       return "-";
     } else {
       contact_name = user.emergency_contact_name;
@@ -263,5 +262,45 @@ export class UserEventComponent implements OnInit {
       this.updateUser(this.model);
       this.modalReference.close();
     }
+  }
+
+  checkBox(){
+    if(this.element.active_status || this.element.active_status == null){
+      let statusCheckBox = document.getElementById("statusCheck") as HTMLInputElement;
+      statusCheckBox.checked = true;
+    }
+  }
+
+  formatEventDate(eventId: string) {
+    let code1 = eventId.substring(0, 6);
+    let day = code1.substring(4);
+    let month = code1.substring(2,4);
+    let year = code1.substring(0,2);
+    let date = month + '/' + day + '/' + year;
+    return date;
+  }
+
+  onRemoveUserFromEvent(id: string) {
+    this.firebase.removeUserFromEvent(id);
+    this.removeUserFromEvent.emit(id);
+  }
+
+  formatEventType(eventType: string){
+    let newId;
+    switch (eventType) {
+      case "kitam":
+        newId = "Kitchen AM";
+        break;
+      case "kitpm":
+        newId = "Kitchen PM";
+        break;
+      case "deldr":
+        newId = "Delivery Driver";
+        break;
+      case "deliv":
+        newId = " Delivery";
+        break;
+    }
+    return newId;
   }
 }

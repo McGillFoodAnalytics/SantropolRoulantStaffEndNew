@@ -17,13 +17,16 @@ export class NewUserComponent implements OnInit {
   private myForm: FormGroup;
   private modalReference;
   private today: Date;
-  //disabledAgreement: boolean = true;
 
   constructor(private modalService: NgbModal, private db: AngularFireDatabase, private formBuilder: FormBuilder) {
     this.today = new Date();
   }
 
   ngOnInit() {
+    this.model.emergency_contact_name = "";
+    this.model.emergency_relationship = "";
+    this.model.emergency_contact_number = "";
+
    this.myForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -34,9 +37,9 @@ export class NewUserComponent implements OnInit {
       address_postal_code: ['', Validators.required],
       email: ['', Validators.required],
       phone_number: ['', Validators.required],
-      emergency_contact_name: ['', Validators.required],
-      emergency_relationship: ['', Validators.required],
-      emergency_contact_number: ['', Validators.required]
+      emergency_contact_name: [""],
+      emergency_relationship: [""],
+      emergency_contact_number: [""]
     });
   }
 
