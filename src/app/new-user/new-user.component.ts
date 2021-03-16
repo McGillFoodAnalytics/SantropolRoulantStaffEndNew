@@ -46,7 +46,7 @@ export class NewUserComponent implements OnInit {
   open(content) {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
   }
-  
+
 
   newUser(user: any): void {
   user.id = user.first_name.charAt(0).toLowerCase() + user.last_name.charAt(0).toLowerCase() + user.phone_number;
@@ -60,6 +60,7 @@ export class NewUserComponent implements OnInit {
       email: user.email,
       first_name: user.first_name,
       key: user.id,
+      active_status: true,
       last_name: user.last_name,
       no_show: 0,
       phone_number: user.phone_number,
