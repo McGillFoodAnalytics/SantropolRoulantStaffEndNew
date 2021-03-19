@@ -78,122 +78,7 @@
   </div>
 </ng-template>
 
-<ng-template #content2 >
-  <section class="editProfile" id="editProfile" >
-    <form 
-      name="editForm"
-      class="form"
-      (ngSubmit)="onSave()"
-      *ngIf="myForm"
-      [formGroup]="myForm"
-    >
-      <input
-        value="{{ element.email }}"
-        id="editInput1"
-        email="true"
-        formControlName="email"
-        [(ngModel)]="model.email"
-        required
-      />
-      <div class="input-group">
-      <input
-        value="{{ element.address_number }}"
-        id="editInput2"
-        formControlName="address_number"
-        [(ngModel)]="model.address_number"
-        placeholder="Number"
-        required
-      />
-
-      <input
-        value="{{ element.address_street }}"
-        id="editInput3"
-        formControlName="address_street"
-        [(ngModel)]="model.address_street"
-        placeholder="Street"
-        required
-      />
-
-      <input
-        value="{{ element.address_city }}"
-        id="editInput4"
-        formControlName="address_city"
-        [(ngModel)]="model.address_city"
-        placeholder="City"
-        required
-      />
-
-      <input
-        value="{{ element.address_postal_code }}"
-        id="editInput5"
-        formControlName="address_postal_code"
-        [(ngModel)]="model.address_postal_code"
-        placeholder="Postal code"
-        required
-      />
-    </div>
-
-      <input
-        [matDatepicker]="picker"
-        [max]="today"
-        id="editDate"
-        formControlName="dob"
-        [(ngModel)]="model.dob"
-        required
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="picker"
-        id="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker ></mat-datepicker>
-     
-      <input
-        ng-model="name"
-        id="editInput6"
-        value="{{ element.phone_number }}"
-        [(ngModel)]="model.phone_number"
-        formControlName="phone_number"
-        type="tel"
-        required
-      />
-      
-      <div class="input-group group2">
-      <input
-        value="{{ element.emergency_contact_name }}"
-        id="editInput7"
-        [(ngModel)]="model.emergency_contact_name"
-        formControlName="emergency_contact_name"
-        placeholder="Contact Name"
-      />
-
-      <input
-        value="{{ element.emergency_relationship }}"
-        id="editInput8"
-        formControlName="emergency_relationship"
-        [(ngModel)]="model.emergency_relationship"
-        placeholder="Emergency Relationship"
-      />
-    </div>
-
-      <input
-        value="{{ element.emergency_contact_number }}"
-        id="editInput9"
-        formControlName="emergency_contact_number"
-        [(ngModel)]="model.emergency_contact_number"
-        type="tel"
-      />
-    </form>
-    <button class="button" mat-menu-item (click)="onSave()" type="submit" id="saveBtn">
-      <mat-icon>save</mat-icon>
-      <span>Save</span>
-    </button>
-  </section>
-
-  
-</ng-template>
-
-<div class="modal-body" id="profile">
+<div class="modal-body profile">
   <table class="table">
     <tbody>
       <h4>{{ element.first_name }} {{ element.last_name }}</h4>
@@ -216,15 +101,129 @@
         <mat-icon style="margin-left: -10px;">history</mat-icon>
         <span>View Events</span>
       </button>
+
+      <div class="editBtn">
       <button
-        mat-menu-item
-        (click)="open(content2)"
-        onclick="this.blur()"
         id="editBtn"
+        mat-menu-item
+        (click)="openEditForm()"
+        onclick="this.blur()"
       >
         <mat-icon style="margin-left: -10px;">edit</mat-icon>
         <span>Edit Profile</span>
       </button>
+      <div *ngIf="displayForm">
+            <form  
+              name="editForm"
+              class="form"
+              (ngSubmit)="onSave()"
+              *ngIf="myForm"
+              [formGroup]="myForm"
+            >
+              <input
+                value="{{ element.email }}"
+                id="editInput1"
+                email="true"
+                formControlName="email"
+                [(ngModel)]="model.email"
+                required
+              />
+              <div class="input-group">
+              <input
+                value="{{ element.address_number }}"
+                id="editInput2"
+                formControlName="address_number"
+                [(ngModel)]="model.address_number"
+                placeholder="Number"
+                required
+              />
+        
+              <input
+                value="{{ element.address_street }}"
+                id="editInput3"
+                formControlName="address_street"
+                [(ngModel)]="model.address_street"
+                placeholder="Street"
+                required
+              />
+        
+              <input
+                value="{{ element.address_city }}"
+                id="editInput4"
+                formControlName="address_city"
+                [(ngModel)]="model.address_city"
+                placeholder="City"
+                required
+              />
+        
+              <input
+                value="{{ element.address_postal_code }}"
+                id="editInput5"
+                formControlName="address_postal_code"
+                [(ngModel)]="model.address_postal_code"
+                placeholder="Postal code"
+                required
+              />
+            </div>
+        
+              <input
+                [matDatepicker]="picker"
+                [max]="today"
+                id="editDate"
+                formControlName="dob"
+                [(ngModel)]="model.dob"
+                required
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+                id="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker ></mat-datepicker>
+             
+              <input
+                ng-model="name"
+                id="editInput6"
+                value="{{ element.phone_number }}"
+                [(ngModel)]="model.phone_number"
+                formControlName="phone_number"
+                type="tel"
+                required
+              />
+              
+              <div class="input-group group2">
+              <input
+                value="{{ element.emergency_contact_name }}"
+                id="editInput7"
+                [(ngModel)]="model.emergency_contact_name"
+                formControlName="emergency_contact_name"
+                placeholder="Contact Name"
+              />
+        
+              <input
+                value="{{ element.emergency_relationship }}"
+                id="editInput8"
+                formControlName="emergency_relationship"
+                [(ngModel)]="model.emergency_relationship"
+                placeholder="Emergency Relationship"
+              />
+            </div>
+        
+              <input
+                value="{{ element.emergency_contact_number }}"
+                id="editInput9"
+                formControlName="emergency_contact_number"
+                [(ngModel)]="model.emergency_contact_number"
+                type="tel"
+              />
+            </form>
+            <button class="button" mat-menu-item (click)="onSave()" type="submit" id="saveBtn">
+              <mat-icon>save</mat-icon>
+              <span>Save</span>
+            </button>
+            </div>
+      </div>
+
       <tr>
         <td id="colored">
           <mat-icon >account_box</mat-icon>
@@ -240,51 +239,51 @@
       <tr>
         <td id="colored">
           <mat-icon>email</mat-icon>
-          <pre>Email:<text>{{ element.email }} </text></pre>
+          <pre>Email:<text *ngIf="!displayForm">{{ element.email }} </text></pre>
         </td>
       </tr>
       <tr>
         <td >
           <mat-icon>home</mat-icon>
           <pre>
-Address:<text>{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</text></pre>
+Address:<text *ngIf="!displayForm">{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</text></pre>
         </td>
       </tr>
       <tr>
         <td id="colored">
           <mat-icon>cake</mat-icon>
           <pre>
- Date of Birth:<text >{{formatDate(element.dob)}}</text></pre>
+ Date of Birth:<text *ngIf="!displayForm">{{formatDate(element.dob)}}</text></pre>
         </td>
       </tr>
       <tr>
         <td>
           <mat-icon>phone_android</mat-icon>
           <pre>
-Phone Number:<text>{{prettifyNumber(element.phone_number)}}</text></pre>
+Phone Number:<text *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}</text></pre>
         </td>
       </tr>
       <tr>
         <td id="colored">
           <mat-icon>local_hospital</mat-icon>
           <pre>
- Emergency Contact:<text>{{ emergency(element) }}</text></pre>
+ Emergency Contact:<text *ngIf="!displayForm">{{ emergency(element) }}</text></pre>
         </td>
       </tr>
       <tr>
         <td>
           <mat-icon>perm_device_information</mat-icon>
           <pre>
-Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
+Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
         </td>
       </tr>
     </tbody>
   </table>
 
+<div class="cancellation">
   <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
-
-  <div id="scrollable-area">
-  <table class="table" *ngIf="cancelledEventsUser.length != 0">
+  <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0">
+  <table class="table" >
     <thead class="thead-dark">
       <tr>
         <th scope="col">Date </th>
@@ -300,6 +299,7 @@ Emergency Number:<text>{{ prettifyNumber(element.emergency_contact_number) }}</t
       </tr>
     </tbody>
   </table>
-</div>
+  </div>
+ </div>
 </div>
 

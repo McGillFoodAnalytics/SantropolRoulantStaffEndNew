@@ -30,9 +30,9 @@ export class UserEventComponent implements OnInit {
   elementA: any;
   element: any;
   user: any;
+  displayForm: boolean;
   private myForm: FormGroup;
   private model = new User();
-
   private modalReference;
 
   @Input() userId: string;
@@ -46,6 +46,7 @@ export class UserEventComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.displayForm = false;
     this.events = this.firebase.getEvents();
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
@@ -81,6 +82,10 @@ export class UserEventComponent implements OnInit {
       ariaLabelledBy: "modal-basic-title",
       size: "lg",
     });
+  }
+
+  openEditForm(){
+    this.displayForm = !this.displayForm;
   }
 
   prettify(str: string) {
@@ -256,11 +261,10 @@ export class UserEventComponent implements OnInit {
   }
 
   onSave() {
-    //console.log(this.model.phone_number);
     this.myForm.markAllAsTouched();
     if (this.myForm.valid) {
       this.updateUser(this.model);
-      this.modalReference.close();
+      this.displayForm = !this.displayForm;
     }
   }
 
