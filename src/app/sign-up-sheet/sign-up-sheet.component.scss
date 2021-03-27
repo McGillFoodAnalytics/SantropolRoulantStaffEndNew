@@ -122,11 +122,10 @@ tr.element-row:not(.expanded-row):active {
 
 #cardTitle {
   width: 12vw;
-  font-size: 0.96vw;
+  font-size: 0.9vw;
 }
 
 #cardTitle3 {
-  
   font-size: 0.96vw;
 }
 
@@ -183,4 +182,29 @@ h3 {
 
 .eventCardImportant {
   border: 2px solid #f24a5a !important;
+}
+
+#loaderBackground{
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #60a4ff; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  position: fixed; 
+  top: 45%;
+  left: 45%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

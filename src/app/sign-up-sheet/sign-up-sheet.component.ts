@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import {
-  trigger,
+import {trigger,
   state,
   style,
   animate,
@@ -66,20 +65,12 @@ export class SignUpSheetComponent implements OnInit {
     "Kitchen PM": "kitpm",
     "Delivery Driver": "deldr",
     "Delivery": "deliv",
-    // "Kitcham AM Sat": "kitas",
-    // "Kitchem PM Sat": "kitps",
-    // "Delivery Driver Sat": "delds",
-    // "Delivery Sat": "delis",
   };
   eventTypesCool = {
     "kitam": "Kitchen AM",
     "kitpm": "Kitchen PM",
     "deldr": "Delivery Driver",
     "deliv": "Delivery",
-    // "Kitcham AM Sat": "kitas",
-    // "Kitchem PM Sat": "kitps",
-    // "Delivery Driver Sat": "delds",
-    // "Delivery Sat": "delis",
   };
   eventArray = ["Kitchen AM", "Kitchen PM", "Delivery Driver", "Delivery"];
 
@@ -90,7 +81,6 @@ export class SignUpSheetComponent implements OnInit {
   constructor(private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
-
     this.events = this.fs.getEvents();
     this.fs.getEvents().subscribe(snapshots => {
       // snapshots.forEach(element => {
@@ -109,11 +99,18 @@ export class SignUpSheetComponent implements OnInit {
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-
     });
+    this.removeLoading();
   }
 
-
+  removeLoading(){
+    var spinner = document.getElementById("spinner");
+    var spinnerBackgrond = document.getElementById("loaderBackground");
+        setTimeout(function(){
+          spinner.style.display = "none";
+          spinnerBackgrond.style.display = "none";
+        }, 1400); 
+  }
 
   prettify(str: string) {
     let string = str.replace('_', ' ');
