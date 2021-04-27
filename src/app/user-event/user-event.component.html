@@ -166,12 +166,13 @@
               />
             </div>
         
-              <input
+              <input 
                 [matDatepicker]="picker"
                 [max]="today"
                 id="editDate"
                 formControlName="dob"
                 [(ngModel)]="model.dob"
+                placeholder="mm/dd/yyyy"
                 required
               />
               <mat-datepicker-toggle

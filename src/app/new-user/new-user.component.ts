@@ -26,8 +26,9 @@ export class NewUserComponent implements OnInit {
     this.model.emergency_contact_name = "";
     this.model.emergency_relationship = "";
     this.model.emergency_contact_number = "";
+    var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
-   this.myForm = this.formBuilder.group({
+    this.myForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       dob: ['', Validators.required],
@@ -36,7 +37,7 @@ export class NewUserComponent implements OnInit {
       address_city: ['', Validators.required],
       address_postal_code: ['', Validators.required],
       email: ['', Validators.required],
-      phone_number: ['', Validators.required],
+      phone_number: ['', Validators.pattern(phoneNumPattern)],
       emergency_contact_name: [""],
       emergency_relationship: [""],
       emergency_contact_number: [""]

@@ -4,7 +4,6 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { FirebaseService } from "../firebase-service.service";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
-import { map } from "rxjs/operators";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
 
@@ -59,6 +58,8 @@ export class UserEventComponent implements OnInit {
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
 
+    var phoneNumPattern = new RegExp("^[0-9]{10}$");
+
     this.myForm = this.formBuilder.group({
       dob: ["", Validators.required],
       address_number: ["", Validators.required],
@@ -66,7 +67,7 @@ export class UserEventComponent implements OnInit {
       address_city: ["", Validators.required],
       address_postal_code: ["", Validators.required],
       email: ["", Validators.required],
-      phone_number: ["", Validators.required],
+      phone_number: ["", Validators.pattern(phoneNumPattern)],
       emergency_contact_name: ["", ],
       emergency_relationship: ["", ],
       emergency_contact_number: ["",],
@@ -154,16 +155,21 @@ export class UserEventComponent implements OnInit {
       return "";
     }
     if (date.constructor == Date) {
-      let month = date.getMonth().toString();
+      let month = date.toLocaleString('default', { month: 'long' });
       let day = date.getDate().toString();
       let year = date.getFullYear().toString();
 
-      return month + "/" + day + "/" + year;
-    } else if (date.constructor == String) {
+      return month + " " + day + ", " + year;
+    } 
+    else if (date.constructor == String) {
       const year = date.substring(0, 4);
       const month = date.substring(5, 7);
       const day = date.substring(8, 10);
-      date = month + "/" + day + "/" + year;
+      console.log(parseInt(month));
+      const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+      let month2 = newDate.toLocaleString('default', { month: 'long' });
+      date =  month2 + " " + day + ", " + year;;
       return date;
     }
   }
