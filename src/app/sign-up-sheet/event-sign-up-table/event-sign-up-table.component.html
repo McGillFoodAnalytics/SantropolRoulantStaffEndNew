@@ -8,10 +8,12 @@
     </ng-container> -->
     <!-- Volunteer Column -->
     <ng-container matColumnDef="volunteer">
-      <div *ngIf="id == 'N/A'; else vol"><th mat-header-cell *matHeaderCellDef >No Event</th></div>
+      <div *ngIf="id == 'N/A'; else vol"><th mat-header-cell *matHeaderCellDef >No Event</th>
+      </div>
         <th mat-header-cell *matHeaderCellDef #vol > Volunteer </th>
         <td mat-cell *matCellDef="let element">
-          <div style="height: 1px;" *ngIf="id == 'N/A'; else shortNote" ></div>
+          <div class="emptyBlockKitchenAM" *ngIf="id == 'N/A' && eventType == 'Kitchen AM'; else emptyOther" ></div>
+          <div #emptyOther class="emptyBlock" *ngIf="id == 'N/A' && eventType != 'Kitchen AM'; else shortNote" ></div>
           <div #shortNote style="font-size: 10px !important; margin-left: -5px;" *ngIf="element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 20; else noNote"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>
           <ng-template #noNote>
             <div style="font-size: 10px !important; margin-left: -5px;" *ngIf="element.staff_note == null || element.staff_note.length == 0; else longNote"> {{ element.first_name }} {{ element.last_name }} </div>

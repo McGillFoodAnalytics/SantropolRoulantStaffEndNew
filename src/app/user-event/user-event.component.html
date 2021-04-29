@@ -15,25 +15,6 @@
   <div class="modal-body">
     <!-- 2 tabs avec chacune un mat table des events (soit past soit current) -->
     <mat-tab-group>
-      <mat-tab label="Past Events">
-        <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
-          This volunteer doesn't have any past events!
-        </h2>
-        <table class="table" *ngIf="pastEventsUser.length != 0">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let event of pastEventsUser">
-              <td>{{ event.event_date_txt }}</td>
-              <td>{{ formatEventType(event.event_type) }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-tab>
       <mat-tab label="Current Events">
         <h2 id="no_event" *ngIf="currentEventsUser.length == 0">
           This volunteer doesn't have any upcoming events!
@@ -67,6 +48,25 @@
                 (confirmRemove)="onRemoveUserFromEvent(event.id)">
     </app-remove-user-from-event>
               </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Past Events">
+        <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
+          This volunteer doesn't have any past events!
+        </h2>
+        <table class="table" *ngIf="pastEventsUser.length != 0">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of pastEventsUser">
+              <td>{{ event.event_date_txt }}</td>
+              <td>{{ formatEventType(event.event_type) }}</td>
             </tr>
           </tbody>
         </table>
@@ -121,6 +121,7 @@
                 value="{{ element.email }}"
                 id="editInputEmail"
                 email="true"
+                type="email"
                 formControlName="email"
                 [(ngModel)]="model.email"
                 required

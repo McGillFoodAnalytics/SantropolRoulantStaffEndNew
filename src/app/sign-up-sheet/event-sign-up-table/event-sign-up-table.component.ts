@@ -29,6 +29,7 @@ export class EventSignUpTableComponent implements OnInit {
   constructor(private modalService: ModalService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+    console.log(this.eventType);
     this.dataSource = new MatTableDataSource(this.slots);
     this.fs.getUsers().subscribe(val=>{
       this.volunteerList = val;

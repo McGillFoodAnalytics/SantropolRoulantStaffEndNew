@@ -70,7 +70,7 @@ export class UserEventComponent implements OnInit {
       phone_number: ["", Validators.pattern(phoneNumPattern)],
       emergency_contact_name: ["", ],
       emergency_relationship: ["", ],
-      emergency_contact_number: ["",],
+      emergency_contact_number: ["", Validators.pattern(phoneNumPattern)],
     });
   }
 

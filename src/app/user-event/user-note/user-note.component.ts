@@ -15,6 +15,8 @@ export class UserNoteComponent implements OnInit {
   constructor(private firebase: FirebaseService) {}
 
   ngOnInit(): void {
+
+    // Get the note of the current user's profile
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.currentUserNote = element.note;
       console.log(this.currentUserNote);
@@ -22,6 +24,7 @@ export class UserNoteComponent implements OnInit {
 
   }
 
+  // Update user with new note
   saveNote(){
     this.firebase.updateUserNote(this.userId, this.userNote);
   }

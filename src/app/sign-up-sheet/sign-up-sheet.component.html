@@ -90,16 +90,6 @@
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>
-                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}
-                                                <div *ngIf="day.value.num_volunteers === 0; else volunteersRegistered" style="text-align:center"> No volunteers registered </div>
-                                                <ng-template #volunteersRegistered>
-                                                    <ul class="list-group list-group-flush" *ngFor="let slot of day.value.slots">
-                                                        <li class="list-group-item" *ngIf="slot.first_name">{{slot.first_name}} {{slot.last_name}}
-                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]="currentEvent" (onConfirm)="removeUserFromEvent(slot.id)" matTooltip="Click to remove this volunteer from this event"></app-remove-user-from-event>
-                                                            <app-permanent-volunteer [isPermanent]="isPermanentEvent(slot)" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]="currentEvent" (onPermanentVolunteerEvent)="permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)"></app-permanent-volunteer>
-                                                        </li>
-                                                    </ul>
-                                                </ng-template> -->
                             </div>
                             <div class="card-footer" style="text-align: center;" *ngIf='day.value.slots[0].id != "N/A"'>
                                 <img class="img-important-event-true"
@@ -117,10 +107,6 @@
                                          (click)="changeEventImportanceCool(day.key, coolEvent)"
                                          matTooltip="Click to mark this event as important" />
                                 </ng-template>
-                                <!-- <app-add-user-to-event *ngIf="day.value.num_volunteers < day.value.num_slots; else fullEvent" [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="false" (onAddUser)="addUserToEvent($event, day.value)" style="cursor: pointer;"  matTooltip="Click to add a volunteer to this event"></app-add-user-to-event>
-                                                <ng-template #fullEvent>
-                                                  <app-add-user-to-event [volunteerList]="volunteerList" date={{day.value.slots[0].event_date_txt}} [eventType]="currentEvent" [fullEvent]="true" (onAddUser)="addUserToEvent($event, day.value)" style="opacity:0.4"></app-add-user-to-event>
-                                                </ng-template> -->
                                 <app-event-note date="{{ day.value.slots[0].event_date_txt }}"
                                                 [eventType]="coolEvent"
                                                 eventNote="{{ day.value.slots[0].event_note }}"
