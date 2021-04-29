@@ -149,7 +149,7 @@ export class UserEventComponent implements OnInit {
     return false;
   }
 
-  //useful method
+  //Used for birthdate
   formatDate(date) {
     if (date == null) {
       return "";
@@ -162,14 +162,21 @@ export class UserEventComponent implements OnInit {
       return month + " " + day + ", " + year;
     } 
     else if (date.constructor == String) {
+      let month, day;
       const year = date.substring(0, 4);
-      const month = date.substring(5, 7);
-      const day = date.substring(8, 10);
-      console.log(parseInt(month));
+      if (date.length == 8){
+        month = date.substring(4, 6);
+        day = date.substring(6, 8);
+      }
+      else{
+        month = date.substring(5, 7);
+        day = date.substring(8, 10);
+      }
+      // Create Date type to extract month in string format easily
       const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-
-      let month2 = newDate.toLocaleString('default', { month: 'long' });
-      date =  month2 + " " + day + ", " + year;;
+      let monthName = newDate.toLocaleString('default', { month: 'long' });
+      date =  monthName + " " + day + ", " + year;
+      
       return date;
     }
   }
@@ -178,7 +185,11 @@ export class UserEventComponent implements OnInit {
     let year = "20" + date.substring(0, 2);
     let day = date.substring(6);
     let month = date.substring(3, 5);
-    return month + "/" + day + "/" + year;
+    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    let month2 = newDate.toLocaleString('default', { month: 'long' });
+    date =  month2 + " " + day + ", " + year;
+    return date;
   }
 
   formatEventId(eventId: string) {
@@ -274,6 +285,7 @@ export class UserEventComponent implements OnInit {
     }
   }
 
+  // Method to check the box of volunteer if they are have active status
   checkBox(){
     if(this.element.active_status || this.element.active_status == null){
       let statusCheckBox = document.getElementById("statusCheck") as HTMLInputElement;
@@ -282,11 +294,19 @@ export class UserEventComponent implements OnInit {
   }
 
   formatEventDate(eventId: string) {
+    // code1 is the part of the eventId that contains data specific to date
     let code1 = eventId.substring(0, 6);
+
     let day = code1.substring(4);
     let month = code1.substring(2,4);
-    let year = code1.substring(0,2);
-    let date = month + '/' + day + '/' + year;
+    let year = "20" + code1.substring(0,2);
+  
+    // Create Date type to extract month in string format easily
+    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    // MonthName is the month in plain language, i.e. January
+    let monthName = newDate.toLocaleString('default', { month: 'long' });
+    let date =  monthName + " " + day + ", " + year;
     return date;
   }
 
