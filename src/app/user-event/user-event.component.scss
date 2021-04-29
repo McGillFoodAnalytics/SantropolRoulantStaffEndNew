@@ -135,7 +135,7 @@ input {
 ::placeholder {
   font-size: 12px;
 }
-#editInput1 {
+#editInputEmail {
   width: 16vw;
   position: fixed;
   top: 200px;
@@ -143,22 +143,22 @@ input {
   border: 1px solid lightgray;
 }
 
-#editInput2 {
+#editInputAddrNum {
   width: 6vw;
   border: 1px solid lightgray;
 }
 
-#editInput3 {
+#editInputAddrStr {
   width: 10vw;
   border: 1px solid lightgray;
 }
 
-#editInput4 {
+#editInputAddrCity {
   width: 10vw;
   border: 1px solid lightgray;
 }
 
-#editInput5 {
+#editInputPostal {
   width: 7vw;
   border: 1px solid lightgray;
 }
@@ -176,7 +176,7 @@ input {
   left: 420px;
 }
 
-#editInput6 {
+#editInputPhone {
   width: 170px;
   position: fixed;
   top: 348px;
@@ -184,17 +184,17 @@ input {
   border: 1px solid lightgray;
 }
 
-#editInput7 {
+#editInputEmergName {
   width: 12vw;
   border: 1px solid lightgray;
 }
 
-#editInput8 {
+#editInputEmergRel {
   width: 12vw;
   border: 1px solid lightgray;
 }
 
-#editInput9 {
+#editInputEmergNum {
   width: 170px;
   position: fixed;
   top: 449px;

@@ -119,7 +119,7 @@
             >
               <input
                 value="{{ element.email }}"
-                id="editInput1"
+                id="editInputEmail"
                 email="true"
                 formControlName="email"
                 [(ngModel)]="model.email"
@@ -128,7 +128,7 @@
               <div class="input-group">
               <input
                 value="{{ element.address_number }}"
-                id="editInput2"
+                id="editInputAddrNum"
                 formControlName="address_number"
                 [(ngModel)]="model.address_number"
                 placeholder="Number"
@@ -137,7 +137,7 @@
         
               <input
                 value="{{ element.address_street }}"
-                id="editInput3"
+                id="editInputAddrStr"
                 formControlName="address_street"
                 [(ngModel)]="model.address_street"
                 placeholder="Street"
@@ -146,7 +146,7 @@
         
               <input
                 value="{{ element.address_city }}"
-                id="editInput4"
+                id="editInputAddrCity"
                 formControlName="address_city"
                 [(ngModel)]="model.address_city"
                 placeholder="City"
@@ -155,7 +155,7 @@
         
               <input
                 value="{{ element.address_postal_code }}"
-                id="editInput5"
+                id="editInputPostal"
                 formControlName="address_postal_code"
                 [(ngModel)]="model.address_postal_code"
                 placeholder="Postal code"
@@ -181,7 +181,7 @@
              
               <input
                 ng-model="name"
-                id="editInput6"
+                id="editInputPhone"
                 value="{{ element.phone_number }}"
                 [(ngModel)]="model.phone_number"
                 formControlName="phone_number"
@@ -192,7 +192,7 @@
               <div class="input-group group2">
               <input
                 value="{{ element.emergency_contact_name }}"
-                id="editInput7"
+                id="editInputEmergName"
                 [(ngModel)]="model.emergency_contact_name"
                 formControlName="emergency_contact_name"
                 placeholder="Contact Name"
@@ -200,7 +200,7 @@
         
               <input
                 value="{{ element.emergency_relationship }}"
-                id="editInput8"
+                id="editInputEmergRel"
                 formControlName="emergency_relationship"
                 [(ngModel)]="model.emergency_relationship"
                 placeholder="Emergency Relationship"
@@ -209,7 +209,7 @@
         
               <input
                 value="{{ element.emergency_contact_number }}"
-                id="editInput9"
+                id="editInputEmergNum"
                 formControlName="emergency_contact_number"
                 [(ngModel)]="model.emergency_contact_number"
                 type="tel"
@@ -300,4 +300,6 @@ Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_
   </div>
  </div>
 </div>
+
+<app-user-note [userId] = "userId"></app-user-note>
 

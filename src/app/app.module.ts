@@ -90,6 +90,7 @@ import { NewScheduleComponent } from './sign-up-sheet/new-schedule/new-schedule.
 import { WeekGeneratorComponent } from './week-generator/week-generator.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AccountComponent } from './account/account.component';
+import { UserNoteComponent } from './user-event/user-note/user-note.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -148,7 +149,8 @@ const appRoutes: Routes = [
     NewScheduleComponent,
     WeekGeneratorComponent,
     UserProfileComponent,
-    AccountComponent
+    AccountComponent,
+    UserNoteComponent
   ],
   imports: [
     BrowserModule,

@@ -415,4 +415,11 @@ getDateNumber(date) {
       active_status: isActive,
     });
   }
+
+  updateUserNote(userid: string, newNote: string){
+    console.log(newNote);
+    this.db.object("/user/" + userid).update({
+      note: newNote,
+    });
+  }
 }
