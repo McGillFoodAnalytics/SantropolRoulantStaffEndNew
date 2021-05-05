@@ -17,6 +17,7 @@ export class AddUserToEventComponent implements OnInit {
   private modalReference;
   private displayedColumns: string[] = ['first_name', 'last_name', 'email'];
   private dataSource;
+  private addUser: boolean;
   private selectedRowIndex: Number;
   private selectedRow: any = {};
   @ViewChild('addUserModal', {static: true}) modalTemplate: TemplateRef<any>;
@@ -32,13 +33,9 @@ export class AddUserToEventComponent implements OnInit {
     this.eventType = eventType;
     this.date = date;
     this.event_id = event_id;
-    
+    this.isBefore();
     this.dataSource = new MatTableDataSource(volunteerList);
-    this.modalReference = this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'modal-basic-title',
-                                                                       size: 'lg',
-                                                                       windowClass: 'my-class',
-                                                                       centered: true
-                                                                     });
+    this.modalReference = this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'modal-basic-title', size: 'lg', windowClass: 'my-class', centered: true});
   }
 
   applyFilter(filterValue: string) {
@@ -59,6 +56,22 @@ export class AddUserToEventComponent implements OnInit {
                              this.selectedRow.id);
       this.selectedRowIndex = -1;
       this.selectedRow = {};
+    }
+  }
+
+  isBefore(){
+    let year = "20" + this.event_id.substring(0,2);
+    let month = this.event_id.substring(2,4);
+    let day = this.event_id.substring(4,6);
+    
+    let eventDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    let today = new Date();
+
+    if(today < eventDate){
+      this.addUser = true;
+    }
+    else{
+      this.addUser = false;
     }
   }
 }

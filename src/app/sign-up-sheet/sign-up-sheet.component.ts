@@ -370,7 +370,6 @@ export class SignUpSheetComponent implements OnInit {
     // console.log(month);
     const year = thursday.getFullYear();
     const date = month + "/" + day + "/" + year;
-    console.log(date);
 
     obj[date] = {
       slots: [

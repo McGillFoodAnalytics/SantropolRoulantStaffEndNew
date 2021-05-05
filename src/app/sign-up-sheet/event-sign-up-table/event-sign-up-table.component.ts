@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../../core/services/modalService';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import{FirebaseService} from '../../firebase-service.service'
-import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-event-sign-up-table',
@@ -29,7 +29,6 @@ export class EventSignUpTableComponent implements OnInit {
   constructor(private modalService: ModalService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
-    console.log(this.eventType);
     this.dataSource = new MatTableDataSource(this.slots);
     this.fs.getUsers().subscribe(val=>{
       this.volunteerList = val;
@@ -71,7 +70,6 @@ export class EventSignUpTableComponent implements OnInit {
   }
 
   openAddUserModal(row) {
-    console.log(row);
     this.modalService.open(row.id, this.eventType, row.event_date_txt, this.volunteerList);
   }
 }
