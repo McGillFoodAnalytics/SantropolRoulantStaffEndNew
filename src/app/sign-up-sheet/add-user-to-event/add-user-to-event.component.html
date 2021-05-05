@@ -6,6 +6,10 @@
         </button>
     </div>
     <div class="modal-body">
+        <h3 *ngIf="!addUser">
+            Cannot add a volunteer to a past event!
+          </h3>
+        <div *ngIf="addUser">
         <div class="form-row mb-12">
             Select a volunteer to add to the &nbsp; <b> {{ eventType }}</b> &nbsp; event on &nbsp; <b> {{ date }} </b>.
             <mat-form-field class="search-volunteer">
@@ -35,7 +39,8 @@
             </div>
         </div>
     </div>
-    <div class="footer">
+    </div>
+    <div *ngIf="addUser" class="footer">
         <button type="submit" class="btn btn-xl btn-outline-danger btn-add-volunteer" (click)="onSubmit()">Add Volunteer to Event</button>
     </div>
 </ng-template>

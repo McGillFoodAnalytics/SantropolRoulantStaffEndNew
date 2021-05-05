@@ -59,6 +59,7 @@ export class AddUserToEventComponent implements OnInit {
     }
   }
 
+  // Method to check whether today is before or the same day of the selected event's date
   isBefore(){
     let year = "20" + this.event_id.substring(0,2);
     let month = this.event_id.substring(2,4);
@@ -66,9 +67,9 @@ export class AddUserToEventComponent implements OnInit {
     
     let eventDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
     let today = new Date();
-
-    if(today < eventDate){
-      this.addUser = true;
+    
+    if(today.getDate() <= eventDate.getDate() && today.getMonth() <= eventDate.getMonth()){
+      this.addUser = true;  //Boolean used in HTML
     }
     else{
       this.addUser = false;

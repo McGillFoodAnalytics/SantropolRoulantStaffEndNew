@@ -60,7 +60,7 @@
         <app-slider [activePane]="currentWeek">
             <div firstPane>
                 <div class="row"
-                style="margin-bottom: -30px; float: right; margin-right: 13%;"
+                id="eventRow"
                 *ngFor="let coolEvent of eventArray">
                <h3 id="eventTitle" *ngIf='currentWeek == "first"'>{{coolEvent}}</h3>
                <div class="row-2 "
@@ -91,7 +91,7 @@
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>
                             </div>
-                            <div class="card-footer" style="text-align: center;" *ngIf='day.value.slots[0].id != "N/A"'>
+                            <div class="card-footer" style="text-align: center; height: 48px !important; display: flex; justify-content: center; align-items: center;" *ngIf='day.value.slots[0].id != "N/A"'>
                                 <img class="img-important-event-true"
                                      *ngIf="day.value.is_important_event; else importantEventFalse"
                                      src="assets/important-event-true.png"
@@ -132,7 +132,7 @@
 
             <div secondPane>
                 <div class="row"
-                     style="margin-bottom: -30px; float: right; margin-right: 13%;"
+                    id="eventRow"
                      *ngFor="let coolEvent of eventArray">
                     <h3 id="eventTitle" *ngIf='currentWeek == "second"'>{{coolEvent}}</h3>
                     <div class="row-2"
@@ -161,18 +161,8 @@
                                                          (removeUserFromEvent)="removeUserFromEvent($event)"
                                                          (insertStaffNote)="insertStaffNote($event)">
                                 </app-event-sign-up-table>
-                                <!-- {{day.value.num_volunteers}}/{{day.value.num_slots}}
-                                                <div *ngIf="day.value.num_volunteers === 0; else volunteersRegistered" style="text-align:center"> No volunteers registered </div>
-                                                <ng-template #volunteersRegistered>
-                                                    <ul class="list-group list-group-flush" *ngFor="let slot of day.value.slots">
-                                                        <li class="list-group-item" *ngIf="slot.first_name">{{slot.first_name}} {{slot.last_name}}
-                                                            <app-remove-user-from-event firstName={{slot.first_name}} lastName={{slot.last_name}} date={{slot.event_date_txt}} [eventType]="currentEvent" style="float:right" (onConfirm)="removeUserFromEvent(slot.id)" matTooltip="Click to remove this volunteer from this event"></app-remove-user-from-event>
-                                                            <app-permanent-volunteer [isPermanent]="isPermanentEvent(slot)" firstName={{slot.first_name}} lastName={{slot.last_name}} weekday={{slot.event_date_txt}} [eventType]="currentEvent" (onPermanentVolunteerEvent)="permanentVolunteerEvent($event, slot.id, slot.uid, day.value.display_date, slot.first_name, slot.last_name, slot)"></app-permanent-volunteer>
-                                                        </li>
-                                                    </ul>
-                                                </ng-template> -->
                             </div>
-                            <div class="card-footer" style="text-align: center;" *ngIf='day.value.slots[0].id != "N/A"'>
+                            <div class="card-footer" style="text-align: center; height: 48px !important; display: flex; justify-content: center; align-items: center;" *ngIf='day.value.slots[0].id != "N/A"'>
                                 <img class="img-important-event-true"
                                      *ngIf="day.value.is_important_event; else importantEventFalse"
                                      src="assets/important-event-true.png"
