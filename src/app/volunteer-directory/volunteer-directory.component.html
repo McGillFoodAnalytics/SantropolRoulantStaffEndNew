@@ -34,3 +34,5 @@
    </tr>
    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
 </table>
+<mat-paginator #paginator id="paginator" [pageSizeOptions]="[10, 30, 50, 100]" 
+showFirstLastButtons></mat-paginator>

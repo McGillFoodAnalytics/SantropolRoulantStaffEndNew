@@ -103,3 +103,10 @@ tr.element-row:not(.expanded-row):active {
 .element-row td {
   border-bottom-width: 0;
 }
+
+#paginator{
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  //border : 2px solid chocolate;
+}
