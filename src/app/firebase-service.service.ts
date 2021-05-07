@@ -319,7 +319,6 @@ getDates(firstDate, lastDate, freq) {
         firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
         //console.log(firstDate);
     }
-    console.log(validDates);
     return validDates;
 }
 pad(num, size) {
