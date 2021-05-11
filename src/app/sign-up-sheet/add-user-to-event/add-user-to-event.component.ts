@@ -132,8 +132,13 @@ export class AddUserToEventComponent implements OnInit {
     let eventDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
     let today = new Date();
     
-    if(today.getDate() <= eventDate.getDate() && today.getMonth() <= eventDate.getMonth()){
-      this.addUser = true;  //Boolean used in HTML
+    if(today.getMonth() < eventDate.getMonth()){
+      this.addUser = true;
+    }
+    else if(today.getMonth() == eventDate.getMonth()){
+      if(today.getDate() <= eventDate.getDate()){
+        this.addUser = true;        //Boolean used in HTML
+      }
     }
     else{
       this.addUser = false;
