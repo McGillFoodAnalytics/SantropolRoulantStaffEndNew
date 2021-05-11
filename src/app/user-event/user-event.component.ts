@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { FirebaseService } from "../firebase-service.service";
@@ -30,12 +30,15 @@ export class UserEventComponent implements OnInit {
   element: any;
   user: any;
   displayForm: boolean;
+  validId: boolean;
   private myForm: FormGroup;
   private model = new User();
   private modalReference;
+  private modalReference2;
 
   @Input() userId: string;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('deleteUser', {static: true}) modalTemplateWarning: TemplateRef<any>;
 
   constructor(
     private modalService: NgbModal,
@@ -45,15 +48,24 @@ export class UserEventComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.validId = true;
     this.displayForm = false;
     this.events = this.firebase.getEvents();
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
+ 
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
       this.model = element;
-      this.checkBox();
+
+      if(element == null){
+        this.validId = false;
+      }
+      else {
+        this.checkBox();
+      }
     });
+
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
@@ -83,6 +95,18 @@ export class UserEventComponent implements OnInit {
       ariaLabelledBy: "modal-basic-title",
       size: "lg",
     });
+  }
+
+  openWarning(){
+    this.modalReference2 = this.modalService.open(this.modalTemplateWarning, { ariaLabelledBy: 'modal-basic-title', size: 'md', centered: true});
+  }
+
+  onDelete(){
+    this.firebase.deleteUser(this.userId);
+    this.currentEventsUser.forEach(element => {
+      this.onRemoveUserFromEvent(element.id);
+    });
+    this.modalReference2.close();
   }
 
   openEditForm(){

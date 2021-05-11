@@ -38,7 +38,7 @@ tr {
   width: 60vw;
   position: relative; 
   margin-top: 2vh;
-  left: 50%;
+  left: 50vw;
   transform: translate(-50%, 0);
 }
 
@@ -64,6 +64,7 @@ button {
 .editBtn{
   margin-top: -50px;
   position: relative;
+  min-width: 700px;
 }
 
 #editBtn {
@@ -273,4 +274,32 @@ input.apple-switch:checked:after {
 
 .removeVolBtn{
   transform: scale(0.7);
+}
+
+.footer{
+  margin-top: 20px;
+}
+
+.btn-delete-user{
+  float: right;
+  outline: none;
+  position: absolute;
+  margin-left: 2%;
+  margin-top: 5px;
+  color: #dc3545 !important;
+	border-color: #dc3545 !important;
+}
+
+.btn-delete-user:hover {
+  outline: none;
+	background-color: #dc3545 !important;
+	color: white !important;
+}
+
+.userIdNull{
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }

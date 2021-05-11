@@ -9,6 +9,7 @@ import { FirebaseService } from "../../firebase-service.service";
 export class UserNoteComponent implements OnInit {
 
   currentUserNote: any;
+  validId: boolean;
   private userNote: string;
   @Input() userId: string;
 
@@ -19,9 +20,13 @@ export class UserNoteComponent implements OnInit {
     // Get the note of the current user's profile
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.currentUserNote = element.note;
-      console.log(this.currentUserNote);
+      if(element == null){
+        this.validId = false;
+      }
+      else{
+        this.validId = true;
+      }
     });
-
   }
 
   // Update user with new note

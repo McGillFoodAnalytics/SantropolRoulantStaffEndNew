@@ -421,4 +421,10 @@ getDateNumber(date) {
       note: newNote,
     });
   }
+
+  // Delete a user with its user Id
+  deleteUser(userid: string){
+    console.log(userid);
+    this.db.object("/user/" + userid).remove();
+  }
 }

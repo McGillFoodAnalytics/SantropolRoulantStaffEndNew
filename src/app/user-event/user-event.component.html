@@ -75,7 +75,7 @@
   </div>
 </ng-template>
 
-<div class="modal-body profile">
+<div class="modal-body profile" *ngIf="validId">
   <table class="table">
     <tbody>
       <h4>{{ element.first_name }} {{ element.last_name }}</h4>
@@ -88,7 +88,9 @@
 
     <status *ngIf="element.active_status || element.active_status == null" >Active</status>
     <status *ngIf="element.active_status == false" >Inactive</status>
-
+    
+    <button class="btn-delete-user" (click)="openWarning()">Delete User</button>
+  
       <button
         mat-menu-item
         (click)="open(content)"
@@ -301,6 +303,29 @@ Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_
   </div>
  </div>
 </div>
-
 <app-user-note [userId] = "userId"></app-user-note>
 
+<ng-template #deleteUser let-modal2>
+  <div class="modal-header text-center" style="background-color: #dc3545;
+	color: white;">
+      <h4 class="modal-title w-100" id="modal-basic-title">Warning!</h4>
+      <button type="button" class="close" style="outline: none;" aria-label="Close" (click)="modal2.dismiss()" #closeModal>
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <h4 style="margin-left: 30px;">
+         Are you sure you want to delete this user? This action cannot be undone!
+        </h4>
+  </div>
+  <div class="footer">
+      <button class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal2.dismiss()">Cancel</button>
+      <button class="btn btn-xl btn-outline-danger" (click)="onDelete()">Delete</button>
+  </div>
+</ng-template>
+
+<div class="userIdNull" *ngIf="!validId">
+  <h4 style="position: absolute; left: 40%; top: 20%;">
+    This user does not exists!
+  </h4>
+</div>
