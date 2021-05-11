@@ -64,7 +64,7 @@ button {
 .editBtn{
   margin-top: -50px;
   position: relative;
-  min-width: 700px;
+  min-width: 650px;
 }
 
 #editBtn {
@@ -127,11 +127,12 @@ button {
 }
 
 .group2 {
-  top: 398px;
+  top: 395px;
 }
 
 input {
   font-size: 15px;
+  height: 27px;
 }
 ::placeholder {
   font-size: 12px;
@@ -167,20 +168,20 @@ input {
 #editDate {
   width: 170px;
   position: fixed;
-  top: 300px;
+  top: 297px;
   left: 300px;
 }
 
 #picker {
   position: fixed;
-  top: 293.5px;
-  left: 420px;
+  top: 289px;
+  left: 425px;
 }
 
 #editInputPhone {
   width: 170px;
   position: fixed;
-  top: 348px;
+  top: 345px;
   left: 300px;
   border: 1px solid lightgray;
 }
@@ -198,7 +199,7 @@ input {
 #editInputEmergNum {
   width: 170px;
   position: fixed;
-  top: 449px;
+  top: 444px;
   left: 300px;
   border: 1px solid lightgray;
 }
@@ -247,7 +248,7 @@ input.apple-switch {
   border-radius: 50px;
   box-shadow: inset -20px 0 0 0 #fff;
   transform: scale(0.88);
-  margin-bottom: -12px;
+  margin-bottom: -17px;
 }
 
 input.apple-switch:after {
@@ -284,6 +285,7 @@ input.apple-switch:checked:after {
   float: right;
   outline: none;
   position: absolute;
+  height: 30px;
   margin-left: 2%;
   margin-top: 5px;
   color: #dc3545 !important;
