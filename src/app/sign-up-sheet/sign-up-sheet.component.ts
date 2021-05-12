@@ -88,8 +88,6 @@ export class SignUpSheetComponent implements OnInit {
       // });
     this.dataSource = new MatTableDataSource(snapshots);
     this.dataSource.sort = this.sort;
-  // let temp = Object.keys(this.volunteers[0]);
-  // temp = temp.filter(e => !this.displayedColumns.includes(e));
     });
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
