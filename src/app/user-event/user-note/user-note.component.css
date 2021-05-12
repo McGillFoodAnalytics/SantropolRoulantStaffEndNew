@@ -1,29 +1,26 @@
-h4{
-  top: 128px;
-  position: fixed;
-  right: 0;
-  margin-right: 11vw;
-}
+
 
 .userNote{
-  width: 220px;
+  width: 16vw;
   height: 160px;
-  position: fixed;
-  right: 0;
-  margin-right: 3vw;
-  top: 168px;
   border: 3px solid #449afe;
 }
 
 #editNoteBtn{
-  position: fixed;
-  right: 0;
-  margin-right: 3vw;
-  top: 340px;
   height: 40px;
   width: 100px;
+  margin-top: 15px;
+  
   background-color: #5fce99;
   color: white;
   border-radius: 10px;
   border: none;
+}
+
+.Note{
+  width: fit-content;
+  height: 0px;
+  position: relative;
+  left: 58vw;
+  top: -827px;
 }

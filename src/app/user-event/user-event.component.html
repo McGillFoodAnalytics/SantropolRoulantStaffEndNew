@@ -1,3 +1,4 @@
+<html>
 <ng-template #content let-modal>
   <div class="modal-header text-center">
     <h4 class="modal-title w-100" id="modal-basic-title">
@@ -283,8 +284,8 @@ Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_
 
 <div class="cancellation">
   <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
-  <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0">
-  <table class="table" >
+  <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0" style="margin-bottom: 130px;">
+  <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Date </th>
@@ -302,8 +303,9 @@ Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_
   </table>
   </div>
  </div>
+ <app-user-note [userId] = "userId"></app-user-note>
 </div>
-<app-user-note [userId] = "userId"></app-user-note>
+
 
 <ng-template #deleteUser let-modal2>
   <div class="modal-header text-center" style="background-color: #dc3545;
@@ -329,3 +331,10 @@ Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_
     This user does not exists!
   </h4>
 </div>
+  <div class="copyrightFooter">
+  <h6 style="color: gray;">
+      Copyright © 2021 McGill Food Analytics Club
+  </h6>
+  <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGillFoodAn"/>
+  </div>
+</html>
