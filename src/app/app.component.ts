@@ -15,6 +15,7 @@ export class AppComponent implements OnInit{
     $(document).ready(() => {
       console.log('The document ready!');
     });
+    //set active users
   }
   constructor(
     public electronService: ElectronService,

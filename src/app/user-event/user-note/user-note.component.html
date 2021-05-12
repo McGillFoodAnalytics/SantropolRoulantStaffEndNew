@@ -1,0 +1,9 @@
+<div class="Note" *ngIf="validId">
+  <h4>User Note</h4>
+  <div class="userNote" contenteditable="true" 
+  [textContent]="currentUserNote" (input)="userNote=$event.target.textContent;">
+  </div>
+  <button id="editNoteBtn" (click) = "saveNote()" onclick="this.blur()"
+  ><span>Save Note</span>
+  </button>
+</div>

@@ -3,7 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../../core/services/modalService';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import{FirebaseService} from '../../firebase-service.service'
+
 
 @Component({
   selector: 'app-event-sign-up-table',
@@ -12,29 +13,36 @@ import { map } from 'rxjs/operators';
 })
 
 export class EventSignUpTableComponent implements OnInit {
-  displayedColumns: string[] = ['slot', 'volunteer', 'actions'];
+  displayedColumns: string[] = ['volunteer', 'actions'];
   dataSource;
   selectedRow;
   @Input() slots: [];
   @Input() eventType: string;
-  @Input() volunteerList: [];
+  @Input() id: string;
+  volunteerList;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() insertStaffNote: EventEmitter<any> = new EventEmitter<any>();
   usersRef:  AngularFireList<any>;
   users: Observable<any[]>;
 
 
-  constructor(private modalService: ModalService, private db: AngularFireDatabase) {}
+  constructor(private modalService: ModalService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.slots);
+    this.fs.getUsers().subscribe(val=>{
+      this.volunteerList = val;
+    });
   }
 
   prettySlot(slot: string) {
     return parseInt(slot, 10);
   }
 
-  isEmpty(firstName: string, lastName: string) {
+  isEmpty(firstName: string, lastName: string, id: string) {
+    if(id == 'N/A'){
+      return false;
+    }
     return !(firstName && lastName);
   }
 
@@ -50,7 +58,7 @@ export class EventSignUpTableComponent implements OnInit {
     //        a = snapshot.email;
     //        console.log("helllloooo");
     //        console.log(a);
-        
+
     //       }
     //     });
     // });
@@ -62,7 +70,6 @@ export class EventSignUpTableComponent implements OnInit {
   }
 
   openAddUserModal(row) {
-    console.log(row);
     this.modalService.open(row.id, this.eventType, row.event_date_txt, this.volunteerList);
   }
 }

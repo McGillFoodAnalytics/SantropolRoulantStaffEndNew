@@ -5,7 +5,7 @@ import {FirebaseService} from '../firebase-service.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
@@ -35,17 +35,14 @@ export class VolunteerDirectoryComponent implements OnInit {
   source;
   expandedElement: Event;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-
+  @ViewChild('paginator') paginator: MatPaginator;
 
   constructor(private fs: FirebaseService,  private db: AngularFireDatabase) {
     this.errorMessage = "";
-
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
   ngAfterViewInit() {
     this.fs.getUsers().subscribe(snapshots => {
       snapshots.forEach(element => {
@@ -53,6 +50,7 @@ export class VolunteerDirectoryComponent implements OnInit {
       });
     this.dataSource = new MatTableDataSource(snapshots);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   // let temp = Object.keys(this.volunteers[0]);
   // temp = temp.filter(e => !this.displayedColumns.includes(e));
   });

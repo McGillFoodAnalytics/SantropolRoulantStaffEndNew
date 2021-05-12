@@ -22,6 +22,8 @@ export class WeekGeneratorComponent implements OnInit {
   result: Observable<any>
   today: Date;
   aYearFromNow: Date;
+  threeMondays: any = [];
+  nearestMonday:Date = new Date();
   types = ['deldr', 'deliv', 'kitam', 'kitpm'];
   slotAmount = [2, 12, 6, 6];
   startTimes = ['14:45','14:45','9:30','13:30'];
@@ -34,30 +36,14 @@ export class WeekGeneratorComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.volunteersObservable = this.fs.getUsers();
-      this.eventsObservable = this.fs.getPermanentEvents();
-      this.volunteersObservable.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          this.volunteers.push(snapshot);
-      });
-    });
-    this.eventsObservable.subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        snapshot.start_date = new Date(snapshot.start_date).toLocaleDateString();
-        snapshot.end_date = new Date(snapshot.end_date).toLocaleDateString();
-        // for(let volunteer in this.volunteers){
-        //   console.log(volunteer.key);
-        //   console.log(snapshot.user_id);
-        //   if(volunteer.key==snapshot.user_id){
-        //     snapshot.user_id = volunteer.first_name + ' ' + volunteer.last_name;
-        //     console.log(snapshot.user_id);
-        //     break;
-        //   }
-        // }
-        this.events.push(snapshot);
-      });
-    });
-
+    this.nearestMonday = this.getMonday(new Date());
+    for(let a = 0; a < 3; a++){ //next 3 weeks to choose from
+      this.threeMondays.push(this.nearestMonday);
+      let incrementInMilliseconds = 7* 24 * 60 * 60 * 1000;
+      this.nearestMonday.setTime(this.nearestMonday.getTime() + incrementInMilliseconds);
+      console.log(this.threeMondays);
+      console.log(a);
+    }
     this.addPermanentForm = this.formBuilder.group({
       startDate:['', Validators.required],
       kitamSlots:[[6,6,6,0,6,6,0], Validators.required],
@@ -159,6 +145,13 @@ export class WeekGeneratorComponent implements OnInit {
     // }
   }
 
+}
+
+getMonday(d):Date {
+  d = new Date(d);
+  var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
 }
 // getDates(firstDate : Date, lastDate: Date, freq: number){
 //   let validDates: number[] =  [];

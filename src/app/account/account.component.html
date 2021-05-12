@@ -1,0 +1,69 @@
+<div class="page-title">
+    <h1>Account</h1>
+</div>
+
+<body>
+
+    <div class="container">
+        <div class="backbox">
+            <div class="loginMsg" [class.visibility]="loginMsgVisibility">
+                <div class="textcontent">
+                    <p class="title">Don't have an account?</p>
+                    <button id="switch1" (click)="signupMode()">Sign Up</button>
+                </div>
+            </div>
+            <div class="signupMsg" [class.visibility]="signupMsgVisibility">
+                <div class="textcontent">
+                    <p class="title">Have an<br>account?</p>
+                    <button id="switch2" (click)="loginMode()">Login</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="frontbox" [class.animated]="shake" [class.shake]="shake" [class.moving]="frontBoxMoving" [class.center]="center">
+            <div class="login" [class.hide]="loginHide">
+                <h2>Login</h2>
+                <div class="inputbox">
+                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+                    <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+                </div>
+                <p (click)="resetMode()">Recover Password</p>
+                <button (click)="login()" class="frontbutton">LOG IN</button>
+            </div>
+
+            <div class="signup" [class.hide]="signupHide">
+                <h2>Sign up</h2>
+                <div class="inputbox">
+                    <input type="text" style="width: 50%; float: left;" [(ngModel)]="firstName" placeholder="First Name">
+                    <input type="text" style="width: 45%; float: right;" [(ngModel)]="lastName" placeholder="Last Name">
+
+                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+                    <input type="password" style="width: 70%; float: left;" [(ngModel)]="password" name="password" placeholder="Password">
+                    <input type="text" style="width: 25%; float: right;" [(ngModel)]="code" name="code" placeholder="Code">
+
+                    <p class="displayname" style="color: white; font-size: 12px; position: absolute; top: 71%;">{{this.authService.error}}</p>
+
+                </div>
+                <button (click)="signup()" class="frontbutton">SIGN UP</button>
+            </div>
+
+            <div *ngIf="!loggedinHide" class="loggedin" [class.hide]="loggedinHide">
+                <img class="profileicon" src="https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile">
+                <p class="displayname">{{user.email}}</p>
+                <button class="leftbutton">MANAGE</button>
+                <button (click)="logout()" class="frontbutton">LOGOUT</button>
+            </div>
+
+            <div class="reset" [class.hide]="resetHide">
+                <h2>Password Reset</h2>
+                <p>You will receive recovery instructions by email</p>
+                <div class="inputbox">
+                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+                </div>
+                <button (click)="loginMode()" class="leftbutton">CANCEL</button>
+                <button (click)="reset()" class="frontbutton">SUBMIT</button>
+            </div>
+
+        </div>
+    </div>
+</body>

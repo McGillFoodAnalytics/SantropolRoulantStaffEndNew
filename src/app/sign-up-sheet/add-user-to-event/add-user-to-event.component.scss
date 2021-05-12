@@ -86,6 +86,16 @@ body>ngb-modal-window>div>div>div.footer>button {
 	border-color: #5fce99 !important;
 }
 
+.btn-cancel {
+	color: #dc3545 !important;
+	border-color: #dc3545 !important;
+}
+
+.btn-cancel:hover {
+	background-color: #dc3545 !important;
+	color: white !important;
+}
+
 .btn-add-volunteer:hover {
 	background-color: #5fce99 !important;
 	color: white !important;

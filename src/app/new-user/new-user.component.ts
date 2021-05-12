@@ -17,14 +17,18 @@ export class NewUserComponent implements OnInit {
   private myForm: FormGroup;
   private modalReference;
   private today: Date;
-  //disabledAgreement: boolean = true;
 
   constructor(private modalService: NgbModal, private db: AngularFireDatabase, private formBuilder: FormBuilder) {
     this.today = new Date();
   }
 
   ngOnInit() {
-   this.myForm = this.formBuilder.group({
+    this.model.emergency_contact_name = "";
+    this.model.emergency_relationship = "";
+    this.model.emergency_contact_number = "";
+    var phoneNumPattern = new RegExp("^[0-9]{10}$");
+
+    this.myForm = this.formBuilder.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       dob: ['', Validators.required],
@@ -33,22 +37,17 @@ export class NewUserComponent implements OnInit {
       address_city: ['', Validators.required],
       address_postal_code: ['', Validators.required],
       email: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      emergency_contact_name: ['', Validators.required],
-      emergency_relationship: ['', Validators.required],
-      emergency_contact_number: ['', Validators.required]
+      phone_number: ['', Validators.pattern(phoneNumPattern)],
+      emergency_contact_name: [""],
+      emergency_relationship: [""],
+      emergency_contact_number: ["", Validators.pattern(phoneNumPattern)]
     });
   }
 
   open(content) {
-    //this.disabledAgreement = false;
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'});
   }
-  
-  //enable adding emergency contact information inputs
-  // changeCheck(event){
-  //   this.disabledAgreement = !this.disabledAgreement;
-  // }
+
 
   newUser(user: any): void {
   user.id = user.first_name.charAt(0).toLowerCase() + user.last_name.charAt(0).toLowerCase() + user.phone_number;
@@ -62,6 +61,7 @@ export class NewUserComponent implements OnInit {
       email: user.email,
       first_name: user.first_name,
       key: user.id,
+      active_status: true,
       last_name: user.last_name,
       no_show: 0,
       phone_number: user.phone_number,

@@ -115,11 +115,13 @@
           <mat-form-field>
             <input
               matInput
+              email="true"
+              type="email"
               placeholder="Email"
               formControlName="email"
               [(ngModel)]="model.email"
             />
-            <mat-error>Required!</mat-error>
+            <mat-error>Email required!</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group col-md-4">
@@ -136,7 +138,7 @@
       </div>
       <hr />
       <div class="form-row mb-12">
-        <h5 class="form-section">Emergency Contact Information</h5>
+        <h5 class="form-section">Emergency Contact Information (Optional)</h5>
       </div>
       <div class="form-row mb-12">
         <div class="form-group col-md-4">
@@ -147,7 +149,6 @@
               formControlName="emergency_contact_name"
               [(ngModel)]="model.emergency_contact_name"
             />
-            <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group col-md-4">
@@ -158,7 +159,6 @@
               formControlName="emergency_relationship"
               [(ngModel)]="model.emergency_relationship"
             />
-            <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group col-md-4">
@@ -169,7 +169,6 @@
               formControlName="emergency_contact_number"
               [(ngModel)]="model.emergency_contact_number"
             />
-            <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
       </div>

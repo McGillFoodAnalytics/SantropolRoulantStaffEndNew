@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 
 
 @Component({
@@ -8,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
-  ngOnInit() {}
+  show = false;
+
+  ngOnInit() {
+
+    this.authService.currentAuthStatus.subscribe((authStatus) => {
+
+    if (authStatus){
+        this.show = true;
+    }
+    else{
+        this.show = false;
+    }
+    });
+
+  }
 
   open(menu) {
     menu.openMenu();

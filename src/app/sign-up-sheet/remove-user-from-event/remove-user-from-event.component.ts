@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {FirebaseService} from '../../firebase-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,6 +9,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RemoveUserFromEventComponent implements OnInit {
   @Input() lastName;
+  @Input() eventId;
+  @Input() userId;
+  @Input() cancellationNote;
   @Input() event;
   @Input() date;
   @Input() firstName: string;
@@ -17,7 +20,7 @@ export class RemoveUserFromEventComponent implements OnInit {
   private modalReference;
   private model: any = {};
 
-  constructor(private modalService: NgbModal, private db: AngularFireDatabase) { }
+  constructor(private modalService: NgbModal, private fs: FirebaseService) { }
 
   ngOnInit() {}
 
@@ -29,17 +32,10 @@ export class RemoveUserFromEventComponent implements OnInit {
   }
 
   onSubmit() {
+    this.fs.addCancellation(this.eventId, this.userId, this.cancellationNote);
     this.confirmRemove.emit('true');
     this.modalReference.close();
   }
 
-  cancellationCounter(){
-    var userId = this.firstName.charAt[0].toLowerCase + 
-    this.db.object('/user/' + userId)
-    .update({
-
-     });
-
-  }
-
 }
+
