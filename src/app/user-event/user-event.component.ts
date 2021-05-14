@@ -265,6 +265,7 @@ export class UserEventComponent implements OnInit {
     }
   }
 
+  //Format emergency contact info 
   emergency(user) {
     let contact_name;
     let contact_rel;
