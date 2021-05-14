@@ -1,119 +1,130 @@
 <html>
-<ng-template #content let-modal>
-  <div class="modal-header text-center">
-    <h4 class="modal-title w-100" id="modal-basic-title">
-      Volunteer's Past and Upcoming Events
-    </h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <!-- 2 tabs avec chacune un mat table des events (soit past soit current) -->
-    <mat-tab-group>
-      <mat-tab label="Current Events">
-        <h2 id="no_event" *ngIf="currentEventsUser.length == 0">
-          This volunteer doesn't have any upcoming events!
-        </h2>
-        <table class="table" *ngIf="currentEventsUser.length != 0">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col"></th>  <!-- Empty columns to space out information -->
-              <th scope="col"></th>
-              <th scope="col">Type</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let event of currentEventsUser">
-              <td>{{ event.event_date_txt }}</td>
-              <td></td>     <!-- Empty columns to space out information -->
-              <td></td>
-              <td>{{ formatEventType(event.event_type) }}</td>
-              <td></td>
-              <td><button class="removeVolBtn" onclick="this.blur()">
-                <app-remove-user-from-event 
-                firstName={{element.first_name}}
-                eventId={{event.id}}
-                userId={{element.uid}}
-                lastName={{element.last_name}}
-                date={{event.event_date_txt}}
-                eventType = {{event.event_type}}
-                (confirmRemove)="onRemoveUserFromEvent(event.id)">
-    </app-remove-user-from-event>
-              </button></td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-tab>
-      <mat-tab label="Past Events">
-        <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
-          This volunteer doesn't have any past events!
-        </h2>
-        <table class="table" *ngIf="pastEventsUser.length != 0">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let event of pastEventsUser">
-              <td>{{ event.event_date_txt }}</td>
-              <td>{{ formatEventType(event.event_type) }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-</ng-template>
-
-<div class="modal-body profile" *ngIf="validId">
-  <table class="table">
-    <tbody>
-      <h4>{{ element.first_name }} {{ element.last_name }}</h4>
-  
-    <input class="apple-switch" 
-    id="statusCheck" 
-    (click)="changeActiveStatus()" 
-    type="checkbox"
-    matTooltip="Toggle volunteer's active status">
-
-    <status *ngIf="element.active_status || element.active_status == null" >Active</status>
-    <status *ngIf="element.active_status == false" >Inactive</status>
-    
-    <button class="btn-delete-user" (click)="openWarning()">Delete User</button>
-  
+  <ng-template #content let-modal>
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100" id="modal-basic-title">
+        Volunteer's Past and Upcoming Events
+      </h4>
       <button
-        mat-menu-item
-        (click)="open(content)"
-        onclick="this.blur()"
-        id="historyBtn"
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss()"
       >
-        <mat-icon style="margin-left: -10px;">history</mat-icon>
-        <span>View Events</span>
+        <span aria-hidden="true">&times;</span>
       </button>
+    </div>
+    <div class="modal-body">
+      <!-- 2 tabs avec chacune un mat table des events (soit past soit current) -->
+      <mat-tab-group>
+        <mat-tab label="Current Events">
+          <h2 id="no_event" *ngIf="currentEventsUser.length == 0">
+            This volunteer doesn't have any upcoming events!
+          </h2>
+          <table class="table" *ngIf="currentEventsUser.length != 0">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col"></th>
+                <!-- Empty columns to space out information -->
+                <th scope="col"></th>
+                <th scope="col">Type</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of currentEventsUser">
+                <td>{{ event.event_date_txt }}</td>
+                <td></td>
+                <!-- Empty columns to space out information -->
+                <td></td>
+                <td>{{ formatEventType(event.event_type) }}</td>
+                <td></td>
+                <td>
+                  <button class="removeVolBtn" onclick="this.blur()">
+                    <app-remove-user-from-event
+                      firstName="{{ element.first_name }}"
+                      eventId="{{ event.id }}"
+                      userId="{{ element.uid }}"
+                      lastName="{{ element.last_name }}"
+                      date="{{ event.event_date_txt }}"
+                      eventType="{{ event.event_type }}"
+                      (confirmRemove)="onRemoveUserFromEvent(event.id)"
+                    >
+                    </app-remove-user-from-event>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+        <mat-tab label="Past Events">
+          <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
+            This volunteer doesn't have any past events!
+          </h2>
+          <table class="table" *ngIf="pastEventsUser.length != 0">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of pastEventsUser">
+                <td>{{ event.event_date_txt }}</td>
+                <td>{{ formatEventType(event.event_type) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </ng-template>
 
-      <div class="editBtn">
-      <button
-        id="editBtn"
-        mat-menu-item
-        (click)="openEditForm()"
-        onclick="this.blur()"
-      >
-        <mat-icon style="margin-left: -10px;">edit</mat-icon>
-        <span>Edit Profile</span>
-      </button>
-      <div *ngIf="displayForm">
-            <form  
+  <div class="modal-body profile" *ngIf="validId">
+    <table class="table">
+      <tbody>
+        <h4>{{ element.first_name }} {{ element.last_name }}</h4>
+
+        <input
+          class="apple-switch"
+          id="statusCheck"
+          (click)="changeActiveStatus()"
+          type="checkbox"
+          matTooltip="Toggle volunteer's active status"
+        />
+
+        <status *ngIf="element.active_status || element.active_status == null"
+          >Active</status
+        >
+        <status *ngIf="element.active_status == false">Inactive</status>
+
+        <button class="btn-delete-user" (click)="openWarning()">
+          Delete User
+        </button>
+
+        <button
+          mat-menu-item
+          (click)="open(content)"
+          onclick="this.blur()"
+          id="historyBtn"
+        >
+          <mat-icon style="margin-left: -10px">history</mat-icon>
+          <span>View Events</span>
+        </button>
+
+        <div class="editBtn">
+          <button
+            id="editBtn"
+            mat-menu-item
+            (click)="openEditForm()"
+            onclick="this.blur()"
+          >
+            <mat-icon style="margin-left: -10px">edit</mat-icon>
+            <span>Edit Profile</span>
+          </button>
+          <div *ngIf="displayForm">
+            <form
               name="editForm"
               class="form"
               (ngSubmit)="onSave()"
@@ -130,44 +141,44 @@
                 required
               />
               <div class="input-group">
+                <input
+                  value="{{ element.address_number }}"
+                  id="editInputAddrNum"
+                  formControlName="address_number"
+                  [(ngModel)]="model.address_number"
+                  placeholder="Number"
+                  required
+                />
+
+                <input
+                  value="{{ element.address_street }}"
+                  id="editInputAddrStr"
+                  formControlName="address_street"
+                  [(ngModel)]="model.address_street"
+                  placeholder="Street"
+                  required
+                />
+
+                <input
+                  value="{{ element.address_city }}"
+                  id="editInputAddrCity"
+                  formControlName="address_city"
+                  [(ngModel)]="model.address_city"
+                  placeholder="City"
+                  required
+                />
+
+                <input
+                  value="{{ element.address_postal_code }}"
+                  id="editInputPostal"
+                  formControlName="address_postal_code"
+                  [(ngModel)]="model.address_postal_code"
+                  placeholder="Postal code"
+                  required
+                />
+              </div>
+
               <input
-                value="{{ element.address_number }}"
-                id="editInputAddrNum"
-                formControlName="address_number"
-                [(ngModel)]="model.address_number"
-                placeholder="Number"
-                required
-              />
-        
-              <input
-                value="{{ element.address_street }}"
-                id="editInputAddrStr"
-                formControlName="address_street"
-                [(ngModel)]="model.address_street"
-                placeholder="Street"
-                required
-              />
-        
-              <input
-                value="{{ element.address_city }}"
-                id="editInputAddrCity"
-                formControlName="address_city"
-                [(ngModel)]="model.address_city"
-                placeholder="City"
-                required
-              />
-        
-              <input
-                value="{{ element.address_postal_code }}"
-                id="editInputPostal"
-                formControlName="address_postal_code"
-                [(ngModel)]="model.address_postal_code"
-                placeholder="Postal code"
-                required
-              />
-            </div>
-        
-              <input 
                 [matDatepicker]="picker"
                 [max]="today"
                 id="editDate"
@@ -181,8 +192,8 @@
                 [for]="picker"
                 id="picker"
               ></mat-datepicker-toggle>
-              <mat-datepicker #picker ></mat-datepicker>
-             
+              <mat-datepicker #picker></mat-datepicker>
+
               <input
                 ng-model="name"
                 id="editInputPhone"
@@ -192,25 +203,25 @@
                 type="tel"
                 required
               />
-              
+
               <div class="input-group group2">
-              <input
-                value="{{ element.emergency_contact_name }}"
-                id="editInputEmergName"
-                [(ngModel)]="model.emergency_contact_name"
-                formControlName="emergency_contact_name"
-                placeholder="Contact Name"
-              />
-        
-              <input
-                value="{{ element.emergency_relationship }}"
-                id="editInputEmergRel"
-                formControlName="emergency_relationship"
-                [(ngModel)]="model.emergency_relationship"
-                placeholder="Emergency Relationship"
-              />
-            </div>
-        
+                <input
+                  value="{{ element.emergency_contact_name }}"
+                  id="editInputEmergName"
+                  [(ngModel)]="model.emergency_contact_name"
+                  formControlName="emergency_contact_name"
+                  placeholder="Contact Name"
+                />
+
+                <input
+                  value="{{ element.emergency_relationship }}"
+                  id="editInputEmergRel"
+                  formControlName="emergency_relationship"
+                  [(ngModel)]="model.emergency_relationship"
+                  placeholder="Emergency Relationship"
+                />
+              </div>
+
               <input
                 value="{{ element.emergency_contact_number }}"
                 id="editInputEmergNum"
@@ -219,122 +230,151 @@
                 type="tel"
               />
             </form>
-            <button class="button" mat-menu-item (click)="onSave()" type="submit" id="saveBtn">
-              <mat-icon style="margin-left: -8px;">save</mat-icon>
+            <button
+              class="button"
+              mat-menu-item
+              (click)="onSave()"
+              type="submit"
+              id="saveBtn"
+            >
+              <mat-icon style="margin-left: -8px">save</mat-icon>
               <span>Save</span>
             </button>
-            </div>
-      </div>
+          </div>
+        </div>
 
-      <tr>
-        <td id="colored">
-          <mat-icon >account_box</mat-icon>
-          <pre>User ID:<text>{{ userId }}</text> </pre>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-icon>how_to_reg</mat-icon>
-          <pre>Registered Since:<text>{{ (formatSignupDate(element.signup_date)) }}</text> </pre>
-        </td>
-      </tr>
-      <tr>
-        <td id="colored">
-          <mat-icon>email</mat-icon>
-          <pre>Email:<text *ngIf="!displayForm">{{ element.email }} </text></pre>
-        </td>
-      </tr>
-      <tr>
-        <td >
-          <mat-icon>home</mat-icon>
-          <pre>
+        <tr>
+          <td id="colored">
+            <mat-icon>account_box</mat-icon>
+            <pre>User ID:<text>{{ userId }}</text> </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-icon>how_to_reg</mat-icon>
+            <pre>Registered Since:<text>{{ (formatSignupDate(element.signup_date)) }}</text> </pre>
+          </td>
+        </tr>
+        <tr>
+          <td id="colored">
+            <mat-icon>email</mat-icon>
+            <pre>Email:<text *ngIf="!displayForm">{{ element.email }} </text></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-icon>home</mat-icon>
+            <pre>
 Address:<text *ngIf="!displayForm">{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</text></pre>
-        </td>
-      </tr>
-      <tr>
-        <td id="colored">
-          <mat-icon>cake</mat-icon>
-          <pre>
+          </td>
+        </tr>
+        <tr>
+          <td id="colored">
+            <mat-icon>cake</mat-icon>
+            <pre>
  Date of Birth:<text *ngIf="!displayForm">{{formatDate(element.dob)}}</text></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-icon>phone_android</mat-icon>
-          <pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-icon>phone_android</mat-icon>
+            <pre>
 Phone Number:<text *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}</text></pre>
-        </td>
-      </tr>
-      <tr>
-        <td id="colored">
-          <mat-icon>local_hospital</mat-icon>
-          <pre>
+          </td>
+        </tr>
+        <tr>
+          <td id="colored">
+            <mat-icon>local_hospital</mat-icon>
+            <pre>
  Emergency Contact:<text *ngIf="!displayForm">{{ emergency(element) }}</text></pre>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-icon>perm_device_information</mat-icon>
-          <pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-icon>perm_device_information</mat-icon>
+            <pre>
 Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-<div class="cancellation">
-  <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
-  <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0" style="margin-bottom: 130px;">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Date </th>
-        <th scope="col">Event Id</th>
-        <th scope="col">Reason of Cancellation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="font-size: 15px;" *ngFor="let event of cancelledEventsUser">
-        <td>{{ formatEventDate(event.event_id) }}</td>
-        <td>{{ formatEventId(event.event_id) }}</td>
-        <td>{{ event.reason }}</td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="cancellation">
+      <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
+      <div
+        id="scrollable-area"
+        *ngIf="cancelledEventsUser.length != 0"
+      >
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Event Id</th>
+              <th scope="col">Reason of Cancellation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              style="font-size: 15px"
+              *ngFor="let event of cancelledEventsUser"
+            >
+              <td>{{ formatEventDate(event.event_id) }}</td>
+              <td>{{ formatEventId(event.event_id) }}</td>
+              <td>{{ event.reason }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="cancelledEventsUser.length == 0" 
+      style="margin-bottom: 130px;  width: 53.8vw; height: 194px;" >
+      </div>
+    </div>
+    <app-user-note [userId]="userId"></app-user-note>
   </div>
- </div>
- <app-user-note [userId] = "userId"></app-user-note>
-</div>
 
-
-<ng-template #deleteUser let-modal2>
-  <div class="modal-header text-center" style="background-color: #dc3545;
-	color: white;">
+  <ng-template #deleteUser let-modal2>
+    <div
+      class="modal-header text-center"
+      style="background-color: #dc3545; color: white"
+    >
       <h4 class="modal-title w-100" id="modal-basic-title">Warning!</h4>
-      <button type="button" class="close" style="outline: none;" aria-label="Close" (click)="modal2.dismiss()" #closeModal>
-          <span aria-hidden="true">&times;</span>
+      <button
+        type="button"
+        class="close"
+        style="outline: none"
+        aria-label="Close"
+        (click)="modal2.dismiss()"
+        #closeModal
+      >
+        <span aria-hidden="true">&times;</span>
       </button>
-  </div>
-  <div class="modal-body">
-      <h4 style="margin-left: 30px;">
-         Are you sure you want to delete this user? This action cannot be undone!
-        </h4>
-  </div>
-  <div class="footer">
-      <button class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal2.dismiss()">Cancel</button>
-      <button class="btn btn-xl btn-outline-danger" (click)="onDelete()">Delete</button>
-  </div>
-</ng-template>
+    </div>
+    <div class="modal-body">
+      <h4 style="margin-left: 30px">
+        Are you sure you want to delete this user? This action cannot be undone!
+      </h4>
+    </div>
+    <div class="footer">
+      <button
+        class="btn btn-xl btn-outline-danger btn-cancel"
+        (click)="modal2.dismiss()"
+      >
+        Cancel
+      </button>
+      <button class="btn btn-xl btn-outline-danger" (click)="onDelete()">
+        Delete
+      </button>
+    </div>
+  </ng-template>
 
-<div class="userIdNull" *ngIf="!validId">
-  <h4 style="position: absolute; left: 40%; top: 20%;">
-    This user does not exists!
-  </h4>
-</div>
+  <div class="userIdNull" *ngIf="!validId">
+    <h4 style="position: absolute; left: 40%; top: 20%">
+      This user does not exists!
+    </h4>
+  </div>
+
   <div class="copyrightFooter">
-  <h6 style="color: gray;">
-      Copyright © 2021 McGill Food Analytics Club
-  </h6>
-  <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGillFoodAn"/>
+    <h6 style="color: gray">Copyright © 2021 McGill Food Analytics Club</h6>
+    <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGillFoodAn" />
   </div>
 </html>
