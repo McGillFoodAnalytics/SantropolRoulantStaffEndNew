@@ -41,7 +41,7 @@
                 <td></td>
                 <td>{{ formatEventType(event.event_type) }}</td>
                 <td></td>
-                <td>
+                <td><div style="height: 33px; overflow:hidden">
                   <button class="removeVolBtn" onclick="this.blur()">
                     <app-remove-user-from-event
                       firstName="{{ element.first_name }}"
@@ -54,6 +54,7 @@
                     >
                     </app-remove-user-from-event>
                   </button>
+                 </div>
                 </td>
               </tr>
             </tbody>

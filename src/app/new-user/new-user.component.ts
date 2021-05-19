@@ -50,7 +50,7 @@ export class NewUserComponent implements OnInit {
 
 
   newUser(user: any): void {
-  user.id = user.first_name.charAt(0).toLowerCase() + user.last_name.charAt(0).toLowerCase() + user.phone_number;
+  user.id = user.last_name.charAt(0).toLowerCase() + user.last_name.charAt(1).toLowerCase() + user.phone_number;
   this.db.object('/user/' + user.id)
     .update({
       address_city: user.address_city,

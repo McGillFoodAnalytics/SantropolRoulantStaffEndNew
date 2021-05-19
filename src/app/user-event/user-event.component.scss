@@ -278,7 +278,9 @@ input.apple-switch:checked:after {
 }
 
 .removeVolBtn{
-  transform: scale(0.7);
+  transform: scale(0.6);
+  position: relative;
+  top: -10px;
 }
 
 .footer{

@@ -62,7 +62,7 @@ p {
 }
 
 [contenteditable] {
-  border: 1px solid black;
+  border: 1px solid green;
   padding: 16px;
   outline: 0;
   line-height: 30px;
@@ -72,7 +72,7 @@ p {
 }
 
 [contenteditable]:focus {
-  border-color: blue;
+  border: 4px solid lightgreen;
 }
 
 .close:focus {
