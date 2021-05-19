@@ -55,7 +55,7 @@
                 <div class="form-group col-md-6">
                     <mat-form-field>
                         <mat-label>Start Date</mat-label>
-                        <input matInput [matDatepicker]="picker1" [min]="today" [max]="aYearFromNow" placeholder="mm/dd/yyyy" formControlName="startDate" [(ngModel)]="model.startDate">
+                        <input matInput [matDatepicker]="picker1" [min]="today" [max]="dateInThreeMonths" placeholder="mm/dd/yyyy" formControlName="startDate" [(ngModel)]="model.startDate">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <mat-error *ngIf="startDateRequiredError()">Required!</mat-error>
@@ -64,7 +64,7 @@
                 <div class="form-group col-md-6">
                     <mat-form-field>
                         <mat-label>End Date</mat-label>
-                        <input matInput [matDatepicker]="picker" [min]="today" [max]="aYearFromNow" placeholder="mm/dd/yyyy" formControlName="endDate" [(ngModel)]="model.endDate">
+                        <input matInput [matDatepicker]="picker" [min]="today" [max]="dateInThreeMonths" placeholder="mm/dd/yyyy" formControlName="endDate" [(ngModel)]="model.endDate">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error *ngIf="endDateRequiredError()">Required!</mat-error>

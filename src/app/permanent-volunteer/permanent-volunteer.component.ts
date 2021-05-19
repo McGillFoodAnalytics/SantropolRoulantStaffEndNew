@@ -22,7 +22,7 @@ export class PermanentVolunteerComponent implements OnInit {
   private addPermanentForm: FormGroup;
   result: Observable<any>;
   today: Date;
-  aYearFromNow: Date;
+  dateInThreeMonths: Date;
 
   constructor(
     private modalService: NgbModal,
@@ -30,8 +30,10 @@ export class PermanentVolunteerComponent implements OnInit {
     private fs: FirebaseService
   ) {
     this.today = new Date();
-    this.aYearFromNow = new Date();
-    this.aYearFromNow.setFullYear(this.aYearFromNow.getFullYear() + 1);
+
+    //Set max date to three months from present to add a recurring volunteer
+    this.dateInThreeMonths = new Date();
+    this.dateInThreeMonths.setMonth(this.dateInThreeMonths.getMonth() + 3);
   }
 
   ngOnInit() {
