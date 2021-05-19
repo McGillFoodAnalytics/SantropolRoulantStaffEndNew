@@ -15,6 +15,14 @@ html {
   color: #60a4ff;
 }
 
+.weekTitle {
+  padding-bottom: 2rem;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  z-index: 99;
+  top: 15px;
+}
+
 // Search container
 .container-search {
   display: flex;
@@ -126,6 +134,17 @@ tr.element-row:not(.expanded-row):active {
   min-height: 47px;
 }
 
+.shiftHeader{
+  text-align: center;
+  color: white;
+  background-color: #60a4ff;
+  min-height: 47px;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+  z-index: 198; 
+}
+
 #cardTitle {
   width: 12vw;
   font-size: 0.9vw;
@@ -194,7 +213,7 @@ h3 {
   background-color: #f24a5a;
 }
 
-#loaderBackground{
+#loaderBackground {
   background-color: white;
   position: absolute;
   width: 100%;
@@ -203,35 +222,41 @@ h3 {
 }
 
 .loader {
-  border: 16px solid #f3f3f3; 
-  border-top: 16px solid #60a4ff; 
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #60a4ff;
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  position: fixed; 
+  position: fixed;
   top: 45%;
   left: 45%;
   animation: spin 1.5s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-#eventRow{
-  margin-bottom: -30px; float: right; margin-right: 10%;
+#eventRow {
+  margin-bottom: -30px;
+  float: right;
+  margin-right: 10%;
 }
 
-.copyrightFooter{
-  margin-top: -100px ;
-  left: 36%; 
+.copyrightFooter {
+  margin-top: -100px;
+  left: 36%;
   position: relative;
 }
 
-#logoMcGillFoodAn{
+#logoMcGillFoodAn {
   max-width: 40px;
-  margin-top: -60px ;
-  left: 320px; 
+  margin-top: -60px;
+  left: 320px;
   position: relative;
 }
