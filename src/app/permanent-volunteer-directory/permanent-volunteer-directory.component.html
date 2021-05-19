@@ -1,42 +1,53 @@
-<ng-template #addPermanentModal let-modal>
+<ng-template #PermanentVolModal let-modal>
   <div class="modal-header text-center">
-    <h4 class="modal-title w-100"><i class="fa fa-map-marker"></i>Permanent Volunteer</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+    <h4 class="modal-title w-100">
+      <i class="fa fa-map-marker"></i>Permanent Volunteer Directory
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+      #closeModal
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
-  <div class="modal-body text-center">
+  <div class="permVolDir">
+    <div class="modal-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Volunteer</th>
+            <th scope="col">Event Type</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.first_name }} {{ event.last_name }}</td>
+            <td>
+              {{ formatEventType(event.event_type) }}
+            </td>
 
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">Volunteer</th>
-        <th scope="col">Event Type </th>
-        <th scope="col">Start Date</th>
-        <th scope="col">End Date</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let event of eventsObservable | async">
-        <th scope="row">{{event.first_name}} {{event.last_name}}</th>
-        <td>
-          {{event.event_type}}
+            <td>
+              {{ event.start_date }}
+            </td>
 
-        <td>
-          {{event.start_date}}
-        <td>
-        {{event.end_date}} <mat-icon (click)="delete(event.id)">delete</mat-icon></td>
-      </tr>
-      </tbody>
-    </table>
-
+            <td>
+              {{ event.end_date }}
+              <!-- <mat-icon (click)="delete(event.id)">delete</mat-icon></td> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
 </ng-template>
 
-<button mat-menu-item (click)="open(addPermanentModal)">
+<button mat-menu-item (click)="open(PermanentVolModal)">
   <mat-icon>date_range</mat-icon>
   <span>Permanent Volunteer Directory</span>
 </button>

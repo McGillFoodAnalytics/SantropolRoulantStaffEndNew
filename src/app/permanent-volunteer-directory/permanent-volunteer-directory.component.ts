@@ -19,57 +19,42 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   private events: any = [];
   private eventsObservable;
   private model: any = {};
-  private addPermanentForm: FormGroup;
   result: Observable<any>
   today: Date;
-  aYearFromNow: Date;
 
-  constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private fs: FirebaseService){
-    this.today = new Date();
-    this.aYearFromNow = new Date();
-    this.aYearFromNow.setFullYear(this.aYearFromNow.getFullYear() + 1);
+  constructor(private modalService: NgbModal, private fs: FirebaseService){
   }
 
   ngOnInit() {
-      this.volunteersObservable = this.fs.getUsers();
-      this.eventsObservable = this.fs.getPermanentEvents();
-      this.volunteersObservable.subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          this.volunteers.push(snapshot);
-      });
-    });
+    this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
       snapshots.forEach(snapshot => {
-        snapshot.start_date = new Date(snapshot.start_date).toLocaleDateString();
-        snapshot.end_date = new Date(snapshot.end_date).toLocaleDateString();
-        // for(let volunteer in this.volunteers){
-        //   console.log(volunteer.key);
-        //   console.log(snapshot.user_id);
-        //   if(volunteer.key==snapshot.user_id){
-        //     snapshot.user_id = volunteer.first_name + ' ' + volunteer.last_name;
-        //     console.log(snapshot.user_id);
-        //     break;
-        //   }
-        // }
+        snapshot.start_date = this.formatEventDate(snapshot.start_date);
+        snapshot.end_date = this.formatEventDate(snapshot.end_date);
         this.events.push(snapshot);
       });
     });
-
-    this.addPermanentForm = this.formBuilder.group({
-      frequency: ['', Validators.required],
-      endDate: ['', Validators.required],
-      startDate:['', Validators.required],
-      volunteer:['', Validators.required],
-      eventType:['', Validators.required]
-    });
   }
 
-  endDateRequiredError() {
-    return (this.model.endDate == undefined || this.model.endDate == null) || (this.model.endDate < this.model.startDate);
-  }
-
-  startDateRequiredError() {
-    return this.model.startDate == undefined || this.model.startDate == null;
+  formatEventType(eventType: string){
+    let newId;
+    switch (eventType) {
+      case "kitam":
+        newId = "Kitchen AM";
+        break;
+      case "kitpm":
+        newId = "Kitchen PM";
+        break;
+      case "deldr":
+        newId = "Delivery Driver";
+        break;
+      case "deliv":
+        newId = "Delivery";
+        break;
+      default :
+        newId = "Old Event Type" 
+    }
+    return newId;
   }
 
   open(content) {
@@ -80,29 +65,19 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     this.fs.removePermanentVolunteer(eventID);
   }
 
-  onSubmit(event) {
-    if (event == "remove") {
+  formatEventDate(eventDate: string) {
+    // code1 is the part of the event date that contains data specific to yyyy-mm-dd
+    let code1 = eventDate.substring(0, 10);
+    let day = code1.substring(8,10);
+    let month = code1.substring(5,7);
+    let year = code1.substring(0,4);
+  
+    // Create Date type to extract month in string format easily
+    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 
-      this.modalReference.close();
-    }
-    if (event == "add") {
-      this.addPermanentForm.markAllAsTouched();
-      if (this.addPermanentForm.valid) {
-        this.modalReference.close();
-        this.fs.addPermanentVolunteer(this.model.eventType, this.model.volunteer, this.model.startDate, this.model.endDate, this.model.frequency);
-        this.addPermanentForm.reset();
-        this.model = {};
-      }
-    }
+    // MonthName is the month in plain language, i.e. January
+    let monthName = newDate.toLocaleString('default', { month: 'long' });
+    let date =  monthName + " " + day + ", " + year;
+    return date;
   }
-  // onSubmit(){
-  //   this.myForm.markAllAsTouched();
-  //   if (this.myForm.valid) {
-  //     this.registration_code = this.model.registration_code;
-  //     this.updateRegistrationCode();
-  //     this.modalReference.close();
-  //     this.myForm.reset();
-  //     this.model = {};
-  //   }
-  // }
 }

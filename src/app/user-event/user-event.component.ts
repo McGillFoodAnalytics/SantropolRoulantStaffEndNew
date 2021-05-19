@@ -222,28 +222,16 @@ export class UserEventComponent implements OnInit {
     let newId;
     switch (event) {
       case "kitam":
-        newId =  " Kitchen AM-" + code2;
+        newId =  "Kitchen AM-" + code2;
         break;
       case "kitpm":
-        newId = " Kitchen PM-" + code2;
+        newId = "Kitchen PM-" + code2;
         break;
       case "deldr":
-        newId = " Delivery Driver-" + code2;
+        newId = "Delivery Driver-" + code2;
         break;
       case "deliv":
-        newId = " Delivery-" + code2;
-        break;
-      case "kitas":
-        newId = " Kitchen AM Sat-" + code2;
-        break;
-      case "kitps":
-        newId = " Kitchen PM Sat-" + code2;
-        break;
-      case "delds":
-        newId = " Delivery Driver Sat-" + code2;
-        break;
-      case "delis":
-        newId = " Delivery Sat-" + code2;
+        newId = "Delivery-" + code2;
         break;
     }
     return newId;
@@ -265,6 +253,7 @@ export class UserEventComponent implements OnInit {
     }
   }
 
+  //Format emergency contact info 
   emergency(user) {
     let contact_name;
     let contact_rel;
@@ -338,7 +327,11 @@ export class UserEventComponent implements OnInit {
     this.firebase.removeUserFromEvent(id);
     this.removeUserFromEvent.emit(id);
   }
-
+  
+  /**
+   * @param {string} eventType : short format of the type of shift(event)
+   * @returns {string} : long format of type of shift 
+   */
   formatEventType(eventType: string){
     let newId;
     switch (eventType) {
@@ -352,7 +345,7 @@ export class UserEventComponent implements OnInit {
         newId = "Delivery Driver";
         break;
       case "deliv":
-        newId = " Delivery";
+        newId = "Delivery";
         break;
     }
     return newId;

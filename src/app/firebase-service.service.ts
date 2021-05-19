@@ -73,7 +73,7 @@ export class FirebaseService {
   }
 
   getPermanentEvents(): Observable<any[]> {
-    this.permanentEventsRef = this.db.list("permanent_events");
+    this.permanentEventsRef = this.db.list("recurring_events");
     this.permanentEvents = this.permanentEventsRef
       .snapshotChanges()
       .pipe(

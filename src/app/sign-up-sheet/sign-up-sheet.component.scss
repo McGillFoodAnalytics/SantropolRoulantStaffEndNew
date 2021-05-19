@@ -1,7 +1,6 @@
 html {
   max-width: 100%;
   overflow-x: hidden;
- 
 }
 
 // Page title
@@ -191,6 +190,10 @@ h3 {
   border: 2px solid #f24a5a !important;
 }
 
+.eventCardImportantHeader {
+  background-color: #f24a5a;
+}
+
 #loaderBackground{
   background-color: white;
   position: absolute;
@@ -218,4 +221,17 @@ h3 {
 
 #eventRow{
   margin-bottom: -30px; float: right; margin-right: 10%;
+}
+
+.copyrightFooter{
+  margin-top: -100px ;
+  left: 36%; 
+  position: relative;
+}
+
+#logoMcGillFoodAn{
+  max-width: 40px;
+  margin-top: -60px ;
+  left: 320px; 
+  position: relative;
 }

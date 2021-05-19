@@ -136,7 +136,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   formatEventDates() {
-    const events_per_week = 125;
+    const events_per_week = 124;
     this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
@@ -419,6 +419,8 @@ export class SignUpSheetComponent implements OnInit {
       this.fs.changeEventImportance(slot["id"], is_important_event);
     }
   }
+
+  // Used for new format of week-shift display
   changeEventImportanceCool(day: string, eventType: string) {
     var slots;
     var is_important_event;
@@ -433,7 +435,8 @@ export class SignUpSheetComponent implements OnInit {
         "is_important_event"
       ] = is_important_event;
       slots = this.week1[currentEventValue][day]["slots"];
-    } else if (this.currentWeek == "second") {
+    } 
+    else if (this.currentWeek == "second") {
       is_important_event = !this.week2[currentEventValue][day][
         "is_important_event"
       ];
@@ -441,7 +444,8 @@ export class SignUpSheetComponent implements OnInit {
         "is_important_event"
       ] = is_important_event;
       slots = this.week2[currentEventValue][day]["slots"];
-    } else {
+    } 
+    else {
       is_important_event = !this.week3[currentEventValue][day][
         "is_important_event"
       ];
@@ -551,8 +555,6 @@ export class SignUpSheetComponent implements OnInit {
 
   updateEventNote(event_id, event_note) {
     console.log("update event");
-    //console.log(event_id);
-    //console.log(event_note);
     this.fs.updateEventNote(event_id, event_note);
   }
 }

@@ -1,17 +1,17 @@
 <ng-template #addUserModal let-modal>
     <div class="modal-header text-center">
-        <h4 class="modal-title w-100" id="modal-basic-title"><i class="fa fa-user-plus"></i>Add Volunteer to Event</h4>
+        <h4 class="modal-title w-100" id="modal-basic-title"><i class="fa fa-user-plus"></i>Add Volunteer to Shift</h4>
         <button type="button" style="outline: none;" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <h3 *ngIf="!addUser">
-            Cannot add a volunteer to a past event!
+            Cannot add a volunteer to a past shift!
           </h3>
         <div *ngIf="addUser">
         <div class="form-row mb-12">
-            Select a volunteer to add to the &nbsp; <b> {{ eventType }}</b> &nbsp; event on &nbsp; <b> {{ date }} </b>.
+            Select a volunteer to add to the &nbsp; <b> {{ eventType }}</b> &nbsp; shift on &nbsp; <b> {{ date }} </b>.
             <mat-form-field class="search-volunteer">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
                 <mat-icon matSuffix>search</mat-icon>
@@ -41,12 +41,12 @@
     </div>
     </div>
     <div *ngIf="addUser" class="footer">
-        <button type="submit" class="btn btn-xl btn-outline-danger btn-add-volunteer" (click)="onSubmit(false)">Add Volunteer to Event</button>
+        <button type="submit" style="outline: none;" class="btn btn-xl btn-add-volunteer" (click)="onSubmit(false)">Add Volunteer to Shift</button>
     </div>
 </ng-template>
 
 <ng-template #addUserModalWarning let-modal2>
-    <div class="modal-header text-center">
+    <div class="modal-header text-center" style="background-color: #dc3545;">
         <h4 class="modal-title w-100" id="modal-basic-title">Warning!</h4>
         <button type="button" class="close" style="outline: none;" aria-label="Close" (click)="modal2.dismiss()" #closeModal>
             <span aria-hidden="true">&times;</span>
@@ -54,7 +54,7 @@
     </div>
     <div class="modal-body">
         <h5>
-            This volunteer is already registered for this event. Are you sure you want to add them again?
+            This volunteer is already registered for this shift. Are you sure you want to add them again?
           </h5>
     </div>
     <div *ngIf="addUser" class="footer">
