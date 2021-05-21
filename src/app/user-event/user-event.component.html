@@ -86,7 +86,12 @@
   <div class="modal-body profile" *ngIf="validId">
     <table class="table">
       <tbody>
-        <h4>{{ element.first_name }} {{ element.last_name }}</h4>
+        <div> 
+          <h4>{{ element.first_name }} {{ element.last_name }}</h4>
+          <div class="status" *ngIf="element.active_status || element.active_status == null"
+          >Active</div>
+          <div class="status" *ngIf="element.active_status == false">Inactive</div>  
+        </div>
 
         <input
           class="apple-switch"
@@ -95,24 +100,14 @@
           type="checkbox"
           matTooltip="Toggle volunteer's active status"
         />
-
-        <status *ngIf="element.active_status || element.active_status == null"
-          >Active</status
-        >
-        <status *ngIf="element.active_status == false">Inactive</status>
-
-        <button class="btn-delete-user" (click)="openWarning()">
-          Delete User
-        </button>
-
         <button
           mat-menu-item
           (click)="open(content)"
           onclick="this.blur()"
           id="historyBtn"
         >
-          <mat-icon style="margin-left: -10px">history</mat-icon>
-          <span>View Shifts</span>
+          <mat-icon style="margin-left: -10px; transform: scale(0.8)">history</mat-icon>
+          <span style="margin-left: -5%;">View Shifts</span>
         </button>
 
         <div class="editBtn">
@@ -122,8 +117,8 @@
             (click)="openEditForm()"
             onclick="this.blur()"
           >
-            <mat-icon style="margin-left: -10px">edit</mat-icon>
-            <span>Edit Profile</span>
+            <mat-icon style="margin-left: -10px; transform: scale(0.8);">edit</mat-icon>
+            <span style="margin-left: -5%;">Edit Profile</span>
           </button>
           <div *ngIf="displayForm">
             <form
@@ -242,6 +237,9 @@
             </button>
           </div>
         </div>
+        <button class="btn-delete-user" (click)="openWarning()">
+          Delete User
+        </button>
 
         <tr>
           <td id="colored">

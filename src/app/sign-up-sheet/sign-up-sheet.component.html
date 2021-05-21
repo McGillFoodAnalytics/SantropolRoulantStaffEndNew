@@ -6,14 +6,19 @@
   <div class="container-fluid" style="padding: 0">
     <div class="row" style="padding-top: 2rem; padding-bottom: 1rem">
       <div class="col" id="header" style="text-align: center">
-        <img src="../../../assets/santropol-logo.png" alt="" id="logoSantrR"/>
+        <img src="../../../assets/santropol-logo.png" alt="" id="logoSantrR" />
         <h1
           class="header-text"
-          style="padding: 0.5rem; text-align: center; color: #60a4ff; margin-left: -100px;"
+          style="
+            padding: 0.5rem;
+            text-align: center;
+            color: #60a4ff;
+            margin-left: -100px;
+          "
         >
           Volunteer Schedule
         </h1>
-        <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGill"/>
+        <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGill" />
       </div>
     </div>
     <div class="row weekTitle">
@@ -65,7 +70,22 @@
         </div>
       </div>
     </div>
-
+    <div  class="shiftHeaders" *ngIf="currentWeek != 'third'">
+      <div style="display:flex" *ngFor="let coolEvent of eventArray">
+        <div *ngFor="let day of getEventListCool(coolEvent) | keyvalue">
+          <div
+            class="card-header"
+            style="margin-right: 1px;margin-left: 1px; width: 12vw;"
+            id="cardTitle"
+            *ngIf="coolEvent == 'Kitchen AM'"
+          >
+            {{ day.value.display_date | date: "EEEE, MMM d" }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
     <!-- First Week Pane -->
     <div class="container-fluid">
       <app-slider [activePane]="currentWeek">
@@ -86,14 +106,6 @@
                 class="card"
                 [class.eventCardImportant]="day.value.is_important_event"
               >
-                <div
-                  class="card-header"
-                  [class.eventCardImportantHeader]="day.value.is_important_event"
-                  id="cardTitle"
-                  *ngIf="coolEvent == 'Kitchen AM'"
-                >
-                  {{ day.value.display_date | date: "EEEE, MMM d" }}
-                </div>
                 <div class="card-body">
                   <app-event-sign-up-table
                     [slots]="day.value.slots"
@@ -186,26 +198,6 @@
                 class="card"
                 [class.eventCardImportant]="day.value.is_important_event"
               >
-                <div
-                  class="card-header"
-                  id="cardTitle"
-                  *ngIf="
-                    coolEvent == 'Kitchen AM' && day.value.is_important_event;
-                    else importantEventFalseHeader
-                  "
-                  style="background-color: #f24a5a"
-                >
-                  {{ day.value.display_date | date: "EEEE, MMM d" }}
-                </div>
-                <ng-template #importantEventFalseHeader>
-                  <div
-                    class="card-header"
-                    id="cardTitle"
-                    *ngIf="coolEvent == 'Kitchen AM'"
-                  >
-                    {{ day.value.display_date | date: "EEEE, MMM d" }}
-                  </div>
-                </ng-template>
                 <div class="card-body">
                   <app-event-sign-up-table
                     [slots]="day.value.slots"

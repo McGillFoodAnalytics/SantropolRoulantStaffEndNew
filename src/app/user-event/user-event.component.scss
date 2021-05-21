@@ -14,10 +14,11 @@ h4 {
   display: block;
   float: left;
   padding-right: 30px;
+  font-size: 1.5vw;
 }
 
-h5 {
-  color: red;
+.cancellation h5 {
+  color: rgb(218, 65, 65);
   margin-top: 40px;
 }
 .mat-icon {
@@ -55,10 +56,10 @@ button {
 }
 
 #historyBtn {
-  width: 10vw;
+  width: 9vw;
   float: right;
   text-align: center;
-  font-size: 1.10vw;
+  font-size: 1.0vw;
   color: white;
   background-color: #449afe;
   border-bottom-right-radius: 0px;
@@ -72,15 +73,29 @@ button {
 }
 
 #editBtn {
-  width: 10vw;
+  width: 9vw;
   float: right;
   text-align: center;
-  font-size: 1.10vw;
+  font-size: 1.0vw;
   margin-right: 5px;
   color: white;
   background-color: #449afe;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+
+.btn-delete-user{
+  float: right;
+  outline: none;
+  height: 30px;
+  width: 6.5vw;
+  font-size: 0.95vw;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 10px;
+	color: white !important;
+  border-color: indianred;
+	background-color: #dc3545 !important;
 }
 
 #saveBtn {
@@ -137,9 +152,11 @@ input {
   font-size: 15px;
   height: 27px;
 }
+
 ::placeholder {
   font-size: 12px;
 }
+
 #editInputEmail {
   width: 16vw;
   position: fixed;
@@ -231,13 +248,13 @@ input.ng-invalid {
   margin-bottom: 140px;
 }
 
-status {
+.status {
   font-size: 11px;
   font-style: italic;
-  text-align: center;
-  margin-top: 65px;
-  padding-left: 10px;
-  vertical-align: center;
+  position: fixed;
+  float: left;
+  margin-top: 30px;
+  color: grey;
 }
 
 input.apple-switch {
@@ -285,23 +302,6 @@ input.apple-switch:checked:after {
 
 .footer{
   margin-top: 20px;
-}
-
-.btn-delete-user{
-  float: right;
-  outline: none;
-  position: absolute;
-  height: 30px;
-  margin-left: 2%;
-  margin-top: 5px;
-  color: #dc3545 !important;
-	border-color: #dc3545 !important;
-}
-
-.btn-delete-user:hover {
-  outline: none;
-	background-color: #dc3545 !important;
-	color: white !important;
 }
 
 .userIdNull{
