@@ -20,7 +20,8 @@
         <thead>
           <tr>
             <th scope="col">Volunteer</th>
-            <th scope="col">Event Type</th>
+            <th scope="col">Shift Type</th>
+            <th scope="col">Frequency</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
           </tr>
@@ -31,7 +32,9 @@
             <td>
               {{ formatEventType(event.event_type) }}
             </td>
-
+            <td>
+              {{ formatFrequency(event.frequency) }}
+            </td>
             <td>
               {{ event.start_date }}
             </td>

@@ -13,7 +13,7 @@
             padding: 0.5rem;
             text-align: center;
             color: #60a4ff;
-            margin-left: -100px;
+            margin-left: -68px;
           "
         >
           Volunteer Schedule
@@ -23,8 +23,8 @@
     </div>
     <div class="row weekTitle">
       <div class="col">
-        <div class="card" style="margin-top: -16px">
-          <div class="card-header">
+        <div class="card" style="margin-top: -16px; border-color: #60a4ff; border-radius: 0;">
+          <div class="card-header" style="border-radius: 0; border: none;">
             <div class="row">
               <div class="col-8 offset-2" style="text-align: center">
                 <button
@@ -70,16 +70,15 @@
         </div>
       </div>
     </div>
-    <div  class="shiftHeaders" *ngIf="currentWeek != 'third'">
-      <div style="display:flex" *ngFor="let coolEvent of eventArray">
+    <div class="shiftHeaders" *ngIf="currentWeek != 'third'">
+      <div style="display:flex; text-align: center;" *ngFor="let coolEvent of eventArray">
         <div *ngFor="let day of getEventListCool(coolEvent) | keyvalue">
-          <div
-            class="card-header"
-            style="margin-right: 1px;margin-left: 1px; width: 12vw;"
-            id="cardTitle"
+          <div class="cardTitle"
             *ngIf="coolEvent == 'Kitchen AM'"
           >
+          <span>
             {{ day.value.display_date | date: "EEEE, MMM d" }}
+          </span>
           </div>
         </div>
       </div>
