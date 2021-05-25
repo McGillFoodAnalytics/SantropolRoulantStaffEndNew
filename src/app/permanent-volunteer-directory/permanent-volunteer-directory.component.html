@@ -16,7 +16,38 @@
 
   <div class="permVolDir">
     <div class="modal-body">
-      <table class="table table-striped">
+      <!-- Search container -->
+      <div class="container-search">
+        <mat-form-field class="volunteer-search">
+          <input
+            matInput
+            (keyup)="applyFilter($event.target.value)"
+            placeholder="Search"
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="Volunteer">
+          <mat-header-cell *matHeaderCellDef>Volunteer</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.first_name }} {{ element.last_name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Event Type">
+          <mat-header-cell *matHeaderCellDef>Event Type</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.event_type}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Event Start Date">
+          <mat-header-cell *matHeaderCellDef>Event Start Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.start_date}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Event End Date">
+          <mat-header-cell *matHeaderCellDef>Event End Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.end_date}}</mat-cell>
+        </ng-container>
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <!-- <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">Volunteer</th>
@@ -37,12 +68,12 @@
             </td>
 
             <td>
-              {{ event.end_date }}
+              {{ event.end_date }} -->
               <!-- <mat-icon (click)="delete(event.id)">delete</mat-icon></td> -->
-            </td>
+            <!-- </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
   </div>
 </ng-template>
