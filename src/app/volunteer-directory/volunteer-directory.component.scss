@@ -112,5 +112,18 @@ tr.element-row:not(.expanded-row):active {
   width: 95%;
   margin-left: 2.5%;
   margin-right: 2.5%;
-  margin-bottom: 70px;
+  margin-bottom: 140px;
+}
+.copyrightFooter {
+  margin-top: -100px;
+  left: -40px;
+  text-align: center;
+  position: relative;
+}
+
+#logoMcGillFoodAn {
+  max-width: 40px;
+  margin-top: -60px;
+  left: 190px;
+  position: relative;
 }

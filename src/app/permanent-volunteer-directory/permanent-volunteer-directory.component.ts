@@ -75,6 +75,20 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     return newId;
   }
 
+  /**
+   * 
+   * @param frequency : field of a Permanent/recurring shift for a perm vol
+   * @returns the string form of frequency
+   */
+  formatFrequency(frequency: Number){
+    switch(frequency){
+      case 1: return "Weekly";
+      case 2: return "Biweekly";
+      case 3: return "Triweekly";
+      case 4: return "Monthly";
+    }
+  }
+
   open(content) {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm', windowClass: 'permanent-volunteer-directory', centered: true});
   }
