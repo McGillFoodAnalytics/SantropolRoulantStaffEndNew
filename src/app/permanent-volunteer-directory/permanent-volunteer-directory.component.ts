@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FirebaseService} from '../firebase-service.service';
 import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { sanitizeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-permanent-volunteer-directory',
@@ -17,6 +19,9 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   private volunteers: any = [];
   private volunteersObservable;
   private events: any = [];
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['Volunteer','Event Type', 'Frequency','Event Start Date','Event End Date'];
+
   private eventsObservable;
   private model: any = {};
   result: Observable<any>
@@ -33,6 +38,19 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
         snapshot.end_date = this.formatEventDate(snapshot.end_date);
         this.events.push(snapshot);
       });
+      this.dataSource = new MatTableDataSource(snapshots);
+    });
+  }
+
+  ngAfterViewInit(){
+    this.eventsObservable = this.fs.getPermanentEvents();
+    this.eventsObservable.subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+        snapshot.start_date = this.formatEventDate(snapshot.start_date);
+        snapshot.end_date = this.formatEventDate(snapshot.end_date);
+        this.events.push(snapshot);
+      });
+      this.dataSource = new MatTableDataSource(snapshots);
     });
   }
 
@@ -64,6 +82,9 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   delete(eventID){
     this.fs.removePermanentVolunteer(eventID);
   }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   formatEventDate(eventDate: string) {
     // code1 is the part of the event date that contains data specific to yyyy-mm-dd
@@ -80,4 +101,5 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     let date =  monthName + " " + day + ", " + year;
     return date;
   }
+
 }
