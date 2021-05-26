@@ -16,11 +16,14 @@ import { sanitizeIdentifier } from '@angular/compiler';
 export class PermanentVolunteerDirectoryComponent implements OnInit {
   active = 1;
   private modalReference;
-  private volunteers: any = [];
-  private volunteersObservable;
-  private events: any = [];
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['Volunteer','Event Type', 'Frequency','Event Start Date','Event End Date'];
+  displayedColumns: string[] =[
+    'Volunteer',
+    'Event Type', 
+    'Frequency',
+    'Event Start Date',
+    'Event End Date'
+  ];
 
   private eventsObservable;
   private model: any = {};
@@ -36,19 +39,6 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
       snapshots.forEach(snapshot => {
         snapshot.start_date = this.formatEventDate(snapshot.start_date);
         snapshot.end_date = this.formatEventDate(snapshot.end_date);
-        this.events.push(snapshot);
-      });
-      this.dataSource = new MatTableDataSource(snapshots);
-    });
-  }
-
-  ngAfterViewInit(){
-    this.eventsObservable = this.fs.getPermanentEvents();
-    this.eventsObservable.subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        snapshot.start_date = this.formatEventDate(snapshot.start_date);
-        snapshot.end_date = this.formatEventDate(snapshot.end_date);
-        this.events.push(snapshot);
       });
       this.dataSource = new MatTableDataSource(snapshots);
     });
@@ -93,9 +83,11 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm', windowClass: 'permanent-volunteer-directory', centered: true});
   }
 
+  //Not currently being used but can be added as a button 
   delete(eventID){
     this.fs.removePermanentVolunteer(eventID);
   }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -115,5 +107,4 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     let date =  monthName + " " + day + ", " + year;
     return date;
   }
-
 }

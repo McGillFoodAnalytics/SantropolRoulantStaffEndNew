@@ -16,7 +16,7 @@ export class EventSignUpTableComponent implements OnInit {
   displayedColumns: string[] = ['volunteer', 'actions'];
   dataSource;
   selectedRow;
-  @Input() slots: [];
+  @Input() slots: [any];
   @Input() eventType: string;
   @Input() id: string;
   volunteerList;
@@ -29,6 +29,13 @@ export class EventSignUpTableComponent implements OnInit {
   constructor(private modalService: ModalService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+
+    //update staff_note field with note field(entered by user in mobile app)
+    this.slots.forEach(element => {
+      if(element.note && !element.staff_note){
+        element.staff_note = element.note;
+      }
+    });
     this.dataSource = new MatTableDataSource(this.slots);
     this.fs.getUsers().subscribe(val=>{
       this.volunteerList = val;
