@@ -36,12 +36,16 @@ td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:la
   background-color: lightgrey;
 }
 
+.firstShift{
+  background-color: rgb(229, 245, 229);
+}
+
 .emptyBlock{
   min-height: 48px;
-  width: 13vw;
+  width: 12vw;
   position: absolute;
   left: 0px;
-  top: 57px;
+  top: 56px;
   align-items: center; 
   background-color: #E8E8E8;
 }
