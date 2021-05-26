@@ -20,7 +20,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   private volunteersObservable;
   private events: any = [];
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['Volunteer','Event Type','Event Start Date','Event End Date'];
+  displayedColumns: string[] = ['Volunteer','Event Type', 'Frequency','Event Start Date','Event End Date'];
 
   private eventsObservable;
   private model: any = {};
@@ -39,11 +39,9 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
         this.events.push(snapshot);
       });
       this.dataSource = new MatTableDataSource(snapshots);
-
     });
-  
-
   }
+
   ngAfterViewInit(){
     this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
@@ -54,10 +52,8 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
       });
       this.dataSource = new MatTableDataSource(snapshots);
     });
-    
-
-
   }
+
   formatEventType(eventType: string){
     let newId;
     switch (eventType) {
@@ -87,11 +83,9 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     this.fs.removePermanentVolunteer(eventID);
   }
   applyFilter(filterValue: string) {
-    console.log("Filtering")
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSource)
-
   }
+
   formatEventDate(eventDate: string) {
     // code1 is the part of the event date that contains data specific to yyyy-mm-dd
     let code1 = eventDate.substring(0, 10);

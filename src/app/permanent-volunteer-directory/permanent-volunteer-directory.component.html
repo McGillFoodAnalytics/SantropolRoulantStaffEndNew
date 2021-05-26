@@ -36,6 +36,10 @@
           <mat-header-cell *matHeaderCellDef>Event Type</mat-header-cell>
           <mat-cell *matCellDef="let element">{{element.event_type}}</mat-cell>
         </ng-container>
+        <ng-container matColumnDef="Frequency">
+          <mat-header-cell *matHeaderCellDef>Frequency</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.frequency}}</mat-cell>
+        </ng-container>
         <ng-container matColumnDef="Event Start Date">
           <mat-header-cell *matHeaderCellDef>Event Start Date</mat-header-cell>
           <mat-cell *matCellDef="let element">{{element.start_date}}</mat-cell>
@@ -47,33 +51,6 @@
          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <!-- <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Volunteer</th>
-            <th scope="col">Event Type</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let event of events">
-            <td>{{ event.first_name }} {{ event.last_name }}</td>
-            <td>
-              {{ formatEventType(event.event_type) }}
-            </td>
-
-            <td>
-              {{ event.start_date }}
-            </td>
-
-            <td>
-              {{ event.end_date }} -->
-              <!-- <mat-icon (click)="delete(event.id)">delete</mat-icon></td> -->
-            <!-- </td>
-          </tr>
-        </tbody>
-      </table> -->
     </div>
   </div>
 </ng-template>
