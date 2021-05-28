@@ -38,15 +38,20 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
+    this.today = new Date();
     this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
-      // for(let i = 0; i < snapshots.length; i++){
-      //   console.log(snapshots[i]);
-      // }
-      snapshots.forEach(snapshot => {
-        snapshot.start_date = this.formatEventDate(snapshot.start_date);
-        snapshot.end_date = this.formatEventDate(snapshot.end_date);
-      });
+      let temp : any;
+      // Sort the entries of perm volunteers by end date from recent to future
+      for(let i = 0; i < snapshots.length; i++){
+        for (let j = 0; j < snapshots.length; j++) {
+          if(snapshots[i].end_date < snapshots[j].end_date){
+            temp = snapshots[i];
+            snapshots[i] = snapshots[j];
+            snapshots[j] = temp;
+          }
+        }
+      }
       this.dataSource = new MatTableDataSource(snapshots);
     });
   }
