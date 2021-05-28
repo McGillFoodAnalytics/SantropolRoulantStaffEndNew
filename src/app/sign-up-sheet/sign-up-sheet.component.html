@@ -70,7 +70,7 @@
       <app-slider [activePane]="currentWeek">
         <div firstPane>
           <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
-            <h3 id="eventTitle" *ngIf="currentWeek == 'first'">
+            <h3 id="eventTitle">
               {{ coolEvent }}
             </h3>
             <div
@@ -163,7 +163,7 @@
         <!-- Second Week Pane -->
         <div secondPane>
           <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
-            <h3 id="eventTitle" *ngIf="currentWeek == 'second'">
+            <h3 id="eventTitle">
               {{ coolEvent }}
             </h3>
             <div
@@ -253,7 +253,7 @@
         <!-- Third Week Pane -->
         <div thirdPane>
           <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
-            <h3 id="eventTitle" *ngIf="currentWeek == 'third'">
+            <h3 id="eventTitle">
               {{ coolEvent }}
             </h3>
             <div
