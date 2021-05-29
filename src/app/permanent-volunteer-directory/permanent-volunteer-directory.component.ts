@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FirebaseService} from '../firebase-service.service';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { sanitizeIdentifier } from '@angular/compiler';
 
 @Component({
@@ -14,7 +14,7 @@ import { sanitizeIdentifier } from '@angular/compiler';
 
 })
 export class PermanentVolunteerDirectoryComponent implements OnInit {
-  active = 1;
+
   private modalReference;
   dataSource = new MatTableDataSource();
   displayedColumns: string[] =[
@@ -30,16 +30,28 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   result: Observable<any>
   today: Date;
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private modalService: NgbModal, private fs: FirebaseService){
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.today = new Date();
     this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        snapshot.start_date = this.formatEventDate(snapshot.start_date);
-        snapshot.end_date = this.formatEventDate(snapshot.end_date);
-      });
+      let temp : any;
+      // Sort the entries of perm volunteers by end date from recent to future
+      for(let i = 0; i < snapshots.length; i++){
+        for (let j = 0; j < snapshots.length; j++) {
+          if(snapshots[i].end_date < snapshots[j].end_date){
+            temp = snapshots[i];
+            snapshots[i] = snapshots[j];
+            snapshots[j] = temp;
+          }
+        }
+      }
       this.dataSource = new MatTableDataSource(snapshots);
     });
   }

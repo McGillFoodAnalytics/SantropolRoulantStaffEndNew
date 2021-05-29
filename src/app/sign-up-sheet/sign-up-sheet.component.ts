@@ -83,20 +83,16 @@ export class SignUpSheetComponent implements OnInit {
   ngOnInit() {
     this.events = this.fs.getEvents();
     this.fs.getEvents().subscribe(snapshots => {
-      // snapshots.forEach(element => {
-      //   element.phone_number = this.prettifyPhoneNumber(element.phone_number)
-      // });
-    this.dataSource = new MatTableDataSource(snapshots);
-    this.dataSource.sort = this.sort;
+      this.dataSource = new MatTableDataSource(snapshots);
+      this.dataSource.sort = this.sort;
     });
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
     this.db.list('event').auditTrail().subscribe(changes => {
-
-    this.formatEventDates();
-    this.volunteers = this.fs.getUsers();
-    this.setVolunteerList();
+      this.formatEventDates();
+      this.volunteers = this.fs.getUsers();
+      this.setVolunteerList();
     });
     this.removeLoading();
   }
@@ -136,7 +132,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   formatEventDates() {
-    const events_per_week = 124;
+    const events_per_week = 125;
     this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
@@ -188,7 +184,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week2[event_type][event_date]["num_slots"] =
             this.week2[event_type][event_date]["num_slots"] + 1;
           this.week2[event_type][event_date]["slots"].push(snapshot);
-        } else {
+        } else if (i >= 2 * events_per_week && i < 3 * events_per_week){
           if (!(event_type in this.week3)) {
             this.week3[event_type] = {};
           }
@@ -214,7 +210,6 @@ export class SignUpSheetComponent implements OnInit {
       this.weekRange1 = this.setWeekRange(this.week1);
       this.weekRange2 = this.setWeekRange(this.week2);
       this.weekRange3 = this.setWeekRange(this.week3);
-      //console.log(this.week1);
     });
   }
 
@@ -240,7 +235,6 @@ export class SignUpSheetComponent implements OnInit {
 
     if (this.currentWeek == "first") {
       return this.weekRange1;
-
     } else if (this.currentWeek == "second") {
       return this.weekRange2;
     } else {
@@ -348,6 +342,10 @@ export class SignUpSheetComponent implements OnInit {
       return this.week2[currentEventValue];
     }
     else {
+      let week3 = Object.keys(this.week3[currentEventValue]);
+      if (week3.length == 5) {
+        this.addEmptyThursday(this.week3[currentEventValue]);
+      }
       return this.week3[currentEventValue];
     }
   }

@@ -26,7 +26,7 @@
         <div class="card" style="margin-top: -16px; border-color: #60a4ff; border-radius: 0;">
           <div class="card-header" style="border-radius: 0; border: none;">
             <div class="row">
-              <div class="col-8 offset-2" style="text-align: center">
+              <div class="col-8" style="text-align: center">
                 <button
                   class="btn"
                   (click)="prevWeek()"
@@ -45,32 +45,12 @@
                   <mat-icon>arrow_forward_ios</mat-icon>
                 </button>
               </div>
-              <div class="col-2" style="text-align: right">
-                <select
-                  *ngIf="currentWeek == 'third'"
-                  class="browser-default custom-select"
-                  [(ngModel)]="currentEvent"
-                  style="
-                    background-color: #5fce99 !important;
-                    color: white;
-                    border: none;
-                  "
-                >
-                  <option disabled>Event Type</option>
-                  <option
-                    *ngFor="let event of eventTypes | keyvalue"
-                    [ngValue]="event.key"
-                  >
-                    {{ event.key }}
-                  </option>
-                </select>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="shiftHeaders" *ngIf="currentWeek != 'third'">
+    <div class="shiftHeaders">
       <div style="display:flex; text-align: center;" *ngFor="let coolEvent of eventArray">
         <div *ngFor="let day of getEventListCool(coolEvent) | keyvalue">
           <div class="cardTitle"
@@ -90,7 +70,7 @@
       <app-slider [activePane]="currentWeek">
         <div firstPane>
           <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
-            <h3 id="eventTitle" *ngIf="currentWeek == 'first'">
+            <h3 id="eventTitle">
               {{ coolEvent }}
             </h3>
             <div
@@ -180,9 +160,10 @@
           </div>
         </div>
 
+        <!-- Second Week Pane -->
         <div secondPane>
           <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
-            <h3 id="eventTitle" *ngIf="currentWeek == 'second'">
+            <h3 id="eventTitle">
               {{ coolEvent }}
             </h3>
             <div
@@ -269,40 +250,45 @@
           </div>
         </div>
 
+        <!-- Third Week Pane -->
         <div thirdPane>
-          <div class="row" style="padding-bottom: 2rem">
+          <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
+            <h3 id="eventTitle">
+              {{ coolEvent }}
+            </h3>
             <div
-              class="col-3"
-              *ngFor="let day of getEventList() | keyvalue; let i = index"
+              class="row-2"
+              *ngFor="
+                let day of getEventListCool(coolEvent) | keyvalue;
+                let i = index
+              "
               style="padding-bottom: 2rem"
             >
-              <div class="card" id="cardTitle3">
-                <div
-                  class="card-header"
-                  id="cardTitle3"
-                  *ngIf="
-                    day.value.is_important_event;
-                    else importantEventFalseHeader
-                  "
-                  style="background-color: #f24a5a"
-                >
-                  {{ day.value.display_date | date: "EEEE, MMM d" }}
-                </div>
-                <ng-template #importantEventFalseHeader>
-                  <div class="card-header" id="cardTitle3">
-                    {{ day.value.display_date | date: "EEEE, MMM d" }}
-                  </div>
-                </ng-template>
-                <div class="card-body" style="width: 100%">
+              <div
+                class="card"
+                [class.eventCardImportant]="day.value.is_important_event"
+              >
+                <div class="card-body">
                   <app-event-sign-up-table
                     [slots]="day.value.slots"
-                    [eventType]="currentEvent"
+                    [id]="day.value.slots[0].id"
+                    [eventType]="coolEvent"
                     (removeUserFromEvent)="removeUserFromEvent($event)"
                     (insertStaffNote)="insertStaffNote($event)"
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div class="card-footer" style="text-align: center">
+                <div
+                  class="card-footer"
+                  style="
+                    text-align: center;
+                    height: 48px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                  *ngIf="day.value.slots[0].id != 'N/A'"
+                >
                   <img
                     class="img-important-event-true"
                     *ngIf="
@@ -312,7 +298,7 @@
                     src="assets/important-event-true.png"
                     width="30px"
                     style="margin-right: 1rem"
-                    (click)="changeEventImportance(day.key)"
+                    (click)="changeEventImportanceCool(day.key, coolEvent)"
                     matTooltip="Click to mark this event as unimportant"
                   />
                   <ng-template #importantEventFalse>
@@ -321,14 +307,13 @@
                       src="assets/important-event-false.png"
                       width="30px"
                       style="margin-right: 1rem"
-                      (click)="changeEventImportance(day.key)"
+                      (click)="changeEventImportanceCool(day.key, coolEvent)"
                       matTooltip="Click to mark this event as important"
                     />
                   </ng-template>
-
                   <app-event-note
                     date="{{ day.value.slots[0].event_date_txt }}"
-                    [eventType]="currentEvent"
+                    [eventType]="coolEvent"
                     eventNote="{{ day.value.slots[0].event_note }}"
                     (updateEventNote)="
                       updateEventNote(day.value.slots[0].id, $event)
@@ -337,13 +322,22 @@
                   >
                   </app-event-note>
                   <mat-icon
+                    style="
+                      margin-left: 5px;
+                      margin-top: -8px;
+                      transform: scale(0.8);
+                    "
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
                     "
                     >announcement
                   </mat-icon>
+                  <app-add-user-to-event></app-add-user-to-event>
                 </div>
+              </div>
+              <div *ngIf="coolEvent == 'Delivery'" style="height: 130px">
+                <!-- empty div block used to add bottom padding extend to the schedule view, only used in last event type "Delivery" -->
               </div>
             </div>
           </div>

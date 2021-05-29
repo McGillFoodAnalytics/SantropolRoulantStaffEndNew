@@ -35,7 +35,7 @@
           >
         </ng-container>
         <ng-container matColumnDef="Event Type">
-          <mat-header-cell *matHeaderCellDef>Event Type</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Shift Type</mat-header-cell>
           <mat-cell *matCellDef="let element">{{
             formatEventType(element.event_type)
           }}</mat-cell>
@@ -45,14 +45,14 @@
           <mat-cell *matCellDef="let element">{{ formatFrequency(element.frequency) }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Event Start Date">
-          <mat-header-cell *matHeaderCellDef>Event Start Date</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
           <mat-cell *matCellDef="let element">{{
-            element.start_date
+            formatEventDate(element.start_date)
           }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Event End Date">
-          <mat-header-cell *matHeaderCellDef>Event End Date</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{ element.end_date }}</mat-cell>
+          <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ formatEventDate(element.end_date) }}</mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
