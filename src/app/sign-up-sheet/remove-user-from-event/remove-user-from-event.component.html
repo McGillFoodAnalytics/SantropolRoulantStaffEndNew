@@ -26,7 +26,7 @@
     </div>
 </ng-template>
 
-<button mat-menu-item (click)="open(content)">
-    <mat-icon>delete_forever</mat-icon>
+<button mat-menu-item (click)="open(content)" [class.btn-user-profile]="isUserProfile">
+    <mat-icon class="trashIcon">delete_forever</mat-icon>
     <span>Remove Volunteer</span>
 </button>

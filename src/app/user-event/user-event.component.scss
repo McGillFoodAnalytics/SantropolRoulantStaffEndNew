@@ -66,10 +66,17 @@ button {
   border-bottom-left-radius: 0px;
 }
 
-.editBtn{
+.editProfile{
   margin-top: -50px;
   position: relative;
   min-width: 600px;
+}
+
+.editProfile .input-group{
+  left: 310px;
+}
+.editProfile input{
+  left: 310px;
 }
 
 #editBtn {
@@ -138,14 +145,13 @@ button {
 
 .input-group {
   position: fixed;
-  top: 248px;
-  left: 300px;
+  top: 246px;
   width: 40vw;
   min-width: 100px;
 }
 
 .group2 {
-  top: 395px;
+  top: 393px;
 }
 
 input {
@@ -160,8 +166,7 @@ input {
 #editInputEmail {
   width: 16vw;
   position: fixed;
-  top: 200px;
-  left: 300px;
+  top: 198px;
   border: 1px solid lightgray;
 }
 
@@ -189,21 +194,20 @@ input {
   width: 170px;
   position: fixed;
   top: 297px;
-  left: 300px;
 }
 
 #picker {
   position: fixed;
   top: 289px;
-  left: 425px;
+  left: 435px;
 }
 
 #editInputPhone {
   width: 170px;
   position: fixed;
   top: 345px;
-  left: 300px;
   border: 1px solid lightgray;
+  outline: none;
 }
 
 #editInputEmergName {
@@ -219,8 +223,7 @@ input {
 #editInputEmergNum {
   width: 170px;
   position: fixed;
-  top: 444px;
-  left: 300px;
+  top: 442px;
   border: 1px solid lightgray;
 }
 
@@ -324,4 +327,13 @@ input.apple-switch:checked:after {
  margin-top: -100px;
  position: relative;
  left: 36%;
+}
+
+#phoneNumErrorMsg{
+  position: fixed; 
+  left: 490px; 
+  top: 348px; 
+  color: red; 
+  font-size: 14px;
+  font-style: italic;
 }

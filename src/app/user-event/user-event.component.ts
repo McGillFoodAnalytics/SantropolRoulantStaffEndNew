@@ -199,8 +199,8 @@ export class UserEventComponent implements OnInit {
       // Create Date type to extract month in string format easily
       const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
       let monthName = newDate.toLocaleString('default', { month: 'long' });
+
       date =  monthName + " " + day + ", " + year;
-      
       return date;
     }
   }
@@ -217,21 +217,20 @@ export class UserEventComponent implements OnInit {
   }
 
   formatEventId(eventId: string) {
-    let code2 = eventId.substring(11);
     let event = eventId.substring(6, 11);
     let newId;
     switch (event) {
       case "kitam":
-        newId =  "Kitchen AM-" + code2;
+        newId =  "Kitchen AM";
         break;
       case "kitpm":
-        newId = "Kitchen PM-" + code2;
+        newId = "Kitchen PM";
         break;
       case "deldr":
-        newId = "Delivery Driver-" + code2;
+        newId = "Delivery Driver";
         break;
       case "deliv":
-        newId = "Delivery-" + code2;
+        newId = "Delivery";
         break;
     }
     return newId;
