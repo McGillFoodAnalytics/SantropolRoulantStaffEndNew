@@ -38,10 +38,13 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.today = new Date();
     this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
       let temp : any;
+
+      // Date 7 days ago from today's date
+      var pastDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
       // Sort the entries of perm volunteers by end date from recent to future
       for(let i = 0; i < snapshots.length; i++){
         for (let j = 0; j < snapshots.length; j++) {
@@ -52,6 +55,14 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
           }
         }
       }
+    
+      // Array is not sorted.
+      // Remove first element while it is less than one weeek ago from today's date
+      // pastDate = 7 days ago from today
+      while(snapshots[0].end_date < pastDate){
+        snapshots.shift();
+      }
+
       this.dataSource = new MatTableDataSource(snapshots);
     });
   }
