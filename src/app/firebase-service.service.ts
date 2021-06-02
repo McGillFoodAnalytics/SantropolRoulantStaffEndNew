@@ -25,22 +25,18 @@ export class FirebaseService {
   eventDates = {};
   volunteerSampleRef: AngularFireList<any>;
   volunteerSamples: Observable<any[]>;
+  shiftsNotAdded : any = [];
   eventChanges: Observable<any[]>;
   bugsRef: AngularFireList<any>;
   bugs: Observable<any[]>;
   user: Observable<any>;
 
-  eventTypesCool = {
-    "kitam": 5,
-    "kitpm": 5,
-    "deldr": 4,
-    "deliv": 10
-    // "Kitcham AM Sat": "kitas",
-    // "Kitchem PM Sat": "kitps",
-    // "Delivery Driver Sat": "delds",
-    // "Delivery Sat": "delis",
+  shiftTypeLength = {
+    kitam: 5,
+    kitpm: 5,
+    deldr: 4,
+    deliv: 10,
   };
-
 
   constructor(private db: AngularFireDatabase) {}
 
@@ -151,6 +147,8 @@ export class FirebaseService {
       last_name: "",
       uid: "nan",
       staff_note: "",
+      note: "",
+      first_shift: false,
     });
   }
 
@@ -203,7 +201,7 @@ export class FirebaseService {
     if (reason == "" || reason == null) {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
-        user_id: uid
+        user_id: uid,
       });
     } else {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
@@ -220,7 +218,7 @@ export class FirebaseService {
     last_name: string,
     uid: string
   ): void {
-    console.log("from firebase service");
+    //console.log("from firebase service");
     this.db.object("/event/" + event_id).update({
       first_name: first_name,
       last_name: last_name,
@@ -256,21 +254,13 @@ export class FirebaseService {
     });
   }
 
-  async addPermanentVolunteer(
-    event_type: string,
-    user_id,
-    start_date: Date,
-    end_date: Date,
-    frequency: Number
-  ) {
-    const permanent_event_id =
-      event_type +
-      "_" +
-      start_date.getDate() +
-      frequency +
-      end_date.getMonth() +
-      "_" +
-      user_id[0];
+  async addPermanentVolunteer( event_type: string, user_id, start_date: Date, end_date: Date,
+    frequency: Number ) : Promise<any[]> {
+
+    this.shiftsNotAdded = [];
+    const permanent_event_id = event_type + "_" + start_date.getDate() +
+      frequency + end_date.getMonth() +  "_" + user_id[0];
+
     this.db.object("/recurring_events/" + permanent_event_id).update({
       event_type: event_type,
       user_id: user_id[0],
@@ -281,80 +271,118 @@ export class FirebaseService {
       frequency: frequency,
     });
 
-    let validDates = this.getDates(new Date(start_date), new Date(end_date), frequency);
-        for (let i = 0; i < validDates.length; i++) {
-          let flag = false;
-          for(let j = 0; j < this.eventTypesCool[event_type]; j++){
-            var a = this.db.object("event/" + validDates[i] + event_type + this.pad(j+1, 2)).valueChanges().subscribe((news:any) => {
-              //console.log(news.uid);
-                if(news.uid == user_id[0]){
-                  console.log("in here: " + news.uid);
-                  flag = true;
-                } else if (flag == false && news.uid == "nan"){
-                  flag = true;
-                  console.log("in here:" + validDates[i] + event_type + this.pad(j+1, 2) + " " + flag );
-                  this.addUserToEvent(validDates[i] + event_type + this.pad(j+1, 2), user_id[1], user_id[2], user_id[0]);
-                }
-              });
-              await this.delay(500);
-          }
-        }
-
-    console.log("EVENT CREATED");
+    let shiftCode;
+   
+    let validDates = this.getDates( new Date(start_date), new Date(end_date), frequency);
+    for (let i = 0; i < validDates.length; i++) {
+      let flag = false;
+      for (let j = 0; j < this.shiftTypeLength[event_type]; j++) {
+        var a = this.db
+          .object("event/" + validDates[i] + event_type + this.pad(j + 1, 2))
+          .valueChanges()
+          .subscribe((news: any) => {
+            if (news.uid == user_id[0]) {
+              flag = true;
+            } 
+            else if (flag == false && news.uid == "nan") {
+              flag = true;
+              // console.log("in here:" + validDates[i] + event_type + this.pad(j + 1, 2) + " " + flag);
+              this.addUserToEvent(
+                validDates[i] + event_type + this.pad(j + 1, 2),
+                user_id[1],
+                user_id[2],
+                user_id[0]
+              );
+            } 
+            else if (!flag && j == this.shiftTypeLength[event_type] - 1) {
+              shiftCode = news.event_type + news.event_date;
+              this.shiftsNotAdded.push(shiftCode);
+            }
+          });
+        await this.delay(500);
+      }
+    }
+    return this.shiftsNotAdded;
   }
 
-delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
-getDates(firstDate, lastDate, freq) {
+  getDates(firstDate, lastDate, freq) {
     let validDates = [];
     //console.log("First date: " + firstDate.toString() + ", Last date: " + lastDate.toString());
     while (firstDate <= lastDate) {
-        //push the first Date
-        validDates.push(this.getDateNumber(firstDate));
-        //console.log(firstDate);
-        //console.log(freq);
-        let incrementInMilliseconds = (freq) * 7 * 24 * 60 * 60 * 1000;
-        firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
-        //console.log(firstDate);
+      //push the first Date
+      validDates.push(this.getDateNumber(firstDate));
+      //console.log(firstDate);
+      //console.log(freq);
+      let incrementInMilliseconds = freq * 7 * 24 * 60 * 60 * 1000;
+      firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
+      //console.log(firstDate);
     }
     return validDates;
-}
-pad(num, size) {
+  }
+  pad(num, size) {
     let s = num + "";
-    while (s.length < size)
-        s = "0" + s;
+    while (s.length < size) s = "0" + s;
     return s;
-}
-getDateString(dateval) {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  }
+  getDateString(dateval) {
+    var days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     var dayName = days[dateval.getDay()];
     var monthName = months[dateval.getMonth()];
-    var dateString = dayName + ", " + monthName + " " + dateval.getDate() + ", " + dateval.getFullYear();
+    var dateString =
+      dayName +
+      ", " +
+      monthName +
+      " " +
+      dateval.getDate() +
+      ", " +
+      dateval.getFullYear();
     return dateString;
-}
+  }
 
-getDateNumber(date) {
+  getDateNumber(date) {
     let month = "";
     let day = "";
     if (date.getMonth() + 1 < 10) {
-        month = "0" + (date.getMonth() + 1).toString();
-    }
-    else {
-        month = (date.getMonth() + 1).toString();
+      month = "0" + (date.getMonth() + 1).toString();
+    } else {
+      month = (date.getMonth() + 1).toString();
     }
     if (date.getDate() < 10) {
-        day = "0" + date.getDate().toString();
+      day = "0" + date.getDate().toString();
+    } else {
+      day = date.getDate().toString();
     }
-    else {
-        day = date.getDate().toString();
-    }
-    let dateString = (date.getFullYear().toString()).substring(2, 4) + month + day;
+    let dateString =
+      date.getFullYear().toString().substring(2, 4) + month + day;
     let intDate = +dateString;
     return intDate;
-}
+  }
 
   addPermanentVolunteerEvents(
     associatedPermanentEvents: [],
@@ -409,13 +437,13 @@ getDateNumber(date) {
     return this.cancelledEvents;
   }
 
-  changeActiveStatus(userid: string, isActive: boolean){
+  changeActiveStatus(userid: string, isActive: boolean) {
     this.db.object("/user/" + userid).update({
       active_status: isActive,
     });
   }
 
-  updateUserNote(userid: string, newNote: string){
+  updateUserNote(userid: string, newNote: string) {
     console.log(newNote);
     this.db.object("/user/" + userid).update({
       note: newNote,
@@ -423,7 +451,7 @@ getDateNumber(date) {
   }
 
   // Delete a user with its user Id
-  deleteUser(userid: string){
+  deleteUser(userid: string) {
     console.log(userid);
     this.db.object("/user/" + userid).remove();
   }

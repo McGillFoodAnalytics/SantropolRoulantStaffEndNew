@@ -3,6 +3,11 @@
     width: 80% !important;
 }
 
+::ng-deep .permanent-volunteer-warning .modal-dialog {
+    max-width: 60% !important;
+    width: 60% !important;
+}
+
 ::ng-deep {
     .cdk-global-overlay-wrapper, .cdk-overlay-container {
         z-index: 9999 !important;
