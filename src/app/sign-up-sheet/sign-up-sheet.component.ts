@@ -77,7 +77,7 @@ export class SignUpSheetComponent implements OnInit {
     "Kitchen AM": "kitam",
     "Kitchen PM": "kitpm",
     "Delivery Driver": "deldr",
-    Delivery: "deliv",
+    "Delivery": "deliv",
   };
   eventTypesCool = {
     kitam: "Kitchen AM",

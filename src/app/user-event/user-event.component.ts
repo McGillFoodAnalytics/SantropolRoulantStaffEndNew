@@ -35,6 +35,13 @@ export class UserEventComponent implements OnInit {
   private model = new User();
   private modalReference;
   private modalReference2;
+  
+  eventTypes = {
+    kitam: "Kitchen AM",
+    kitpm: "Kitchen PM",
+    deldr: "Delivery Driver",
+    deliv: "Delivery",
+  };
 
   @Input() userId: string;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -101,6 +108,7 @@ export class UserEventComponent implements OnInit {
     this.modalReference2 = this.modalService.open(this.modalTemplateWarning, { ariaLabelledBy: 'modal-basic-title', size: 'md', centered: true});
   }
 
+  //When deleting a user is confirmed
   onDelete(){
     this.firebase.deleteUser(this.userId);
     this.currentEventsUser.forEach(element => {
@@ -216,24 +224,10 @@ export class UserEventComponent implements OnInit {
     return date;
   }
 
+  //Used to format event type for cancelled events
   formatEventId(eventId: string) {
     let event = eventId.substring(6, 11);
-    let newId;
-    switch (event) {
-      case "kitam":
-        newId =  "Kitchen AM";
-        break;
-      case "kitpm":
-        newId = "Kitchen PM";
-        break;
-      case "deldr":
-        newId = "Delivery Driver";
-        break;
-      case "deliv":
-        newId = "Delivery";
-        break;
-    }
-    return newId;
+    return this.eventTypes[event];
   }
 
   prettifyNumber(str: string) {
@@ -328,25 +322,11 @@ export class UserEventComponent implements OnInit {
   }
   
   /**
+   * Used for formatting current and future shift types
    * @param {string} eventType : short format of the type of shift(event)
    * @returns {string} : long format of type of shift 
    */
   formatEventType(eventType: string){
-    let newId;
-    switch (eventType) {
-      case "kitam":
-        newId = "Kitchen AM";
-        break;
-      case "kitpm":
-        newId = "Kitchen PM";
-        break;
-      case "deldr":
-        newId = "Delivery Driver";
-        break;
-      case "deliv":
-        newId = "Delivery";
-        break;
-    }
-    return newId;
+    return this.eventTypes[eventType];   
   }
 }
