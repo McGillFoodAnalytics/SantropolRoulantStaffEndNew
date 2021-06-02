@@ -1,0 +1,84 @@
+<ng-template #manageModal let-modal>
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100"><i class="fa fa-map-marker"></i>Manage Account</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body text-center">
+        
+        <ul>
+
+        <li>
+            <div class="input-group">
+                <h>Email</h>
+                <input type="text" class="form-control" [(ngModel)] = "staff.email" [readonly]="!editEmail">
+                <span class="input-group-btn">
+                    <button *ngIf="!editEmail" class="btn btn-default" type="button" (click)="editEmail = true">Edit</button>
+                    <button *ngIf="editEmail" class="btn btn-default" type="button" (click)="applyEmail()">Apply</button>
+                    <button *ngIf="editEmail" class="btn btn-default" (click)="cancelEmail()" type="button">Cancel</button>
+                </span>
+            </div>
+        </li>
+
+        <li>
+            <div class="input-group">
+                <h>First Name</h>
+                <input type="text" class="form-control" value="{{staff.first_name}}" readonly=[editFirstName]>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Edit</button>
+                </span>
+            </div>
+        </li>
+
+        <span></span>
+
+        <li>
+            <div class="input-group">
+                <h>Last Name</h>
+                <input type="text" class="form-control" value="{{staff.last_name}}" readonly=[editLastName]>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Edit</button>
+                </span>
+            </div>
+        </li>
+
+        <li><h>Password reset</h>
+            <button name="reset">Send Email</button>
+        </li>
+
+        </ul>
+
+    </div>
+
+
+</ng-template>
+
+
+<ng-template #loginModal let-modal>
+
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100"><i class="fa fa-map-marker"></i>Login</h4>
+        <button #closeButton type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body text-center">
+
+        <h6>It's been a while since you last entered your credentials.</h6>
+        
+        <div class="login">
+
+            <div class="inputbox">
+                <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+                <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+            </div>
+
+            <button (click)="login()" data-dismiss="loginModal" class="frontbutton">LOG IN</button>
+        </div>
+
+    </div>
+
+</ng-template>

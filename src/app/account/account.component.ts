@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
+import { ManageAccountComponent } from '../manage-account/manage-account.component';
+import { AdminSettingsComponent } from '../admin-settings/admin-settings.component';
 
 @Component({
   selector: 'app-account',
@@ -9,6 +12,9 @@ import { AuthService } from '../service/auth.service';
 export class AccountComponent implements OnInit {
 
     user: string;
+
+    @ViewChild('manageModal') modal: ManageAccountComponent;
+    @ViewChild('adminModal') adminModal: AdminSettingsComponent;
 
     //error = "test";
 
@@ -33,7 +39,7 @@ export class AccountComponent implements OnInit {
   lastName = "";
   code = "";
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private router: Router) {
     
   }
 
@@ -58,6 +64,7 @@ export class AccountComponent implements OnInit {
 
         setTimeout(() => this.shake = false, 1000);
     }
+    
 
     this.email = this.password = this.code = '';
   }
@@ -68,6 +75,9 @@ export class AccountComponent implements OnInit {
         this.shake = true;
 
         setTimeout(() => this.shake = false, 1000);
+    }
+    else{
+        this.router.navigate(['/volunteer-schedule']);
     }
 
     this.email = this.password = '';   
@@ -164,6 +174,14 @@ export class AccountComponent implements OnInit {
 
   clearError(){
         this.authService.error = "";
+  }
+
+  open(){
+    this.modal.open();
+  }
+
+  openAdminSettings(){
+    this.adminModal.open();
   }
 
 }

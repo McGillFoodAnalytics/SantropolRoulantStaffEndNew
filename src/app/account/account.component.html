@@ -1,3 +1,6 @@
+<app-manage-account #manageModal></app-manage-account>
+<app-admin-settings #adminModal></app-admin-settings>
+
 <div class="page-title">
     <h1>Account</h1>
 </div>
@@ -50,8 +53,9 @@
             <div *ngIf="!loggedinHide" class="loggedin" [class.hide]="loggedinHide">
                 <img class="profileicon" src="https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile">
                 <p class="displayname">{{user.email}}</p>
-                <button class="leftbutton">MANAGE</button>
+                <button class="leftbutton" (click)="open()">MANAGE</button>
                 <button (click)="logout()" class="frontbutton">LOGOUT</button>
+                <button (click)="openAdminSettings()" class="middlebutton">ADMIN SETTINGS</button>
             </div>
 
             <div class="reset" [class.hide]="resetHide">

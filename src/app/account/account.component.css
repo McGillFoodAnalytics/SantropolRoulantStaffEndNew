@@ -158,6 +158,22 @@ input {
     left: 30px;
 }
 
+.middlebutton {
+    background-color: white;
+    border: none;
+    color: #60A4FF;
+    font-size: 12px;
+    font-weight: 300;
+    box-sizing: content-box;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60px;
+    position: absolute;
+    right: 110px;
+    bottom: 70px;
+    cursor: pointer;
+}
+
 .login p {
     cursor: pointer;
     color: white;
