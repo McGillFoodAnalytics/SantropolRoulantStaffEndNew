@@ -70,5 +70,14 @@
 
 [contenteditable]:focus {
   border: 3px solid red;
+}
 
+//class used for the button when view a user profile. Need to make font size bigger than normal
+.btn-user-profile{
+  font-size: 21px;
+  background-color: rgb(218, 218, 218);
+}
+
+.btn-user-profile .trashIcon {
+  transform: scale(1.45);
 }

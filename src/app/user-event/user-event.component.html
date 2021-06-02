@@ -41,8 +41,9 @@
                 <td></td>
                 <td>{{ formatEventType(event.event_type) }}</td>
                 <td></td>
-                <td><div style="height: 33px; overflow:hidden">
-                  <button class="removeVolBtn" onclick="this.blur()">
+                <td><div style="height: 33px; overflow:hidden;">
+                  <button class="removeVolBtn" onclick="this.blur()"
+                  style="background-color: rgb(218, 218, 218);">
                     <app-remove-user-from-event
                       firstName="{{ element.first_name }}"
                       eventId="{{ event.id }}"
@@ -50,6 +51,7 @@
                       lastName="{{ element.last_name }}"
                       date="{{ event.event_date_txt }}"
                       eventType="{{ event.event_type }}"
+                      isUserProfile=true
                       (confirmRemove)="onRemoveUserFromEvent(event.id)"
                     >
                     </app-remove-user-from-event>
@@ -110,7 +112,7 @@
           <span style="margin-left: -5%;">View Shifts</span>
         </button>
 
-        <div class="editBtn">
+        <div class="editProfile">
           <button
             id="editBtn"
             mat-menu-item
@@ -199,6 +201,10 @@
                 formControlName="phone_number"
                 required
               />
+              <mat-label id="phoneNumErrorMsg"
+              *ngIf="myForm.get('phone_number').invalid"
+              >*Invalid phone number. Should be 10 digits only. </mat-label>
+              
               <div class="input-group group2">
                 <input
                   value="{{ element.emergency_contact_name }}"
@@ -291,7 +297,7 @@ Phone Number:<text *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}
           <td>
             <mat-icon>perm_device_information</mat-icon>
             <pre>
-Emergency Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
+Emergency Contact Number:<text *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</text></pre>
           </td>
         </tr>
       </tbody>
