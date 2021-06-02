@@ -58,7 +58,6 @@ export class SignUpSheetComponent implements OnInit {
   private events: Observable<any[]>;
   private volunteers: Observable<any[]>;
   public isCollapsed = true;
-  private permanent_events: Observable<any[]>;
   private volunteerList = [];
   private volunteerListInitialized = false;
   private week1;
@@ -155,10 +154,11 @@ export class SignUpSheetComponent implements OnInit {
       this.week2 = [];
       this.week3 = [];
       snapshots.forEach((snapshot) => {
-        snapshot.event_date = this.fs.formatDate(
-          snapshot.event_date.toString()
-        );
-        const event_type = snapshot.event_type.toString();
+        let event_type;
+        if(snapshot.event_date){  //apply toString() only when not null
+          snapshot.event_date = this.fs.formatDate(snapshot.event_date.toString());
+          event_type = snapshot.event_type.toString();
+        }
         const event_date = snapshot.event_date;
         if (i < events_per_week) {
           if (!(event_type in this.week1)) {
@@ -342,24 +342,31 @@ export class SignUpSheetComponent implements OnInit {
 
   getEventListCool(eventType) {
     var currentEventValue = this.eventTypes[eventType];
-    if (this.currentWeek == "first") {
-      let week1 = Object.keys(this.week1[currentEventValue]);
-      if (week1.length == 5) {
-        this.addEmptyThursday(this.week1[currentEventValue]);
+
+    // This if-check is used to make sure the method call 
+    // occurs only after initializing week1
+    if(this.week1){
+      if (this.currentWeek == "first") {
+        let week1 = Object.keys(this.week1[currentEventValue]);
+        if (week1.length == 5) {
+          this.addEmptyThursday(this.week1[currentEventValue]);
+        }
+        return this.week1[currentEventValue];
+      } 
+      else if (this.currentWeek == "second") {
+        let week2 = Object.keys(this.week2[currentEventValue]);
+        if (week2.length == 5) {
+          this.addEmptyThursday(this.week2[currentEventValue]);
+        }
+        return this.week2[currentEventValue];
+      } 
+      else {
+        let week3 = Object.keys(this.week3[currentEventValue]);
+        if (week3.length == 5) {
+          this.addEmptyThursday(this.week3[currentEventValue]);
+        }
+        return this.week3[currentEventValue];
       }
-      return this.week1[currentEventValue];
-    } else if (this.currentWeek == "second") {
-      let week2 = Object.keys(this.week2[currentEventValue]);
-      if (week2.length == 5) {
-        this.addEmptyThursday(this.week2[currentEventValue]);
-      }
-      return this.week2[currentEventValue];
-    } else {
-      let week3 = Object.keys(this.week3[currentEventValue]);
-      if (week3.length == 5) {
-        this.addEmptyThursday(this.week3[currentEventValue]);
-      }
-      return this.week3[currentEventValue];
     }
   }
 
@@ -372,11 +379,8 @@ export class SignUpSheetComponent implements OnInit {
       thursday.getDate() < 10 ? "0" + thursday.getDate() : thursday.getDate();
 
     const month =
-      thursday.getMonth() < 10
-        ? "0" + (thursday.getMonth() + 1)
-        : thursday.getMonth() + 1;
+      thursday.getMonth() < 10 ? "0" + (thursday.getMonth() + 1) : thursday.getMonth() + 1;
 
-    // console.log(month);
     const year = thursday.getFullYear();
     const date = month + "/" + day + "/" + year;
 
@@ -394,7 +398,6 @@ export class SignUpSheetComponent implements OnInit {
       is_important_event: false,
       display_date: this.getDisplayDate(date),
     };
-    //console.log(obj);
   }
 
   changeEventImportance(day: string) {

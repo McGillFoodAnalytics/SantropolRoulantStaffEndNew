@@ -19,11 +19,18 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] =[
     'Volunteer',
-    'Event Type', 
+    'Shift Type', 
     'Frequency',
-    'Event Start Date',
-    'Event End Date'
+    'Shift Start Date',
+    'Shift End Date'
   ];
+
+  shiftTypes = {
+    kitam: "Kitchen AM",
+    kitpm: "Kitchen PM",
+    deldr: "Delivery Driver",
+    deliv: "Delivery",
+  };
 
   private eventsObservable;
   private model: any = {};
@@ -45,7 +52,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
       // Date 7 days ago from today's date
       var pastDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
-      // Sort the entries of perm volunteers by end date from recent to future
+      // Sort the entries of perm volunteers by end date from recent to future.
       for(let i = 0; i < snapshots.length; i++){
         for (let j = 0; j < snapshots.length; j++) {
           if(snapshots[i].end_date < snapshots[j].end_date){
@@ -56,8 +63,8 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
         }
       }
     
-      // Array is not sorted.
-      // Remove first element while it is less than one weeek ago from today's date
+      // Array is now sorted.
+      // Remove first element while it is less than one weeek ago from today's date.
       // pastDate = 7 days ago from today
       while(snapshots[0].end_date < pastDate){
         snapshots.shift();
@@ -67,25 +74,9 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     });
   }
 
-  formatEventType(eventType: string){
-    let newId;
-    switch (eventType) {
-      case "kitam":
-        newId = "Kitchen AM";
-        break;
-      case "kitpm":
-        newId = "Kitchen PM";
-        break;
-      case "deldr":
-        newId = "Delivery Driver";
-        break;
-      case "deliv":
-        newId = "Delivery";
-        break;
-      default :
-        newId = "Old Event Type" 
-    }
-    return newId;
+  //Convert shift type from short to long format
+  formatShiftType(shiftType: string){
+    return this.shiftTypes[shiftType];  
   }
 
   /**
@@ -115,7 +106,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  formatEventDate(eventDate: string) {
+  formatShiftDate(eventDate: string) {
     // code1 is the part of the event date that contains data specific to yyyy-mm-dd
     let code1 = eventDate.substring(0, 10);
     let day = code1.substring(8,10);
