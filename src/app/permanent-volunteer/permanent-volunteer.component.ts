@@ -1,4 +1,4 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -10,17 +10,26 @@ import { Observable } from "rxjs";
   templateUrl: "./permanent-volunteer.component.html",
   styleUrls: ["./permanent-volunteer.component.scss"],
 })
-
 export class PermanentVolunteerComponent implements OnInit {
-  active = 1;
+  
   private modalReference;
   private volunteers: any = [];
+  private shiftsNotAdded: any = [];
   private volunteersObservable;
   private events: any = [];
   private eventsObservable;
   private model: any = {};
+  private user: any = {};
   private addPermanentForm: FormGroup;
-  result: Observable<any>;
+  displayedColumns: string[] = ['shiftType', 'shiftDate'];
+
+  shiftTypes = {
+    kitam: "Kitchen AM",
+    kitpm: "Kitchen PM",
+    deldr: "Delivery Driver",
+    deliv: "Delivery",
+  };
+
   today: Date;
   dateInThreeMonths: Date;
 
@@ -60,23 +69,28 @@ export class PermanentVolunteerComponent implements OnInit {
   }
 
   endDateRequiredError() {
-    return ( this.model.endDate == undefined || this.model.endDate == null || this.model.endDate < this.model.startDate );
+    return (
+      this.model.endDate == undefined ||
+      this.model.endDate == null ||
+      this.model.endDate < this.model.startDate
+    );
   }
 
   startDateRequiredError() {
     return this.model.startDate == undefined || this.model.startDate == null;
   }
 
-  open(content) {
+  open(content, windowClass) {
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
       size: "sm",
-      windowClass: "permanent-volunteer",
+      windowClass: windowClass,
       centered: true,
     });
   }
 
-  onSubmit(event) {
+  onSubmit(event, template) {
+    this.user = this.model;
     if (event == "remove") {
       this.modalReference.close();
     }
@@ -90,10 +104,36 @@ export class PermanentVolunteerComponent implements OnInit {
           this.model.startDate,
           this.model.endDate,
           this.model.frequency
-        );
+        ).then(data => {
+          this.shiftsNotAdded = data;
+          if(this.shiftsNotAdded.length > 0){
+            this.open(template, "permanent-volunteer-warning");
+          }
+      });
         this.addPermanentForm.reset();
         this.model = {};
       }
     }
+  }
+
+  getShift(element: string){
+    let shiftCode = element.substring(0,5);
+    return this.shiftTypes[shiftCode];
+  }
+
+  getDate(element: string) {
+    let code1 = element.substring(5);
+
+    let day = code1.substring(4);
+    let month = code1.substring(2,4);
+    let year = "20" + code1.substring(0,2);
+  
+    // Create Date type to extract month in string format easily
+    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    // MonthName is the month in plain language, i.e. January
+    let monthName = newDate.toLocaleString('default', { month: 'long' });
+    let date =  monthName + " " + day + ", " + year;
+    return date;
   }
 }
