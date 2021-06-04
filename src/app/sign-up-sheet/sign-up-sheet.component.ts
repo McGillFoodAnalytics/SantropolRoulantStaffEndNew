@@ -180,7 +180,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week1[event_type][event_date]["num_slots"] =
             this.week1[event_type][event_date]["num_slots"] + 1;
           this.week1[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= events_per_week && i < 2 * events_per_week) {
+        } else if (i >= events_per_week && i < 2 * events_per_week + 1) {
           if (!(event_type in this.week2)) {
             this.week2[event_type] = {};
           }
@@ -200,7 +200,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week2[event_type][event_date]["num_slots"] =
             this.week2[event_type][event_date]["num_slots"] + 1;
           this.week2[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= 2 * events_per_week && i < 3 * events_per_week) {
+        } else if (i >= 2 * events_per_week && i < 3 * events_per_week + 4) {
           if (!(event_type in this.week3)) {
             this.week3[event_type] = {};
           }
@@ -245,10 +245,9 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   getWeekTitle() {
-    this.weekRange1 = this.setWeekRange(this.week1);
-    this.weekRange2 = this.setWeekRange(this.week2);
-    this.weekRange3 = this.setWeekRange(this.week3);
-
+    // this.weekRange1 = this.setWeekRange(this.week1);
+    // this.weekRange2 = this.setWeekRange(this.week2);
+    // this.weekRange3 = this.setWeekRange(this.week3);
     if (this.currentWeek == "first") {
       return this.weekRange1;
     } else if (this.currentWeek == "second") {
