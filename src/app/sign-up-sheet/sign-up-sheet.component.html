@@ -97,13 +97,6 @@
                 </div>
                 <div
                   class="card-footer"
-                  style="
-                    text-align: center;
-                    height: 48px !important;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
                   *ngIf="day.value.slots[0].id != 'N/A'"
                 >
                   <img
@@ -139,11 +132,7 @@
                   >
                   </app-event-note>
                   <mat-icon
-                    style="
-                      margin-left: 5px;
-                      margin-top: -8px;
-                      transform: scale(0.8);
-                    "
+                    id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -190,13 +179,6 @@
                 </div>
                 <div
                   class="card-footer"
-                  style="
-                    text-align: center;
-                    height: 48px !important;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
                   *ngIf="day.value.slots[0].id != 'N/A'"
                 >
                   <img
@@ -232,12 +214,7 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon
-                    style="
-                      margin-left: 5px;
-                      margin-top: -8px;
-                      transform: scale(0.8);
-                    "
+                  <mat-icon id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -280,13 +257,6 @@
                 </div>
                 <div
                   class="card-footer"
-                  style="
-                    text-align: center;
-                    height: 48px !important;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
                   *ngIf="day.value.slots[0].id != 'N/A'"
                 >
                   <img
@@ -321,12 +291,7 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon
-                    style="
-                      margin-left: 5px;
-                      margin-top: -8px;
-                      transform: scale(0.8);
-                    "
+                  <mat-icon id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -370,13 +335,6 @@
                 </div>
                 <div
                   class="card-footer"
-                  style="
-                    text-align: center;
-                    height: 48px !important;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                  "
                   *ngIf="day.value.slots[0].id != 'N/A'"
                 >
                   <img
@@ -408,12 +366,7 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon
-                    style="
-                      margin-left: 5px;
-                      margin-top: -8px;
-                      transform: scale(0.8);
-                    "
+                  <mat-icon id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -427,6 +380,7 @@
           </div>
         </div>
       </app-slider>
+
       <div class="copyrightFooter">
         <h6 style="color: gray">Copyright © 2021 McGill Food Analytics Club</h6>
         <img
