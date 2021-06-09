@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { AngularFireDatabase, AngularFireList, snapshotChanges } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { Subject, merge } from "rxjs";
 import {
@@ -437,6 +437,7 @@ export class FirebaseService {
     return this.cancelledEvents;
   }
 
+
   changeActiveStatus(userid: string, isActive: boolean) {
     this.db.object("/user/" + userid).update({
       active_status: isActive,
@@ -453,6 +454,30 @@ export class FirebaseService {
   // Delete a user with its user Id
   deleteUser(userid: string) {
     console.log(userid);
+  
+    this.deleteRelevantEvents(userid); // Updated by RG, delete any events associated 
     this.db.object("/user/" + userid).remove();
   }
+
+  // Delete events realted to a user (By RG)
+  deleteRelevantEvents(uid:string): void{
+    let elements = this.db.list("event", ref => ref.orderByChild("uid").equalTo(uid)).valueChanges().subscribe(snapshots =>{
+      snapshots.forEach((element2:any) =>{
+        console.log(element2.event_date+ element2.event_type+element2.slot)
+        this.removeUserFromEvent(element2.event_date+ element2.event_type+element2.slot);     
+      })
+    }); 
+ 
+  }
+
+  //Delete all users (By RG)
+  deleteAllUsers(){
+    this.getUsers().subscribe(snapshots => {
+      snapshots.forEach(element => {
+        
+          this.deleteUser(element.id);
+      });
+    });
+  }
+  
 }
