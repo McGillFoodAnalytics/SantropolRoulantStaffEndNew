@@ -121,7 +121,7 @@
     <button
       type="submit"
       class="btn btn-xl btn-outline-success btn-change-registration-code"
-      (click)="onSubmit('add', shiftNotAdded)"
+      (click)="onSubmit('add', shiftNotAdded); open(addingToShifts, 'loading-screen')"
     >
       Add Permanent Volunteer
     </button>
@@ -144,10 +144,15 @@
   </div>
   <div class="modal-body">
     <h5>
-      <b>{{ user.volunteer[1] }} {{ user.volunteer[2] }}</b> could not be added to the
-      following shift(s) because they are full:
+      <b>{{ user.volunteer[1] }} {{ user.volunteer[2] }}</b> could not be added
+      to the following shift(s) because they are full:
     </h5>
-    <table mat-table [dataSource]="shiftsNotAdded" class="mat-elevation-z8" style="width: 100%;">
+    <table
+      mat-table
+      [dataSource]="shiftsNotAdded"
+      class="mat-elevation-z8"
+      style="width: 100%"
+    >
       <ng-container matColumnDef="shiftType">
         <th mat-header-cell *matHeaderCellDef>Shift</th>
         <td mat-cell *matCellDef="let element">{{ getShift(element) }}</td>
@@ -170,6 +175,15 @@
       Dismiss
     </button>
   </div>
+</ng-template>
+
+<ng-template #addingToShifts>
+  <div style="height: 40px;">
+    <h6 style="margin-top: 8px; margin-left: 15px;">
+      Adding volunteer to shifts. This may take a while please wait...
+    </h6>
+  </div>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
 
 <button mat-menu-item (click)="open(addPermanentModal, 'permanent-volunteer')">

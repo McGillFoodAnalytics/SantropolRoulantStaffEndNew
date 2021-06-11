@@ -33,7 +33,7 @@ export class EventSignUpTableComponent implements OnInit {
     //update staff_note field with note field(entered by user in mobile app)
     this.slots.forEach(element => {
       if(element.note && !element.staff_note){
-        element.staff_note = element.note;
+        element.staff_note = "\"" + element.note + "\"";
       }
     });
     this.dataSource = new MatTableDataSource(this.slots);
