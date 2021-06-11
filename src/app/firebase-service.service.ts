@@ -213,14 +213,23 @@ export class FirebaseService {
   }
 
   addUserToEvent( event_id: string, first_name: string, last_name: string,
-  uid: string, note: string): void {
+  uid: string): void {
     this.db.object("/event/" + event_id).update({
       first_name: first_name,
       last_name: last_name,
       uid: uid,
-      staff_note: note
     });
   }
+
+  addPermanentVolToShift( event_id: string, first_name: string, last_name: string,
+    uid: string, note: string): void {
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        staff_note: note
+      });
+    }
 
   addNewBug(description) {
     var a;
@@ -281,7 +290,7 @@ export class FirebaseService {
             else if (flag == false && news.uid == "nan") {
               flag = true;
               // console.log("in here:" + validDates[i] + event_type + this.pad(j + 1, 2) + " " + flag);
-              this.addUserToEvent(
+              this.addPermanentVolToShift(
                 validDates[i] + event_type + this.pad(j + 1, 2),
                 user_id[1],
                 user_id[2],
