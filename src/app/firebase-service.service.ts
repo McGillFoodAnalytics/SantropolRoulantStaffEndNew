@@ -212,17 +212,13 @@ export class FirebaseService {
     }
   }
 
-  addUserToEvent(
-    event_id: string,
-    first_name: string,
-    last_name: string,
-    uid: string
-  ): void {
-    //console.log("from firebase service");
+  addUserToEvent( event_id: string, first_name: string, last_name: string,
+  uid: string, note: string): void {
     this.db.object("/event/" + event_id).update({
       first_name: first_name,
       last_name: last_name,
       uid: uid,
+      staff_note: note
     });
   }
 
@@ -254,8 +250,7 @@ export class FirebaseService {
     });
   }
 
-  async addPermanentVolunteer( event_type: string, user_id, start_date: Date, end_date: Date,
-    frequency: Number ) : Promise<any[]> {
+  async addPermanentVolunteer( event_type: string, user_id, start_date: Date, end_date: Date, frequency: Number, note: string ) : Promise<any[]> {
 
     this.shiftsNotAdded = [];
     const permanent_event_id = event_type + "_" + start_date.getDate() +
@@ -272,8 +267,7 @@ export class FirebaseService {
     });
 
     let shiftCode;
-   
-    let validDates = this.getDates( new Date(start_date), new Date(end_date), frequency);
+    let validDates = this.getDates(new Date(start_date), new Date(end_date), frequency);
     for (let i = 0; i < validDates.length; i++) {
       let flag = false;
       for (let j = 0; j < this.shiftTypeLength[event_type]; j++) {
@@ -291,7 +285,8 @@ export class FirebaseService {
                 validDates[i] + event_type + this.pad(j + 1, 2),
                 user_id[1],
                 user_id[2],
-                user_id[0]
+                user_id[0],
+                note
               );
             } 
             else if (!flag && j == this.shiftTypeLength[event_type] - 1) {
