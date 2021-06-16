@@ -56,6 +56,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NewUserComponent } from './new-user/new-user.component';
+import { DeleteUsersComponent } from './delete-users/delete-users.component';
 import {MatBadgeModule} from '@angular/material/badge';
 
 import { AgGridModule } from 'ag-grid-angular';
@@ -128,6 +129,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NewUserComponent,
+    DeleteUsersComponent,
     ChangeRegistrationCodeComponent,
     MarkImportantEventComponent,
     SignUpSheetComponent,
