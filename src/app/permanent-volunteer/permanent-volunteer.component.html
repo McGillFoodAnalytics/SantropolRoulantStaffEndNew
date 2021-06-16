@@ -31,7 +31,11 @@
               [(ngModel)]="model.volunteer"
             >
               <mat-option disabled>--Select the volunteer--</mat-option>
-              <input class="filter" placeholder ="Search by Name" (keyup)="onKey($event.target.value)" size ="35.5" style="height: 40px;">
+              <input class="filter" placeholder ="Search by Name" (keyup)="onKey($event.target.value)" 
+              style="
+              width: 100%; 
+              height: 40px; 
+              border: 2px solid #5fce99;">
 
               <mat-option
                 *ngFor="let volunteer of volunteers"

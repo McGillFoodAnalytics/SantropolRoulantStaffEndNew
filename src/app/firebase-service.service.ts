@@ -303,7 +303,7 @@ export class FirebaseService {
               this.shiftsNotAdded.push(shiftCode);
             }
           });
-        await this.delay(500);
+        await this.delay(200);
       }
     }
     return this.shiftsNotAdded;
