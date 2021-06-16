@@ -55,20 +55,6 @@ export class EventSignUpTableComponent implements OnInit {
 
   onRemoveUserFromEvent(id: string) {
     this.removeUserFromEvent.emit(id);
-    // var a;
-    // this.usersRef = this.db.list('user');
-    // this.users= this.usersRef.snapshotChanges().pipe(
-    //   map(changes => changes.map(c => ({ id: c.payload.key, ...c.payload.val() }))));
-    // this.users.subscribe(snapshots => {
-    //     snapshots.forEach(snapshot => {
-    //       if(snapshot.id === id){
-    //        a = snapshot.email;
-    //        console.log("helllloooo");
-    //        console.log(a);
-
-    //       }
-    //     });
-    // });
   }
 
   onInsertStaffNote(eventId: string, staffNote: string) {

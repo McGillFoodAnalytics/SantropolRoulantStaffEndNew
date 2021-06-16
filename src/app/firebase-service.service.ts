@@ -166,7 +166,6 @@ export class FirebaseService {
     this.events.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (snapshot.id == event_id) {
-          //console.log(snapshot);
           userId = snapshot.uid;
         }
       });
@@ -244,9 +243,7 @@ export class FirebaseService {
     this.bugs.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (snapshot.id == "count") {
-          console.log(snapshot);
           a = snapshot.number;
-          console.log(a);
           a++;
           this.db.object("/bug/count").update({
             number: a,
@@ -315,18 +312,15 @@ export class FirebaseService {
 
   getDates(firstDate, lastDate, freq) {
     let validDates = [];
-    //console.log("First date: " + firstDate.toString() + ", Last date: " + lastDate.toString());
     while (firstDate <= lastDate) {
       //push the first Date
       validDates.push(this.getDateNumber(firstDate));
-      //console.log(firstDate);
-      //console.log(freq);
       let incrementInMilliseconds = freq * 7 * 24 * 60 * 60 * 1000;
       firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
-      //console.log(firstDate);
     }
     return validDates;
   }
+  
   pad(num, size) {
     let s = num + "";
     while (s.length < size) s = "0" + s;
@@ -448,7 +442,6 @@ export class FirebaseService {
   }
 
   updateUserNote(userid: string, newNote: string) {
-    console.log(newNote);
     this.db.object("/user/" + userid).update({
       note: newNote,
     });
@@ -456,7 +449,6 @@ export class FirebaseService {
 
   // Delete a user with its user Id
   deleteUser(userid: string) {
-    console.log(userid);
     this.db.object("/user/" + userid).remove();
   }
 }
