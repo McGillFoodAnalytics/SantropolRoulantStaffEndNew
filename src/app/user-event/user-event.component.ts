@@ -111,9 +111,6 @@ export class UserEventComponent implements OnInit {
   //When deleting a user is confirmed
   onDelete(){
     this.firebase.deleteUser(this.userId);
-    this.currentEventsUser.forEach(element => {
-      this.onRemoveUserFromEvent(element.id);
-    });
     this.modalReference2.close();
   }
 

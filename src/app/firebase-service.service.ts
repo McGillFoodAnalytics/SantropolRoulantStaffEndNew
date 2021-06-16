@@ -454,27 +454,24 @@ export class FirebaseService {
   // Delete a user with its user Id
   deleteUser(userid: string) {
     console.log(userid);
-  
-    this.deleteRelevantEvents(userid); // Updated by RG, delete any events associated 
+    this.deleteRelevantShifts(userid); // Updated by RG, delete any events associated 
     this.db.object("/user/" + userid).remove();
   }
 
   // Delete events realted to a user (By RG)
-  deleteRelevantEvents(uid:string): void{
+  deleteRelevantShifts(uid:string): void{
     let elements = this.db.list("event", ref => ref.orderByChild("uid").equalTo(uid)).valueChanges().subscribe(snapshots =>{
-      snapshots.forEach((element2:any) =>{
-        console.log(element2.event_date+ element2.event_type+element2.slot)
-        this.removeUserFromEvent(element2.event_date+ element2.event_type+element2.slot);     
+      snapshots.forEach((element: any) =>{
+        console.log(element.event_date + element.event_type + element.slot)
+        this.removeUserFromEvent(element.event_date+ element.event_type + element.slot);     
       })
     }); 
- 
   }
 
   //Delete all users (By RG)
   deleteAllUsers(){
     this.getUsers().subscribe(snapshots => {
       snapshots.forEach(element => {
-        
           this.deleteUser(element.id);
       });
     });

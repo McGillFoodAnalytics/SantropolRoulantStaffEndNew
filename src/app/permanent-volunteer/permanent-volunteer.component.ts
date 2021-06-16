@@ -134,9 +134,9 @@ export class PermanentVolunteerComponent implements OnInit {
       }
     }
   }
+  
   //Filter the dropdown menu
   onKey(event){
-    
     if(!event){
         this.volunteers = this.origVolunteers;
     } // when nothing has typed*/   
@@ -145,16 +145,10 @@ export class PermanentVolunteerComponent implements OnInit {
           this.volunteers = this.origVolunteers;
         }
         else{
-          // console.log(event);
-          // console.log(this.volunteers)
-          // console.log(this.origVolunteers.filter(a => a.first_name.toString().toLowerCase()
-          // .includes(event.toString().toLowerCase())))
-          // console.log(this.origVolunteers)
           this.volunteers = this.origVolunteers.filter(a => (a.first_name + " "+a.last_name).toString().toLowerCase()
           .includes(event.toString().toLowerCase()));
         }
-    }
-    // this.selectList.nativeElement.size = this.items.length + 1 ;       
+    }      
  }      
  
   getShift(element: string){

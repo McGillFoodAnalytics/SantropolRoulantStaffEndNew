@@ -110,8 +110,6 @@ export class VolunteerDirectoryComponent implements OnInit {
 
 
   applyFilter(filterValue: string) {
-    // console.log("Filtering")
-    // console.log(filterValue.trim().toLowerCase())
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
