@@ -27,8 +27,10 @@
       matColumnDef="{{ column }}"
       *ngFor="let column of displayedColumns"
     >
+    
       <th mat-header-cell *matHeaderCellDef>{{ prettify(column) }}</th>
       <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      
     </ng-container>
     <!-- Expanded Element Content - The detail row is made up of this one column that spans across all columns -->
 

@@ -14,6 +14,7 @@ export class PermanentVolunteerComponent implements OnInit {
   
   private modalReference;
   private volunteers: any = [];
+  private origVolunteers: any = [];
   private shiftsNotAdded: any = [];
   private volunteersObservable;
   private events: any = [];
@@ -52,6 +53,7 @@ export class PermanentVolunteerComponent implements OnInit {
     this.volunteersObservable.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         this.volunteers.push(snapshot);
+        this.origVolunteers.push(snapshot);
       });
     });
     this.eventsObservable.subscribe((snapshots) => {
@@ -134,7 +136,23 @@ export class PermanentVolunteerComponent implements OnInit {
       }
     }
   }
-
+  
+  //Filter the dropdown menu
+  onKey(event){
+    if(!event){
+        this.volunteers = this.origVolunteers;
+    } // when nothing has typed*/   
+    if (typeof event === 'string') {
+        if(event == ""){
+          this.volunteers = this.origVolunteers;
+        }
+        else{
+          this.volunteers = this.origVolunteers.filter(a => (a.first_name + " "+a.last_name).toString().toLowerCase()
+          .includes(event.toString().toLowerCase()));
+        }
+    }      
+ }      
+ 
   getShift(element: string){
     let shiftCode = element.substring(0,5);
     return this.shiftTypes[shiftCode];
