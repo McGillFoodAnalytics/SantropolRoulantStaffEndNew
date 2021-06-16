@@ -222,6 +222,9 @@ export class FirebaseService {
 
   addPermanentVolToShift( event_id: string, first_name: string, last_name: string,
     uid: string, note: string): void {
+      if (note == null) {
+        note = "";
+      }
       this.db.object("/event/" + event_id).update({
         first_name: first_name,
         last_name: last_name,
@@ -405,7 +408,6 @@ export class FirebaseService {
 
   removePermanentVolunteerEvents(event_id) {
     console.log(event_id);
-
     console.log(
       this.db.object("/event/" + event_id + "/permanent_event_id").remove()
     );
@@ -472,5 +474,4 @@ export class FirebaseService {
       });
     });
   }
-  
 }

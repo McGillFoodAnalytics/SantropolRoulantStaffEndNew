@@ -43,7 +43,7 @@ export class PastWeekComponent implements OnInit {
     return this.shiftTypes[shiftType];  
   }
 
-  // Method is applied to event_date_txt field. 
+  // Method is applied to event_date_txt field. Not used at the moment
   // This field has format example: "Monday, April 1, 2020"
   // So we check each index if it is a comma and return the substring two characters    after the first comma  
   formatShiftDate(date: string){
