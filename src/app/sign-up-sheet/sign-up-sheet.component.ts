@@ -63,9 +63,11 @@ export class SignUpSheetComponent implements OnInit {
   private week1;
   private week2;
   private week3;
+  private week4;
   private weekRange1: string;
   private weekRange2: string;
   private weekRange3: string;
+  private weekRange4: string;
   source;
   expandedElement: Event;
   dataSource = new MatTableDataSource();
@@ -153,6 +155,7 @@ export class SignUpSheetComponent implements OnInit {
       this.week1 = [];
       this.week2 = [];
       this.week3 = [];
+      this.week4 = [];
       snapshots.forEach((snapshot) => {
         let event_type;
         if(snapshot.event_date){  //apply toString() only when not null
@@ -220,12 +223,33 @@ export class SignUpSheetComponent implements OnInit {
           this.week3[event_type][event_date]["num_slots"] =
             this.week3[event_type][event_date]["num_slots"] + 1;
           this.week3[event_type][event_date]["slots"].push(snapshot);
+        } else if (i >= 3 * events_per_week && i < 4 * events_per_week + 4) {
+          if (!(event_type in this.week4)) {
+            this.week4[event_type] = {};
+          }
+          if (!(event_date in this.week4[event_type])) {
+            this.week4[event_type][event_date] = {
+              slots: [],
+              num_volunteers: 0,
+              num_slots: 0,
+              is_important_event: snapshot.is_important_event,
+              display_date: this.getDisplayDate(event_date),
+            };
+          }
+          if (snapshot.first_name) {
+            this.week4[event_type][event_date]["num_volunteers"] =
+              this.week4[event_type][event_date]["num_volunteers"] + 1;
+          }
+          this.week4[event_type][event_date]["num_slots"] =
+            this.week4[event_type][event_date]["num_slots"] + 1;
+          this.week4[event_type][event_date]["slots"].push(snapshot);
         }
         i = i + 1;
       });
       this.weekRange1 = this.setWeekRange(this.week1);
       this.weekRange2 = this.setWeekRange(this.week2);
       this.weekRange3 = this.setWeekRange(this.week3);
+      this.weekRange4 = this.setWeekRange(this.week4);
     });
   }
 
@@ -237,23 +261,47 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   nextWeek() {
-    this.currentWeek = this.currentWeek === "first" ? "second" : "third";
+    switch(this.currentWeek){
+      case "first" : 
+        this.currentWeek = "second";
+        break;
+
+      case "second" : 
+        this.currentWeek = "third";
+        break;
+
+      case "third" : 
+        this.currentWeek = "fourth";
+        break;  
+    }
   }
 
   prevWeek() {
-    this.currentWeek = this.currentWeek === "third" ? "second" : "first";
+    switch(this.currentWeek){
+      case "second" : 
+        this.currentWeek = "first";
+        break;
+       
+      case "third" : 
+        this.currentWeek = "second";
+        break;  
+
+      case "fourth" : 
+        this.currentWeek = "third";
+        break;
+    }
   }
 
   getWeekTitle() {
-    // this.weekRange1 = this.setWeekRange(this.week1);
-    // this.weekRange2 = this.setWeekRange(this.week2);
-    // this.weekRange3 = this.setWeekRange(this.week3);
     if (this.currentWeek == "first") {
       return this.weekRange1;
     } else if (this.currentWeek == "second") {
       return this.weekRange2;
-    } else {
+    } else if (this.currentWeek == "third"){
       return this.weekRange3;
+    }
+    else{
+      return this.weekRange4;
     }
   }
 
@@ -324,17 +372,6 @@ export class SignUpSheetComponent implements OnInit {
     return saturday;
   }
 
-  getEventList() {
-    var currentEventValue = this.eventTypes[this.currentEvent];
-    if (this.currentWeek == "first") {
-      return this.week1[currentEventValue];
-    } else if (this.currentWeek == "second") {
-      return this.week2[currentEventValue];
-    } else {
-      return this.week3[currentEventValue];
-    }
-  }
-
   getEventName(eventType) {
     return this.eventTypesCool[eventType];
   }
@@ -359,12 +396,18 @@ export class SignUpSheetComponent implements OnInit {
         }
         return this.week2[currentEventValue];
       } 
-      else {
+      else if (this.currentWeek == "third"){
         let week3 = Object.keys(this.week3[currentEventValue]);
         if (week3.length == 5) {
           this.addEmptyThursday(this.week3[currentEventValue]);
         }
         return this.week3[currentEventValue];
+      } else if (this.currentWeek == "fourth"){
+        let week4 = Object.keys(this.week4[currentEventValue]);
+        if (week4.length == 5) {
+          this.addEmptyThursday(this.week4[currentEventValue]);
+        }
+        return this.week4[currentEventValue];
       }
     }
   }
@@ -398,41 +441,13 @@ export class SignUpSheetComponent implements OnInit {
       display_date: this.getDisplayDate(date),
     };
   }
-
-  changeEventImportance(day: string) {
-    var slots;
-    var is_important_event;
-    var currentEventValue = this.eventTypes[this.currentEvent];
-    if (this.currentWeek == "first") {
-      is_important_event =
-        !this.week1[currentEventValue][day]["is_important_event"];
-      this.week1[currentEventValue][day]["is_important_event"] =
-        is_important_event;
-      slots = this.week1[currentEventValue][day]["slots"];
-    } else if (this.currentWeek == "second") {
-      is_important_event =
-        this.week2[currentEventValue][day]["is_important_event"];
-      this.week2[currentEventValue][day]["is_important_event"] =
-        !is_important_event;
-      slots = this.week2[currentEventValue][day]["slots"];
-    } else {
-      is_important_event =
-        this.week3[currentEventValue][day]["is_important_event"];
-      this.week3[currentEventValue][day]["is_important_event"] =
-        !is_important_event;
-      slots = this.week3[currentEventValue][day]["slots"];
-    }
-    for (var slot of slots) {
-      this.fs.changeEventImportance(slot["id"], is_important_event);
-    }
-  }
-
+ 
+  
   // Used for new format of week-shift display
   changeEventImportanceCool(day: string, eventType: string) {
     var slots;
     var is_important_event;
     var currentEventValue = this.eventTypes[eventType];
-    //console.log(currentEventValue + "    sssss");
 
     if (this.currentWeek == "first") {
       is_important_event =
@@ -446,17 +461,23 @@ export class SignUpSheetComponent implements OnInit {
       this.week2[currentEventValue][day]["is_important_event"] =
         is_important_event;
       slots = this.week2[currentEventValue][day]["slots"];
-    } else {
+    } else if (this.currentWeek == "third"){
       is_important_event =
         !this.week3[currentEventValue][day]["is_important_event"];
       this.week3[currentEventValue][day]["is_important_event"] =
         is_important_event;
       slots = this.week3[currentEventValue][day]["slots"];
+    } else if (this.currentWeek == "fourth"){
+      is_important_event =
+        !this.week4[currentEventValue][day]["is_important_event"];
+      this.week4[currentEventValue][day]["is_important_event"] =
+        is_important_event;
+      slots = this.week4[currentEventValue][day]["slots"];
     }
     for (var slot of slots) {
       this.fs.changeEventImportance(slot["id"], is_important_event);
     }
-  }
+  } 
 
   getVolunteerList() {
     return this.volunteerList;

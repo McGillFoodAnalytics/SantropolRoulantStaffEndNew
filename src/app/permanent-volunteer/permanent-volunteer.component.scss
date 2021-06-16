@@ -8,6 +8,16 @@
     width: 60% !important;
 }
 
+::ng-deep .loading-screen .modal-dialog {
+    max-width: 500px !important;
+    width: 500px !important;
+}
+
+
+.mat-progress-bar {
+    height: 10px;
+  }
+
 ::ng-deep {
     .cdk-global-overlay-wrapper, .cdk-overlay-container {
         z-index: 9999 !important;

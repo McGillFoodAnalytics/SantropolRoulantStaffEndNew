@@ -303,6 +303,8 @@ Emergency Contact Number:<user-info *ngIf="!displayForm">{{ prettifyNumber(eleme
       </tbody>
     </table>
 
+    <app-user-note [userId]="userId"></app-user-note>
+
     <div class="cancellation">
       <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
       <div
@@ -333,7 +335,6 @@ Emergency Contact Number:<user-info *ngIf="!displayForm">{{ prettifyNumber(eleme
       style="margin-bottom: 130px;  width: 53.8vw; height: 194px;" >
       </div>
     </div>
-    <app-user-note [userId]="userId"></app-user-note>
   </div>
 
   <ng-template #deleteUser let-modal2>

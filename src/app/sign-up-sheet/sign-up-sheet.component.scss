@@ -147,9 +147,9 @@ tr.element-row:not(.expanded-row):active {
   border-top-right-radius: 8px;
 }
 
-.cardTitle span{
- top: 14px;
- position: relative;
+.cardTitle span {
+  top: 14px;
+  position: relative;
 }
 
 #cardTitle3 {
@@ -282,4 +282,18 @@ h3 {
   content: "";
   min-width: 10%;
   margin-right: 12px;
+}
+
+#shiftNote {
+  margin-left: 5px;
+  margin-top: -8px;
+  transform: scale(0.8);
+}
+
+.card-footer {
+  text-align: center;
+  height: 48px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

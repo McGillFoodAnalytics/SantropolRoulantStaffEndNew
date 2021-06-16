@@ -22,6 +22,7 @@ export class PermanentVolunteerComponent implements OnInit {
   private user: any = {};
   private addPermanentForm: FormGroup;
   displayedColumns: string[] = ['shiftType', 'shiftDate'];
+  addingShifts: boolean;
 
   shiftTypes = {
     kitam: "Kitchen AM",
@@ -80,7 +81,20 @@ export class PermanentVolunteerComponent implements OnInit {
     return this.model.startDate == undefined || this.model.startDate == null;
   }
 
+  /**
+   * @param content defined in html file for each ng-template
+   * @param windowClass defined in css file for each ng-template
+   * @returns 
+   */
   open(content, windowClass) {
+    // Only open the pop-up for 'loading' after all input fields are validated. 
+    // Boolean "addingShifts" is made true when input fields are valid.
+    if (windowClass == "loading-screen") {
+      if (!this.addingShifts) {
+        // Do not continue to open 
+        return;
+      }
+    }
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
       size: "sm",
@@ -98,6 +112,7 @@ export class PermanentVolunteerComponent implements OnInit {
       this.addPermanentForm.markAllAsTouched();
       if (this.addPermanentForm.valid) {
         this.modalReference.close();
+        this.addingShifts = true;
         this.fs.addPermanentVolunteer(
           this.model.eventType,
           this.model.volunteer,
@@ -106,6 +121,8 @@ export class PermanentVolunteerComponent implements OnInit {
           this.model.frequency
         ).then(data => {
           this.shiftsNotAdded = data;
+          this.modalReference.close();  //currently open window is laoding gif 
+          this.addingShifts = false;
           if(this.shiftsNotAdded.length > 0){
             this.open(template, "permanent-volunteer-warning");
           }
