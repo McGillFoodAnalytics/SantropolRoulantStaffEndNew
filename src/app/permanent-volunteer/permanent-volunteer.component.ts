@@ -68,6 +68,7 @@ export class PermanentVolunteerComponent implements OnInit {
       startDate: ["", Validators.required],
       volunteer: [["", "", ""], Validators.required],
       eventType: ["", Validators.required],
+      note: [""]
     });
   }
 
@@ -120,7 +121,8 @@ export class PermanentVolunteerComponent implements OnInit {
           this.model.volunteer,
           this.model.startDate,
           this.model.endDate,
-          this.model.frequency
+          this.model.frequency,
+          this.model.note
         ).then(data => {
           this.shiftsNotAdded = data;
           this.modalReference.close();  //currently open window is laoding gif 

@@ -4,6 +4,7 @@
       <i class="fa fa-map-marker"></i>Permanent Volunteer
     </h4>
     <button
+      style="outline: none;"
       type="button"
       class="close"
       aria-label="Close"
@@ -18,7 +19,7 @@
     <form class="form" (ngSubmit)="onSubmit()" [formGroup]="addPermanentForm">
       <div class="form-row mb-12">
         <div class="form-group col-md-12" style="margin-bottom: 1rem">
-          Add permanent volunteer markers:
+          Add Permanent Volunteer Fields:
         </div>
       </div>
       <div class="form-row mb-12">
@@ -78,7 +79,7 @@
             <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <mat-form-field>
             <mat-label>Start Date</mat-label>
             <input
@@ -98,7 +99,7 @@
             <mat-error *ngIf="startDateRequiredError()">Required!</mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <mat-form-field>
             <mat-label>End Date</mat-label>
             <input
@@ -116,6 +117,16 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             <mat-error *ngIf="endDateRequiredError()">Required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group col-md-4">
+          <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input
+              matInput
+              formControlName="note"
+              [(ngModel)]="model.note"
+            />
           </mat-form-field>
         </div>
       </div>

@@ -44,7 +44,6 @@ export class BugReportComponent implements OnInit {
     this.myForm.markAllAsTouched();
     if (this.myForm.valid) {
       this.modalReference.close();
-      console.log(this.model.description);
       this.firebase.addNewBug(this.model.description)
       this.model = {}
       this.myForm.reset();

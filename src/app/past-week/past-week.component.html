@@ -1,0 +1,57 @@
+<div class="pastWeeks">
+  <div class="page-title">
+    <h1> Previous Shifts </h1>
+  </div>
+  <div class="modal-body">
+    <!-- Search container -->
+    <div class="container-search">
+      <mat-form-field class="volunteer-search">
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Search by Name"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <mat-form-field style="margin-left: 50px;">
+        <mat-label>Filter by Shift Type</mat-label>
+        <mat-select (selectionChange)="applyFilter($event.value)">
+          <mat-option disabled>--Shift type--</mat-option>
+          <mat-option [value]="'kitam'"> Kitchen AM </mat-option>
+          <mat-option [value]="'kitpm'"> Kitchen PM </mat-option>
+          <mat-option [value]="'deldr'"> Delivery Driver </mat-option>
+          <mat-option [value]="'deliv'"> Delivery </mat-option>
+        </mat-select>
+        <mat-error>Required!</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="Volunteer">
+        <mat-header-cell *matHeaderCellDef>Volunteer</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.first_name }} {{ element.last_name }}</mat-cell
+        >
+      </ng-container>
+      <ng-container matColumnDef="Shift Type">
+        <mat-header-cell *matHeaderCellDef>Shift Type</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          formatShiftType(element.event_type)
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Shift Date">
+        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.event_date_txt
+        }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+    #paginator
+    id="paginator"
+    [pageSizeOptions]="[10, 20, 50]"
+    showFirstLastButtons
+  ></mat-paginator>
+  </div>
+</div>

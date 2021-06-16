@@ -4,7 +4,7 @@ import { FirebaseService } from "../../firebase-service.service";
 @Component({
   selector: 'app-user-note',
   templateUrl: './user-note.component.html',
-  styleUrls: ['./user-note.component.css']
+  styleUrls: ['./user-note.component.scss']
 })
 export class UserNoteComponent implements OnInit {
 
