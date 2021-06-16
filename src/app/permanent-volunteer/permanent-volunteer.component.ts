@@ -150,7 +150,7 @@ export class PermanentVolunteerComponent implements OnInit {
           // console.log(this.origVolunteers.filter(a => a.first_name.toString().toLowerCase()
           // .includes(event.toString().toLowerCase())))
           // console.log(this.origVolunteers)
-          this.volunteers = this.origVolunteers.filter(a => a.first_name.toString().toLowerCase()
+          this.volunteers = this.origVolunteers.filter(a => (a.first_name + " "+a.last_name).toString().toLowerCase()
           .includes(event.toString().toLowerCase()));
         }
     }
