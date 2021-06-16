@@ -92,6 +92,7 @@ import { WeekGeneratorComponent } from './week-generator/week-generator.componen
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AccountComponent } from './account/account.component';
 import { UserNoteComponent } from './user-event/user-note/user-note.component';
+import { PastWeekComponent } from './past-week/past-week.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -118,6 +119,10 @@ const appRoutes: Routes = [
   {
     path: 'volunteer/:id',
     component: UserProfileComponent
+  },
+  {
+    path: 'past-week',
+    component: PastWeekComponent//SignUpSheetComponent
   },
   {
     path: '**',
@@ -152,7 +157,8 @@ const appRoutes: Routes = [
     WeekGeneratorComponent,
     UserProfileComponent,
     AccountComponent,
-    UserNoteComponent
+    UserNoteComponent,
+    PastWeekComponent
   ],
   imports: [
     BrowserModule,

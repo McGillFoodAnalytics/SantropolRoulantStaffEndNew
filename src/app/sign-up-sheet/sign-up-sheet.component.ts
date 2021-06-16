@@ -8,7 +8,6 @@ import {
 } from "@angular/animations";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
@@ -71,6 +70,7 @@ export class SignUpSheetComponent implements OnInit {
   source;
   expandedElement: Event;
   dataSource = new MatTableDataSource();
+  
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   currentWeek = "first";

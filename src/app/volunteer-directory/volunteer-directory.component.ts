@@ -84,8 +84,6 @@ export class VolunteerDirectoryComponent implements OnInit {
     return date;
   }
 
-
-
   capitalize(str: string) {
     return str.toUpperCase();
   }
@@ -107,7 +105,6 @@ export class VolunteerDirectoryComponent implements OnInit {
   title(str: string) {
     return str.toUpperCase();
   }
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

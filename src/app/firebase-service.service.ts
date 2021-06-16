@@ -166,7 +166,6 @@ export class FirebaseService {
     this.events.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (snapshot.id == event_id) {
-          //console.log(snapshot);
           userId = snapshot.uid;
         }
       });
@@ -212,19 +211,27 @@ export class FirebaseService {
     }
   }
 
-  addUserToEvent(
-    event_id: string,
-    first_name: string,
-    last_name: string,
-    uid: string
-  ): void {
-    //console.log("from firebase service");
+  addUserToEvent( event_id: string, first_name: string, last_name: string,
+  uid: string): void {
     this.db.object("/event/" + event_id).update({
       first_name: first_name,
       last_name: last_name,
       uid: uid,
     });
   }
+
+  addPermanentVolToShift( event_id: string, first_name: string, last_name: string,
+    uid: string, note: string): void {
+      if (note == null) {
+        note = "";
+      }
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        staff_note: note
+      });
+    }
 
   addNewBug(description) {
     var a;
@@ -239,9 +246,7 @@ export class FirebaseService {
     this.bugs.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (snapshot.id == "count") {
-          console.log(snapshot);
           a = snapshot.number;
-          console.log(a);
           a++;
           this.db.object("/bug/count").update({
             number: a,
@@ -254,8 +259,7 @@ export class FirebaseService {
     });
   }
 
-  async addPermanentVolunteer( event_type: string, user_id, start_date: Date, end_date: Date,
-    frequency: Number ) : Promise<any[]> {
+  async addPermanentVolunteer( event_type: string, user_id, start_date: Date, end_date: Date, frequency: Number, note: string ) : Promise<any[]> {
 
     this.shiftsNotAdded = [];
     const permanent_event_id = event_type + "_" + start_date.getDate() +
@@ -272,8 +276,7 @@ export class FirebaseService {
     });
 
     let shiftCode;
-   
-    let validDates = this.getDates( new Date(start_date), new Date(end_date), frequency);
+    let validDates = this.getDates(new Date(start_date), new Date(end_date), frequency);
     for (let i = 0; i < validDates.length; i++) {
       let flag = false;
       for (let j = 0; j < this.shiftTypeLength[event_type]; j++) {
@@ -287,11 +290,12 @@ export class FirebaseService {
             else if (flag == false && news.uid == "nan") {
               flag = true;
               // console.log("in here:" + validDates[i] + event_type + this.pad(j + 1, 2) + " " + flag);
-              this.addUserToEvent(
+              this.addPermanentVolToShift(
                 validDates[i] + event_type + this.pad(j + 1, 2),
                 user_id[1],
                 user_id[2],
-                user_id[0]
+                user_id[0],
+                note
               );
             } 
             else if (!flag && j == this.shiftTypeLength[event_type] - 1) {
@@ -311,18 +315,15 @@ export class FirebaseService {
 
   getDates(firstDate, lastDate, freq) {
     let validDates = [];
-    //console.log("First date: " + firstDate.toString() + ", Last date: " + lastDate.toString());
     while (firstDate <= lastDate) {
       //push the first Date
       validDates.push(this.getDateNumber(firstDate));
-      //console.log(firstDate);
-      //console.log(freq);
       let incrementInMilliseconds = freq * 7 * 24 * 60 * 60 * 1000;
       firstDate.setTime(firstDate.getTime() + incrementInMilliseconds);
-      //console.log(firstDate);
     }
     return validDates;
   }
+  
   pad(num, size) {
     let s = num + "";
     while (s.length < size) s = "0" + s;
@@ -407,7 +408,6 @@ export class FirebaseService {
 
   removePermanentVolunteerEvents(event_id) {
     console.log(event_id);
-
     console.log(
       this.db.object("/event/" + event_id + "/permanent_event_id").remove()
     );
@@ -445,7 +445,6 @@ export class FirebaseService {
   }
 
   updateUserNote(userid: string, newNote: string) {
-    console.log(newNote);
     this.db.object("/user/" + userid).update({
       note: newNote,
     });
@@ -453,7 +452,6 @@ export class FirebaseService {
 
   // Delete a user with its user Id
   deleteUser(userid: string) {
-    console.log(userid);
     this.deleteRelevantShifts(userid); // Updated by RG, delete any events associated 
     this.db.object("/user/" + userid).remove();
   }
@@ -476,5 +474,4 @@ export class FirebaseService {
       });
     });
   }
-  
 }
