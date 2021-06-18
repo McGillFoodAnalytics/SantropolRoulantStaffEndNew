@@ -64,9 +64,8 @@ export class UserEventComponent implements OnInit {
     this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
       this.model = element;
-
       if(element == null){
-        this.validId = false;
+        this.validId = false; //Do not display user profile
       }
       else {
         this.checkBox();
@@ -283,7 +282,7 @@ export class UserEventComponent implements OnInit {
   onSave() {
     this.myForm.markAllAsTouched();
     if (this.myForm.valid) {
-      this.updateUser(this.model);
+      this.updateUser(this.getUpdatedUser());
       this.displayForm = !this.displayForm;
     }
   }
@@ -325,5 +324,19 @@ export class UserEventComponent implements OnInit {
    */
   formatEventType(eventType: string){
     return this.eventTypes[eventType];   
+  }
+
+  getUpdatedUser(): User {
+    this.model.dob = this.myForm.get("dob").value;
+    this.model.address_number = this.myForm.get("address_number").value;
+    this.model.address_street = this.myForm.get("address_street").value;
+    this.model.address_city = this.myForm.get("address_city").value;
+    this.model.address_postal_code = this.myForm.get("address_postal_code").value;
+    this.model.email = this.myForm.get("email").value;
+    this.model.phone_number = this.myForm.get("phone_number").value;
+    this.model.emergency_contact_name = this.myForm.get("emergency_contact_name").value;
+    this.model.emergency_relationship = this.myForm.get("emergency_relationship").value;
+    this.model.emergency_contact_number = this.myForm.get("emergency_contact_number").value;
+    return this.model;
   }
 }

@@ -250,54 +250,54 @@
         <tr>
           <td id="colored">
             <mat-icon>account_box</mat-icon>
-            <pre>User ID:<user-info>{{ userId }}</user-info> </pre>
+            <pre>User ID:<span id="info-field">{{ userId }}</span> </pre>
           </td>
         </tr>
         <tr>
           <td>
             <mat-icon>how_to_reg</mat-icon>
-            <pre>Registered Since:<user-info>{{ (formatSignupDate(element.signup_date)) }}</user-info> </pre>
+            <pre>Registered Since:<span id="info-field">{{ (formatSignupDate(element.signup_date)) }}</span> </pre>
           </td>
         </tr>
         <tr>
           <td id="colored">
             <mat-icon>email</mat-icon>
-            <pre>Email:<user-info *ngIf="!displayForm">{{ element.email }} </user-info></pre>
+            <pre>Email:<span id="info-field" *ngIf="!displayForm">{{ element.email }} </span></pre>
           </td>
         </tr>
         <tr>
           <td>
             <mat-icon>home</mat-icon>
             <pre>
-Address:<user-info *ngIf="!displayForm">{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</user-info></pre>
+Address:<span id="info-field" *ngIf="!displayForm">{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</span></pre>
           </td>
         </tr>
         <tr>
           <td id="colored">
             <mat-icon>cake</mat-icon>
             <pre>
- Date of Birth:<user-info *ngIf="!displayForm">{{formatDate(element.dob)}}</user-info></pre>
+ Date of Birth:<span id="info-field" *ngIf="!displayForm">{{formatDate(element.dob)}}</span></pre>
           </td>
         </tr>
         <tr>
           <td>
             <mat-icon>phone_android</mat-icon>
             <pre>
-Phone Number:<user-info *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}</user-info></pre>
+Phone Number:<span id="info-field" *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}</span></pre>
           </td>
         </tr>
         <tr>
           <td id="colored">
             <mat-icon>local_hospital</mat-icon>
             <pre>
- Emergency Contact:<user-info *ngIf="!displayForm">{{ emergency(element) }}</user-info></pre>
+ Emergency Contact:<span id="info-field" *ngIf="!displayForm">{{ emergency(element) }}</span></pre>
           </td>
         </tr>
         <tr>
           <td>
             <mat-icon>perm_device_information</mat-icon>
             <pre>
-Emergency Contact Phone:<user-info *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</user-info></pre>
+Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</span></pre>
           </td>
         </tr>
       </tbody>

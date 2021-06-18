@@ -24,7 +24,6 @@
               matInput
               placeholder="First Name"
               formControlName="first_name"
-              [(ngModel)]="model.first_name"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -35,7 +34,6 @@
               matInput
               placeholder="Last Name"
               formControlName="last_name"
-              [(ngModel)]="model.last_name"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -49,7 +47,6 @@
               [max]="today"
               placeholder="mm/dd/yyyy"
               formControlName="dob"
-              [(ngModel)]="model.dob"
             />
             <mat-datepicker-toggle
               matSuffix
@@ -71,7 +68,6 @@
               matInput
               placeholder="Street Number"
               formControlName="address_number"
-              [(ngModel)]="model.address_number"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -82,7 +78,6 @@
               matInput
               placeholder="Street Name"
               formControlName="address_street"
-              [(ngModel)]="model.address_street"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -93,7 +88,6 @@
               matInput
               placeholder="City"
               formControlName="address_city"
-              [(ngModel)]="model.address_city"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -106,7 +100,6 @@
               matInput
               placeholder="Postal Code"
               formControlName="address_postal_code"
-              [(ngModel)]="model.address_postal_code"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
@@ -119,7 +112,6 @@
               type="email"
               placeholder="Email"
               formControlName="email"
-              [(ngModel)]="model.email"
             />
             <mat-error>Email required!</mat-error>
           </mat-form-field>
@@ -130,7 +122,6 @@
               matInput
               placeholder="Phone Number"
               formControlName="phone_number"
-              [(ngModel)]="model.phone_number"
             />
             <mat-error>Must be 10 characters and digits only!</mat-error>
           </mat-form-field>
@@ -147,7 +138,6 @@
               matInput
               placeholder="Contact Name"
               formControlName="emergency_contact_name"
-              [(ngModel)]="model.emergency_contact_name"
             />
           </mat-form-field>
         </div>
@@ -157,7 +147,6 @@
               matInput
               placeholder="Contact Relationship"
               formControlName="emergency_relationship"
-              [(ngModel)]="model.emergency_relationship"
             />
           </mat-form-field>
         </div>
@@ -167,7 +156,6 @@
               matInput
               placeholder="Contact Number"
               formControlName="emergency_contact_number"
-              [(ngModel)]="model.emergency_contact_number"
             />
           </mat-form-field>
         </div>
@@ -181,6 +169,35 @@
       (click)="onSubmit()"
     >
       Create Volunteer
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #newUserError let-modal2>
+  <div class="modal-header text-center" style="background-color: #dc3545">
+    <h4 class="modal-title w-100" id="modal-basic-title">Error!</h4>
+    <button
+      type="button"
+      class="close"
+      style="outline: none"
+      aria-label="Close"
+      (click)="modal2.dismiss()"
+      #closeModal
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5>
+      {{ errorMsg }}
+    </h5>
+  </div>
+  <div class="footer">
+    <button
+      class="btn btn-xl btn-outline-danger btn-cancel"
+      (click)="modal2.dismiss()"
+    >
+      Dismiss
     </button>
   </div>
 </ng-template>
