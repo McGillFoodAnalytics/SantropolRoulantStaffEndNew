@@ -35,16 +35,17 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   private eventsObservable;
   private model: any = {};
   result: Observable<any>
-  today: Date;
+  today: any;
+  threeDaysFromToday: any;
+  timeIncrement: number;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private modalService: NgbModal, private fs: FirebaseService){
   }
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
+  ngOnInit() {
+    this.timeIncrement = 24 * 60 * 60 * 1000; //time of 1 day in milisec
     this.eventsObservable = this.fs.getPermanentEvents();
     this.eventsObservable.subscribe(snapshots => {
       let temp : any;
@@ -69,7 +70,6 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
       while(snapshots[0].end_date < pastDate){
         snapshots.shift();
       }
-
       this.dataSource = new MatTableDataSource(snapshots);
     });
   }
@@ -120,5 +120,12 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     let monthName = newDate.toLocaleString('default', { month: 'long' });
     let date =  monthName + " " + day + ", " + year;
     return date;
+  }
+
+  // Check if the end_date of a recurring volunteer entry is soon
+  endSoon(date: any) : boolean {
+    this.today = new Date(new Date().setHours(0,0,0,0)).toISOString();
+    this.threeDaysFromToday = new Date(Date.now() + 3 * this.timeIncrement).toISOString();
+    return (date >= this.today && date <= this.threeDaysFromToday);
   }
 }

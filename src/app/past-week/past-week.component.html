@@ -7,16 +7,18 @@
     <div class="container-search">
       <mat-form-field class="volunteer-search">
         <input
+          [(ngModel)]="nameInput"
           matInput
-          (keyup)="applyFilter($event.target.value)"
+          (keyup)="applyFilter()"
           placeholder="Search by Name"
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
       <mat-form-field style="margin-left: 50px;">
         <mat-label>Filter by Shift Type</mat-label>
-        <mat-select (selectionChange)="applyFilter($event.value)">
+        <mat-select (selectionChange)="applyShift($event.value)">
           <mat-option disabled>--Shift type--</mat-option>
+          <mat-option [value]="''"> All </mat-option>
           <mat-option [value]="'kitam'"> Kitchen AM </mat-option>
           <mat-option [value]="'kitpm'"> Kitchen PM </mat-option>
           <mat-option [value]="'deldr'"> Delivery Driver </mat-option>
@@ -24,6 +26,18 @@
         </mat-select>
         <mat-error>Required!</mat-error>
       </mat-form-field>
+      <!-- <mat-form-field style="margin-left: 50px;">
+        <mat-label>Filter by Week Day</mat-label>
+        <mat-select (selectionChange)="applyFilter($event.value)">
+          <mat-option disabled>--Day--</mat-option>
+          <mat-option [value]="''"> All </mat-option>
+          <mat-option [value]="'Monday'"> Monday </mat-option>
+          <mat-option [value]="'Tuesday'"> Tuesday </mat-option>
+          <mat-option [value]="'Wednesday'"> Wednesday </mat-option>
+          <mat-option [value]="'Friday'"> Friday </mat-option>
+        </mat-select>
+        <mat-error>Required!</mat-error>
+      </mat-form-field> -->
     </div>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="Volunteer">
