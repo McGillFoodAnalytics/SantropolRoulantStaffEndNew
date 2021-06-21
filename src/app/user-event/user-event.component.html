@@ -8,7 +8,7 @@
         type="button"
         class="close"
         aria-label="Close"
-        style="outline: none;"
+        style="outline: none"
         (click)="modal.dismiss()"
       >
         <span aria-hidden="true">&times;</span>
@@ -41,22 +41,26 @@
                 <td></td>
                 <td>{{ formatEventType(event.event_type) }}</td>
                 <td></td>
-                <td><div style="height: 33px; overflow:hidden;">
-                  <button class="removeVolBtn" onclick="this.blur()"
-                  style="background-color: rgb(218, 218, 218);">
-                    <app-remove-user-from-event
-                      firstName="{{ element.first_name }}"
-                      eventId="{{ event.id }}"
-                      userId="{{ element.uid }}"
-                      lastName="{{ element.last_name }}"
-                      date="{{ event.event_date_txt }}"
-                      eventType="{{ event.event_type }}"
-                      isUserProfile=true
-                      (confirmRemove)="onRemoveUserFromEvent(event.id)"
+                <td>
+                  <div style="height: 33px; overflow: hidden">
+                    <button
+                      class="removeVolBtn"
+                      onclick="this.blur()"
+                      style="background-color: rgb(218, 218, 218)"
                     >
-                    </app-remove-user-from-event>
-                  </button>
-                 </div>
+                      <app-remove-user-from-event
+                        firstName="{{ element.first_name }}"
+                        eventId="{{ event.id }}"
+                        userId="{{ element.uid }}"
+                        lastName="{{ element.last_name }}"
+                        date="{{ event.event_date_txt }}"
+                        eventType="{{ event.event_type }}"
+                        isUserProfile="true"
+                        (confirmRemove)="onRemoveUserFromEvent(event.id)"
+                      >
+                      </app-remove-user-from-event>
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -88,11 +92,17 @@
   <div class="modal-body profile" *ngIf="validId">
     <table class="table">
       <tbody>
-        <div *ngIf="element"> 
+        <div *ngIf="element">
           <h4>{{ element.first_name }} {{ element.last_name }}</h4>
-          <div class="status" *ngIf="element.active_status || element.active_status == null"
-          >Active</div>
-          <div class="status" *ngIf="element.active_status == false">Inactive</div>  
+          <div
+            class="status"
+            *ngIf="element.active_status || element.active_status == null"
+          >
+            Active
+          </div>
+          <div class="status" *ngIf="element.active_status == false">
+            Inactive
+          </div>
         </div>
 
         <input
@@ -108,8 +118,10 @@
           onclick="this.blur()"
           id="historyBtn"
         >
-          <mat-icon style="margin-left: -10px; transform: scale(0.8)">history</mat-icon>
-          <span style="margin-left: -5%;">View Shifts</span>
+          <mat-icon style="margin-left: -10px; transform: scale(0.8)"
+            >history</mat-icon
+          >
+          <span style="margin-left: -5%">View Shifts</span>
         </button>
 
         <div class="editProfile">
@@ -119,8 +131,10 @@
             (click)="openEditForm()"
             onclick="this.blur()"
           >
-            <mat-icon style="margin-left: -10px; transform: scale(0.8);">edit</mat-icon>
-            <span style="margin-left: -5%;">Edit Profile</span>
+            <mat-icon style="margin-left: -10px; transform: scale(0.8)"
+              >edit</mat-icon
+            >
+            <span style="margin-left: -5%">Edit Profile</span>
           </button>
           <div *ngIf="displayForm">
             <form
@@ -131,58 +145,43 @@
               [formGroup]="myForm"
             >
               <input
-                
                 id="editInputEmail"
                 email="true"
                 type="email"
                 formControlName="email"
-               
                 required
               />
               <div class="input-group">
                 <input
-                  value="{{ element.address_number }}"
                   id="editInputAddrNum"
                   formControlName="address_number"
-
                   placeholder="Number"
                   required
                 />
-
                 <input
-                  value="{{ element.address_street }}"
                   id="editInputAddrStr"
                   formControlName="address_street"
-
                   placeholder="Street"
                   required
                 />
-
                 <input
-                  value="{{ element.address_city }}"
                   id="editInputAddrCity"
                   formControlName="address_city"
-
                   placeholder="City"
                   required
                 />
-
                 <input
-                  value="{{ element.address_postal_code }}"
                   id="editInputPostal"
                   formControlName="address_postal_code"
-
                   placeholder="Postal code"
                   required
                 />
               </div>
-
               <input
                 [matDatepicker]="picker"
                 [max]="today"
                 id="editDate"
                 formControlName="dob"
-
                 placeholder="mm/dd/yyyy"
                 required
               />
@@ -196,38 +195,32 @@
               <input
                 ng-model="name"
                 id="editInputPhone"
-                value="{{ element.phone_number }}"
-
                 formControlName="phone_number"
                 required
               />
-              <mat-label id="phoneNumErrorMsg"
-              *ngIf="myForm.get('phone_number').invalid"
-              >*Invalid phone number. Should be 10 digits only. </mat-label>
-              
+              <mat-label
+                id="phoneNumErrorMsg"
+                *ngIf="myForm.get('phone_number').invalid"
+                >*Invalid phone number. Should be 10 digits only.
+              </mat-label>
+
               <div class="input-group group2">
                 <input
-                  value="{{ element.emergency_contact_name }}"
                   id="editInputEmergName"
-
                   formControlName="emergency_contact_name"
                   placeholder="Contact Name"
                 />
 
                 <input
-                  value="{{ element.emergency_relationship }}"
                   id="editInputEmergRel"
                   formControlName="emergency_relationship"
-
                   placeholder="Emergency Relationship"
                 />
               </div>
 
               <input
-                value="{{ element.emergency_contact_number }}"
                 id="editInputEmergNum"
                 formControlName="emergency_contact_number"
-
                 type="tel"
               />
             </form>
@@ -307,10 +300,7 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
 
     <div class="cancellation">
       <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
-      <div
-        id="scrollable-area"
-        *ngIf="cancelledEventsUser.length != 0"
-      >
+      <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0">
         <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -331,9 +321,10 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
           </tbody>
         </table>
       </div>
-      <div *ngIf="cancelledEventsUser.length == 0" 
-      style="margin-bottom: 130px;  width: 53.8vw; height: 194px;" >
-      </div>
+      <div
+        *ngIf="cancelledEventsUser.length == 0"
+        style="margin-bottom: 130px; width: 53.8vw; height: 194px"
+      ></div>
     </div>
   </div>
 
