@@ -146,6 +146,7 @@ export class FirebaseService {
       first_name: "",
       last_name: "",
       uid: "nan",
+      key: "nan",
       staff_note: "",
       note: "",
       first_shift: false,
@@ -212,16 +213,17 @@ export class FirebaseService {
   }
 
   addUserToEvent( event_id: string, first_name: string, last_name: string,
-  uid: string): void {
+  uid: string, key: string): void {
     this.db.object("/event/" + event_id).update({
       first_name: first_name,
       last_name: last_name,
       uid: uid,
+      key: key
     });
   }
 
   addPermanentVolToShift( event_id: string, first_name: string, last_name: string,
-    uid: string, note: string): void {
+    uid: string, key: string, note: string): void {
       if (note == null) {
         note = "";
       }
@@ -229,6 +231,7 @@ export class FirebaseService {
         first_name: first_name,
         last_name: last_name,
         uid: uid,
+        key: key,
         staff_note: note
       });
     }
@@ -295,6 +298,7 @@ export class FirebaseService {
                 user_id[1],
                 user_id[2],
                 user_id[0],
+                user_id[3],
                 note
               );
             } 

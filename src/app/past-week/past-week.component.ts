@@ -11,6 +11,8 @@ import { MatSort } from '@angular/material/sort';
 })
 export class PastWeekComponent implements OnInit {
 
+  regex:any;
+  nameInput: string;
   prevShifts: any = [];
   displayedColumns: string[] =['Volunteer', 'Shift Type', 'Shift Date'];
   dataSource = new MatTableDataSource();
@@ -27,7 +29,7 @@ export class PastWeekComponent implements OnInit {
 
   ngOnInit(): void {
     this.firebase.getPastEvents().subscribe(snapshots => {
-      for (let index = 0; index < snapshots.length; index++) {
+      for (let index = snapshots.length - 1 ; index > -1 ; index--) {
         if (snapshots[index].first_name != "" && snapshots[index].last_name != "") {
            this.prevShifts.push(snapshots[index]);
         }
@@ -55,7 +57,18 @@ export class PastWeekComponent implements OnInit {
     }
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyShift(shiftType) {
+    if(shiftType != "all" && shiftType){
+      this.dataSource.data = this.prevShifts.filter(shift => {
+        return (shift.event_type === shiftType);
+      });
+    } else {
+      this.dataSource.data = this.prevShifts;
+    }
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.dataSource.filter = this.nameInput.toLowerCase().trim();
   }
 }

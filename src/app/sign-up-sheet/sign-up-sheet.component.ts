@@ -183,7 +183,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week1[event_type][event_date]["num_slots"] =
             this.week1[event_type][event_date]["num_slots"] + 1;
           this.week1[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= events_per_week && i < 2 * events_per_week + 1) {
+        } else if (i >= events_per_week && i < 2 * events_per_week) {
           if (!(event_type in this.week2)) {
             this.week2[event_type] = {};
           }
@@ -203,7 +203,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week2[event_type][event_date]["num_slots"] =
             this.week2[event_type][event_date]["num_slots"] + 1;
           this.week2[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= 2 * events_per_week && i < 3 * events_per_week + 4) {
+        } else if (i >= 2 * events_per_week && i < 3 * events_per_week) {
           if (!(event_type in this.week3)) {
             this.week3[event_type] = {};
           }
@@ -223,7 +223,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week3[event_type][event_date]["num_slots"] =
             this.week3[event_type][event_date]["num_slots"] + 1;
           this.week3[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= 3 * events_per_week && i < 4 * events_per_week + 4) {
+        } else if (i >= 3 * events_per_week && i < 4 * events_per_week) {
           if (!(event_type in this.week4)) {
             this.week4[event_type] = {};
           }
@@ -483,21 +483,13 @@ export class SignUpSheetComponent implements OnInit {
     return this.volunteerList;
   }
 
-  getSignUpData() {
-    return [
-      { slot: 0, volunteer: "alexa" },
-      { slot: 1, volunteer: "alexa" },
-      { slot: 2, volunteer: "alexa" },
-    ];
-  }
-
   removeUserFromEvent(event_id) {
     this.fs.removeUserFromEvent(event_id);
   }
 
   addUserToEvent(user, event_info) {
     var event_id = event_info.slots[event_info.num_volunteers].id;
-    this.fs.addUserToEvent(event_id, user.first_name, user.last_name, user.key);
+    this.fs.addUserToEvent(event_id, user.first_name, user.last_name, user.id, user.key);
   }
 
   // permanentVolunteerEvent(event, event_id, user_id, event_date, first_name, last_name, slot) {

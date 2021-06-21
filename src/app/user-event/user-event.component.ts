@@ -26,7 +26,6 @@ export class UserEventComponent implements OnInit {
   pastEventsUser: any;
   currentEventsUser: any;
   cancelledEventsUser: any;
-  elementA: any;
   element: any;
   user: any;
   displayForm: boolean;
@@ -61,7 +60,7 @@ export class UserEventComponent implements OnInit {
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
  
-    this.firebase.getUser(this.userId).subscribe((element) => {
+    let element = this.firebase.getUser(this.userId).subscribe((element) => {
       this.element = element;
       this.model = element;
       if(element == null){
@@ -75,20 +74,22 @@ export class UserEventComponent implements OnInit {
     this.displayCurrentEvents(this.userId);
     this.displayPastEvents(this.userId);
     this.displayCancellation(this.userId);
+  }
 
+  ngAfterViewInit() {
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
     this.myForm = this.formBuilder.group({
-      dob: ["", Validators.required],
-      address_number: ["", Validators.required],
-      address_street: ["", Validators.required],
-      address_city: ["", Validators.required],
-      address_postal_code: ["", Validators.required],
-      email: ["", Validators.required],
-      phone_number: ["", Validators.pattern(phoneNumPattern)],
-      emergency_contact_name: ["", ],
-      emergency_relationship: ["", ],
-      emergency_contact_number: ["", Validators.pattern(phoneNumPattern)],
+      dob: [this.element.dob, Validators.required],
+      address_number: [this.element.address_number, Validators.required],
+      address_street: [this.element.address_street, Validators.required],
+      address_city: [this.element.address_city, Validators.required],
+      address_postal_code: [this.element.address_postal_code, Validators.required],
+      email: [this.element.email, Validators.required],
+      phone_number: [this.element.phone_number, Validators.pattern(phoneNumPattern)],
+      emergency_contact_name: [this.element.emergency_contact_name, ],
+      emergency_relationship: [this.element.emergency_relationship, ],
+      emergency_contact_number: [this.element.emergency_contact_number, Validators.pattern(phoneNumPattern)],
     });
   }
 

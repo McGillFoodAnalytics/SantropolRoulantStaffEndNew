@@ -98,7 +98,8 @@ export class AddUserToEventComponent implements OnInit {
         this.event_id,
         this.selectedRow.first_name,
         this.selectedRow.last_name,
-        this.selectedRow.id
+        this.selectedRow.id,
+        this.selectedRow.key
       );
       this.selectedRowIndex = -1;
       this.selectedRow = {};

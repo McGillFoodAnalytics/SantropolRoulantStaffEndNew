@@ -13,3 +13,11 @@
   text-align: center;
   color: #60A4FF;
 }
+
+.mat-select-panel {
+  max-height: 300px !important;
+}
+
+::ng-deep .mat-select-panel {
+  max-height: 300px !important;
+}
