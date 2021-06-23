@@ -21,7 +21,6 @@ export class AddUserToEventComponent implements OnInit {
   private dataSource;
   private addUser: boolean;
   private eventsRef = [];
-  private validEvent = [];
   private Events: Observable<any>;
   private selectedRowIndex: Number;
   private selectedRow: any = {};
@@ -57,8 +56,6 @@ export class AddUserToEventComponent implements OnInit {
 
     // Loading all events to get the events of the selected day and event type
     // Done only once using loadedEvents boolean
-    let eventSubstring = "";
-
     if (!this.loadedEvents) {
       this.Events = this.fs.getEvents();
       this.Events.subscribe((event) => {

@@ -11,11 +11,14 @@ import { MatSort } from '@angular/material/sort';
 })
 export class PastWeekComponent implements OnInit {
 
-  regex:any;
+  today: any;
   nameInput: string;
+  filterDate: any;
   prevShifts: any = [];
+  tempShifts: any = [];
   displayedColumns: string[] =['Volunteer', 'Shift Type', 'Shift Date'];
   dataSource = new MatTableDataSource();
+  currentShiftType;
   shiftTypes = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
@@ -28,6 +31,7 @@ export class PastWeekComponent implements OnInit {
   constructor(private firebase: FirebaseService) { }
 
   ngOnInit(): void {
+    this.today = new Date();
     this.firebase.getPastEvents().subscribe(snapshots => {
       for (let index = snapshots.length - 1 ; index > -1 ; index--) {
         if (snapshots[index].first_name != "" && snapshots[index].last_name != "") {
@@ -37,7 +41,8 @@ export class PastWeekComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.prevShifts);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-  });
+      this.tempShifts = this.prevShifts;
+    });
   }
 
   //Convert shift type from short to long format
@@ -45,30 +50,47 @@ export class PastWeekComponent implements OnInit {
     return this.shiftTypes[shiftType];  
   }
 
-  // Method is applied to event_date_txt field. Not used at the moment
-  // This field has format example: "Monday, April 1, 2020"
-  // So we check each index if it is a comma and return the substring two characters    after the first comma  
-  formatShiftDate(date: string){
-    let flag: boolean;
-    for (let index = 0; index < date.length; index++) {
-      if (date.charAt(index) == ',') {
-        return date.substring(index + 2);
-      }
-    }
-  }
-
   applyShift(shiftType) {
-    if(shiftType != "all" && shiftType){
-      this.dataSource.data = this.prevShifts.filter(shift => {
+    if(shiftType != "all"){
+      this.currentShiftType = shiftType;
+      this.tempShifts = this.prevShifts.filter(shift => {
         return (shift.event_type === shiftType);
       });
     } else {
-      this.dataSource.data = this.prevShifts;
+      this.currentShiftType = null;
+      this.tempShifts = this.prevShifts;
     }
+    
+    // Apply filter by date if a date is currently set
+    if (this.filterDate) {
+      this.tempShifts = this.tempShifts.filter(shift => {
+        return (shift.event_date_txt === this.filterDate);
+      });
+    }
+    this.dataSource.data = this.tempShifts;
     this.applyFilter();
   }
 
   applyFilter() {
-    this.dataSource.filter = this.nameInput.toLowerCase().trim();
+    if (this.nameInput) {   
+      this.dataSource.filter = this.nameInput.toLowerCase().trim();
+    }
+  }
+
+  applyDate(date: Date){
+    let newDate = this.firebase.getDateString(date);
+    this.filterDate = newDate;
+    this.tempShifts = this.prevShifts.filter(shift => {
+      return (shift.event_date_txt === newDate);
+    });
+    
+    // Apply shift type filter if a current type is set
+    if (this.currentShiftType) {
+      this.tempShifts = this.tempShifts.filter(shift => {
+        return (shift.event_type === this.currentShiftType);
+      });
+    }
+    this.dataSource.data = this.tempShifts;
+    this.applyFilter();
   }
 }
