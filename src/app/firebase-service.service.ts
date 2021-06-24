@@ -213,13 +213,24 @@ export class FirebaseService {
   }
 
   addUserToEvent( event_id: string, first_name: string, last_name: string,
-  uid: string, key: string): void {
-    this.db.object("/event/" + event_id).update({
-      first_name: first_name,
-      last_name: last_name,
-      uid: uid,
-      key: key
-    });
+  uid: string, key: string, first_shift?:boolean): void {
+    if(first_shift == undefined){
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        key: key
+      });
+    }
+    else{
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        key: key,
+        first_shift:first_shift
+      });
+    }
   }
 
   addPermanentVolToShift( event_id: string, first_name: string, last_name: string,

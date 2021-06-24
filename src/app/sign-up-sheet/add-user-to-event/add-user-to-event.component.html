@@ -41,6 +41,8 @@
     </div>
     </div>
     <div *ngIf="addUser" class="footer">
+        <mat-checkbox (change)="onCheckboxChange($event)">First Shift</mat-checkbox>
+        <br>
         <button type="submit" style="outline: none;" class="btn btn-xl btn-add-volunteer" (click)="onSubmit(false)">Add Volunteer to Shift</button>
     </div>
 </ng-template>
