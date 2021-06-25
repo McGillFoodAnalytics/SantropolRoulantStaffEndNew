@@ -30,7 +30,7 @@
             <mat-label>Date</mat-label>
             <input
               matInput
-              
+              [matDatepickerFilter]="sundayDatesFilter"
               [matDatepicker]="picker"
               [max]="today"
               placeholder="mm/dd/yyyy"
@@ -40,7 +40,7 @@
               matSuffix
               [for]="picker"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker style="outline: none;" #picker></mat-datepicker>
           </mat-form-field>
     </div>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">

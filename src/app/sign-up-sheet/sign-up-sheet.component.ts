@@ -1,17 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from "@angular/animations";
+import { Component, OnInit } from "@angular/core";
+import { trigger, state, style, animate, transition } from "@angular/animations";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
-import { MatSort } from "@angular/material/sort";
-import { map } from "rxjs/operators";
 import "bootstrap/dist/js/bootstrap.bundle";
 import { FirebaseService } from "../firebase-service.service";
 import {
@@ -71,8 +63,6 @@ export class SignUpSheetComponent implements OnInit {
   expandedElement: Event;
   dataSource = new MatTableDataSource();
   
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   currentWeek = "first";
   eventTypes = {
     "Kitchen AM": "kitam",
@@ -96,21 +86,16 @@ export class SignUpSheetComponent implements OnInit {
 
   ngOnInit() {
     this.events = this.fs.getEvents();
-    this.fs.getEvents().subscribe((snapshots) => {
-      this.dataSource = new MatTableDataSource(snapshots);
-      this.dataSource.sort = this.sort;
-    });
+    // this.fs.getEvents().subscribe((snapshots) => {
+    //   this.dataSource = new MatTableDataSource(snapshots);
+    //   this.dataSource.sort = this.sort;
+    // });
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-    this.db
-      .list("event")
-      .auditTrail()
-      .subscribe((changes) => {
-        this.formatEventDates();
-        this.volunteers = this.fs.getUsers();
-        this.setVolunteerList();
-      });
+    this.db.list("event").auditTrail().subscribe((changes) => {
+      this.formatEventDates();
+    });
     this.removeLoading();
   }
 

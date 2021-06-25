@@ -93,4 +93,11 @@ export class PastWeekComponent implements OnInit {
     this.dataSource.data = this.tempShifts;
     this.applyFilter();
   }
+
+  sundayDatesFilter (d: Date): boolean {
+    const day = d.getDay();
+
+    /* Prevent Saturday and Sunday for select. */
+    return day !== 6 ;
+  }
 }
