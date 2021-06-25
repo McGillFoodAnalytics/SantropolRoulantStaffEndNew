@@ -73,9 +73,7 @@ export class PastWeekComponent implements OnInit {
   }
 
   applyFilter() {
-    if (this.nameInput) {   
-      this.dataSource.filter = this.nameInput.toLowerCase().trim();
-    }
+    this.dataSource.filter = this.nameInput.toLowerCase().trim();
   }
 
   applyDate(date: Date){
@@ -105,10 +103,8 @@ export class PastWeekComponent implements OnInit {
     this.filterDate = undefined;
     this.dateField = undefined;
     this.currentShiftType = undefined;
-    // Need to apply filter with space character to get all entries first, then reset input to ""
-    this.nameInput = " ";
-    this.applyFilter();
     this.nameInput = "";
+    this.applyFilter();
     this.dataSource.data = this.prevShifts;
   }
 }
