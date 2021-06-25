@@ -140,7 +140,7 @@ export class FirebaseService {
     });
   }
 
-  removeUserFromEvent(event_id: string) {
+  removeUserFromEvent(event_id: string) : Promise<void> {
     this.db.object("/event/" + event_id).update({
       first_name: "",
       last_name: "",
@@ -150,6 +150,7 @@ export class FirebaseService {
       note: "",
       first_shift: false,
     });
+    return;
   }
 
   updateCancellations(user_id: string): void {
