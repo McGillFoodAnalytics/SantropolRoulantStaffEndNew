@@ -14,6 +14,7 @@ export class PastWeekComponent implements OnInit {
   today: any;
   nameInput: string;
   filterDate: any;
+  dateField: any;
   prevShifts: any = [];
   tempShifts: any = [];
   displayedColumns: string[] =['Volunteer', 'Shift Type', 'Shift Date'];
@@ -96,8 +97,18 @@ export class PastWeekComponent implements OnInit {
 
   sundayDatesFilter (d: Date): boolean {
     const day = d.getDay();
+    /* Prevent Sunday for selection on calendar. */
+    return day !== 0 ;
+  }
 
-    /* Prevent Saturday and Sunday for select. */
-    return day !== 6 ;
+  resetFilters(){
+    this.filterDate = undefined;
+    this.dateField = undefined;
+    this.currentShiftType = undefined;
+    // Need to apply filter with space character to get all entries first, then reset input to ""
+    this.nameInput = " ";
+    this.applyFilter();
+    this.nameInput = "";
+    this.dataSource.data = this.prevShifts;
   }
 }

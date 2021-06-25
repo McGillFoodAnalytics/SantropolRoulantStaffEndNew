@@ -16,7 +16,7 @@
       </mat-form-field>
       <mat-form-field style="margin-left: 50px;">
         <mat-label>Filter by Shift Type</mat-label>
-        <mat-select (selectionChange)="applyShift($event.value)">
+        <mat-select [(ngModel)]="currentShiftType" (selectionChange)="applyShift($event.value)">
           <mat-option disabled>--Shift type--</mat-option>
           <mat-option [value]="'all'"> All </mat-option>
           <mat-option [value]="'kitam'"> Kitchen AM </mat-option>
@@ -30,6 +30,7 @@
             <mat-label>Date</mat-label>
             <input
               matInput
+              [(ngModel)]="dateField"
               [matDatepickerFilter]="sundayDatesFilter"
               [matDatepicker]="picker"
               [max]="today"
@@ -42,6 +43,9 @@
             ></mat-datepicker-toggle>
             <mat-datepicker style="outline: none;" #picker></mat-datepicker>
           </mat-form-field>
+          <button style="outline: none;" class="btn-reset-filters" (click)="resetFilters()">
+            Reset
+          </button>
     </div>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="Volunteer">

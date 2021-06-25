@@ -21,3 +21,19 @@
 ::ng-deep .mat-select-panel {
   max-height: 300px !important;
 }
+
+.btn-reset-filters{
+  border-radius: 5px;
+  margin-left: 30px;
+  height: 30px;
+  width: 80px;
+  font-size: 14px;
+	color: #dc3545 !important;
+  border-color: #dc3545;
+	background-color: white !important;
+}
+
+.btn-reset-filters:hover{
+  color: white !important;
+  background-color: #dc3545 !important;
+}
