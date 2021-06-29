@@ -34,24 +34,73 @@
             <div class="signup" [class.hide]="signupHide">
                 <h2>Sign up</h2>
                 <div class="inputbox">
-                    <input type="text" style="width: 50%; float: left;" [(ngModel)]="firstName" placeholder="First Name">
-                    <input type="text" style="width: 45%; float: right;" [(ngModel)]="lastName" placeholder="Last Name">
-
                     <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
-                    <input type="password" style="width: 70%; float: left;" [(ngModel)]="password" name="password" placeholder="Password">
-                    <input type="text" style="width: 25%; float: right;" [(ngModel)]="code" name="code" placeholder="Code">
-
-                    <p class="displayname" style="color: white; font-size: 12px; position: absolute; top: 71%;">{{this.authService.error}}</p>
 
                 </div>
                 <button (click)="signup()" class="frontbutton">SIGN UP</button>
             </div>
 
+            <div *ngIf="!welcomeHide" class="welcome" [class.hide]="welcomeHide">
+
+                <form [formGroup]="form" (ngSubmit)="save()">
+
+                <div class="firstLine">
+
+                <div class="form-group welcomeName">
+                    <label>Full Name</label>
+                    <input type="string"
+                            formControlName="displayName"
+                            class="form-control">
+                </div>
+            
+                <div class="form-group welcomeEmail">
+                  <label>Email</label>
+                  <input type="email"
+                         formControlName="email"
+                         class="form-control">
+                </div>
+            
+                </div>
+
+                <div class="form-group welcomePhone">
+                    <label>Phone</label>
+                    <input type="phoneNumber"
+                           formControlName="phoneNumber"
+                           class="form-control">
+                </div>
+                    
+                  <div class = "passwords">
+
+                    <div class="form-group left">
+                    <label>Password</label>
+
+                    <input type="password"
+                           formControlName="password"
+                           class="form-control">
+                    </div>
+
+                    <div class="form-group right">
+                        <label>Confirm Password</label>
+    
+                        <input type="password"
+                               formControlName="confirmPassword"
+                               class="form-control">
+                    </div>
+
+                  </div>
+                
+                <button class="leftbutton" (click)="logout()">LOGOUT</button>
+                <button (click)="submitWelcome()" class="frontbutton">SUBMIT</button>
+
+                </form>
+            </div>
+
             <div *ngIf="!loggedinHide" class="loggedin" [class.hide]="loggedinHide">
                 <img class="profileicon" src="https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile">
                 <p class="displayname">{{user.email}}</p>
-                <button class="leftbutton">MANAGE</button>
+                <button class="leftbutton" (click)="open()">MANAGE</button>
                 <button (click)="logout()" class="frontbutton">LOGOUT</button>
+                <button *ngIf="user.role == 'admin' || user.email == 'kanjhassan@gmail.com'" (click)="openAdminSettings()" class="middlebutton">ADMIN SETTINGS</button>
             </div>
 
             <div class="reset" [class.hide]="resetHide">

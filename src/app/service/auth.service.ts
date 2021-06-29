@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { take } from 'rxjs/operators';
+import { take, catchError } from 'rxjs/operators';
 
 import firebase from '@firebase/app'
 import '@firebase/auth'
@@ -15,11 +15,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
   //user: Observable<firebase.User>;
 
-  currentUser;
+  currentUser = null;
   private authStatusSub = new BehaviorSubject(this.currentUser);
   currentAuthStatus = this.authStatusSub.asObservable();
 
   newUser;
+
+  user;
 
   error = "";
 
@@ -31,6 +33,8 @@ export class AuthService {
     if(credential){
       console.log(credential);
       this.authStatusSub.next(credential);
+      this.user = credential;
+      console.log("defined: " + this.user.email);
       console.log('User is logged in');
     }
     else{
@@ -56,9 +60,12 @@ export class AuthService {
 
         this.addUser(this.newUser.uid, firstName, lastName, email, "staff");
 
+        /*
         this.newUser.sendEmailVerification().then(() => {
         console.log('email sent');
     });
+    */
+   
         return true;
       })
       .catch(err => {
@@ -119,6 +126,7 @@ export class AuthService {
     this.firebaseAuth.sendPasswordResetEmail(email);
   }
 
+  //remove this
   addUser(uid, firstName, lastName, email, privilege){
     this.db.object('/staff/' + uid)
     .update({
@@ -127,5 +135,35 @@ export class AuthService {
         last_name: lastName,
         privilege: privilege,
      });
+  }
+
+  changeEmail(newEmail){
+
+    return this.user.updateEmail(newEmail)
+    .catch((err) => {
+
+      console.log(err);
+
+      return err.code;
+    }
+    );
+  }
+
+  async changePassword(newPassword){
+
+    /*
+    return this.user.updatePassword(newPassword).then(() => {
+      // Update successful.
+    }, (error) => {
+      // An error happened.
+
+      return error;
+    });
+    */
+
+    return await this.user.updatePassword(newPassword)
+    .catch(err => {
+      return err
+    });
   }
 }

@@ -1,0 +1,71 @@
+::ng-deep .permanent-volunteer .modal-dialog {
+    max-width: 80% !important;
+    width: 80% !important;
+}
+
+::ng-deep {
+    .cdk-global-overlay-wrapper, .cdk-overlay-container
+
+{
+    z-index: 9999 !important;
+}
+
+}
+
+.cdk-overlay-connected-position-bounding-box {
+    z-index: 99999 !important;
+}
+
+.fa {
+    padding-right: 0.5rem;
+}
+
+.form {
+    padding-bottom: 0;
+}
+
+.modal-header {
+    background-color: #5fce99;
+}
+
+
+.modal-title {
+    color: white;
+}
+
+.img-warning {
+    margin-bottom: 1rem;
+    margin: auto;
+    margin-top: 1.5rem;
+}
+
+.modal-body {
+    padding: 1rem 2rem 0 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.btn-cancel {
+    margin-right: 1rem;
+}
+
+.btn-remove-volunteer {
+    color: white;
+    background: #dc3545;
+}
+
+    .btn-remove-volunteer:hover {
+        background: #bb202f;
+    }
+
+.footer {
+    padding-bottom: 2.5rem;
+    text-align: center;
+}
+
+ul
+{
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
