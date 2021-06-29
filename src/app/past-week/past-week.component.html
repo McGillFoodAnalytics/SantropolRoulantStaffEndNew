@@ -1,9 +1,9 @@
 <div class="pastWeeks">
   <div class="page-title">
-    <h1> Previous Shifts </h1>
+    <h1>Previous Shifts</h1>
   </div>
   <div class="modal-body">
-    <!-- Search container -->
+    <!-- Search container with name, shift type, and date filters-->
     <div class="container-search">
       <mat-form-field class="volunteer-search">
         <input
@@ -14,9 +14,12 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
-      <mat-form-field style="margin-left: 50px;">
+      <mat-form-field style="margin-left: 50px">
         <mat-label>Filter by Shift Type</mat-label>
-        <mat-select [(ngModel)]="currentShiftType" (selectionChange)="applyShift($event.value)">
+        <mat-select
+          [(ngModel)]="currentShiftType"
+          (selectionChange)="applyShift($event.value)"
+        >
           <mat-option disabled>--Shift type--</mat-option>
           <mat-option [value]="'all'"> All </mat-option>
           <mat-option [value]="'kitam'"> Kitchen AM </mat-option>
@@ -26,26 +29,27 @@
         </mat-select>
         <mat-error>Required!</mat-error>
       </mat-form-field>
-      <mat-form-field style="margin-left: 50px;">
-            <mat-label>Date</mat-label>
-            <input
-              matInput
-              [(ngModel)]="dateField"
-              [matDatepickerFilter]="sundayDatesFilter"
-              [matDatepicker]="picker"
-              [max]="today"
-              placeholder="mm/dd/yyyy"
-              (dateChange)="applyDate($event.value)"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker style="outline: none;" #picker></mat-datepicker>
-          </mat-form-field>
-          <button style="outline: none;" class="btn-reset-filters" (click)="resetFilters()">
-            Reset
-          </button>
+      <mat-form-field style="margin-left: 50px">
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          [(ngModel)]="dateField"
+          [matDatepickerFilter]="sundayDatesFilter"
+          [matDatepicker]="picker"
+          [max]="today"
+          placeholder="mm/dd/yyyy"
+          (dateChange)="applyDate($event.value)"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker style="outline: none" #picker></mat-datepicker>
+      </mat-form-field>
+      <button
+        style="outline: none"
+        class="btn-reset-filters"
+        (click)="resetFilters()"
+      >
+        Reset
+      </button>
     </div>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="Volunteer">
@@ -70,10 +74,11 @@
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
     <mat-paginator
-    #paginator
-    id="paginator"
-    [pageSizeOptions]="[10, 20, 50]"
-    showFirstLastButtons
-  ></mat-paginator>
+      #paginator
+      id="paginator"
+      [pageSizeOptions]="[10, 20, 50]"
+      showFirstLastButtons
+    ></mat-paginator>
+    <app-copyright-footer></app-copyright-footer>
   </div>
 </div>

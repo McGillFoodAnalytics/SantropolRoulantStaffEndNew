@@ -93,6 +93,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AccountComponent } from './account/account.component';
 import { UserNoteComponent } from './user-event/user-note/user-note.component';
 import { PastWeekComponent } from './past-week/past-week.component';
+import { CopyrightFooterComponent } from './copyright-footer/copyright-footer.component';
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -158,7 +159,8 @@ const appRoutes: Routes = [
     UserProfileComponent,
     AccountComponent,
     UserNoteComponent,
-    PastWeekComponent
+    PastWeekComponent,
+    CopyrightFooterComponent
   ],
   imports: [
     BrowserModule,

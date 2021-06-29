@@ -254,17 +254,9 @@ h3 {
   margin-right: 10%;
 }
 
-.copyrightFooter {
+:host::ng-deep app-copyright-footer .copyrightFooter {
+  margin-left: 120px;
   margin-top: -100px;
-  left: -40px;
-  text-align: center;
-  position: relative;
-}
-
-#logoMcGillFoodAn {
-  max-width: 40px;
-  margin-top: -60px;
-  left: 190px;
   position: relative;
 }
 
