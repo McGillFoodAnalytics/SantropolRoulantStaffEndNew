@@ -59,14 +59,22 @@ export class UserEventComponent implements OnInit {
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
  
-    let element = this.firebase.getUser(this.userId).subscribe((element) => {
-      this.element = element;
-      this.model = element;
-      if(element == null){
-        this.validId = false; //Do not display user profile
-      }
-      else {
-        this.checkBox();
+    this.firebase.getUser(this.userId).subscribe((user) => {
+      if(user){
+        this.element = user;
+  
+        //Check if email is of the format from mobile app to change to be valid with  calender pick
+        if(user.dob){
+          if(user.dob.length == 8){
+            this.element.dob = this.formatMobileAppDob(user.dob);
+          }
+        }
+        if(user == null){
+          this.validId = false; //Do not display user profile
+        }
+        else {
+          this.checkBox();
+        }
       }
     });
     this.displayPastEvents();
@@ -127,7 +135,7 @@ export class UserEventComponent implements OnInit {
 
   changeActiveStatus(){
     if(this.element.active_status == null){
-    this.firebase.changeActiveStatus(this.userId, false);
+      this.firebase.changeActiveStatus(this.userId, false);
     }
     else{
       this.firebase.changeActiveStatus(this.userId, !this.element.active_status);
@@ -179,6 +187,13 @@ export class UserEventComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  formatMobileAppDob(date){
+    let year = date.substring(0, 4);
+    let month = date.substring(4, 6);
+    let day = date.substring(6, 8);
+    return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
   }
 
   //Used for birthdate
@@ -234,11 +249,11 @@ export class UserEventComponent implements OnInit {
     if (str == null || str == "") {
       return "-";
     }
-      let a = str.substring(0, 3);
-      let b = str.substring(3, 6);
-      let c = str.substring(6, 10);
-      let phoneNumber = "(" + a + ") " + b + "-" + c;
-      return phoneNumber;
+    let a = str.substring(0, 3);
+    let b = str.substring(3, 6);
+    let c = str.substring(6, 10);
+    let phoneNumber = "(" + a + ") " + b + "-" + c;
+    return phoneNumber;
   }
 
   //Format emergency contact info 

@@ -331,6 +331,10 @@ input.apple-switch:checked:after {
 }
 
 .past-n-future{
+  height: 50vh;
+}
+
+.table-shifts{
+  height: 300px;
   overflow-y: auto;
-  height: 60vh;
 }

@@ -21,70 +21,74 @@
           <h2 id="no_event" *ngIf="currentEventsUser.length == 0">
             This volunteer doesn't have any upcoming shifts!
           </h2>
-          <table class="table" *ngIf="currentEventsUser.length != 0">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col"></th>
-                <!-- Empty columns to space out information -->
-                <th scope="col"></th>
-                <th scope="col">Type</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let event of currentEventsUser">
-                <td>{{ event.event_date_txt }}</td>
-                <td></td>
-                <!-- Empty columns to space out information -->
-                <td></td>
-                <td>{{ formatEventType(event.event_type) }}</td>
-                <td></td>
-                <td>
-                  <div style="height: 40px; overflow: hidden">
-                    <button
-                      class="removeVolBtn"
-                      onclick="this.blur()"
-                      style="background-color: rgb(218, 218, 218)"
-                    >
-                      <app-remove-user-from-event
-                        firstName="{{ element.first_name }}"
-                        eventId="{{ event.id }}"
-                        userId="{{ userId }}"
-                        lastName="{{ element.last_name }}"
-                        date="{{ event.event_date_txt }}"
-                        eventType="{{ eventTypes[event.event_type] }}"
-                        isUserProfile="true"
-                        (confirmRemove)="onRemoveUserFromEvent(event.id)"
+          <div class="table-shifts">
+            <table class="table" *ngIf="currentEventsUser.length != 0">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col"></th>
+                  <!-- Empty columns to space out information -->
+                  <th scope="col"></th>
+                  <th scope="col">Type</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of currentEventsUser">
+                  <td>{{ event.event_date_txt }}</td>
+                  <td></td>
+                  <!-- Empty columns to space out information -->
+                  <td></td>
+                  <td>{{ formatEventType(event.event_type) }}</td>
+                  <td></td>
+                  <td>
+                    <div style="height: 40px; overflow: hidden">
+                      <button
+                        class="removeVolBtn"
+                        onclick="this.blur()"
+                        style="background-color: rgb(218, 218, 218)"
                       >
-                      </app-remove-user-from-event>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                        <app-remove-user-from-event
+                          firstName="{{ element.first_name }}"
+                          eventId="{{ event.id }}"
+                          userId="{{ userId }}"
+                          lastName="{{ element.last_name }}"
+                          date="{{ event.event_date_txt }}"
+                          eventType="{{ eventTypes[event.event_type] }}"
+                          isUserProfile="true"
+                          (confirmRemove)="onRemoveUserFromEvent(event.id)"
+                        >
+                        </app-remove-user-from-event>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-tab>
         <!-- Past shifts tab -->
         <mat-tab label="Past Shifts">
           <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
             This volunteer doesn't have any past shifts!
           </h2>
-          <table class="table" *ngIf="pastEventsUser.length != 0">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let event of pastEventsUser">
-                <td>{{ event.event_date_txt }}</td>
-                <td>{{ formatEventType(event.event_type) }}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-shifts">
+            <table class="table" *ngIf="pastEventsUser.length != 0">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of pastEventsUser">
+                  <td>{{ event.event_date_txt }}</td>
+                  <td>{{ formatEventType(event.event_type) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>
