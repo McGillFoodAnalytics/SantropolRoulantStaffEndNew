@@ -20,6 +20,8 @@ export class AccountComponent implements OnInit {
     user: any;
     role: any;
 
+    ready = false;
+
     @ViewChild('adminModal') adminModal: AdminSettingsComponent;
 
     form = new FormGroup({
@@ -46,6 +48,8 @@ export class AccountComponent implements OnInit {
     if (this.router.url == "/volunteer-account") {
       this.loggedinMode();
    }
+
+   this.ready = true;
 
     this.authService.currentAuthStatus.subscribe(async (authStatus) => {
 

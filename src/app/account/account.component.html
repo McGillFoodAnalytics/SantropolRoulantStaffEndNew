@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="frontbox" [class.animated]="shake" [class.shake]="shake" [class.moving]="frontBoxMoving" [class.center]="center">
+        <div *ngIf="ready" class="frontbox" [class.animated]="shake" [class.shake]="shake" [class.moving]="frontBoxMoving" [class.center]="center">
             <div class="login" [class.hide]="loginHide">
                 <h2>Login</h2>
                 <div class="inputbox">
