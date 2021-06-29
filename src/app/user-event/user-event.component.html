@@ -42,7 +42,7 @@
                 <td>{{ formatEventType(event.event_type) }}</td>
                 <td></td>
                 <td>
-                  <div style="height: 33px; overflow: hidden">
+                  <div style="height: 40px; overflow: hidden">
                     <button
                       class="removeVolBtn"
                       onclick="this.blur()"
@@ -369,8 +369,5 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
     </h4>
   </div>
 
-  <div class="copyrightFooter">
-    <h6 style="color: gray">Copyright © 2021 McGill Food Analytics Club</h6>
-    <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGillFoodAn" />
-  </div>
+ <app-copyright-footer></app-copyright-footer>
 </html>

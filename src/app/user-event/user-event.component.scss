@@ -37,6 +37,8 @@ td {
 
 tr {
   white-space: pre;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile {
@@ -248,7 +250,7 @@ input.ng-invalid {
   height: 194px;
   border: 1px solid #ccc;
   overflow-y: scroll; 
-  margin-bottom: 140px;
+  margin-bottom: 120px;
 }
 
 .status {
@@ -300,7 +302,7 @@ input.apple-switch:checked:after {
 .removeVolBtn{
   transform: scale(0.6);
   position: relative;
-  top: -10px;
+  top: -7px;
 }
 
 .footer{
@@ -315,18 +317,8 @@ input.apple-switch:checked:after {
   z-index: 100;
 }
 
-#logoMcGillFoodAn{
-  max-width: 40px;
-  margin-top: -60px ;
-  left: 320px; 
-  position: relative;
-}
-
-.copyrightFooter{
- width: fit-content;
- margin-top: -100px;
- position: relative;
- left: 36%;
+:host::ng-deep app-copyright-footer .copyrightFooter {
+  margin-top: -85px;
 }
 
 #phoneNumErrorMsg{

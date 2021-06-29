@@ -115,16 +115,6 @@ tr.element-row:not(.expanded-row):active {
   margin-bottom: 140px;
 }
 
-.copyrightFooter {
-  margin-top: -100px;
-  left: -40px;
-  text-align: center;
-  position: relative;
-}
-
-#logoMcGillFoodAn {
-  max-width: 40px;
-  margin-top: -60px;
-  left: 190px;
-  position: relative;
+:host::ng-deep app-copyright-footer .copyrightFooter {
+  margin-top: -115px;
 }
