@@ -103,6 +103,7 @@ export class UserEventComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
       size: "lg",
+      centered: true
     });
   }
 

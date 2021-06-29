@@ -14,7 +14,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body past-n-future">
       <!-- 2 tabs avec chacune un mat table des events (soit past soit current) -->
       <mat-tab-group>
         <mat-tab label="Future Shifts">
@@ -66,6 +66,7 @@
             </tbody>
           </table>
         </mat-tab>
+        <!-- Past shifts tab -->
         <mat-tab label="Past Shifts">
           <h2 id="no_event" *ngIf="pastEventsUser.length == 0">
             This volunteer doesn't have any past shifts!
