@@ -51,10 +51,10 @@
                       <app-remove-user-from-event
                         firstName="{{ element.first_name }}"
                         eventId="{{ event.id }}"
-                        userId="{{ element.uid }}"
+                        userId="{{ userId }}"
                         lastName="{{ element.last_name }}"
                         date="{{ event.event_date_txt }}"
-                        eventType="{{ event.event_type }}"
+                        eventType="{{ eventTypes[event.event_type] }}"
                         isUserProfile="true"
                         (confirmRemove)="onRemoveUserFromEvent(event.id)"
                       >

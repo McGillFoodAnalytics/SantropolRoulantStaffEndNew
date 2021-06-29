@@ -1,18 +1,21 @@
 
 .userNote{
-  width: 36vw;
-  height: 45px;
+  width: 46vw;
+  height: 75px;
+  overflow-y: scroll;
+  overflow-x: hidden;
   border: 3px solid #449afe;
 }
 
 #editNoteBtn{
-  height: 45px;
+  max-height: 45px;
   width: 100px;
   margin-left: 15px;
   background-color: white;
   color: #5fce99;
   border-radius: 10px;
   border: 2px solid #5fce99;
+  margin-top: 30px;
 }
 
 .note{

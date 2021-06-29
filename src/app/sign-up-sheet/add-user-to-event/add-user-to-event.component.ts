@@ -4,6 +4,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ModalService } from "../../core/services/modalService";
 import { FirebaseService } from "../../firebase-service.service";
 import { Observable } from "rxjs";
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: "app-add-user-to-event",
@@ -21,11 +22,11 @@ export class AddUserToEventComponent implements OnInit {
   private dataSource;
   private addUser: boolean;
   private eventsRef = [];
-  private validEvent = [];
   private Events: Observable<any>;
   private selectedRowIndex: Number;
   private selectedRow: any = {};
   private loadedEvents: boolean;
+  private firstShiftChecked = false;
   @ViewChild("addUserModal", { static: true }) modalTemplate: TemplateRef<any>;
   @ViewChild("addUserModalWarning", { static: true })
   modalTemplateWarning: TemplateRef<any>;
@@ -57,8 +58,6 @@ export class AddUserToEventComponent implements OnInit {
 
     // Loading all events to get the events of the selected day and event type
     // Done only once using loadedEvents boolean
-    let eventSubstring = "";
-
     if (!this.loadedEvents) {
       this.Events = this.fs.getEvents();
       this.Events.subscribe((event) => {
@@ -84,7 +83,10 @@ export class AddUserToEventComponent implements OnInit {
       centered: true,
     });
   }
-
+  onCheckboxChange(ob: MatCheckboxChange) {
+    console.log("Checked " + ob.checked)
+    this.firstShiftChecked = ob.checked
+  }
   onSubmit(warned: boolean) {
     if (this.alreadyRegistered() && !warned) {
       this.openWarning();
@@ -99,7 +101,8 @@ export class AddUserToEventComponent implements OnInit {
         this.selectedRow.first_name,
         this.selectedRow.last_name,
         this.selectedRow.id,
-        this.selectedRow.key
+        this.selectedRow.key,
+        this.firstShiftChecked,
       );
       this.selectedRowIndex = -1;
       this.selectedRow = {};

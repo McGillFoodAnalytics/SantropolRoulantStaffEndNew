@@ -19,7 +19,7 @@ export class EventSignUpTableComponent implements OnInit {
   @Input() slots: [any];
   @Input() eventType: string;
   @Input() id: string;
-  volunteerList;
+  @Input() volunteerList;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() insertStaffNote: EventEmitter<any> = new EventEmitter<any>();
   usersRef:  AngularFireList<any>;
@@ -37,9 +37,6 @@ export class EventSignUpTableComponent implements OnInit {
       }
     });
     this.dataSource = new MatTableDataSource(this.slots);
-    this.fs.getUsers().subscribe(val=>{
-      this.volunteerList = val;
-    });
   }
 
   prettySlot(slot: string) {

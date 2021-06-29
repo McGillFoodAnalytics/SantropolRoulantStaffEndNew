@@ -140,8 +140,7 @@ export class FirebaseService {
     });
   }
 
-  removeUserFromEvent(event_id: string) {
-    this.updateCancellations(event_id);
+  removeUserFromEvent(event_id: string) : Promise<void> {
     this.db.object("/event/" + event_id).update({
       first_name: "",
       last_name: "",
@@ -151,53 +150,31 @@ export class FirebaseService {
       note: "",
       first_shift: false,
     });
+    return;
   }
 
-  updateCancellations(event_id: string): void {
-    var userId;
-    var count;
-    this.eventRef = this.db.list("event");
-    this.events = this.eventRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
-        )
-      );
-    this.events.subscribe((snapshots) => {
-      snapshots.forEach((snapshot) => {
-        if (snapshot.id == event_id) {
-          userId = snapshot.uid;
+  updateCancellations(user_id: string): void {
+    let count;
+    let updated = false;
+    this.getUser(user_id).subscribe(userObs =>{
+      if(userObs){
+        count = userObs.cancellations;
+        if (isNaN(count)) {
+          count = 0;
         }
-      });
-    });
-
-    this.volunteerRef = this.db.list("user");
-    this.volunteers = this.volunteerRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
-        )
-      );
-
-    this.volunteers.subscribe((snapshots) => {
-      snapshots.forEach((snapshot) => {
-        if (snapshot.id == userId) {
-          count = snapshot.cancellations;
-          if (isNaN(count)) {
-            count = 0;
-          }
-          count++;
-          this.db.object("/user/" + userId).update({
+        count++;
+        if(!updated){
+          updated = true;
+          this.db.object("/user/" + user_id).update({
             cancellations: count,
           });
         }
-      });
+      }
     });
   }
 
   addCancellation(eventId: string, uid: string, reason: string) {
+    this.updateCancellations(uid);
     if (reason == "" || reason == null) {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
@@ -213,13 +190,24 @@ export class FirebaseService {
   }
 
   addUserToEvent( event_id: string, first_name: string, last_name: string,
-  uid: string, key: string): void {
-    this.db.object("/event/" + event_id).update({
-      first_name: first_name,
-      last_name: last_name,
-      uid: uid,
-      key: key
-    });
+  uid: string, key: string, first_shift?:boolean): void {
+    if(first_shift == undefined){
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        key: key
+      });
+    }
+    else{
+      this.db.object("/event/" + event_id).update({
+        first_name: first_name,
+        last_name: last_name,
+        uid: uid,
+        key: key,
+        first_shift:first_shift
+      });
+    }
   }
 
   addPermanentVolToShift( event_id: string, first_name: string, last_name: string,

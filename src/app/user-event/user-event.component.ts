@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from "@angular/core";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
+import { AngularFireDatabase } from "@angular/fire/database";
 import { FirebaseService } from "../firebase-service.service";
 import { Observable } from "rxjs";
-import { MatTableDataSource } from "@angular/material/table";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
 
@@ -70,10 +69,8 @@ export class UserEventComponent implements OnInit {
         this.checkBox();
       }
     });
-
-    this.displayCurrentEvents(this.userId);
-    this.displayPastEvents(this.userId);
-    this.displayCancellation(this.userId);
+    this.displayPastEvents();
+    this.refresh();
   }
 
   ngAfterViewInit() {
@@ -91,6 +88,11 @@ export class UserEventComponent implements OnInit {
       emergency_relationship: [this.element.emergency_relationship, ],
       emergency_contact_number: [this.element.emergency_contact_number, Validators.pattern(phoneNumPattern)],
     });
+  }
+
+  refresh(){
+    this.displayCurrentEvents();
+    this.displayCancellation();
   }
 
   capitalize(str: string) {
@@ -131,11 +133,11 @@ export class UserEventComponent implements OnInit {
     }
   }
 
-  displayPastEvents(userId) {
+  displayPastEvents() {
     this.pastEventsUser = [];
     this.pastEvents.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
-        if (snapshot.uid == userId) {
+        if (snapshot.uid == this.userId) {
           //if the model has past events
           this.pastEventsUser.push(snapshot); //push it to pastEvents
         }
@@ -143,25 +145,25 @@ export class UserEventComponent implements OnInit {
     });
   }
 
-  displayCurrentEvents(userId) {
+  displayCurrentEvents() {
     this.currentEventsUser = [];
     this.events.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (!this.containsObject(snapshot, this.currentEventsUser)) {
-          if (snapshot.uid == userId) {
-            //if the model has past events
-            this.currentEventsUser.push(snapshot); //push it to pastEvents
+          if (snapshot.uid == this.userId) {
+            //if the model has current shifts
+            this.currentEventsUser.push(snapshot); 
           }
         }
       });
     });
   }
 
-  displayCancellation(userId) {
+  displayCancellation() {
     this.cancelledEventsUser = [];
     this.cancelledEvents.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
-        if (snapshot.user_id == userId) {
+        if (snapshot.user_id == this.userId) {
           this.cancelledEventsUser.push(snapshot);
         }
       });
@@ -231,16 +233,11 @@ export class UserEventComponent implements OnInit {
     if (str == null || str == "") {
       return "-";
     }
-    if(str.length == 10){
       let a = str.substring(0, 3);
       let b = str.substring(3, 6);
       let c = str.substring(6, 10);
       let phoneNumber = "(" + a + ") " + b + "-" + c;
       return phoneNumber;
-    }
-    else{
-      return str;
-    }
   }
 
   //Format emergency contact info 
@@ -314,7 +311,11 @@ export class UserEventComponent implements OnInit {
   }
 
   onRemoveUserFromEvent(id: string) {
-    this.firebase.removeUserFromEvent(id);
+    this.cancelledEventsUser = [];
+    this.currentEventsUser = [];
+    this.firebase.removeUserFromEvent(id).then(() => {
+      this.refresh();
+    });
     this.removeUserFromEvent.emit(id);
   }
   

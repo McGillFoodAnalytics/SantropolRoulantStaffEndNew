@@ -90,6 +90,7 @@
                     [slots]="day.value.slots"
                     [id]="day.value.slots[0].id"
                     [eventType]="coolEvent"
+                    [volunteerList]="volunteerList"
                     (removeUserFromEvent)="removeUserFromEvent($event)"
                     (insertStaffNote)="insertStaffNote($event)"
                   >
@@ -172,6 +173,7 @@
                     [slots]="day.value.slots"
                     [id]="day.value.slots[0].id"
                     [eventType]="coolEvent"
+                    [volunteerList]="volunteerList"
                     (removeUserFromEvent)="removeUserFromEvent($event)"
                     (insertStaffNote)="insertStaffNote($event)"
                   >
@@ -250,6 +252,7 @@
                     [slots]="day.value.slots"
                     [id]="day.value.slots[0].id"
                     [eventType]="coolEvent"
+                    [volunteerList]="volunteerList"
                     (removeUserFromEvent)="removeUserFromEvent($event)"
                     (insertStaffNote)="insertStaffNote($event)"
                   >
@@ -328,6 +331,7 @@
                     [slots]="day.value.slots"
                     [id]="day.value.slots[0].id"
                     [eventType]="coolEvent"
+                    [volunteerList]="volunteerList"
                     (removeUserFromEvent)="removeUserFromEvent($event)"
                     (insertStaffNote)="insertStaffNote($event)"
                   >
@@ -392,3 +396,12 @@
     </div>
   </div>
 </html>
+
+<ng-template #changeShiftImportance>
+  <div style="height: 40px;">
+    <h6 style="margin-top: 8px; margin-left: 15px;">
+      Marking/unmarking shift as important, please wait...
+    </h6>
+  </div>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
