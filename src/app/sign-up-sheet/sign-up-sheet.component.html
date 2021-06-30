@@ -51,11 +51,9 @@
       </div>
     </div>
     <div class="shiftHeaders">
-      <div style="display:flex; text-align: center;" *ngFor="let coolEvent of eventArray">
-        <div *ngFor="let day of getEventListCool(coolEvent) | keyvalue">
-          <div class="cardTitle"
-            *ngIf="coolEvent == 'Kitchen AM'"
-          >
+      <div style="display:flex; text-align: center;">
+        <div *ngFor="let day of getEventListCool(currentEvent) | keyvalue">
+          <div class="cardTitle">
           <span>
             {{ day.value.display_date | date: "EEEE, MMM d" }}
           </span>
@@ -384,24 +382,7 @@
           </div>
         </div>
       </app-slider>
-
-      <div class="copyrightFooter">
-        <h6 style="color: gray">Copyright © 2021 McGill Food Analytics Club</h6>
-        <img
-          src="../../../assets/McGillFACLogo.png"
-          alt=""
-          id="logoMcGillFoodAn"
-        />
-      </div>
+      <app-copyright-footer></app-copyright-footer>
     </div>
   </div>
 </html>
-
-<ng-template #changeShiftImportance>
-  <div style="height: 40px;">
-    <h6 style="margin-top: 8px; margin-left: 15px;">
-      Marking/unmarking shift as important, please wait...
-    </h6>
-  </div>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>

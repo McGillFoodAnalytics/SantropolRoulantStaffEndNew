@@ -47,15 +47,17 @@ export class AddUserToEventComponent implements OnInit {
     this.eventTypeCode = this.getEventCode(eventType);
     this.date = date;
     this.event_id = event_id;
-    this.isBefore();
-    this.dataSource = new MatTableDataSource(volunteerList);
-    this.modalReference = this.modalService.open(this.modalTemplate, {
-      ariaLabelledBy: "modal-basic-title",
-      size: "lg",
-      windowClass: "my-class",
-      centered: true,
+    this.isBefore().then(() => {
+      //Determine window size based on adding user window or passed shift 
+      var windowClass = (this.addUser) ? "add-user" : "passed-shift";
+      this.dataSource = new MatTableDataSource(volunteerList);
+      this.modalReference = this.modalService.open(this.modalTemplate, {
+        ariaLabelledBy: "modal-basic-title",
+        windowClass: windowClass,
+        centered: true,
+      });
     });
-
+    
     // Loading all events to get the events of the selected day and event type
     // Done only once using loadedEvents boolean
     if (!this.loadedEvents) {
@@ -83,10 +85,11 @@ export class AddUserToEventComponent implements OnInit {
       centered: true,
     });
   }
+
   onCheckboxChange(ob: MatCheckboxChange) {
-    console.log("Checked " + ob.checked)
     this.firstShiftChecked = ob.checked
   }
+
   onSubmit(warned: boolean) {
     if (this.alreadyRegistered() && !warned) {
       this.openWarning();
@@ -142,7 +145,7 @@ export class AddUserToEventComponent implements OnInit {
   }
 
   // Method to check whether today is before or the same day of the selected event's date
-  isBefore() {
+  async isBefore(): Promise<void> {
     let year = "20" + this.event_id.substring(0, 2);
     let month = this.event_id.substring(2, 4);
     let day = this.event_id.substring(4, 6);
@@ -156,12 +159,16 @@ export class AddUserToEventComponent implements OnInit {
 
     if (today.getMonth() < eventDate.getMonth()) {
       this.addUser = true;
-    } else if (today.getMonth() == eventDate.getMonth()) {
+      return;
+    } 
+    else if (today.getMonth() == eventDate.getMonth()) {
       if (today.getDate() <= eventDate.getDate()) {
-        this.addUser = true; //Boolean used in HTML
+        this.addUser = true; //Boolean used in HTML to hide/show a div
       }
-    } else {
-      this.addUser = false;
-    }
+      else { 
+        this.addUser = false;
+      }
+      return;
+    } 
   }
 }

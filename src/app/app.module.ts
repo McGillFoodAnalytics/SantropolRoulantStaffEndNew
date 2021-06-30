@@ -59,7 +59,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NewUserComponent } from './new-user/new-user.component';
-import { DeleteUsersComponent } from './delete-users/delete-users.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { UserFormComponent } from './user-form/user-form.component';
 
@@ -101,6 +100,8 @@ import { AdminManageUserComponent } from './admin-manage-user/admin-manage-user.
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { ManageAccountComponent } from './manage-account/manage-account.component';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { CopyrightFooterComponent } from './copyright-footer/copyright-footer.component';
+
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -142,7 +143,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NewUserComponent,
-    DeleteUsersComponent,
     ChangeRegistrationCodeComponent,
     MarkImportantEventComponent,
     SignUpSheetComponent,
@@ -173,6 +173,7 @@ const appRoutes: Routes = [
     ManageAccountComponent,
     UserFormComponent,
     LoginPopupComponent,
+    CopyrightFooterComponent
   ],
   imports: [
     BrowserModule,

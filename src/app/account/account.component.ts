@@ -317,7 +317,7 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
 
   open(){
 
-    const modalRef = this.m.open(ManageAccountComponent, {size: 'sm', centered: true});
+    const modalRef = this.m.open(ManageAccountComponent, {size: 'md', centered: true});
     modalRef.result.then(user => {
 
     })

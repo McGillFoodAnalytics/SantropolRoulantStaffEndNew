@@ -131,7 +131,7 @@ export class AdminSettingsComponent implements OnInit {
 
     this.userTransfer.next(user);
 
-    const modalRef = this.modal.open(AdminManageUserComponent, {size: 'sm', centered: true})
+    const modalRef = this.modal.open(AdminManageUserComponent, {size: 'md', centered: true})
     
     modalRef.result.then((result) => {
 

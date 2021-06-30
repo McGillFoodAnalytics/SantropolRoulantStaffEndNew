@@ -457,13 +457,4 @@ export class FirebaseService {
       })
     }); 
   }
-
-  //Delete all users (By RG)
-  deleteAllUsers(){
-    this.getUsers().subscribe(snapshots => {
-      snapshots.forEach(element => {
-          this.deleteUser(element.id);
-      });
-    });
-  }
 }
