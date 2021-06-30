@@ -103,7 +103,7 @@ export class AccountComponent implements OnInit {
     
 
     // Confirm the link is a sign-in with email link.
-if (this.auth.isSignInWithEmailLink(window.location.href)) {
+if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLink(window.location.href)) {
 
   console.log("signing in with url: " + window.location.href)
   // Additional state parameters can also be passed via URL.
@@ -127,6 +127,7 @@ if (this.auth.isSignInWithEmailLink(window.location.href)) {
       // result.additionalUserInfo.profile == null
       // You can check if the user is new or existing:
       // result.additionalUserInfo.isNewUser
+
     })
     .catch((error) => {
       // Some error occurred, you can inspect the code: error.code
