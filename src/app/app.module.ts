@@ -59,7 +59,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NewUserComponent } from './new-user/new-user.component';
-import { DeleteUsersComponent } from './delete-users/delete-users.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { UserFormComponent } from './user-form/user-form.component';
 
@@ -142,7 +141,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NewUserComponent,
-    DeleteUsersComponent,
     ChangeRegistrationCodeComponent,
     MarkImportantEventComponent,
     SignUpSheetComponent,
