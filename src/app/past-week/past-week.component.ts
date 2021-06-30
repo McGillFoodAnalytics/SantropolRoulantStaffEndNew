@@ -35,8 +35,10 @@ export class PastWeekComponent implements OnInit {
     this.today = new Date();
     this.firebase.getPastEvents().subscribe(snapshots => {
       for (let index = snapshots.length - 1 ; index > -1 ; index--) {
-        if (snapshots[index].first_name != "" && snapshots[index].last_name != "") {
-           this.prevShifts.push(snapshots[index]);
+        if (snapshots[index].first_name != "SPOT CLOSED" && 
+        snapshots[index].first_name != "" && 
+        snapshots[index].last_name != "") {
+          this.prevShifts.push(snapshots[index]);
         }
       }
       this.dataSource = new MatTableDataSource(this.prevShifts);

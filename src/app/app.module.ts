@@ -100,6 +100,8 @@ import { AdminManageUserComponent } from './admin-manage-user/admin-manage-user.
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { ManageAccountComponent } from './manage-account/manage-account.component';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { CopyrightFooterComponent } from './copyright-footer/copyright-footer.component';
+
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -171,6 +173,7 @@ const appRoutes: Routes = [
     ManageAccountComponent,
     UserFormComponent,
     LoginPopupComponent,
+    CopyrightFooterComponent
   ],
   imports: [
     BrowserModule,

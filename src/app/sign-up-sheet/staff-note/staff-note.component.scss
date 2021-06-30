@@ -69,6 +69,8 @@ p {
   height: 300px;
   overflow-y: auto;
   white-space: pre-wrap;
+  -webkit-user-select: text;
+  user-select: text; 
 }
 
 [contenteditable]:focus {

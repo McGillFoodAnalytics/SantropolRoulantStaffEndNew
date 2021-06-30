@@ -206,12 +206,11 @@ h1 {
   text-align: center;
 }
 
-h3 {
+#eventTitle {
   margin-right: 15px;
   margin-left: -3.1vw;
   color: #99169d;
   position: relative;
-  top: 50%;
   font-size: 1.5vw !important;
 }
 
@@ -254,18 +253,8 @@ h3 {
   margin-right: 10%;
 }
 
-.copyrightFooter {
+:host::ng-deep app-copyright-footer .copyrightFooter {
   margin-top: -100px;
-  left: -40px;
-  text-align: center;
-  position: relative;
-}
-
-#logoMcGillFoodAn {
-  max-width: 40px;
-  margin-top: -60px;
-  left: 190px;
-  position: relative;
 }
 
 .shiftHeaders {

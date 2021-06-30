@@ -1,71 +1,133 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
-    <!-- Slot Column -->
-    <!-- <ng-container matColumnDef="slot">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element"></td>
-    </ng-container> -->
-    <!-- Volunteer Column -->
-    <ng-container matColumnDef="volunteer">
-      <div *ngIf="id == 'N/A'; else vol"><th mat-header-cell *matHeaderCellDef >No Event</th>
+  <!-- Volunteer Column -->
+  <ng-container matColumnDef="volunteer">
+    <div *ngIf="id == 'N/A'; else vol">
+      <th mat-header-cell *matHeaderCellDef>No Event</th>
+    </div>
+    <th mat-header-cell *matHeaderCellDef #vol>Volunteer</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [class.firstShift]="element.first_shift"
+    >
+      <div
+        #emptyOther
+        class="emptyBlock"
+        *ngIf="id == 'N/A'; else shortNote"
+      ></div>
+      <div
+        #shortNote
+        style="font-size: 0.73vw !important; margin-left: -6px"
+        *ngIf="
+          element.staff_note != null &&
+            element.staff_note.length > 0 &&
+            element.staff_note.length < 20;
+          else noNote
+        "
+      >
+        {{ element.first_name }} {{ element.last_name }} ({{
+          element.staff_note
+        }})
       </div>
-        <th mat-header-cell *matHeaderCellDef #vol > Volunteer </th>
-        <td mat-cell *matCellDef="let element" [class.firstShift]="element.first_shift" >
-          <div #emptyOther class="emptyBlock" *ngIf="id == 'N/A'; else shortNote" ></div>
-          <div #shortNote style="font-size: 0.73vw !important; margin-left: -6px;" *ngIf="element.staff_note != null && element.staff_note.length > 0  && element.staff_note.length < 20; else noNote"> {{ element.first_name }} {{ element.last_name }} ({{element.staff_note}})</div>
-          <ng-template #noNote>
-            <div style="font-size: 0.75vw !important; margin-left: -6px;" *ngIf="element.staff_note == null || element.staff_note.length == 0; else longNote"> {{ element.first_name }} {{ element.last_name }} </div>
-            <ng-template #longNote> <div style="font-size: 0.75vw !important; margin-left: -6px; "> {{ element.first_name }} {{ element.last_name }}
-              <button matTooltip="Click to view note" onclick="this.blur()"
-               id="note-btn">
-              <mat-icon style=" margin-left: -4px; vertical-align: middle; ">chat</mat-icon>
-              <app-staff-note id="note-component"
-                            firstName={{element.first_name}}
-                            lastName={{element.last_name}}
-                            date={{element.event_date_txt}}
-                            [eventType]="eventType"
-                            staffNote={{element.staff_note}}
-                            (insertStaffNote)="onInsertStaffNote(element.id, $event)">
-            </app-staff-note>
-             </button>
-           </div>
-        </ng-template>
-      </ng-template>
-    </ng-container>
-    <!-- Actions Column -->
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" [class.firstShift]="element.first_shift">
-          <button class="menu" mat-icon-button [matMenuTriggerFor]="menu" #MenuTrigger="matMenuTrigger" *ngIf="!isEmpty(element.first_name, element.last_name);" style="float:right; transform: scale(0.87); margin-right: -10px; ">
-              <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <app-remove-user-from-event firstName={{element.first_name}}
-                                        eventId={{element.id}}
-                                        userId={{element.uid}}
-                                        lastName={{element.last_name}}
-                                        date={{element.event_date_txt}}
-                                        [eventType]="eventType"
-                                        (confirmRemove)="onRemoveUserFromEvent(element.id)">
-            </app-remove-user-from-event>
-            <app-staff-note
-                            firstName={{element.first_name}}
-                            lastName={{element.last_name}}
-                            date={{element.event_date_txt}}
-                            [eventType]="eventType"
-                            staffNote={{element.staff_note}}
-                            (insertStaffNote)="onInsertStaffNote(element.id, $event)">
-            </app-staff-note>
-            <button mat-menu-item [routerLink]="['/volunteer', element.uid]" style="outline: none;">
-                <mat-icon>person</mat-icon>
-                <span>View Volunteer</span>
+      <ng-template #noNote>
+        <div
+          style="font-size: 0.75vw !important; margin-left: -6px"
+          *ngIf="
+            element.staff_note == null || element.staff_note.length == 0;
+            else longNote
+          "
+        >
+          {{ element.first_name }} {{ element.last_name }}
+        </div>
+        <ng-template #longNote>
+          <div style="font-size: 0.75vw !important; margin-left: -6px">
+            {{ element.first_name }} {{ element.last_name }}
+            <button
+              matTooltip="Click to view note"
+              onclick="this.blur()"
+              id="note-btn"
+            >
+              <mat-icon style="margin-left: -4px; vertical-align: middle"
+                >chat</mat-icon
+              >
+              <app-staff-note
+                id="note-component"
+                firstName="{{ element.first_name }}"
+                lastName="{{ element.last_name }}"
+                date="{{ element.event_date_txt }}"
+                [eventType]="eventType"
+                staffNote="{{ element.staff_note }}"
+                (insertStaffNote)="onInsertStaffNote(element.id, $event)"
+              >
+              </app-staff-note>
             </button>
-          </mat-menu>
-        </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                class="table-row"
-                [attr.isEmpty]="isEmpty(row.first_name, row.last_name, id)"
-                (click)="isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)"
-                ></tr>
+          </div>
+        </ng-template>
+      </ng-template></td
+  ></ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [class.firstShift]="element.first_shift"
+    >
+      <button
+        class="menu"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        #MenuTrigger="matMenuTrigger"
+        matTooltip="Click to view options"
+        *ngIf="!isEmpty(element.first_name, element.last_name)"
+        style="
+        float: right;
+        transform: scale(0.87);
+        margin-right: -10px;
+        background: none"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <app-remove-user-from-event
+          firstName="{{ element.first_name }}"
+          eventId="{{ element.id }}"
+          userId="{{ element.uid }}"
+          lastName="{{ element.last_name }}"
+          date="{{ element.event_date_txt }}"
+          [eventType]="eventType"
+          (confirmRemove)="onRemoveUserFromEvent(element.id)"
+        >
+        </app-remove-user-from-event>
+        <app-staff-note
+          firstName="{{ element.first_name }}"
+          lastName="{{ element.last_name }}"
+          date="{{ element.event_date_txt }}"
+          [eventType]="eventType"
+          staffNote="{{ element.staff_note }}"
+          (insertStaffNote)="onInsertStaffNote(element.id, $event)"
+        >
+        </app-staff-note>
+        <button
+          mat-menu-item
+          [routerLink]="['/volunteer', element.uid]"
+          style="outline: none"
+        >
+          <mat-icon>person</mat-icon>
+          <span>View Volunteer</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    class="table-row"
+    [attr.isEmpty]="isEmpty(row.first_name, row.last_name, id)"
+    (click)="
+      isEmpty(row.first_name, row.last_name, id) && openAddUserModal(row)
+    "
+  ></tr>
 </table>
