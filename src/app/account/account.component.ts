@@ -38,6 +38,8 @@ export class AccountComponent implements OnInit {
 
    ngOnInit(): void {
 
+    console.log(this.router.url)
+
     /*
     if coming from toolbar button:
       loggedinmode()
@@ -45,9 +47,10 @@ export class AccountComponent implements OnInit {
       loginMode()
     */
 
-    if (this.router.url == "/volunteer-account") {
-      this.loggedinMode();
-   }
+      if (this.router.url == "/volunteer-account") {
+        this.loggedinMode();
+        //turn off fade
+    }
 
    this.ready = true;
 
@@ -71,7 +74,13 @@ export class AccountComponent implements OnInit {
           console.log(this.form.value)
         }
         else {
-          this.loggedinMode();
+          
+              if (this.router.url == "/volunteer-account") {
+                this.loggedinMode();
+            }
+            else if (this.router.url == "/home"){
+              this.router.navigate(['/volunteer-schedule']);
+            }
         }
     }
     else{

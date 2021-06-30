@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="backbox">
-            <div class="loginMsg" [class.visibility]="loginMsgVisibility">
+            <div *ngIf="ready" class="loginMsg" [class.visibility]="loginMsgVisibility">
                 <div class="textcontent">
                     <p class="title">Don't have an account?</p>
                     <button id="switch1" (click)="signupMode()">Sign Up</button>
@@ -57,7 +57,8 @@
                   <label>Email</label>
                   <input type="email"
                          formControlName="email"
-                         class="form-control">
+                         class="form-control"
+                         placeholder="example@mail.com">
                 </div>
             
                 </div>
@@ -66,7 +67,8 @@
                     <label>Phone</label>
                     <input type="phoneNumber"
                            formControlName="phoneNumber"
-                           class="form-control">
+                           class="form-control"
+                           placeholder="+1xxxxxxxxxx">
                 </div>
                     
                   <div class = "passwords">
