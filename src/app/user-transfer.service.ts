@@ -11,10 +11,15 @@ export class UserTransferService {
 
   userSubject = new BehaviorSubject(null);
 
+  loginStatus = new BehaviorSubject(false);
+
   next(user){
     this.userSubject.next(user);
   }
 
+  loginUpdate(state){
+    this.loginStatus.next(state);
+  }
   /*
 
   get user() {
@@ -27,6 +32,10 @@ export class UserTransferService {
 
   user(){
     return this.userSubject;
+  }
+
+  getLoginState(){
+    return this.loginStatus;
   }
 
 }

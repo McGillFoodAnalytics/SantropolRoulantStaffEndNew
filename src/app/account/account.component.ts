@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import {LoginPopupComponent} from '../login-popup/login-popup.component';
 
 import {FormGroup, Validators, FormBuilder, FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import { UserTransferService } from '../user-transfer.service';
 
 @Component({
   selector: 'app-account',
@@ -38,6 +39,8 @@ export class AccountComponent implements OnInit {
 
    ngOnInit(): void {
 
+    console.log("Hide state at launch: " + this.welcomeHide)
+
     console.log(this.router.url)
 
     /*
@@ -49,7 +52,6 @@ export class AccountComponent implements OnInit {
 
       if (this.router.url == "/volunteer-account") {
         this.loggedinMode();
-        //turn off fade
     }
 
    this.ready = true;
@@ -60,6 +62,8 @@ export class AccountComponent implements OnInit {
 
     if (this.user){
      
+      console.log("new user")
+
       await this.userService.user$(this.user.uid).toPromise().then(res => {
 
         this.user.role = res.role
@@ -68,22 +72,31 @@ export class AccountComponent implements OnInit {
         this.form.patchValue({role: res.role});
       });
 
-        if (!this.user.phoneNumber || !this.user.displayName){
-          this.welcomeMode();
-          this.form.patchValue(this.user)
-          console.log(this.form.value)
-        }
-        else {
-          
-              if (this.router.url == "/volunteer-account") {
-                this.loggedinMode();
-            }
-            else if (this.router.url == "/home"){
-              this.router.navigate(['/volunteer-schedule']);
-            }
-        }
+        this.userService.user$(this.user.uid).subscribe((val) => { 
+
+          if (!val.phoneNumber || !val.displayName){
+            console.log("welcome!!!!!!!!")
+            this.welcomeMode();
+            this.form.patchValue(this.user)
+            console.log(this.form.value)
+          }
+          else {
+  
+            this.userTransfer.loginUpdate(true);
+            
+                if (this.router.url == "/volunteer-account") {
+                  this.loggedinMode();
+              }
+              else if (this.router.url == "/home"){
+                this.router.navigate(['/volunteer-schedule']);
+              }
+          }
+
+        });
+
     }
     else{
+      this.userTransfer.loginUpdate(false);
         this.loginMode();
     }
     });
@@ -91,6 +104,8 @@ export class AccountComponent implements OnInit {
 
     // Confirm the link is a sign-in with email link.
 if (this.auth.isSignInWithEmailLink(window.location.href)) {
+
+  console.log("signing in with url: " + window.location.href)
   // Additional state parameters can also be passed via URL.
   // This can be used to continue the user's intended action before triggering
   // the sign-in operation.
@@ -127,7 +142,7 @@ if (this.auth.isSignInWithEmailLink(window.location.href)) {
   lastName = "";
   code = "";
 
-  constructor(public auth: AngularFireAuth, public authService: AuthService, private router: Router, private userService: UserService, public m: NgbModal) {
+  constructor(private userTransfer: UserTransferService, public auth: AngularFireAuth, public authService: AuthService, private router: Router, private userService: UserService, public m: NgbModal) {
     
   }
 
@@ -175,10 +190,11 @@ if (this.auth.isSignInWithEmailLink(window.location.href)) {
         setTimeout(() => this.shake = false, 1000);
     }
     else{
-        this.router.navigate(['/volunteer-schedule']);
+        //this.router.navigate(['/volunteer-schedule']);
     }
 
-    this.email = this.password = '';   
+    //uncomment this?
+    //this.email = this.password = '';   
   }
 
   logout() {
@@ -349,8 +365,13 @@ if (this.auth.isSignInWithEmailLink(window.location.href)) {
 
       this.userService.edit({uid, phoneNumber, email, displayName, role: (role ? role : "staff")}).subscribe(
         data => {
-          this.loggedinMode()
+          //this.loggedinMode()
+
+          //this.login()
+
+          console.log("Hide state: " + this.welcomeHide)
           this.router.navigate(['/volunteer-schedule']);
+          this.userTransfer.loginUpdate(true);
         },
         error => {err = error.error.message; console.log("Error updating info", err)}
       );

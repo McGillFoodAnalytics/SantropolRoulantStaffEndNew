@@ -66,7 +66,7 @@ export class ManageAccountComponent implements OnInit {
 
   loginMessage(){
 
-    this.loginModalRef = this.modal.open(LoginPopupComponent, {size: 'sm', centered: true}).result.then((result) => {
+    this.loginModalRef = this.modal.open(LoginPopupComponent, {size: 'md', centered: true}).result.then((result) => {
         this.save();
     }, (reason) => {
         console.log(reason);
