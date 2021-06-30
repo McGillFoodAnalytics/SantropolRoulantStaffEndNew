@@ -51,10 +51,10 @@
       </div>
     </div>
     <div class="shiftHeaders">
-      <div style="display:flex; text-align: center;" *ngFor="let coolEvent of eventArray">
-        <div *ngFor="let day of getEventListCool(coolEvent) | keyvalue">
+      <div style="display:flex; text-align: center;">
+        <div *ngFor="let day of getEventListCool(currentEvent) | keyvalue">
           <div class="cardTitle"
-            *ngIf="coolEvent == 'Kitchen AM'"
+           
           >
           <span>
             {{ day.value.display_date | date: "EEEE, MMM d" }}
