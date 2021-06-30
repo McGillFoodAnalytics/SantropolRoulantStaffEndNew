@@ -158,6 +158,22 @@ input {
     left: 30px;
 }
 
+.middlebutton {
+    background-color: white;
+    border: none;
+    color: #60A4FF;
+    font-size: 12px;
+    font-weight: 300;
+    box-sizing: content-box;
+    padding: 10px;
+    border-radius: 10px;
+    width: 60px;
+    position: absolute;
+    right: 110px;
+    bottom: 70px;
+    cursor: pointer;
+}
+
 .login p {
     cursor: pointer;
     color: white;
@@ -222,4 +238,55 @@ input {
 .shake {
     -webkit-animation-name: shake;
     animation-name: shake;
+}
+
+.form-group{
+    width: 50%;
+    margin-left: 20px;
+
+    margin-top: 1px;
+    margin-bottom: 10px;
+
+    padding: 0px;
+}
+
+.form-control{
+    margin-right: 1px;
+
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+label {
+    margin: 2px;
+    padding: 0px;
+
+    color: white;
+}
+
+.welcomeName{
+    flex: 0 0 35%;
+}
+
+.welcomeEmail{
+    flex: 1;
+}
+
+.firstLine{
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.passwords{
+    display: flex;
+}
+
+.left{
+    flex: 0 0 35%;
+}
+
+.right{
+    flex: 1;
+    padding-right: 20px;
 }

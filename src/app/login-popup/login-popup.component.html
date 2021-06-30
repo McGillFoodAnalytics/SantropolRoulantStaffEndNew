@@ -1,0 +1,22 @@
+
+    <div class="modal-header text-center">
+        <h4 class="modal-title w-100"><i class="fa fa-map-marker"></i>Login</h4>
+        <button #closeButton type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body text-center">
+
+        <h6>It's been a while since you last entered your credentials.</h6>
+        
+        <div class="login">
+
+            <div class="inputbox">
+                <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+            </div>
+
+            <button (click)="login()" data-dismiss="loginModal" class="frontbutton">LOG IN</button>
+        </div>
+
+    </div>

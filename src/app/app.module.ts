@@ -22,6 +22,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AppComponent } from './app.component';
 import { VolunteerDirectoryComponent } from './volunteer-directory/volunteer-directory.component';
 
+import {AuthTokenHttpInterceptorProvider} from './auth-token.interceptor';
+import {FilterByPipe} from './filter.pipe';
+
 //materialImports
 //Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -56,8 +59,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NewUserComponent } from './new-user/new-user.component';
-import { DeleteUsersComponent } from './delete-users/delete-users.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { UserFormComponent } from './user-form/user-form.component';
 
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -93,7 +96,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AccountComponent } from './account/account.component';
 import { UserNoteComponent } from './user-event/user-note/user-note.component';
 import { PastWeekComponent } from './past-week/past-week.component';
+import { AdminManageUserComponent } from './admin-manage-user/admin-manage-user.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { ManageAccountComponent } from './manage-account/manage-account.component';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { CopyrightFooterComponent } from './copyright-footer/copyright-footer.component';
+
 //translate:
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -135,7 +143,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NewUserComponent,
-    DeleteUsersComponent,
     ChangeRegistrationCodeComponent,
     MarkImportantEventComponent,
     SignUpSheetComponent,
@@ -160,6 +167,12 @@ const appRoutes: Routes = [
     AccountComponent,
     UserNoteComponent,
     PastWeekComponent,
+    AdminManageUserComponent,
+    AdminSettingsComponent,
+    FilterByPipe,
+    ManageAccountComponent,
+    UserFormComponent,
+    LoginPopupComponent,
     CopyrightFooterComponent
   ],
   imports: [
@@ -222,7 +235,7 @@ const appRoutes: Routes = [
       }
     })
   ],
-  providers: [],
+  providers: [AuthTokenHttpInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

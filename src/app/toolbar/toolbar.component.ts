@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
+import { UserTransferService } from '../user-transfer.service';
 
 
 @Component({
@@ -9,11 +10,13 @@ import { AuthService } from '../service/auth.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private userTransfer: UserTransferService) { }
 
   show = false;
 
   ngOnInit() {
+
+    /*
 
     this.authService.currentAuthStatus.subscribe((authStatus) => {
 
@@ -23,6 +26,11 @@ export class ToolbarComponent implements OnInit {
     else{
         this.show = false;
     }
+    });
+    */
+
+    this.userTransfer.getLoginState().subscribe((state) => {
+      this.show = state;
     });
 
   }
