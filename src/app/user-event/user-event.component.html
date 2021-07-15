@@ -95,156 +95,152 @@
   </ng-template>
 
   <div class="modal-body profile" *ngIf="validId">
-    <table class="table">
-      <tbody>
-        <div *ngIf="element">
-          <h4>{{ element.first_name }} {{ element.last_name }}</h4>
-          <div
-            class="status"
-            *ngIf="element.active_status || element.active_status == null"
-          >
-            Active
-          </div>
-          <div class="status" *ngIf="element.active_status == false">
-            Inactive
-          </div>
-        </div>
+    <div *ngIf="element">
+      <h4>{{ element.first_name }} {{ element.last_name }}</h4>
+      <div
+        class="status"
+        *ngIf="element.active_status || element.active_status == null"
+      >
+        Active
+      </div>
+      <div class="status" *ngIf="element.active_status == false">Inactive</div>
+    </div>
 
-        <input
-          class="apple-switch"
-          id="statusCheck"
-          (click)="changeActiveStatus()"
-          type="checkbox"
-          matTooltip="Toggle volunteer's active status"
-        />
-        <button
-          mat-menu-item
-          (click)="open(content)"
-          onclick="this.blur()"
-          id="historyBtn"
+    <input
+      class="apple-switch"
+      id="statusCheck"
+      (click)="changeActiveStatus()"
+      type="checkbox"
+      matTooltip="Toggle volunteer's active status"
+    />
+    <button
+      mat-menu-item
+      (click)="open(content)"
+      onclick="this.blur()"
+      id="historyBtn"
+    >
+      <mat-icon style="margin-left: -10px; transform: scale(0.8)"
+        >history</mat-icon
+      >
+      <span style="margin-left: -5%">View Shifts</span>
+    </button>
+
+    <div class="editProfile">
+      <button
+        id="editBtn"
+        mat-menu-item
+        (click)="openEditForm()"
+        onclick="this.blur()"
+      >
+        <mat-icon style="margin-left: -10px; transform: scale(0.8)"
+          >edit</mat-icon
         >
-          <mat-icon style="margin-left: -10px; transform: scale(0.8)"
-            >history</mat-icon
-          >
-          <span style="margin-left: -5%">View Shifts</span>
-        </button>
-
-        <div class="editProfile">
-          <button
-            id="editBtn"
-            mat-menu-item
-            (click)="openEditForm()"
-            onclick="this.blur()"
-          >
-            <mat-icon style="margin-left: -10px; transform: scale(0.8)"
-              >edit</mat-icon
-            >
-            <span style="margin-left: -5%">Edit Profile</span>
-          </button>
-          <div *ngIf="displayForm">
-            <form
-              name="editForm"
-              class="form"
-              (ngSubmit)="onSave()"
-              *ngIf="myForm"
-              [formGroup]="myForm"
-            >
-              <input
-                id="editInputEmail"
-                email="true"
-                type="email"
-                formControlName="email"
-                required
-              />
-              <div class="input-group">
-                <input
-                  id="editInputAddrNum"
-                  formControlName="address_number"
-                  placeholder="Number"
-                  required
-                />
-                <input
-                  id="editInputAddrStr"
-                  formControlName="address_street"
-                  placeholder="Street"
-                  required
-                />
-                <input
-                  id="editInputAddrCity"
-                  formControlName="address_city"
-                  placeholder="City"
-                  required
-                />
-                <input
-                  id="editInputPostal"
-                  formControlName="address_postal_code"
-                  placeholder="Postal code"
-                  required
-                />
-              </div>
-              <input
-                [matDatepicker]="picker"
-                [max]="today"
-                id="editDate"
-                formControlName="dob"
-                placeholder="mm/dd/yyyy"
-                required
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-                id="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-
-              <input
-                ng-model="name"
-                id="editInputPhone"
-                formControlName="phone_number"
-                required
-              />
-              <mat-label
-                id="phoneNumErrorMsg"
-                *ngIf="myForm.get('phone_number').invalid"
-                >*Invalid phone number. Should be 10 digits only.
-              </mat-label>
-
-              <div class="input-group group2">
-                <input
-                  id="editInputEmergName"
-                  formControlName="emergency_contact_name"
-                  placeholder="Contact Name"
-                />
-
-                <input
-                  id="editInputEmergRel"
-                  formControlName="emergency_relationship"
-                  placeholder="Emergency Relationship"
-                />
-              </div>
-
-              <input
-                id="editInputEmergNum"
-                formControlName="emergency_contact_number"
-                type="tel"
-              />
-            </form>
-            <button
-              class="button"
-              mat-menu-item
-              (click)="onSave()"
-              type="submit"
-              id="saveBtn"
-            >
-              <mat-icon style="margin-left: -8px">save</mat-icon>
-              <span>Save</span>
-            </button>
+        <span style="margin-left: -5%">Edit Profile</span>
+      </button>
+      <div *ngIf="displayForm">
+        <form
+          name="editForm"
+          class="form"
+          (ngSubmit)="onSave()"
+          *ngIf="myForm"
+          [formGroup]="myForm"
+        >
+          <input
+            id="editInputEmail"
+            email="true"
+            type="email"
+            formControlName="email"
+            required
+          />
+          <div class="input-group">
+            <input
+              id="editInputAddrNum"
+              formControlName="address_number"
+              placeholder="Number"
+              required
+            />
+            <input
+              id="editInputAddrStr"
+              formControlName="address_street"
+              placeholder="Street"
+              required
+            />
+            <input
+              id="editInputAddrCity"
+              formControlName="address_city"
+              placeholder="City"
+              required
+            />
+            <input
+              id="editInputPostal"
+              formControlName="address_postal_code"
+              placeholder="Postal code"
+              required
+            />
           </div>
-        </div>
-        <button class="btn-delete-user" (click)="openWarning()">
-          Delete User
-        </button>
+          <input
+            [matDatepicker]="picker"
+            [max]="today"
+            id="editDate"
+            formControlName="dob"
+            placeholder="mm/dd/yyyy"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+            id="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
 
+          <input
+            ng-model="name"
+            id="editInputPhone"
+            formControlName="phone_number"
+            required
+          />
+          <mat-label
+            id="phoneNumErrorMsg"
+            *ngIf="myForm.get('phone_number').invalid"
+            >*Invalid phone number. Should be 10 digits only.
+          </mat-label>
+
+          <div class="input-group group2">
+            <input
+              id="editInputEmergName"
+              formControlName="emergency_contact_name"
+              placeholder="Contact Name"
+            />
+
+            <input
+              id="editInputEmergRel"
+              formControlName="emergency_relationship"
+              placeholder="Emergency Relationship"
+            />
+          </div>
+
+          <input
+            id="editInputEmergNum"
+            formControlName="emergency_contact_number"
+            type="tel"
+          />
+        </form>
+        <button
+          class="button"
+          mat-menu-item
+          (click)="onSave()"
+          type="submit"
+          id="saveBtn"
+        >
+          <mat-icon style="margin-left: -8px">save</mat-icon>
+          <span>Save</span>
+        </button>
+      </div>
+    </div>
+    <button class="btn-delete-user" (click)="openWarning()">Delete User</button>
+
+    <table class="table">
+      <tbody *ngIf="element">
         <tr>
           <td id="colored">
             <mat-icon>account_box</mat-icon>
@@ -303,8 +299,15 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
 
     <app-user-note [userId]="userId"></app-user-note>
 
-    <div class="cancellation">
-      <h5>Cancellations: {{ valid(element.cancellations) }}</h5>
+    <div *ngIf="element" class="cancellation">
+      <div style="display: flex; justify-content: space-beteen">
+        <h5 style="margin-right: 30px">
+          No Shows: <span>{{ valid(element.no_show) }}</span>
+        </h5>
+        <h5>
+          Cancellations: <span>{{ valid(element.cancellations) }}</span>
+        </h5>
+      </div>
       <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0">
         <table class="table">
           <thead class="thead-dark">
@@ -312,6 +315,7 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
               <th scope="col">Date</th>
               <th scope="col">Shift Id</th>
               <th scope="col">Reason of Cancellation</th>
+              <th scope="col">Type of Cancellation</th>
             </tr>
           </thead>
           <tbody>
@@ -321,7 +325,8 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
             >
               <td>{{ formatEventDate(event.event_id) }}</td>
               <td>{{ formatEventId(event.event_id) }}</td>
-              <td>{{ event.reason }}</td>
+              <td>{{ formatReason(event.reason) }}</td>
+              <td>{{ event.cancellation_type }}</td>
             </tr>
           </tbody>
         </table>
@@ -374,5 +379,5 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
     </h4>
   </div>
 
- <app-copyright-footer></app-copyright-footer>
+  <app-copyright-footer></app-copyright-footer>
 </html>

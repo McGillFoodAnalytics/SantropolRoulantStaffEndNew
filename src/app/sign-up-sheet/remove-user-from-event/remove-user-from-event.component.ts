@@ -8,6 +8,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ["./remove-user-from-event.component.scss"],
 })
 export class RemoveUserFromEventComponent implements OnInit {
+
   @Input() lastName;
   @Input() eventId;
   @Input() userId;
@@ -19,6 +20,8 @@ export class RemoveUserFromEventComponent implements OnInit {
   @Input() isUserProfile; //Boolean used to determine what CSS class is used. 
 
   @Output() confirmRemove: EventEmitter<any> = new EventEmitter<any>();
+
+  private cancellationType: string;
   private modalReference;
   private model: any = {};
 
@@ -36,7 +39,7 @@ export class RemoveUserFromEventComponent implements OnInit {
   }
 
   onSubmit() {
-    this.fs.addCancellation(this.eventId, this.userId, this.cancellationNote);
+    this.fs.addCancellation(this.eventId, this.userId, this.cancellationNote, this.cancellationType);
     this.confirmRemove.emit("true");
     this.modalReference.close();
   }

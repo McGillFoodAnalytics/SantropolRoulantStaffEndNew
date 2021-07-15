@@ -40,17 +40,6 @@ export class FirebaseService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  getUserSamples(): Observable<any[]> {
-    this.volunteerSampleRef = this.db.list("userSample");
-    this.volunteerSamples = this.volunteerSampleRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
-        )
-      );
-    return this.volunteerSamples;
-  }
 
   getUsers(): Observable<any[]> {
     this.volunteerRef = this.db.list("user");
@@ -153,6 +142,26 @@ export class FirebaseService {
     return;
   }
 
+  updateNoShows(userid: string): void {
+    let count;
+    let updated = false;
+    this.getUser(userid).subscribe(userObs =>{
+      if(userObs){
+        count = userObs.no_show;
+        if (isNaN(count)) {
+          count = 0;
+        }
+        count++;
+        if(!updated){
+          updated = true;
+          this.db.object("/user/" + userid).update({
+            no_show: count,
+          });
+        }
+      }
+    });
+  }
+
   updateCancellations(user_id: string): void {
     let count;
     let updated = false;
@@ -173,18 +182,23 @@ export class FirebaseService {
     });
   }
 
-  addCancellation(eventId: string, uid: string, reason: string) {
+  addCancellation(eventId: string, uid: string, reason: string, cancellation: string) {
+    if(cancellation == "noShow"){
+      this.updateNoShows(uid);
+    }
     this.updateCancellations(uid);
     if (reason == "" || reason == null) {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
         user_id: uid,
+        cancellation_type: cancellation
       });
     } else {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
         user_id: uid,
         reason: reason,
+        cancellation_type: cancellation
       });
     }
   }

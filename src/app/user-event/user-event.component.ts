@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from "@angular/core";
-import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { FirebaseService } from "../firebase-service.service";
 import { Observable } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
+import { UserTransferService } from '../user-transfer.service';
 
 @Component({
   selector: "app-user-event",
@@ -46,6 +47,7 @@ export class UserEventComponent implements OnInit {
   @ViewChild('deleteUser', {static: true}) modalTemplateWarning: TemplateRef<any>;
 
   constructor(
+    private userTransfer: UserTransferService,
     private modalService: NgbModal,
     private db: AngularFireDatabase,
     private firebase: FirebaseService,
@@ -53,6 +55,9 @@ export class UserEventComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    //trigger the toolbar to load 
+    this.userTransfer.loginUpdate(true); 
+    
     this.validId = true;
     this.displayForm = false;
     this.events = this.firebase.getEvents();
@@ -83,18 +88,19 @@ export class UserEventComponent implements OnInit {
 
   ngAfterViewInit() {
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
-
-    this.myForm = this.formBuilder.group({
-      dob: [this.element.dob, Validators.required],
-      address_number: [this.element.address_number, Validators.required],
-      address_street: [this.element.address_street, Validators.required],
-      address_city: [this.element.address_city, Validators.required],
-      address_postal_code: [this.element.address_postal_code, Validators.required],
-      email: [this.element.email, Validators.required],
-      phone_number: [this.element.phone_number, Validators.pattern(phoneNumPattern)],
-      emergency_contact_name: [this.element.emergency_contact_name, ],
-      emergency_relationship: [this.element.emergency_relationship, ],
-      emergency_contact_number: [this.element.emergency_contact_number, Validators.pattern(phoneNumPattern)],
+    this.firebase.delay(300).then(() => {
+      this.myForm = this.formBuilder.group({
+        dob: [this.element.dob, Validators.required],
+        address_number: [this.element.address_number, Validators.required],
+        address_street: [this.element.address_street, Validators.required],
+        address_city: [this.element.address_city, Validators.required],
+        address_postal_code: [this.element.address_postal_code, Validators.required],
+        email: [this.element.email, Validators.required],
+        phone_number: [this.element.phone_number, Validators.pattern(phoneNumPattern)],
+        emergency_contact_name: [this.element.emergency_contact_name, ],
+        emergency_relationship: [this.element.emergency_relationship, ],
+        emergency_contact_number: [this.element.emergency_contact_number, Validators.pattern(phoneNumPattern)], 
+      });
     });
   }
 
@@ -189,6 +195,12 @@ export class UserEventComponent implements OnInit {
     return false;
   }
 
+  /**
+   * This method is used to format the date of birth created from mobile apps to be compatiable with Angular Date picker
+   * @param date
+   * @returns 
+   */
+
   formatMobileAppDob(date){
     let year = date.substring(0, 4);
     let month = date.substring(4, 6);
@@ -243,6 +255,13 @@ export class UserEventComponent implements OnInit {
   formatEventId(eventId: string) {
     let event = eventId.substring(6, 11);
     return this.eventTypes[event];
+  }
+  
+  formatReason(reason: string) {
+    if (reason == "" || reason == null) {
+      return "-";
+    }
+    return reason;
   }
 
   prettifyNumber(str: string) {

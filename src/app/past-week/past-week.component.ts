@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FirebaseService } from "../firebase-service.service";
 import { MatTableDataSource } from '@angular/material/table';
+import { UserTransferService } from '../user-transfer.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
@@ -29,9 +30,12 @@ export class PastWeekComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;
 
-  constructor(private firebase: FirebaseService) { }
+  constructor(private userTransfer: UserTransferService, private firebase: FirebaseService) {}
 
   ngOnInit(): void {
+    //trigger the toolbar to load 
+    this.userTransfer.loginUpdate(true);
+
     this.today = new Date();
     this.firebase.getPastEvents().subscribe(snapshots => {
       for (let index = snapshots.length - 1 ; index > -1 ; index--) {

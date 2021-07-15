@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { trigger, state, style, animate, transition } from "@angular/animations";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
@@ -10,6 +9,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from "@angular/material/tooltip";
+import { UserTransferService } from '../user-transfer.service';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 1000,
@@ -82,9 +82,12 @@ export class SignUpSheetComponent implements OnInit {
   private pane = "left";
   items: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase, private fs: FirebaseService) {}
+  constructor(private userTransfer: UserTransferService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+    //trigger the toolbar to load 
+    this.userTransfer.loginUpdate(true);
+
     this.events = this.fs.getEvents();
     // this.fs.getEvents().subscribe((snapshots) => {
     //   this.dataSource = new MatTableDataSource(snapshots);

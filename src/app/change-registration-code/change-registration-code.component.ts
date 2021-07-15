@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
+import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,12 +17,28 @@ export class ChangeRegistrationCodeComponent implements OnInit {
   private model: any = {};
   private myForm: FormGroup;
   result: Observable<any>;
+  isAdmin: boolean;
 
-  constructor(private modalService: NgbModal, private db: AngularFireDatabase, private formBuilder: FormBuilder) {
+  constructor(
+    private modalService: NgbModal, 
+    private db: AngularFireDatabase, 
+    private formBuilder: FormBuilder,
+    public authService: AuthService, 
+    private userService: UserService) {
     this.result = db.object('/registration_code').valueChanges();
   }
 
   ngOnInit() {
+
+    this.authService.currentAuthStatus.subscribe((authStatus) => {
+      var user = authStatus;
+      if (user){
+        this.userService.user$(user.uid).subscribe((val) => { 
+          this.isAdmin = (val.role == "admin") ? true : false;
+        });
+      }
+    });
+
     this.myForm = this.formBuilder.group({
       new_registration_code: ['', Validators.required]
     });

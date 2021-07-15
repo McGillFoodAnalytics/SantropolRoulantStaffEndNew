@@ -1,6 +1,6 @@
 ::ng-deep .remove-volunteer .modal-dialog {
-     max-width: 40%;
-     width: 40%;
+     max-width: 550px;
+     width: 550px; 
 }
 
 .modal-header{
@@ -59,7 +59,7 @@
   white-space: pre-wrap;
   outline: 0;
   line-height: 30px;
-  width: 83%;
+  width: 455px;
   height: 150px;
   margin-left: 50px;
   margin-bottom: 20px;
@@ -80,4 +80,24 @@
 
 .btn-user-profile .trashIcon {
   transform: scale(1.45);
+}
+
+.img-warning {
+  position: relative;
+  left: 25px;
+}
+
+.cancellation-type {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  position: relative;
+  top: -43px;
+  left: 210px;
+  height: 50px;
+  font-size: 14px;
+}
+
+.example-radio-button {
+  margin: 5px;
 }
