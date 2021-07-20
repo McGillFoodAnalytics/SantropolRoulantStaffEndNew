@@ -47,7 +47,9 @@ export class PermanentVolunteerComponent implements OnInit {
     this.dateInThreeMonths.setMonth(this.dateInThreeMonths.getMonth() + 3);
   }
 
-  ngOnInit() {
+  ngOnInit(){}
+
+  ngAfterViewInit() {
     this.volunteersObservable = this.fs.getUsers();
     this.eventsObservable = this.fs.getPermanentEvents();
     this.volunteersObservable.subscribe((snapshots) => {
@@ -172,5 +174,15 @@ export class PermanentVolunteerComponent implements OnInit {
     let monthName = newDate.toLocaleString('default', { month: 'long' });
     let date =  monthName + " " + day + ", " + year;
     return date;
+  }
+
+  dateFilter (date: Date): boolean {
+    const day = date.getDay();
+
+    // If shift type not kitchen PM, disable Sunday and Thurday
+    if(this.addPermanentForm.get("eventType").value != 'kitpm'){
+      return day !== 0 && day !== 4;
+    }
+    return day !== 0;  //Otherwise disable Sunday only
   }
 }

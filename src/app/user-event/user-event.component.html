@@ -94,9 +94,11 @@
     </div>
   </ng-template>
 
+
+  <!-- User Profile -->
   <div class="modal-body profile" *ngIf="validId">
     <div *ngIf="element">
-      <h4>{{ element.first_name }} {{ element.last_name }}</h4>
+      <h4 style="height: 5px;">{{ element.first_name }} {{ element.last_name }}</h4> <br>
       <div
         class="status"
         *ngIf="element.active_status || element.active_status == null"
@@ -105,7 +107,6 @@
       </div>
       <div class="status" *ngIf="element.active_status == false">Inactive</div>
     </div>
-
     <input
       class="apple-switch"
       id="statusCheck"

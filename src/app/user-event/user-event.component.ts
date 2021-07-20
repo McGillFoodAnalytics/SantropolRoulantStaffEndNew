@@ -30,6 +30,7 @@ export class UserEventComponent implements OnInit {
   user: any;
   displayForm: boolean;
   validId: boolean;
+  today: any;
   private myForm: FormGroup;
   private model = new User();
   private modalReference;
@@ -58,6 +59,9 @@ export class UserEventComponent implements OnInit {
     //trigger the toolbar to load 
     this.userTransfer.loginUpdate(true); 
     
+    this.today = new Date();
+    this.today = this.firebase.getDateNumber(this.today);
+  
     this.validId = true;
     this.displayForm = false;
     this.events = this.firebase.getEvents();
@@ -88,7 +92,7 @@ export class UserEventComponent implements OnInit {
 
   ngAfterViewInit() {
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
-    this.firebase.delay(300).then(() => {
+    this.firebase.delay(500).then(() => {
       this.myForm = this.formBuilder.group({
         dob: [this.element.dob, Validators.required],
         address_number: [this.element.address_number, Validators.required],
@@ -117,7 +121,7 @@ export class UserEventComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
       size: "lg",
-      centered: true
+      centered: true,
     });
   }
 
@@ -151,12 +155,14 @@ export class UserEventComponent implements OnInit {
   displayPastEvents() {
     this.pastEventsUser = [];
     this.pastEvents.subscribe((snapshots) => {
-      snapshots.forEach((snapshot) => {
-        if (snapshot.uid == this.userId) {
+
+      let len = snapshots.length - 1;
+      for(let i = len; i > -1; i--){
+        if (snapshots[i].uid == this.userId) {
           //if the model has past events
-          this.pastEventsUser.push(snapshot); //push it to pastEvents
+          this.pastEventsUser.push(snapshots[i]); //push it to pastEvents
         }
-      });
+      }
     });
   }
 
@@ -167,7 +173,12 @@ export class UserEventComponent implements OnInit {
         if (!this.containsObject(snapshot, this.currentEventsUser)) {
           if (snapshot.uid == this.userId) {
             //if the model has current shifts
-            this.currentEventsUser.push(snapshot); 
+            if(snapshot.event_date < this.today) {
+              this.pastEventsUser.push(snapshot);
+            }
+            else {
+              this.currentEventsUser.push(snapshot); 
+            }
           }
         }
       });
@@ -200,7 +211,6 @@ export class UserEventComponent implements OnInit {
    * @param date
    * @returns 
    */
-
   formatMobileAppDob(date){
     let year = date.substring(0, 4);
     let month = date.substring(4, 6);
