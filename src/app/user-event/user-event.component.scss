@@ -343,3 +343,8 @@ input.apple-switch:checked:after {
   height: 300px;
   overflow-y: auto;
 }
+
+.table-shifts th {
+  position: sticky;
+  top: 0;
+}

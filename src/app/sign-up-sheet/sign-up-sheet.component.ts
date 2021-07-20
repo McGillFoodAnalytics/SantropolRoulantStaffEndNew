@@ -432,7 +432,7 @@ export class SignUpSheetComponent implements OnInit {
  
   
   // Used for new format of week-shift display
-  changeEventImportanceCool(day: string, eventType: string) {
+  changeEventImportance(day: string, eventType: string) {
     var slots;
     var is_important_event;
     var currentEventValue = this.eventTypes[eventType];
@@ -462,9 +462,8 @@ export class SignUpSheetComponent implements OnInit {
         is_important_event;
       slots = this.week4[currentEventValue][day]["slots"];
     }
-    for (var slot of slots) {
-      this.fs.changeEventImportance(slot["id"], is_important_event);
-    }
+
+    this.fs.changeEventImportance(slots[0]["id"], is_important_event);  
   } 
 
   getVolunteerList() {
