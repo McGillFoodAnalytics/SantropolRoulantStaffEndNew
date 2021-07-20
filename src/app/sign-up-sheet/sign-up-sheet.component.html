@@ -40,7 +40,7 @@
                   class="btn"
                   (click)="nextWeek()"
                   onclick="this.blur()"
-                  *ngIf="currentWeek != 'fourth'"
+                  *ngIf="currentWeek != 'fifth'"
                 >
                   <mat-icon>arrow_forward_ios</mat-icon>
                 </button>
@@ -52,7 +52,7 @@
     </div>
     <div class="shiftHeaders">
       <div style="display:flex; text-align: center;">
-        <div *ngFor="let day of getEventListCool(currentEvent) | keyvalue">
+        <div *ngFor="let day of getEventList(currentEvent) | keyvalue">
           <div class="cardTitle">
           <span>
             {{ day.value.display_date | date: "EEEE, MMM d" }}
@@ -74,7 +74,7 @@
             <div
               class="row-2"
               *ngFor="
-                let day of getEventListCool(coolEvent) | keyvalue;
+                let day of getEventList(coolEvent) | keyvalue;
                 let i = index
               "
               style="padding-bottom: 2rem"
@@ -157,7 +157,7 @@
             <div
               class="row-2"
               *ngFor="
-                let day of getEventListCool(coolEvent) | keyvalue;
+                let day of getEventList(coolEvent) | keyvalue;
                 let i = index
               "
               style="padding-bottom: 2rem; font-size: 15px"
@@ -236,7 +236,7 @@
             <div
               class="row-2"
               *ngFor="
-                let day of getEventListCool(coolEvent) | keyvalue;
+                let day of getEventList(coolEvent) | keyvalue;
                 let i = index
               "
               style="padding-bottom: 2rem"
@@ -315,7 +315,83 @@
             <div
               class="row-2"
               *ngFor="
-                let day of getEventListCool(coolEvent) | keyvalue;
+                let day of getEventList(coolEvent) | keyvalue;
+                let i = index
+              "
+              style="padding-bottom: 2rem"
+            >
+              <div
+                class="card"
+                [class.eventCardImportant]="day.value.is_important_event"
+              >
+                <div class="card-body">
+                  <app-event-sign-up-table
+                    [slots]="day.value.slots"
+                    [id]="day.value.slots[0].id"
+                    [eventType]="coolEvent"
+                    [volunteerList]="volunteerList"
+                    (removeUserFromEvent)="removeUserFromEvent($event)"
+                    (insertStaffNote)="insertStaffNote($event)"
+                  >
+                  </app-event-sign-up-table>
+                </div>
+                <div
+                  class="card-footer"
+                  *ngIf="day.value.slots[0].id != 'N/A'"
+                >
+                  <img
+                    class="img-important-event-true"
+                    *ngIf=" day.value.is_important_event; else importantEventFalse"
+                    src="assets/important-event-true.png"
+                    width="30px"
+                    style="margin-right: 1rem"
+                    (click)="changeEventImportance(day.key, coolEvent)"
+                    matTooltip="Click to mark this event as unimportant"
+                  />
+                  <ng-template #importantEventFalse>
+                    <img
+                      class="img-important-event-false"
+                      src="assets/important-event-false.png"
+                      width="30px"
+                      style="margin-right: 1rem"
+                      (click)="changeEventImportance(day.key, coolEvent)"
+                      matTooltip="Click to mark this event as important"
+                    />
+                  </ng-template>
+                  <app-event-note
+                    date="{{ day.value.slots[0].event_date_txt }}"
+                    [eventType]="coolEvent"
+                    eventNote="{{ day.value.slots[0].event_note }}"
+                    (updateEventNote)="
+                      updateEventNote(day.value.slots[0].id, $event)
+                    "
+                    matTooltip="Click to view & edit the event note"
+                  >
+                  </app-event-note>
+                  <mat-icon id="shiftNote"
+                    *ngIf="
+                      day.value.slots[0].event_note != null &&
+                      day.value.slots[0].event_note.length > 0
+                    "
+                    >announcement
+                  </mat-icon>
+                  <app-add-user-to-event></app-add-user-to-event>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fifth Week Pane -->
+        <div fifthPane>
+          <div class="row" id="eventRow" *ngFor="let coolEvent of eventArray">
+            <h3 id="eventTitle">
+              {{ coolEvent }}
+            </h3>
+            <div
+              class="row-2"
+              *ngFor="
+                let day of getEventList(coolEvent) | keyvalue;
                 let i = index
               "
               style="padding-bottom: 2rem"

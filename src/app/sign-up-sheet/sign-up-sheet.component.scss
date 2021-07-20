@@ -30,25 +30,6 @@ html {
   align-items: center;
 }
 
-.volunteer-search {
-  margin-left: 2.5%;
-  margin-top: 1%;
-  width: 400px;
-}
-
-// Volunteer table
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-  width: 95%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
-}
-
 // Expanded Element
 .container {
   max-width: none;
@@ -152,18 +133,10 @@ tr.element-row:not(.expanded-row):active {
   position: relative;
 }
 
-#cardTitle3 {
-  font-size: 0.96vw;
-}
-
 .card-body {
   padding: 0;
   width: 12vw;
   font-size: 0.96vw;
-}
-
-.kitchenPM .card-body {
-  background-color: #f4abaa;
 }
 
 .row {
@@ -254,7 +227,7 @@ h1 {
 }
 
 :host::ng-deep app-copyright-footer .copyrightFooter {
-  margin-top: -100px;
+  margin-top: -90px;
 }
 
 .shiftHeaders {
