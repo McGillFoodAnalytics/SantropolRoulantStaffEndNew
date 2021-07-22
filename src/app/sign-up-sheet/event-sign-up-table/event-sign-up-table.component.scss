@@ -53,10 +53,17 @@ th.mat-header-cell:last-of-type {
 }
 
 #note-btn {
-  margin-bottom: -20px;
+  margin-bottom: 15px;
   width: 12px;
   height: 1px;
   border: none;
   transform: scale(0.78);
   background: none;
+}
+
+.box {
+  display: flex;
+  align-items:center;
+  font-size: 0.75vw !important; 
+  margin-left: -6px;
 }

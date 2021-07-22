@@ -40,6 +40,16 @@ export class FirebaseService {
 
   constructor(private db: AngularFireDatabase) {}
 
+  markLate(shiftId: any) {
+    let isLate, subscribe;
+    subscribe = this.getShift(shiftId).subscribe((user) => {
+      isLate = !user.is_late;
+      this.db.object("/event/" + shiftId).update({
+        is_late: isLate
+      });
+      subscribe.unsubscribe();
+    }); 
+  }
 
   getUsers(): Observable<any[]> {
     this.volunteerRef = this.db.list("user");
@@ -51,6 +61,10 @@ export class FirebaseService {
         )
       );
     return this.volunteers;
+  }
+
+  getShift(shiftId): Observable<any> {
+    return this.db.object("event/" + shiftId).valueChanges();
   }
 
   getUser(userId): Observable<any> {

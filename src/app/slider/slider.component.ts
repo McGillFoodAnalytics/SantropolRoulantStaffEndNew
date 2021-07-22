@@ -12,7 +12,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       state('third', style({ transform: 'translateX(-40%)' })),
       state('fourth', style({ transform: 'translateX(-60%)' })),
       state('fifth', style({ transform: 'translateX(-80%)' })),
-      transition('* => *', animate(300))
+      transition('* => *', animate(450))
     ])
   ] 
 })
