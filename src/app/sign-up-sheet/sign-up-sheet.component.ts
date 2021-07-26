@@ -122,7 +122,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   setVolunteerList() {
-    this.volunteers.subscribe((snapshots) => {
+    let sub = this.volunteers.subscribe((snapshots) => {
       if (this.volunteerListInitialized === true) {
         this.volunteerList = [];
       }
@@ -130,12 +130,13 @@ export class SignUpSheetComponent implements OnInit {
       snapshots.forEach((snapshot) => {
         this.volunteerList.push(snapshot);
       });
+      sub.unsubscribe();
     });
   }
 
   formatEventDates() {
     const events_per_week = 125;
-    this.events.subscribe((snapshots) => {
+    let sub = this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
       this.week2 = [];
@@ -261,6 +262,7 @@ export class SignUpSheetComponent implements OnInit {
       this.weekRange3 = this.setWeekRange(this.week3);
       this.weekRange4 = this.setWeekRange(this.week4);
       this.weekRange5 = this.setWeekRange(this.week5);
+      sub.unsubscribe();
     });
   }
 

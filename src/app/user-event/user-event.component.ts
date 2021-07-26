@@ -31,6 +31,9 @@ export class UserEventComponent implements OnInit {
   displayForm: boolean;
   validId: boolean;
   today: any;
+  cancelledShiftSub;
+  currentShiftSub;
+  pastShiftSub;
   private myForm: FormGroup;
   private model = new User();
   private modalReference;
@@ -108,6 +111,12 @@ export class UserEventComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(){
+    this.currentShiftSub.unsubscribe();
+    this.pastShiftSub.unsubscribe();
+    this.cancelledShiftSub.unsubscribe();
+  }
+
   refresh(){
     this.displayCurrentEvents();
     this.displayCancellation();
@@ -154,7 +163,7 @@ export class UserEventComponent implements OnInit {
 
   displayPastEvents() {
     this.pastEventsUser = [];
-    this.pastEvents.subscribe((snapshots) => {
+    this.pastShiftSub = this.pastEvents.subscribe((snapshots) => {
 
       let len = snapshots.length - 1;
       for(let i = len; i > -1; i--){
@@ -168,7 +177,7 @@ export class UserEventComponent implements OnInit {
 
   displayCurrentEvents() {
     this.currentEventsUser = [];
-    this.events.subscribe((snapshots) => {
+    this.currentShiftSub = this.events.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (!this.containsObject(snapshot, this.currentEventsUser)) {
           if (snapshot.uid == this.userId) {
@@ -187,7 +196,7 @@ export class UserEventComponent implements OnInit {
 
   displayCancellation() {
     this.cancelledEventsUser = [];
-    this.cancelledEvents.subscribe((snapshots) => {
+    this.cancelledShiftSub = this.cancelledEvents.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         if (snapshot.user_id == this.userId) {
           this.cancelledEventsUser.push(snapshot);

@@ -37,7 +37,7 @@ export class PastWeekComponent implements OnInit {
     this.userTransfer.loginUpdate(true);
 
     this.today = new Date();
-    this.firebase.getPastEvents().subscribe(snapshots => {
+    let sub = this.firebase.getPastEvents().subscribe(snapshots => {
       for (let index = snapshots.length - 1 ; index > -1 ; index--) {
         if (snapshots[index].first_name != "SPOT CLOSED" && 
         snapshots[index].first_name != "" && 
@@ -49,6 +49,7 @@ export class PastWeekComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.tempShifts = this.prevShifts;
+      sub.unsubscribe();
     });
   }
 

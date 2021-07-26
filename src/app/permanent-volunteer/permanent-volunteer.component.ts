@@ -52,16 +52,18 @@ export class PermanentVolunteerComponent implements OnInit {
   ngAfterViewInit() {
     this.volunteersObservable = this.fs.getUsers();
     this.eventsObservable = this.fs.getPermanentEvents();
-    this.volunteersObservable.subscribe((snapshots) => {
+    let sub = this.volunteersObservable.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         this.volunteers.push(snapshot);
         this.origVolunteers.push(snapshot);
+        sub.unsubscribe();
       });
     });
-    this.eventsObservable.subscribe((snapshots) => {
+    let x = this.eventsObservable.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         this.events.push(snapshot);
       });
+      x.unsubscribe();
     });
 
     this.addPermanentForm = this.formBuilder.group({

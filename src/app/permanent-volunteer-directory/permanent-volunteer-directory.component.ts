@@ -47,7 +47,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   ngOnInit() {
     this.timeIncrement = 24 * 60 * 60 * 1000; //time of 1 day in milisec
     this.eventsObservable = this.fs.getPermanentEvents();
-    this.eventsObservable.subscribe(snapshots => {
+    let sub = this.eventsObservable.subscribe(snapshots => {
       let temp : any;
 
       // Date 7 days ago from today's date
@@ -71,6 +71,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
         snapshots.shift();
       }
       this.dataSource = new MatTableDataSource(snapshots);
+      sub.unsubscribe();
     });
   }
 

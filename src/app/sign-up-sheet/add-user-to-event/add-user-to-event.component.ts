@@ -62,8 +62,9 @@ export class AddUserToEventComponent implements OnInit {
     // Done only once using loadedEvents boolean
     if (!this.loadedEvents) {
       this.Events = this.fs.getEvents();
-      this.Events.subscribe((event) => {
+      let sub = this.Events.subscribe((event) => {
         this.eventsRef = event;
+        sub.unsubscribe();
       });
       this.loadedEvents = true;
     }
@@ -81,7 +82,7 @@ export class AddUserToEventComponent implements OnInit {
   openWarning() {
     this.modalReference2 = this.modalService.open(this.modalTemplateWarning, {
       ariaLabelledBy: "modal-basic-title",
-      size: "md",
+      windowClass: "duplicateUserWarning",
       centered: true,
     });
   }

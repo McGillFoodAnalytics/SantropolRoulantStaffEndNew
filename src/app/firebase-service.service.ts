@@ -42,8 +42,8 @@ export class FirebaseService {
 
   markLate(shiftId: any) {
     let isLate, subscribe;
-    subscribe = this.getShift(shiftId).subscribe((user) => {
-      isLate = !user.is_late;
+    subscribe = this.getShift(shiftId).subscribe((shift) => {
+      isLate = !shift.is_late;
       this.db.object("/event/" + shiftId).update({
         is_late: isLate
       });
@@ -152,52 +152,48 @@ export class FirebaseService {
       staff_note: "",
       note: "",
       first_shift: false,
+      is_late: false,
     });
     return;
   }
 
   updateNoShows(userid: string): void {
     let count;
-    let updated = false;
-    this.getUser(userid).subscribe(userObs =>{
+    let sub = this.getUser(userid).subscribe(userObs =>{
       if(userObs){
         count = userObs.no_show;
         if (isNaN(count)) {
           count = 0;
         }
-        count++;
-        if(!updated){
-          updated = true;
-          this.db.object("/user/" + userid).update({
-            no_show: count,
-          });
-        }
+        count++; 
+        this.db.object("/user/" + userid).update({
+          no_show: count,
+        });
       }
+      sub.unsubscribe(); //Important to unsubscribe
     });
   }
 
   updateCancellations(user_id: string): void {
     let count;
-    let updated = false;
-    this.getUser(user_id).subscribe(userObs =>{
+    let sub = this.getUser(user_id).subscribe(userObs =>{
       if(userObs){
         count = userObs.cancellations;
         if (isNaN(count)) {
           count = 0;
         }
         count++;
-        if(!updated){
-          updated = true;
-          this.db.object("/user/" + user_id).update({
-            cancellations: count,
-          });
-        }
+        this.db.object("/user/" + user_id).update({
+          cancellations: count,
+        });
+        console.log(count);
       }
+      sub.unsubscribe();
     });
   }
 
   addCancellation(eventId: string, uid: string, reason: string, cancellation: string) {
-    if(cancellation == "noShow"){
+    if(cancellation == "no-show"){
       this.updateNoShows(uid);
     }
     this.updateCancellations(uid);
@@ -484,6 +480,7 @@ export class FirebaseService {
         console.log(element.event_date + element.event_type + element.slot)
         this.removeUserFromEvent(element.event_date+ element.event_type + element.slot);     
       })
+      elements.unsubscribe();
     }); 
   }
 }

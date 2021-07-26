@@ -2,6 +2,7 @@
   <!-- Volunteer Column -->
   <ng-container matColumnDef="volunteer">
     <div *ngIf="id == 'N/A'; else vol">
+      <!-- Empty cell used for Thursdays -->
       <th mat-header-cell *matHeaderCellDef>No Event</th>
     </div>
     <th mat-header-cell *matHeaderCellDef #vol>Volunteer</th>
@@ -19,7 +20,7 @@
       <!-- Slot as a short staff note -->
       <div
         #shortNote
-        style="font-size: 0.73vw !important; margin-left: -6px"
+        class="box"
         *ngIf="
           element.staff_note != null &&
             element.staff_note.length > 0 &&
@@ -29,7 +30,9 @@
       >
         {{ element.first_name }} {{ element.last_name }} ({{
           element.staff_note
-        }})<mat-icon *ngIf="element.is_late">alarm</mat-icon>
+        }})<mat-icon *ngIf="element.is_late" style="transform: scale(0.72)"
+          >alarm</mat-icon
+        >
       </div>
 
       <!-- Slot has no staff note -->
@@ -106,7 +109,7 @@
         <button
           mat-menu-item
           style="outline: none"
-          (click)="markAsLate(element.id)"
+          (click)="markAsLate(element.id);"
         >
           <mat-icon>alarm</mat-icon>
           Mark/Unmark as late
@@ -152,3 +155,16 @@
     "
   ></tr>
 </table>
+
+<!-- User marked as late warning -->
+<!-- <ng-template #markAsLateWindow let-modal>
+  <div class="modal-header text-center">
+    <h4 class="modal-title w-100">Warning</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <h6>has been marked as late.</h6>
+  </div>
+</ng-template> -->

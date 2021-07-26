@@ -3,6 +3,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ModalService } from "../../core/services/modalService";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FirebaseService } from "../../firebase-service.service";
 
 @Component({
@@ -14,6 +15,7 @@ export class EventSignUpTableComponent implements OnInit {
   displayedColumns: string[] = ["volunteer", "actions"];
   dataSource;
   selectedRow;
+  modalReference;
   @Input() slots: [any];
   @Input() eventType: string;
   @Input() id: string; //used to display empty block on Thursdays
@@ -25,6 +27,7 @@ export class EventSignUpTableComponent implements OnInit {
 
   constructor(
     private modalService: ModalService,
+    private ngModalService: NgbModal,
     private db: AngularFireDatabase,
     private fs: FirebaseService
   ) {}
@@ -67,7 +70,15 @@ export class EventSignUpTableComponent implements OnInit {
     );
   }
 
-  markAsLate(shiftId){
+  openMarkAsLateModal(content) {
+    this.modalReference = this.ngModalService.open(content, {
+      ariaLabelledBy: "modal-basic-title",
+      size: "md",
+      centered: true,
+    });
+  }
+
+  markAsLate(shiftId) {
     this.fs.markLate(shiftId);
     return;
   }
