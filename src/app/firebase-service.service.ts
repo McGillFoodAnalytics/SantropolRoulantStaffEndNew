@@ -186,7 +186,6 @@ export class FirebaseService {
         this.db.object("/user/" + user_id).update({
           cancellations: count,
         });
-        console.log(count);
       }
       sub.unsubscribe();
     });

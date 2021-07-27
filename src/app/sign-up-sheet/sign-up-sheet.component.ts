@@ -522,11 +522,6 @@ export class SignUpSheetComponent implements OnInit {
     this.fs.removeUserFromEvent(event_id);
   }
 
-  addUserToEvent(user, event_info) {
-    var event_id = event_info.slots[event_info.num_volunteers].id;
-    this.fs.addUserToEvent(event_id, user.first_name, user.last_name, user.id, user.key);
-  }
-
   getAssociatedPermanentEvents(startDate, frequency, event_type, remove): any {
     const associatedPermanentEvents = [];
     const lastDate = this.getLastDate(this.week3);
@@ -565,7 +560,6 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   updateEventNote(event_id, event_note) {
-    console.log("update event");
     this.fs.updateEventNote(event_id, event_note);
   }
 }
