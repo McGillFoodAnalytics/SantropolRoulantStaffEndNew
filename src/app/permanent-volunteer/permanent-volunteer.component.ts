@@ -17,8 +17,7 @@ export class PermanentVolunteerComponent implements OnInit {
   private origVolunteers: any = [];
   private shiftsNotAdded: any = [];
   private volunteersObservable;
-  private events: any = [];
-  private eventsObservable;
+
   private model: any = {};
   private user: any = {};
   private addPermanentForm: FormGroup;
@@ -51,7 +50,6 @@ export class PermanentVolunteerComponent implements OnInit {
 
   ngAfterViewInit() {
     this.volunteersObservable = this.fs.getUsers();
-    this.eventsObservable = this.fs.getPermanentEvents();
     let sub = this.volunteersObservable.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         this.volunteers.push(snapshot);
@@ -59,12 +57,7 @@ export class PermanentVolunteerComponent implements OnInit {
         sub.unsubscribe();
       });
     });
-    let x = this.eventsObservable.subscribe((snapshots) => {
-      snapshots.forEach((snapshot) => {
-        this.events.push(snapshot);
-      });
-      x.unsubscribe();
-    });
+    
 
     this.addPermanentForm = this.formBuilder.group({
       frequency: ["", Validators.required],
@@ -98,7 +91,7 @@ export class PermanentVolunteerComponent implements OnInit {
     // Boolean "addingShifts" is made true when input fields are valid.
     if (windowClass == "loading-screen") {
       if (!this.addingShifts) {
-        // Do not continue to open 
+        // Return and do not continue to open window 
         return;
       }
     }
@@ -129,9 +122,10 @@ export class PermanentVolunteerComponent implements OnInit {
           this.model.note
         ).then(data => {
           this.shiftsNotAdded = data;
-          this.modalReference.close();  //currently open window is laoding gif 
+          this.modalReference.close();  //currently open window is: "laoding gif" 
           this.addingShifts = false;
           if(this.shiftsNotAdded.length > 0){
+            //Open warning with a list of shifts that were full and could not add volunteer
             this.open(template, "permanent-volunteer-warning");
           }
       });

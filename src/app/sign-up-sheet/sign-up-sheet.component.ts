@@ -128,7 +128,9 @@ export class SignUpSheetComponent implements OnInit {
       }
       this.volunteerListInitialized = false;
       snapshots.forEach((snapshot) => {
-        this.volunteerList.push(snapshot);
+        if(snapshot.active_status){
+          this.volunteerList.push(snapshot);
+        }
       });
       sub.unsubscribe();
     });
