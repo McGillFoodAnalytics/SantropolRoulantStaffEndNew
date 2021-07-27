@@ -90,6 +90,7 @@
             <input
               matInput
               [matDatepicker]="picker1"
+              [matDatepickerFilter]="dateFilter.bind(this)"
               [min]="today"
               [max]="dateInThreeMonths"
               placeholder="mm/dd/yyyy"

@@ -8,15 +8,16 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   animations: [
     trigger('slide', [
       state('first', style({ transform: 'translateX(0)' })),
-      state('second', style({ transform: 'translateX(-25%)' })),
-      state('third', style({ transform: 'translateX(-50%)' })),
-      state('fourth', style({ transform: 'translateX(-75%)' })),
-      transition('* => *', animate(300))
+      state('second', style({ transform: 'translateX(-20%)' })),
+      state('third', style({ transform: 'translateX(-40%)' })),
+      state('fourth', style({ transform: 'translateX(-60%)' })),
+      state('fifth', style({ transform: 'translateX(-80%)' })),
+      transition('* => *', animate(450))
     ])
   ] 
 })
 export class SliderComponent {
-  @Input() activePane: PaneType = 'third';
+  @Input() activePane: PaneType = 'third'; 
 }
 
-type PaneType = 'first' | 'second' | 'third' | 'fourth';
+type PaneType = 'first' | 'second' | 'third' | 'fourth' | 'fifth';

@@ -40,16 +40,15 @@ export class FirebaseService {
 
   constructor(private db: AngularFireDatabase) {}
 
-  getUserSamples(): Observable<any[]> {
-    this.volunteerSampleRef = this.db.list("userSample");
-    this.volunteerSamples = this.volunteerSampleRef
-      .snapshotChanges()
-      .pipe(
-        map((changes) =>
-          changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))
-        )
-      );
-    return this.volunteerSamples;
+  markLate(shiftId: any) {
+    let isLate, subscribe;
+    subscribe = this.getShift(shiftId).subscribe((shift) => {
+      isLate = !shift.is_late;
+      this.db.object("/event/" + shiftId).update({
+        is_late: isLate
+      });
+      subscribe.unsubscribe();
+    }); 
   }
 
   getUsers(): Observable<any[]> {
@@ -62,6 +61,10 @@ export class FirebaseService {
         )
       );
     return this.volunteers;
+  }
+
+  getShift(shiftId): Observable<any> {
+    return this.db.object("event/" + shiftId).valueChanges();
   }
 
   getUser(userId): Observable<any> {
@@ -149,42 +152,62 @@ export class FirebaseService {
       staff_note: "",
       note: "",
       first_shift: false,
+      is_late: false,
     });
     return;
   }
 
+  updateNoShows(userid: string): void {
+    let count;
+    let sub = this.getUser(userid).subscribe(userObs =>{
+      if(userObs){
+        count = userObs.no_show;
+        if (isNaN(count)) {
+          count = 0;
+        }
+        count++; 
+        this.db.object("/user/" + userid).update({
+          no_show: count,
+        });
+      }
+      sub.unsubscribe(); //Important to unsubscribe
+    });
+  }
+
   updateCancellations(user_id: string): void {
     let count;
-    let updated = false;
-    this.getUser(user_id).subscribe(userObs =>{
+    let sub = this.getUser(user_id).subscribe(userObs =>{
       if(userObs){
         count = userObs.cancellations;
         if (isNaN(count)) {
           count = 0;
         }
         count++;
-        if(!updated){
-          updated = true;
-          this.db.object("/user/" + user_id).update({
-            cancellations: count,
-          });
-        }
+        this.db.object("/user/" + user_id).update({
+          cancellations: count,
+        });
       }
+      sub.unsubscribe();
     });
   }
 
-  addCancellation(eventId: string, uid: string, reason: string) {
+  addCancellation(eventId: string, uid: string, reason: string, cancellation: string) {
+    if(cancellation == "no-show"){
+      this.updateNoShows(uid);
+    }
     this.updateCancellations(uid);
     if (reason == "" || reason == null) {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
         user_id: uid,
+        cancellation_type: cancellation
       });
     } else {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
         user_id: uid,
         reason: reason,
+        cancellation_type: cancellation
       });
     }
   }
@@ -321,6 +344,7 @@ export class FirebaseService {
     while (s.length < size) s = "0" + s;
     return s;
   }
+  
   getDateString(dateval) {
     var days = [
       "Sunday",
@@ -455,6 +479,7 @@ export class FirebaseService {
         console.log(element.event_date + element.event_type + element.slot)
         this.removeUserFromEvent(element.event_date+ element.event_type + element.slot);     
       })
+      elements.unsubscribe();
     }); 
   }
 }

@@ -154,23 +154,16 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
   this.clearError();
 
   if (this.email.length == 0){
-        this.authService.error = "Please fill all fields.";
-
-        this.shake = true;
-
-        setTimeout(() => this.shake = false, 1000);
-
-        return;
+    this.authService.error = "Please fill all fields.";
+    this.shake = true;
+    setTimeout(() => this.shake = false, 1000);
+    return;
   }
-
     /*
     if (!await this.authService.signup(this.firstName, this.lastName, this.email, this.password, this.code)){
         this.shake = true;
-
         setTimeout(() => this.shake = false, 1000);
     }
-    
-
     this.email = this.password = this.code = '';
     */
 
@@ -187,13 +180,11 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
 
     if (!await this.authService.login(this.email, this.password)){
         this.shake = true;
-
         setTimeout(() => this.shake = false, 1000);
     }
     else{
         //this.router.navigate(['/volunteer-schedule']);
     }
-
     //uncomment this?
     //this.email = this.password = '';   
   }
@@ -203,8 +194,8 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
   }
 
   reset(){
-        this.authService.reset(this.email);
-        this.loginMode();
+    this.authService.reset(this.email);
+    this.loginMode();
   }
 
   loginMsgVisibility = false;
@@ -278,23 +269,23 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
 
     this.clearError();
   
-      this.loginMsgVisibility = true;
-      this.signupMsgVisibility = true;
+    this.loginMsgVisibility = true;
+    this.signupMsgVisibility = true;
   
-      this.loginHide = true;
-      this.signupHide = true;
-      this.loggedinHide = true;
-      this.resetHide = true;
+    this.loginHide = true;
+    this.signupHide = true;
+    this.loggedinHide = true;
+    this.resetHide = true;
 
-      this.welcomeHide = false;
+    this.welcomeHide = false;
   
-      this.frontBoxMoving = false;
-      this.center = true;
-    }
+    this.frontBoxMoving = false;
+    this.center = true;
+  }
 
   loggedinMode(){
 
-  this.clearError();
+    this.clearError();
 
     this.loginMsgVisibility = true;
     this.signupMsgVisibility = true;
@@ -307,35 +298,26 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
 
     this.frontBoxMoving = false;
     this.center = true;
-
     //this.router.navigate(['/volunteer-schedule']);
   }
 
   clearError(){
-        this.authService.error = "";
+    this.authService.error = "";
   }
 
   open(){
-
     const modalRef = this.m.open(ManageAccountComponent, {size: 'md', centered: true});
-    modalRef.result.then(user => {
-
-    })
-    .catch(e => {
+    modalRef.result.then(() => {
+    }).catch(e => {
       console.log(e);
-  });
-    
+      });
   }
 
   openAdminSettings(){
     //this.adminModal.open();
-
     const modalRef = this.m.open(AdminSettingsComponent, {size: 'lg', centered: true});
     modalRef.result.then(user => {
-
-    })
-    .catch(e => {
-      console.log(e);
+    }).catch(e => {
   });
   }
 
@@ -345,11 +327,10 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
 
     const { uid, phoneNumber, email, displayName, password, confirmPassword, role} = this.form.value;
 
-    console.log(uid, phoneNumber, email, displayName, role);
+    //console.log(uid, phoneNumber, email, displayName, role);
 
     var success = true;
-
-    var err = null
+    var err = null;
 
     const passwordResult = await this.authService.changePassword(this.form.get('password').value);
     err = passwordResult?.message
@@ -363,11 +344,9 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
     }
 
     if (!err){
-
       this.userService.edit({uid, phoneNumber, email, displayName, role: (role ? role : "staff")}).subscribe(
         data => {
           //this.loggedinMode()
-
           //this.login()
 
           console.log("Hide state: " + this.welcomeHide)
@@ -386,6 +365,5 @@ if (window.location.href.indexOf("apiKey") >= 0 && this.auth.isSignInWithEmailLi
     }, (reason) => {
         console.log(reason);
     });
-
   }
 }

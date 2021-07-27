@@ -41,7 +41,7 @@
     </div>
     </div>
     <div *ngIf="addUser" class="footer">
-        <button type="submit" style="outline: none;" class="btn btn-xl btn-add-volunteer" (click)="onSubmit(false)">Add Volunteer to Shift</button>
+        <button type="submit" style="outline: none; left: 70px;" class="btn btn-xl btn-add-volunteer" (click)="onSubmit(false)">Add Volunteer to Shift</button>
         <mat-checkbox id="first-shift-check" (change)="onCheckboxChange($event)">Mark as First Shift</mat-checkbox>
     </div>
 </ng-template>
@@ -54,9 +54,10 @@
         </button>
     </div>
     <div class="modal-body">
-        <h5>
-            This volunteer is already registered for this shift. Are you sure you want to add them again?
-          </h5>
+        <br>
+        <h6>
+            Volunteer, <b>{{ selectedRow.first_name }} {{ selectedRow.last_name }}</b> is already registered for this shift. Are you sure you want to add them again?
+          </h6>
     </div>
     <div *ngIf="addUser" class="footer">
         <button class="btn btn-xl btn-outline-danger btn-cancel" (click)="modal2.dismiss()">Cancel</button>

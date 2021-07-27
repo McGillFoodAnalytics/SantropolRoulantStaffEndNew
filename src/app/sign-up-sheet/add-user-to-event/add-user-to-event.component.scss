@@ -3,6 +3,11 @@
 	width: 820px !important;
 }
 
+::ng-deep .duplicateUserWarning .modal-dialog {
+	max-width: 450px !important;
+	width: 450px !important;
+}
+
 ::ng-deep .passed-shift .modal-dialog {
 	max-width: 600px !important;
 	width: 600px !important; 
@@ -41,9 +46,12 @@
 }
 
 .footer {
-	padding-bottom: 2.5rem;
+	margin-top: -10px;
+	padding-bottom: 2.0rem;
 	text-align: center;
 	align-items: center;
+	left: 20px;
+	position: relative;
 }
 
 .mat-table {
@@ -97,7 +105,6 @@ body>ngb-modal-window>div>div>div.footer>button {
 	border-color: #5fce99 !important;
 	position: relative;
 	margin-right: 90px;
-	left: 70px;
 }
 
 .btn-cancel {

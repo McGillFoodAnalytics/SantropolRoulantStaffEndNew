@@ -4,7 +4,7 @@
 }
 .panes {
   height: 100%;
-  width: 400%;      /* Make the parent element to take up twice
+  width: 500%;      /* Make the parent element to take up twice
                        of the component's width */
   display: flex;    /* Align all children in a row */
   div { flex: 1; }  /* Evenly divide width between children */

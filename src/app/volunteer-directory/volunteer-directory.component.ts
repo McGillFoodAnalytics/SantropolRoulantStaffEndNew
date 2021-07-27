@@ -6,20 +6,12 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-
+import { UserTransferService } from '../user-transfer.service';
 
 @Component({
   selector: 'app-volunteer-directory',
   templateUrl: './volunteer-directory.component.html',
   styleUrls: ['./volunteer-directory.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 
 export class VolunteerDirectoryComponent implements OnInit {
@@ -32,16 +24,18 @@ export class VolunteerDirectoryComponent implements OnInit {
   eventsObservable;
   dataSource = new MatTableDataSource();
   errorMessage;
-  source;
   expandedElement: Event;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;
 
-  constructor(private fs: FirebaseService,  private db: AngularFireDatabase) {
+  constructor(private userTransfer: UserTransferService, private fs: FirebaseService,  private db: AngularFireDatabase) {
     this.errorMessage = "";
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+     //trigger the toolbar to load 
+     this.userTransfer.loginUpdate(true);
+  }
 
   ngAfterViewInit() {
     this.fs.getUsers().subscribe(snapshots => {

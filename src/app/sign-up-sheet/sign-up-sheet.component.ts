@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { trigger, state, style, animate, transition } from "@angular/animations";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
@@ -10,6 +9,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MatTooltipDefaultOptions,
 } from "@angular/material/tooltip";
+import { UserTransferService } from '../user-transfer.service';
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 1000,
@@ -48,19 +48,20 @@ export class SignUpSheetComponent implements OnInit {
   ];
   private events: Observable<any[]>;
   private volunteers: Observable<any[]>;
-  public isCollapsed = true;
   private volunteerList = [];
   private volunteerListInitialized = false;
   private week1;
   private week2;
   private week3;
   private week4;
+  private week5;
   private weekRange1: string;
   private weekRange2: string;
   private weekRange3: string;
   private weekRange4: string;
+  private weekRange5: string;
   source;
-  expandedElement: Event;
+ 
   dataSource = new MatTableDataSource();
   
   currentWeek = "first";
@@ -82,14 +83,13 @@ export class SignUpSheetComponent implements OnInit {
   private pane = "left";
   items: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase, private fs: FirebaseService) {}
+  constructor(private userTransfer: UserTransferService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
+    //trigger the toolbar to load 
+    this.userTransfer.loginUpdate(true);
+
     this.events = this.fs.getEvents();
-    // this.fs.getEvents().subscribe((snapshots) => {
-    //   this.dataSource = new MatTableDataSource(snapshots);
-    //   this.dataSource.sort = this.sort;
-    // });
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
@@ -122,25 +122,29 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   setVolunteerList() {
-    this.volunteers.subscribe((snapshots) => {
+    let sub = this.volunteers.subscribe((snapshots) => {
       if (this.volunteerListInitialized === true) {
         this.volunteerList = [];
       }
       this.volunteerListInitialized = false;
       snapshots.forEach((snapshot) => {
-        this.volunteerList.push(snapshot);
+        if(snapshot.active_status){
+          this.volunteerList.push(snapshot);
+        }
       });
+      sub.unsubscribe();
     });
   }
 
   formatEventDates() {
     const events_per_week = 125;
-    this.events.subscribe((snapshots) => {
+    let sub = this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
       this.week2 = [];
       this.week3 = [];
       this.week4 = [];
+      this.week5 = [];
       snapshots.forEach((snapshot) => {
         let event_type;
         if(snapshot.event_date){  //apply toString() only when not null
@@ -168,7 +172,8 @@ export class SignUpSheetComponent implements OnInit {
           this.week1[event_type][event_date]["num_slots"] =
             this.week1[event_type][event_date]["num_slots"] + 1;
           this.week1[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= events_per_week && i < 2 * events_per_week) {
+        } // Week 2 
+        else if (i >= events_per_week && i < 2 * events_per_week) {
           if (!(event_type in this.week2)) {
             this.week2[event_type] = {};
           }
@@ -188,7 +193,8 @@ export class SignUpSheetComponent implements OnInit {
           this.week2[event_type][event_date]["num_slots"] =
             this.week2[event_type][event_date]["num_slots"] + 1;
           this.week2[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= 2 * events_per_week && i < 3 * events_per_week) {
+        } //Week 3
+        else if (i >= 2 * events_per_week && i < 3 * events_per_week) {
           if (!(event_type in this.week3)) {
             this.week3[event_type] = {};
           }
@@ -208,7 +214,8 @@ export class SignUpSheetComponent implements OnInit {
           this.week3[event_type][event_date]["num_slots"] =
             this.week3[event_type][event_date]["num_slots"] + 1;
           this.week3[event_type][event_date]["slots"].push(snapshot);
-        } else if (i >= 3 * events_per_week && i < 4 * events_per_week) {
+        } // Week 4 
+        else if (i >= 3 * events_per_week && i < 4 * events_per_week) {
           if (!(event_type in this.week4)) {
             this.week4[event_type] = {};
           }
@@ -228,6 +235,27 @@ export class SignUpSheetComponent implements OnInit {
           this.week4[event_type][event_date]["num_slots"] =
             this.week4[event_type][event_date]["num_slots"] + 1;
           this.week4[event_type][event_date]["slots"].push(snapshot);
+        } //Week 5
+        else if (i >= 4 * events_per_week && i < 5 * events_per_week) {
+          if (!(event_type in this.week5)) {
+            this.week5[event_type] = {};
+          }
+          if (!(event_date in this.week5[event_type])) {
+            this.week5[event_type][event_date] = {
+              slots: [],
+              num_volunteers: 0,
+              num_slots: 0,
+              is_important_event: snapshot.is_important_event,
+              display_date: this.getDisplayDate(event_date),
+            };
+          }
+          if (snapshot.first_name) {
+            this.week5[event_type][event_date]["num_volunteers"] =
+              this.week5[event_type][event_date]["num_volunteers"] + 1;
+          }
+          this.week5[event_type][event_date]["num_slots"] =
+            this.week5[event_type][event_date]["num_slots"] + 1;
+          this.week5[event_type][event_date]["slots"].push(snapshot);
         }
         i = i + 1;
       });
@@ -235,6 +263,8 @@ export class SignUpSheetComponent implements OnInit {
       this.weekRange2 = this.setWeekRange(this.week2);
       this.weekRange3 = this.setWeekRange(this.week3);
       this.weekRange4 = this.setWeekRange(this.week4);
+      this.weekRange5 = this.setWeekRange(this.week5);
+      sub.unsubscribe();
     });
   }
 
@@ -257,7 +287,11 @@ export class SignUpSheetComponent implements OnInit {
 
       case "third" : 
         this.currentWeek = "fourth";
-        break;  
+        break;
+
+      case "fourth" : 
+        this.currentWeek = "fifth";
+        break;   
     }
   }
 
@@ -274,6 +308,10 @@ export class SignUpSheetComponent implements OnInit {
       case "fourth" : 
         this.currentWeek = "third";
         break;
+
+      case "fifth" : 
+        this.currentWeek = "fourth";
+        break;
     }
   }
 
@@ -284,9 +322,11 @@ export class SignUpSheetComponent implements OnInit {
       return this.weekRange2;
     } else if (this.currentWeek == "third"){
       return this.weekRange3;
+    } else if (this.currentWeek == "fourth"){
+      return this.weekRange4;
     }
     else{
-      return this.weekRange4;
+      return this.weekRange5;
     }
   }
 
@@ -361,7 +401,7 @@ export class SignUpSheetComponent implements OnInit {
     return this.eventTypesCool[eventType];
   }
 
-  getEventListCool(eventType) {
+  getEventList(eventType) {
     var currentEventValue = this.eventTypes[eventType];
 
     // This if-check is used to make sure the method call 
@@ -393,6 +433,12 @@ export class SignUpSheetComponent implements OnInit {
           this.addEmptyThursday(this.week4[currentEventValue]);
         }
         return this.week4[currentEventValue];
+      } else {
+        let week5 = Object.keys(this.week5[currentEventValue]);
+        if (week5.length == 5) {
+          this.addEmptyThursday(this.week5[currentEventValue]);
+        }
+        return this.week5[currentEventValue];
       }
     }
   }
@@ -429,7 +475,7 @@ export class SignUpSheetComponent implements OnInit {
  
   
   // Used for new format of week-shift display
-  changeEventImportanceCool(day: string, eventType: string) {
+  changeEventImportance(day: string, eventType: string) {
     var slots;
     var is_important_event;
     var currentEventValue = this.eventTypes[eventType];
@@ -458,10 +504,14 @@ export class SignUpSheetComponent implements OnInit {
       this.week4[currentEventValue][day]["is_important_event"] =
         is_important_event;
       slots = this.week4[currentEventValue][day]["slots"];
+    } else if (this.currentWeek == "fifth"){
+      is_important_event =
+        !this.week5[currentEventValue][day]["is_important_event"];
+      this.week5[currentEventValue][day]["is_important_event"] =
+        is_important_event;
+      slots = this.week5[currentEventValue][day]["slots"];
     }
-    for (var slot of slots) {
-      this.fs.changeEventImportance(slot["id"], is_important_event);
-    }
+    this.fs.changeEventImportance(slots[0]["id"], is_important_event);  
   } 
 
   getVolunteerList() {
@@ -471,47 +521,6 @@ export class SignUpSheetComponent implements OnInit {
   removeUserFromEvent(event_id) {
     this.fs.removeUserFromEvent(event_id);
   }
-
-  addUserToEvent(user, event_info) {
-    var event_id = event_info.slots[event_info.num_volunteers].id;
-    this.fs.addUserToEvent(event_id, user.first_name, user.last_name, user.id, user.key);
-  }
-
-  // permanentVolunteerEvent(event, event_id, user_id, event_date, first_name, last_name, slot) {
-  //   if ( event.event == "remove" ) {
-  //     const data = event.removePermanentVolunteerData;
-  //     const event_type =  this.eventTypes[data.eventType];
-  //     const freq = slot.permanent_event_id.slice(-1);
-  //     const associatedPermanentEvents = this.getAssociatedPermanentEvents(event_date, freq, this.eventTypes[data.eventType], true);
-  //     this.fs.removePermanentVolunteer(
-  //       slot.permanent_event_id
-  //     )
-  //     for(let i = 0; i < associatedPermanentEvents.length; i++) {
-  //       this.fs.removePermanentVolunteerEvents(associatedPermanentEvents[i]);
-  //     }
-  //   }
-  //   if ( event.event == "add" ) {
-  //     const data = event.addPermanentVolunteerData;
-  //     const event_type =  this.eventTypes[data.eventType];
-  //     const associatedPermanentEvents = this.getAssociatedPermanentEvents(event_date, data.frequency, event_type, false);
-  //     this.fs.addPermanentVolunteer(
-  //       event_type,
-  //       user_id,
-  //       data.weekday,
-  //       event_date,
-  //       data.endDate,
-  //       data.frequency,
-  //       event_id
-  //     );
-  //     this.fs.addPermanentVolunteerEvents(
-  //       associatedPermanentEvents,
-  //       user_id,
-  //       first_name,
-  //       last_name,
-  //       this.eventTypes[data.eventType] + '_' + data.weekday + '_' + user_id + '_' + data.frequency
-  //     )
-  //   }
-  // }
 
   getAssociatedPermanentEvents(startDate, frequency, event_type, remove): any {
     const associatedPermanentEvents = [];
@@ -551,7 +560,6 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   updateEventNote(event_id, event_note) {
-    console.log("update event");
     this.fs.updateEventNote(event_id, event_note);
   }
 }

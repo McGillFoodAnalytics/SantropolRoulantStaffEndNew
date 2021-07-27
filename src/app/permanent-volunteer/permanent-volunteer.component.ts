@@ -17,8 +17,7 @@ export class PermanentVolunteerComponent implements OnInit {
   private origVolunteers: any = [];
   private shiftsNotAdded: any = [];
   private volunteersObservable;
-  private events: any = [];
-  private eventsObservable;
+
   private model: any = {};
   private user: any = {};
   private addPermanentForm: FormGroup;
@@ -47,20 +46,18 @@ export class PermanentVolunteerComponent implements OnInit {
     this.dateInThreeMonths.setMonth(this.dateInThreeMonths.getMonth() + 3);
   }
 
-  ngOnInit() {
+  ngOnInit(){}
+
+  ngAfterViewInit() {
     this.volunteersObservable = this.fs.getUsers();
-    this.eventsObservable = this.fs.getPermanentEvents();
-    this.volunteersObservable.subscribe((snapshots) => {
+    let sub = this.volunteersObservable.subscribe((snapshots) => {
       snapshots.forEach((snapshot) => {
         this.volunteers.push(snapshot);
         this.origVolunteers.push(snapshot);
+        sub.unsubscribe();
       });
     });
-    this.eventsObservable.subscribe((snapshots) => {
-      snapshots.forEach((snapshot) => {
-        this.events.push(snapshot);
-      });
-    });
+    
 
     this.addPermanentForm = this.formBuilder.group({
       frequency: ["", Validators.required],
@@ -94,7 +91,7 @@ export class PermanentVolunteerComponent implements OnInit {
     // Boolean "addingShifts" is made true when input fields are valid.
     if (windowClass == "loading-screen") {
       if (!this.addingShifts) {
-        // Do not continue to open 
+        // Return and do not continue to open window 
         return;
       }
     }
@@ -125,9 +122,10 @@ export class PermanentVolunteerComponent implements OnInit {
           this.model.note
         ).then(data => {
           this.shiftsNotAdded = data;
-          this.modalReference.close();  //currently open window is laoding gif 
+          this.modalReference.close();  //currently open window is: "laoding gif" 
           this.addingShifts = false;
           if(this.shiftsNotAdded.length > 0){
+            //Open warning with a list of shifts that were full and could not add volunteer
             this.open(template, "permanent-volunteer-warning");
           }
       });
@@ -172,5 +170,15 @@ export class PermanentVolunteerComponent implements OnInit {
     let monthName = newDate.toLocaleString('default', { month: 'long' });
     let date =  monthName + " " + day + ", " + year;
     return date;
+  }
+
+  dateFilter (date: Date): boolean {
+    const day = date.getDay();
+
+    // If shift type not kitchen PM, disable Sunday and Thurday
+    if(this.addPermanentForm.get("eventType").value != 'kitpm'){
+      return day !== 0 && day !== 4;
+    }
+    return day !== 0;  //Otherwise disable Sunday only
   }
 }

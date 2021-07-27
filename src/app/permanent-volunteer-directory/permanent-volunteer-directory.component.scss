@@ -1,6 +1,6 @@
 ::ng-deep .permanent-volunteer-directory .modal-dialog {
-     max-width: 70% !important;
-     width: 70% !important;
+  max-width: 60% !important;
+  width: 60% !important;
 }
 
 ::ng-deep { .cdk-global-overlay-wrapper, .cdk-overlay-container { 
@@ -33,7 +33,7 @@
 
 .permVolDir{
   overflow-y: auto;
-  height: 70vh;
+  height: 600px;
 }
 
 .end-soon{

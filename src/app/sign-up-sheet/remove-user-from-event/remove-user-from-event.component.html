@@ -17,6 +17,22 @@
             </div>
         </div>
     </div>
+    <label style="position: relative; left: 40px;"><b>Type of Cancellation:</b></label>
+    <div>
+        <mat-radio-group 
+        aria-label="Select an option" 
+        class="cancellation-type"
+        [(ngModel)]="cancellationType">
+        <mat-radio-button value="no-show">No Show</mat-radio-button>
+        <mat-radio-button value="las-minute">Last-minute</mat-radio-button>
+        <mat-radio-button value="legitimate">Legitimate Last-minute</mat-radio-button>
+        <mat-radio-button value="other">Other</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <h5 style="position: relative; left: 50px;"> 
+        <b>Reason:</b>
+    </h5>
     <div contenteditable="true"
             [textContent]="cancellationNote" (input)="cancellationNote=$event.target.textContent; touch()">
           </div> 

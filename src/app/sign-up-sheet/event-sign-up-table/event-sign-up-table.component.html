@@ -2,6 +2,7 @@
   <!-- Volunteer Column -->
   <ng-container matColumnDef="volunteer">
     <div *ngIf="id == 'N/A'; else vol">
+      <!-- Empty cell used for Thursdays -->
       <th mat-header-cell *matHeaderCellDef>No Event</th>
     </div>
     <th mat-header-cell *matHeaderCellDef #vol>Volunteer</th>
@@ -15,9 +16,11 @@
         class="emptyBlock"
         *ngIf="id == 'N/A'; else shortNote"
       ></div>
+
+      <!-- Slot as a short staff note -->
       <div
         #shortNote
-        style="font-size: 0.73vw !important; margin-left: -6px"
+        class="box"
         *ngIf="
           element.staff_note != null &&
             element.staff_note.length > 0 &&
@@ -27,21 +30,33 @@
       >
         {{ element.first_name }} {{ element.last_name }} ({{
           element.staff_note
-        }})
+        }})<mat-icon *ngIf="element.is_late" style="transform: scale(0.72)"
+          >alarm</mat-icon
+        >
       </div>
+
+      <!-- Slot has no staff note -->
       <ng-template #noNote>
         <div
-          style="font-size: 0.75vw !important; margin-left: -6px"
+          class="box"
           *ngIf="
             element.staff_note == null || element.staff_note.length == 0;
             else longNote
           "
         >
           {{ element.first_name }} {{ element.last_name }}
+          <mat-icon *ngIf="element.is_late" style="transform: scale(0.72)">
+            alarm
+          </mat-icon>
         </div>
+
+        <!-- Slot has long staff note -->
         <ng-template #longNote>
-          <div style="font-size: 0.75vw !important; margin-left: -6px">
+          <div class="box">
             {{ element.first_name }} {{ element.last_name }}
+            <mat-icon *ngIf="element.is_late" style="transform: scale(0.72)">
+              alarm
+            </mat-icon>
             <button
               matTooltip="Click to view note"
               onclick="this.blur()"
@@ -82,14 +97,23 @@
         matTooltip="Click to view options"
         *ngIf="!isEmpty(element.first_name, element.last_name)"
         style="
-        float: right;
-        transform: scale(0.87);
-        margin-right: -10px;
-        background: none"
+          float: right;
+          transform: scale(0.87);
+          margin-right: -10px;
+          background: none;
+        "
       >
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          style="outline: none"
+          (click)="markAsLate(element.id);"
+        >
+          <mat-icon>alarm</mat-icon>
+          Mark/Unmark as late
+        </button>
         <app-remove-user-from-event
           firstName="{{ element.first_name }}"
           eventId="{{ element.id }}"
@@ -131,3 +155,16 @@
     "
   ></tr>
 </table>
+
+<!-- User marked as late warning -->
+<!-- <ng-template #markAsLateWindow let-modal>
+  <div class="modal-header text-center">
+    <h4 class="modal-title w-100">Warning</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()" #closeModal>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <h6>has been marked as late.</h6>
+  </div>
+</ng-template> -->
