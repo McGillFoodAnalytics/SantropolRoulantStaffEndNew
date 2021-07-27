@@ -28,12 +28,14 @@
         </mat-form-field>
       </div>
       <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
         <ng-container matColumnDef="Volunteer">
           <mat-header-cell *matHeaderCellDef>Volunteer</mat-header-cell>
           <mat-cell
             *matCellDef="let element"
             [class.end-soon]="endSoon(element.end_date)"
-          >{{ element.first_name }} {{ element.last_name }}</mat-cell
+            >{{ element.first_name }} {{ element.last_name }}</mat-cell
           >
         </ng-container>
         <ng-container matColumnDef="Shift Type">
@@ -68,14 +70,59 @@
             >{{ formatShiftDate(element.end_date) }}
           </mat-cell>
         </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <ng-container matColumnDef="Remove">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell style="justify-content: center" *matCellDef="let element">
+            <button
+              class="btn-outline-danger remove-perm-vol"
+              (click)="setVolunteer(element); open(removePermVol, 'removePermVol')"
+            >
+              Remove
+            </button>
+          </mat-cell>
+        </ng-container>
       </mat-table>
     </div>
   </div>
 </ng-template>
 
-<button mat-menu-item (click)="open(PermanentVolModal)">
+<button mat-menu-item (click)="open(PermanentVolModal, 'PermanentVolModal')">
   <mat-icon>date_range</mat-icon>
   <span>Permanent Volunteer Directory</span>
 </button>
+
+<ng-template #removePermVol let-modalWarning>
+  <div class="modal-header text-center" style="background-color: #dc3545">
+    <h4 class="modal-title w-100" id="modal-basic-title">Warning!</h4>
+    <button
+      type="button"
+      class="close"
+      style="outline: none"
+      aria-label="Close"
+      (click)="modalWarning.dismiss()"
+      #closeModal
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <span>
+      You are about to remove the permanent volunteer, <b>{{volunteerToRemove}}</b>, and will be removed from all associated shifts. <b>This action can't be
+        undone!</b>
+    </span>
+  </div>
+  <div class="footer">
+    <button
+      class="btn btn-xl btn-outline-danger btn-cancel"
+      (click)="modalWarning.dismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn btn-xl btn-outline-danger"
+      (click)="removePermVolunteer(element)"
+    >
+      Confirm
+    </button>
+  </div>
+</ng-template>

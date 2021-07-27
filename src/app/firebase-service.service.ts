@@ -38,6 +38,13 @@ export class FirebaseService {
     deliv: 10,
   };
 
+  days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  frequency = {
+    1: 7,
+    2: 14,
+    3: 21
+  }
+
   constructor(private db: AngularFireDatabase) {}
 
   markLate(shiftId: any) {
@@ -382,6 +389,11 @@ export class FirebaseService {
     return dateString;
   }
 
+  parseISOString(s) {
+    var b = s.split(/\D+/);
+    return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+  }
+
   getDateNumber(date) {
     let month = "";
     let day = "";
@@ -418,15 +430,26 @@ export class FirebaseService {
     }
   }
 
-  removePermanentVolunteer(permanent_event_id) {
-    this.db.object("/permanent_events/" + permanent_event_id).remove();
-  }
+  removePermanentVolunteer(recurring_event) {
+    let shiftType = recurring_event.event_type;
+    let uid = recurring_event.user_id;
 
-  removePermanentVolunteerEvents(event_id) {
-    console.log(event_id);
-    console.log(
-      this.db.object("/event/" + event_id + "/permanent_event_id").remove()
-    );
+    //Get start and end dates in format YYYYMMDD
+    let startDate = this.parseISOString(recurring_event.start_date);
+    let endDate = this.parseISOString(recurring_event.end_date);
+
+    let freq = recurring_event.frequency;
+    let validDates = this.getDates(startDate, endDate, freq);
+
+    let shifts = this.db.list("event", ref => ref.orderByChild("uid").equalTo(uid)).valueChanges().subscribe(snapshots =>{
+      snapshots.forEach((shift: any) =>{
+        if (validDates.includes(shift.event_date) && shift.event_type == shiftType) {
+          this.removeUserFromEvent(shift.event_date + shift.event_type + shift.slot);     
+        }
+      })
+      shifts.unsubscribe();
+    }); 
+    this.db.object("/recurring_events/" + recurring_event.id).remove();
   }
 
   addStaffNoteToEvent(event_id: string, staff_note: string): void {
@@ -453,7 +476,6 @@ export class FirebaseService {
     return this.cancelledEvents;
   }
 
-
   changeActiveStatus(userid: string, isActive: boolean) {
     this.db.object("/user/" + userid).update({
       active_status: isActive,
@@ -468,7 +490,8 @@ export class FirebaseService {
 
   // Delete a user with its user Id
   deleteUser(userid: string) {
-    this.deleteRelevantShifts(userid); // Updated by RG, delete any events associated 
+     // Updated by Richard, delete any events associated with userid 
+     this.deleteRelevantShifts(userid);
     this.db.object("/user/" + userid).remove();
   }
 
@@ -476,7 +499,6 @@ export class FirebaseService {
   deleteRelevantShifts(uid:string): void{
     let elements = this.db.list("event", ref => ref.orderByChild("uid").equalTo(uid)).valueChanges().subscribe(snapshots =>{
       snapshots.forEach((element: any) =>{
-        console.log(element.event_date + element.event_type + element.slot)
         this.removeUserFromEvent(element.event_date+ element.event_type + element.slot);     
       })
       elements.unsubscribe();
