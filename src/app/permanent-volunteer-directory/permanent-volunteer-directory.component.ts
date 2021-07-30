@@ -22,7 +22,8 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     'Shift Type', 
     'Frequency',
     'Shift Start Date',
-    'Shift End Date'
+    'Shift End Date',
+    'Remove'
   ];
 
   shiftTypes = {
@@ -36,6 +37,8 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   private model: any = {};
   result: Observable<any>
   today: any;
+  volunteerToRemove;
+  sub;
   threeDaysFromToday: any;
   timeIncrement: number;
 
@@ -47,7 +50,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   ngOnInit() {
     this.timeIncrement = 24 * 60 * 60 * 1000; //time of 1 day in milisec
     this.eventsObservable = this.fs.getPermanentEvents();
-    let sub = this.eventsObservable.subscribe(snapshots => {
+    this.sub = this.eventsObservable.subscribe(snapshots => {
       let temp : any;
 
       // Date 7 days ago from today's date
@@ -71,8 +74,11 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
         snapshots.shift();
       }
       this.dataSource = new MatTableDataSource(snapshots);
-      sub.unsubscribe();
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   //Convert shift type from short to long format
@@ -94,8 +100,14 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     }
   }
 
-  open(content) {
-    this.modalReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'sm', windowClass: 'permanent-volunteer-directory', centered: true});
+  open(content, windowClass) {
+    console.log(content)
+    this.modalReference = this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'sm',
+      windowClass: windowClass, 
+      centered: true
+    });
   }
 
   //Not currently being used but can be added as a button 
@@ -128,5 +140,17 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
     this.today = new Date(new Date().setHours(0,0,0,0)).toISOString();
     this.threeDaysFromToday = new Date(Date.now() + 3 * this.timeIncrement).toISOString();
     return (date >= this.today && date <= this.threeDaysFromToday);
+  }
+
+  /**
+   * @param recurringShift the permanent volutneer to be removed
+   */
+  removePermVolunteer(recurringShift) {
+    this.fs.removePermanentVolunteer(recurringShift);
+  }
+
+  setVolunteer(recurringShift) {
+    this.volunteerToRemove = 
+    recurringShift.first_name + " " + recurringShift.last_name;
   }
 }

@@ -1,6 +1,11 @@
-::ng-deep .permanent-volunteer-directory .modal-dialog {
+::ng-deep .PermanentVolModal .modal-dialog {
   max-width: 60% !important;
   width: 60% !important;
+}
+
+::ng-deep .removePermVol .modal-dialog {
+  max-width: 600px !important;
+  width: 600px !important;
 }
 
 ::ng-deep { .cdk-global-overlay-wrapper, .cdk-overlay-container { 
@@ -11,6 +16,7 @@
 .cdk-overlay-connected-position-bounding-box {
   z-index: 99999 !important;
 }
+
 .fa {
   padding-right: 0.5rem;
 }
@@ -23,7 +29,6 @@
 .modal-title{
   color: white;
 }
-
 
 .modal-body{
   padding: 1rem 2rem 0 2rem;
@@ -43,6 +48,13 @@
 @keyframes blinker {
   50% {
     background-color: rgb(238, 177, 177);
-    
   }
+}
+
+.remove-perm-vol {
+  border-radius: 5px;
+}
+
+.btn-outline-danger {
+  outline: none;
 }

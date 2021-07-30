@@ -54,7 +54,7 @@ export class PermanentVolunteerComponent implements OnInit {
       snapshots.forEach((snapshot) => {
         this.volunteers.push(snapshot);
         this.origVolunteers.push(snapshot);
-        sub.unsubscribe();
+        //sub.unsubscribe();
       });
     });
     
