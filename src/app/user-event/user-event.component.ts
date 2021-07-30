@@ -34,6 +34,7 @@ export class UserEventComponent implements OnInit {
   cancelledShiftSub;
   currentShiftSub;
   pastShiftSub;
+  lateCounter;
   private myForm: FormGroup;
   private model = new User();
   private modalReference;
@@ -60,8 +61,9 @@ export class UserEventComponent implements OnInit {
 
   async ngOnInit() {
     //trigger the toolbar to load 
-    this.userTransfer.loginUpdate(true); 
+    this.userTransfer.loginUpdate(true);
     
+    this.lateCounter = 0;
     this.today = new Date();
     this.today = this.firebase.getDateNumber(this.today);
   
@@ -170,6 +172,9 @@ export class UserEventComponent implements OnInit {
         if (snapshots[i].uid == this.userId) {
           //if the model has past events
           this.pastEventsUser.push(snapshots[i]); //push it to pastEvents
+          if(snapshots[i].is_late){
+            this.lateCounter++;
+          }
         }
       }
     });

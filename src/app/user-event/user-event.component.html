@@ -308,11 +308,14 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
 
     <div *ngIf="element" class="cancellation">
       <div style="display: flex; justify-content: space-beteen">
-        <h5 style="margin-right: 30px">
-          No Shows: <span>{{ valid(element.no_show) }}</span>
+        <h5 style="margin-right: 40px">
+          No-Shows: <span>{{ valid(element.no_show) }}</span>
+        </h5>
+        <h5 style="margin-right: 40px">
+          Cancellations: <span>{{ valid(element.cancellations) }}</span>
         </h5>
         <h5>
-          Cancellations: <span>{{ valid(element.cancellations) }}</span>
+          Late Arrivals: <span>{{ lateCounter }}</span>
         </h5>
       </div>
       <div id="scrollable-area" *ngIf="cancelledEventsUser.length != 0">
@@ -345,6 +348,7 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
     </div>
   </div>
 
+  <!-- Delete user Warning -->
   <ng-template #deleteUser let-modal2>
     <div
       class="modal-header text-center"

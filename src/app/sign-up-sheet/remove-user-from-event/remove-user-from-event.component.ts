@@ -27,7 +27,9 @@ export class RemoveUserFromEventComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private fs: FirebaseService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cancellationType = "";
+  }
 
   open(content) {
     this.modalReference = this.modalService.open(content, {

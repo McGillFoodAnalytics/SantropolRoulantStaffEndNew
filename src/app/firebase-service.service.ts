@@ -39,12 +39,11 @@ export class FirebaseService {
   };
 
   days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  frequency = {
-    1: 7,
-    2: 14,
-    3: 21
-  }
 
+  months = [
+    "January", "February", "March", "April", "May", "June", "July", "August","September", "October", "November", "December"
+  ];
+ 
   constructor(private db: AngularFireDatabase) {}
 
   markLate(shiftId: any) {
@@ -353,31 +352,8 @@ export class FirebaseService {
   }
   
   getDateString(dateval) {
-    var days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    var dayName = days[dateval.getDay()];
-    var monthName = months[dateval.getMonth()];
+    var dayName = this.days[dateval.getDay()];
+    var monthName = this.months[dateval.getMonth()];
     var dateString =
       dayName +
       ", " +
