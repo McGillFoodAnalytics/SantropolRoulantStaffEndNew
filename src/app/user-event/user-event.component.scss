@@ -322,10 +322,6 @@ input.apple-switch:checked:after {
   z-index: 100;
 }
 
-:host::ng-deep app-copyright-footer .copyrightFooter {
-  margin-top: -85px;
-}
-
 #phoneNumErrorMsg{
   position: fixed; 
   left: 490px; 
