@@ -7,42 +7,56 @@
     <div class="row" style="padding-top: 2rem; padding-bottom: 1rem">
       <div class="col" id="header" style="text-align: center">
         <img src="../../../assets/santropol-logo.png" alt="" id="logoSantrR" />
-        <h1
-          class="header-text"
-          style="
-            padding: 0.5rem;
-            text-align: center;
-            color: #60a4ff;
-            margin-left: -68px;
-          "
-        >
-         Schedule
-        </h1>
+        <h1 class="header-text">Schedule</h1>
         <img src="../../../assets/McGillFACLogo.png" alt="" id="logoMcGill" />
       </div>
     </div>
     <div class="row weekTitle">
       <div class="col">
-        <div class="card" style="margin-top: -16px; border-color: #60a4ff; border-radius: 0;">
-          <div class="card-header" style="border-radius: 0; border: none;">
+        <div
+          class="card"
+          style="margin-top: -16px; border-color: #60a4ff; border-radius: 0"
+        >
+          <div class="card-header" style="border-radius: 0; border: none">
             <div class="row">
               <div class="col-8" style="text-align: center">
                 <button
-                  class="btn"
+                  matTooltip="Go to first week"
+                  class="btn first-last-btn"
+                  (click)="firstWeek()"
+                  onclick="this.blur()"
+                  *ngIf="currentWeek != 'first'"
+                  style="margin-right: 5px;"
+                >
+                  <mat-icon>first_page</mat-icon>
+                </button>
+                <button
+                  matTooltip="Go to previous week"
+                  class="btn next-prev-btn"
                   (click)="prevWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'first'"
                 >
-                  <mat-icon>arrow_back_ios</mat-icon>
+                  <mat-icon id="week-nav">arrow_back_ios</mat-icon>
                 </button>
-                {{ getWeekTitle() }}
+                <span>{{ getWeekTitle() }}</span>
                 <button
-                  class="btn"
+                  matTooltip="Go to next week"
+                  class="btn next-prev-btn"
                   (click)="nextWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'fifth'"
                 >
-                  <mat-icon>arrow_forward_ios</mat-icon>
+                  <mat-icon id="week-nav">arrow_forward_ios</mat-icon>
+                </button>
+                <button
+                  matTooltip="Go to last week"
+                  class="btn first-last-btn"
+                  (click)="lastWeek()"
+                  onclick="this.blur()"
+                  *ngIf="currentWeek != 'fifth'"
+                >
+                  <mat-icon>last_page</mat-icon>
                 </button>
               </div>
             </div>
@@ -51,18 +65,17 @@
       </div>
     </div>
     <div class="shiftHeaders">
-      <div style="display:flex; text-align: center;">
+      <div style="display: flex; text-align: center">
         <div *ngFor="let day of getEventList(currentEvent) | keyvalue">
           <div class="cardTitle">
-          <span>
-            {{ day.value.display_date | date: "EEEE, MMM d" }}
-          </span>
+            <span>
+              {{ day.value.display_date | date: "EEEE, MMM d" }}
+            </span>
           </div>
         </div>
       </div>
     </div>
-    
-    
+
     <div class="container-fluid">
       <app-slider [activePane]="currentWeek">
         <!-- First Week Pane -->
@@ -94,10 +107,7 @@
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div
-                  class="card-footer"
-                  *ngIf="day.value.slots[0].id != 'N/A'"
-                >
+                <div class="card-footer" *ngIf="day.value.slots[0].id != 'N/A'">
                   <img
                     class="img-important-event-true"
                     *ngIf="
@@ -177,10 +187,7 @@
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div
-                  class="card-footer"
-                  *ngIf="day.value.slots[0].id != 'N/A'"
-                >
+                <div class="card-footer" *ngIf="day.value.slots[0].id != 'N/A'">
                   <img
                     class="img-important-event-true"
                     *ngIf="
@@ -214,7 +221,8 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon id="shiftNote"
+                  <mat-icon
+                    id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -256,10 +264,7 @@
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div
-                  class="card-footer"
-                  *ngIf="day.value.slots[0].id != 'N/A'"
-                >
+                <div class="card-footer" *ngIf="day.value.slots[0].id != 'N/A'">
                   <img
                     class="img-important-event-true"
                     *ngIf="
@@ -292,7 +297,8 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon id="shiftNote"
+                  <mat-icon
+                    id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -335,13 +341,13 @@
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div
-                  class="card-footer"
-                  *ngIf="day.value.slots[0].id != 'N/A'"
-                >
+                <div class="card-footer" *ngIf="day.value.slots[0].id != 'N/A'">
                   <img
                     class="img-important-event-true"
-                    *ngIf=" day.value.is_important_event; else importantEventFalse"
+                    *ngIf="
+                      day.value.is_important_event;
+                      else importantEventFalse
+                    "
                     src="assets/important-event-true.png"
                     width="30px"
                     style="margin-right: 1rem"
@@ -368,7 +374,8 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon id="shiftNote"
+                  <mat-icon
+                    id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
@@ -411,13 +418,13 @@
                   >
                   </app-event-sign-up-table>
                 </div>
-                <div
-                  class="card-footer"
-                  *ngIf="day.value.slots[0].id != 'N/A'"
-                >
+                <div class="card-footer" *ngIf="day.value.slots[0].id != 'N/A'">
                   <img
                     class="img-important-event-true"
-                    *ngIf=" day.value.is_important_event; else importantEventFalse"
+                    *ngIf="
+                      day.value.is_important_event;
+                      else importantEventFalse
+                    "
                     src="assets/important-event-true.png"
                     width="30px"
                     style="margin-right: 1rem"
@@ -444,7 +451,8 @@
                     matTooltip="Click to view & edit the event note"
                   >
                   </app-event-note>
-                  <mat-icon id="shiftNote"
+                  <mat-icon
+                    id="shiftNote"
                     *ngIf="
                       day.value.slots[0].event_note != null &&
                       day.value.slots[0].event_note.length > 0
