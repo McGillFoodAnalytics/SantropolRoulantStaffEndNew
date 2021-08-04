@@ -315,6 +315,14 @@ export class SignUpSheetComponent implements OnInit {
     }
   }
 
+  firstWeek() {
+    this.currentWeek = "first";
+  }
+
+  lastWeek() {
+    this.currentWeek = "fifth";
+  }
+
   getWeekTitle() {
     if (this.currentWeek == "first") {
       return this.weekRange1;
