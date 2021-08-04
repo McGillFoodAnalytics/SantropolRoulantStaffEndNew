@@ -79,7 +79,6 @@ import {SliderComponent} from './slider/slider.component';
 import {AddUserToEventComponent} from './sign-up-sheet/add-user-to-event/add-user-to-event.component';
 import {RemoveUserFromEventComponent} from './sign-up-sheet/remove-user-from-event/remove-user-from-event.component';
 import {ToolbarComponent} from './toolbar/toolbar.component';
-import {MarkPermanentEventComponent} from './sign-up-sheet/mark-permanent-event/mark-permanent-event.component';
 import {PermanentVolunteerComponent} from './permanent-volunteer/permanent-volunteer.component';
 import {PermanentVolunteerDirectoryComponent} from './permanent-volunteer-directory/permanent-volunteer-directory.component';
 import {EventSignUpTableComponent} from './sign-up-sheet/event-sign-up-table/event-sign-up-table.component';
@@ -90,7 +89,6 @@ import {EventNoteComponent} from './sign-up-sheet/event-note/event-note.componen
 import {UserEventComponent} from './user-event/user-event.component';
 //import {HomeComponent} from './home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NewScheduleComponent } from './sign-up-sheet/new-schedule/new-schedule.component';
 import { WeekGeneratorComponent } from './week-generator/week-generator.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AccountComponent } from './account/account.component';
@@ -151,7 +149,6 @@ const appRoutes: Routes = [
     AddUserToEventComponent,
     RemoveUserFromEventComponent,
     ToolbarComponent,
-    MarkPermanentEventComponent,
     PermanentVolunteerComponent,
     PermanentVolunteerDirectoryComponent,
     EventSignUpTableComponent,
@@ -161,7 +158,6 @@ const appRoutes: Routes = [
     EventNoteComponent,
     VolunteerDirectoryComponent,
     UserEventComponent,
-    NewScheduleComponent,
     WeekGeneratorComponent,
     UserProfileComponent,
     AccountComponent,
