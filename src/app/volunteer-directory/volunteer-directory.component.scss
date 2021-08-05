@@ -112,9 +112,5 @@ tr.element-row:not(.expanded-row):active {
   width: 95%;
   margin-left: 2.5%;
   margin-right: 2.5%;
-  margin-bottom: 140px;
-}
-
-:host::ng-deep app-copyright-footer .copyrightFooter {
-  margin-top: -115px;
+  margin-bottom: 80px;
 }

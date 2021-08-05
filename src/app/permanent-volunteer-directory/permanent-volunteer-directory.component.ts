@@ -5,7 +5,6 @@ import {FirebaseService} from '../firebase-service.service';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { sanitizeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-permanent-volunteer-directory',
@@ -34,7 +33,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   };
 
   private eventsObservable;
-  private model: any = {};
+  private shift: any;
   result: Observable<any>
   today: any;
   volunteerToRemove;
@@ -101,7 +100,6 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   }
 
   open(content, windowClass) {
-    console.log(content)
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       size: 'sm',
@@ -150,6 +148,7 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   }
 
   setVolunteer(recurringShift) {
+    this.shift = recurringShift;
     this.volunteerToRemove = 
     recurringShift.first_name + " " + recurringShift.last_name;
   }
