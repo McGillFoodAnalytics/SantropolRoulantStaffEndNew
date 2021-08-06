@@ -100,11 +100,13 @@
     </div>
   </ng-template>
 
-
   <!-- User Profile -->
   <div class="modal-body profile" *ngIf="validId">
     <div *ngIf="element">
-      <h4 style="height: 5px;">{{ element.first_name }} {{ element.last_name }}</h4> <br>
+      <h4 style="height: 5px">
+        {{ element.first_name }} {{ element.last_name }}
+      </h4>
+      <br />
       <div
         class="status"
         *ngIf="element.active_status || element.active_status == null"
@@ -161,15 +163,9 @@
           />
           <div class="input-group">
             <input
-              id="editInputAddrNum"
-              formControlName="address_number"
-              placeholder="Number"
-              required
-            />
-            <input
               id="editInputAddrStr"
-              formControlName="address_street"
-              placeholder="Street"
+              formControlName="address"
+              placeholder="Address Line"
               required
             />
             <input
@@ -270,7 +266,7 @@
           <td>
             <mat-icon>home</mat-icon>
             <pre>
-Address:<span id="info-field" *ngIf="!displayForm">{{element.address_number }} {{element.address_street}}, {{ element.address_city }}, {{ element.address_postal_code }}</span></pre>
+Address:<span id="info-field" *ngIf="!displayForm"> {{element.address}}, {{ element.address_city }}, {{ element.address_postal_code }}</span></pre>
           </td>
         </tr>
         <tr>
@@ -389,6 +385,5 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
       This user does not exists!
     </h4>
   </div>
-
   <app-copyright-footer></app-copyright-footer>
 </html>
