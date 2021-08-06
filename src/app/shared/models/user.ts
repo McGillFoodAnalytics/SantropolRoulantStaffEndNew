@@ -1,8 +1,8 @@
 export class User {
   public address_city: string;
-  public address_number: number;
+  public active_status: boolean;
   public address_postal_code: string;
-  public address_street: string;
+  public address: string;
   public dob: string;
   public email: string;
   public first_name: string;

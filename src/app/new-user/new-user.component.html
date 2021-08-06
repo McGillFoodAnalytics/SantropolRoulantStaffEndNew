@@ -66,34 +66,18 @@
           <mat-form-field>
             <input
               matInput
-              placeholder="Street Number"
-              formControlName="address_number"
+              placeholder="Address Line"
+              formControlName="address"
             />
             <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
         <div class="form-group col-md-4">
           <mat-form-field>
-            <input
-              matInput
-              placeholder="Street Name"
-              formControlName="address_street"
-            />
+            <input matInput placeholder="City" formControlName="address_city" />
             <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group col-md-4">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="City"
-              formControlName="address_city"
-            />
-            <mat-error>Required!</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="form-row mb-12">
         <div class="form-group col-md-4">
           <mat-form-field>
             <input
@@ -104,6 +88,8 @@
             <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>
+      </div>
+      <div class="form-row mb-12">
         <div class="form-group col-md-4">
           <mat-form-field>
             <input

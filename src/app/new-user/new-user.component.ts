@@ -14,7 +14,6 @@ import "@firebase/auth";
   styleUrls: ["./new-user.component.scss"],
 })
 export class NewUserComponent implements OnInit {
-
   private model = new User();
   private myForm: FormGroup;
   private modalReference;
@@ -22,8 +21,8 @@ export class NewUserComponent implements OnInit {
   private randPassword;
   private errorMsg;
 
-  @ViewChild('newUserError') templateRefErr: TemplateRef<any>;
-  
+  @ViewChild("newUserError") templateRefErr: TemplateRef<any>;
+
   constructor(
     private modalService: NgbModal,
     private db: AngularFireDatabase,
@@ -42,8 +41,7 @@ export class NewUserComponent implements OnInit {
       first_name: ["", Validators.required],
       last_name: ["", Validators.required],
       dob: ["", Validators.required],
-      address_number: ["", Validators.required],
-      address_street: ["", Validators.required],
+      address: ["", Validators.required],
       address_city: ["", Validators.required],
       address_postal_code: ["", Validators.required],
       email: ["", Validators.required],
@@ -64,7 +62,7 @@ export class NewUserComponent implements OnInit {
     this.modalReference = this.modalService.open(content, {
       ariaLabelledBy: "modal-basic-title",
       size: "lg",
-      centered: true
+      centered: true,
     });
   }
 
@@ -81,7 +79,7 @@ export class NewUserComponent implements OnInit {
     );
     let authWorkerAuth = firebase.auth(authWorkerApp);
     authWorkerAuth.setPersistence(firebase.auth.Auth.Persistence.NONE); // disables caching of account credentials
-    
+
     this.randPassword = await this.generateRandomPassword();
 
     // Use the dummy app to create a new user
@@ -91,9 +89,8 @@ export class NewUserComponent implements OnInit {
         // Signed in
         this.db.object("/user/" + user.id).update({
           address_city: user.address_city,
-          address_number: user.address_number,
           address_postal_code: user.address_postal_code,
-          address_street: user.address_street,
+          address: user.address,
           dob: user.dob,
           email: user.email,
           first_name: user.first_name,
@@ -113,7 +110,7 @@ export class NewUserComponent implements OnInit {
         var errorCode = error.code;
         var errorMessage = error.message;
         this.errorMsg = error.message;
-        this.modalService.open(this.templateRefErr, {centered: true});
+        this.modalService.open(this.templateRefErr, { centered: true });
       });
   }
 
@@ -138,7 +135,8 @@ export class NewUserComponent implements OnInit {
     return this.shuffleArray(
       randPasswordArray.map((x) => {
         return x[Math.floor(Math.random() * x.length)];
-      })).join("");
+      })
+    ).join("");
   }
 
   shuffleArray(array) {
@@ -155,15 +153,22 @@ export class NewUserComponent implements OnInit {
     this.model.first_name = this.myForm.get("first_name").value;
     this.model.last_name = this.myForm.get("last_name").value;
     this.model.dob = this.myForm.get("dob").value;
-    this.model.address_number = this.myForm.get("address_number").value;
-    this.model.address_street = this.myForm.get("address_street").value;
+    this.model.address = this.myForm.get("address").value;
     this.model.address_city = this.myForm.get("address_city").value;
-    this.model.address_postal_code = this.myForm.get("address_postal_code").value;
+    this.model.address_postal_code = this.myForm.get(
+      "address_postal_code"
+    ).value;
     this.model.email = this.myForm.get("email").value;
     this.model.phone_number = this.myForm.get("phone_number").value;
-    this.model.emergency_contact_name = this.myForm.get("emergency_contact_name").value;
-    this.model.emergency_relationship = this.myForm.get("emergency_relationship").value;
-    this.model.emergency_contact_number = this.myForm.get("emergency_contact_number").value;
+    this.model.emergency_contact_name = this.myForm.get(
+      "emergency_contact_name"
+    ).value;
+    this.model.emergency_relationship = this.myForm.get(
+      "emergency_relationship"
+    ).value;
+    this.model.emergency_contact_number = this.myForm.get(
+      "emergency_contact_number"
+    ).value;
     return this.model;
   }
 }

@@ -47,7 +47,7 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
 
 function printStrings(date) {
   var types = ['deldr', 'deliv', 'kitam', 'kitpm'];
-  var slotAmount = [4, 10, 5, 5];
+  var slotAmount = [4, 10, 6, 6];
   var startTimes = ['14:45', '14:45', '9:30', '13:30'];
   var endTimes = ['18:00', '18:00', '12:30', '16:00'];
   var startTimesSat = ['14:15', '14:15', '9:00', '13:00'];
@@ -59,7 +59,7 @@ function printStrings(date) {
       date2.setTime(date.getTime() + incrementInMilliseconds);
       let dateNumber = getDateNumber(date2);
       let dateString = getDateString(date2);
-      for (let j = 0; j < 5; j++) { //for each slot
+      for (let j = 0; j < slotAmount[3]; j++) { //for each slot
         console.log(dateNumber + 'kitpm' + pad(j + 1, 2));
         var eventNameRef = admin.database().ref('/event/' + dateNumber + 'kitpm' + pad(j + 1, 2));
         eventNameRef.set({
