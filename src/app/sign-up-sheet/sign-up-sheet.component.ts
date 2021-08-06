@@ -55,15 +55,16 @@ export class SignUpSheetComponent implements OnInit {
   private week3;
   private week4;
   private week5;
+  private weekEventCount = [0,0,0,0,0];
   private weekRange1: string;
   private weekRange2: string;
   private weekRange3: string;
   private weekRange4: string;
   private weekRange5: string;
   source;
- 
+
   dataSource = new MatTableDataSource();
-  
+
   currentWeek = "first";
   eventTypes = {
     "Kitchen AM": "kitam",
@@ -86,7 +87,7 @@ export class SignUpSheetComponent implements OnInit {
   constructor(private userTransfer: UserTransferService, private db: AngularFireDatabase, private fs: FirebaseService) {}
 
   ngOnInit() {
-    //trigger the toolbar to load 
+    //trigger the toolbar to load
     this.userTransfer.loginUpdate(true);
 
     this.events = this.fs.getEvents();
@@ -94,9 +95,32 @@ export class SignUpSheetComponent implements OnInit {
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
     this.db.list("event").auditTrail().subscribe((changes) => {
+      incrementer = 0;
+      thisMonday = getMonday(new Date());
+      incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7;
+      thisMonday.setDate(thisMonday.getDate() + incrementInMilliseconds);
+      thisDateNumber = this.fs.getDateNumber(thisMonday);
+      changes.forEach((snapshot) => {
+        if(snapshot.event_date < thisDateNumber){
+          this.weekEventCount[incrementer]++;
+        } else {
+          incrementer++;
+          thisMonday.setDate(thisMonday.getDate() + incrementInMilliseconds);
+          thisDateNumber = this.fs.getDateNumber(thisMonday);
+          console.log(this.weekEventCount);
+        }
+      });
+    });
+    this.db.list("event").auditTrail().subscribe((changes) => {
       this.formatEventDates();
     });
     this.removeLoading();
+  }
+
+  function getMonday(d) {
+    var day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
   }
 
   removeLoading() {
@@ -172,7 +196,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week1[event_type][event_date]["num_slots"] =
             this.week1[event_type][event_date]["num_slots"] + 1;
           this.week1[event_type][event_date]["slots"].push(snapshot);
-        } // Week 2 
+        } // Week 2
         else if (i >= events_per_week && i < 2 * events_per_week) {
           if (!(event_type in this.week2)) {
             this.week2[event_type] = {};
@@ -214,7 +238,7 @@ export class SignUpSheetComponent implements OnInit {
           this.week3[event_type][event_date]["num_slots"] =
             this.week3[event_type][event_date]["num_slots"] + 1;
           this.week3[event_type][event_date]["slots"].push(snapshot);
-        } // Week 4 
+        } // Week 4
         else if (i >= 3 * events_per_week && i < 4 * events_per_week) {
           if (!(event_type in this.week4)) {
             this.week4[event_type] = {};
@@ -277,39 +301,39 @@ export class SignUpSheetComponent implements OnInit {
 
   nextWeek() {
     switch(this.currentWeek){
-      case "first" : 
+      case "first" :
         this.currentWeek = "second";
         break;
 
-      case "second" : 
+      case "second" :
         this.currentWeek = "third";
         break;
 
-      case "third" : 
+      case "third" :
         this.currentWeek = "fourth";
         break;
 
-      case "fourth" : 
+      case "fourth" :
         this.currentWeek = "fifth";
-        break;   
+        break;
     }
   }
 
   prevWeek() {
     switch(this.currentWeek){
-      case "second" : 
+      case "second" :
         this.currentWeek = "first";
         break;
-       
-      case "third" : 
-        this.currentWeek = "second";
-        break;  
 
-      case "fourth" : 
+      case "third" :
+        this.currentWeek = "second";
+        break;
+
+      case "fourth" :
         this.currentWeek = "third";
         break;
 
-      case "fifth" : 
+      case "fifth" :
         this.currentWeek = "fourth";
         break;
     }
@@ -336,6 +360,13 @@ export class SignUpSheetComponent implements OnInit {
     else{
       return this.weekRange5;
     }
+  }
+
+  getMonday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+    diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
   }
 
   setWeekRange(week) {
@@ -412,7 +443,7 @@ export class SignUpSheetComponent implements OnInit {
   getEventList(eventType) {
     var currentEventValue = this.eventTypes[eventType];
 
-    // This if-check is used to make sure the method call 
+    // This if-check is used to make sure the method call
     // occurs only after initializing week1
     if(this.week1){
       if (this.currentWeek == "first") {
@@ -421,14 +452,14 @@ export class SignUpSheetComponent implements OnInit {
           this.addEmptyThursday(this.week1[currentEventValue]);
         }
         return this.week1[currentEventValue];
-      } 
+      }
       else if (this.currentWeek == "second") {
         let week2 = Object.keys(this.week2[currentEventValue]);
         if (week2.length == 5) {
           this.addEmptyThursday(this.week2[currentEventValue]);
         }
         return this.week2[currentEventValue];
-      } 
+      }
       else if (this.currentWeek == "third"){
         let week3 = Object.keys(this.week3[currentEventValue]);
         if (week3.length == 5) {
@@ -480,8 +511,8 @@ export class SignUpSheetComponent implements OnInit {
       display_date: this.getDisplayDate(date),
     };
   }
- 
-  
+
+
   // Used for new format of week-shift display
   changeEventImportance(day: string, eventType: string) {
     var slots;
@@ -519,8 +550,8 @@ export class SignUpSheetComponent implements OnInit {
         is_important_event;
       slots = this.week5[currentEventValue][day]["slots"];
     }
-    this.fs.changeEventImportance(slots[0]["id"], is_important_event);  
-  } 
+    this.fs.changeEventImportance(slots[0]["id"], is_important_event);
+  }
 
   getVolunteerList() {
     return this.volunteerList;
