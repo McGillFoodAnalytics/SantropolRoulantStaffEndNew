@@ -94,30 +94,52 @@ export class SignUpSheetComponent implements OnInit {
     this.formatEventDates();
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-    this.db.list("event").auditTrail().subscribe((changes) => {
-      incrementer = 0;
-      thisMonday = getMonday(new Date());
-      incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7;
-      thisMonday.setDate(thisMonday.getDate() + incrementInMilliseconds);
-      thisDateNumber = this.fs.getDateNumber(thisMonday);
-      changes.forEach((snapshot) => {
-        if(snapshot.event_date < thisDateNumber){
-          this.weekEventCount[incrementer]++;
-        } else {
-          incrementer++;
-          thisMonday.setDate(thisMonday.getDate() + incrementInMilliseconds);
-          thisDateNumber = this.fs.getDateNumber(thisMonday);
-          console.log(this.weekEventCount);
+
+
+
+
+
+
+
+
+
+
+    this.events.subscribe((changes) => {
+      let incrementer = 0;
+      let thisMonday = this.getMonday(new Date());
+      let incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7;
+      thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
+      let thisDateNumber = this.fs.getDateNumber(thisMonday);
+      console.log(thisDateNumber);
+      changes.forEach((snapshot: any) => {
+        if (incrementer < 5) {
+          if(snapshot.event_date < thisDateNumber){
+            this.weekEventCount[incrementer]++;
+          } else {
+            incrementer++;
+            if(incrementer != 5){
+              this.weekEventCount[incrementer]++;
+            }
+            thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
+            thisDateNumber = this.fs.getDateNumber(thisMonday);
+            console.log(thisDateNumber);
+          }
         }
       });
+      console.log(this.weekEventCount);
     });
+
+
+
+
+
     this.db.list("event").auditTrail().subscribe((changes) => {
       this.formatEventDates();
     });
     this.removeLoading();
   }
 
-  function getMonday(d) {
+  getMonday(d) {
     var day = d.getDay(),
     diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
     return new Date(d.setDate(diff));
@@ -360,13 +382,6 @@ export class SignUpSheetComponent implements OnInit {
     else{
       return this.weekRange5;
     }
-  }
-
-  getMonday(d) {
-    d = new Date(d);
-    var day = d.getDay(),
-    diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-    return new Date(d.setDate(diff));
   }
 
   setWeekRange(week) {
