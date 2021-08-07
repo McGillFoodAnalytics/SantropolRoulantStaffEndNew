@@ -29,6 +29,7 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
           first_shift: snapshot.val().first_shift,
           is_current: false,
           is_important_event: snapshot.val().is_important_event,
+          is_late: snapshot.val().is_late,
           key: snapshot.val().key,
           last_name: snapshot.val().last_name,
           note: snapshot.val().note,
