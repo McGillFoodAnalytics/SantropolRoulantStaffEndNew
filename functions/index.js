@@ -19,6 +19,10 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
     if (snapshot.val().event_date < firstDateNumber) { //it's the same date and type
       if (snapshot.val().key != "nan"){
         var eventNameRef = admin.database().ref('/past_events/' + snapshot.key);
+        let late = false;
+        if(snapshot.val().is_late){
+          late = true;
+        }
         eventNameRef.set({
           event_date: snapshot.val().event_date,
           event_date_txt: snapshot.val().event_date_txt,
@@ -29,7 +33,7 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
           first_shift: snapshot.val().first_shift,
           is_current: false,
           is_important_event: snapshot.val().is_important_event,
-          is_late: snapshot.val().is_late,
+          is_late: late,
           key: snapshot.val().key,
           last_name: snapshot.val().last_name,
           note: snapshot.val().note,
