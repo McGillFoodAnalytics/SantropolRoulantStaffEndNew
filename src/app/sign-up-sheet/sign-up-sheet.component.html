@@ -22,41 +22,40 @@
               <div class="col-8" style="text-align: center">
                 <button
                   matTooltip="Go to first week"
-                  class="btn first-last-btn"
+                  class="btn first-last"
                   (click)="firstWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'first'"
-                  style="margin-right: 5px;"
                 >
                   <mat-icon>first_page</mat-icon>
                 </button>
                 <button
                   matTooltip="Go to previous week"
-                  class="btn next-prev-btn"
+                  class="btn next-prev"
                   (click)="prevWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'first'"
                 >
-                  <mat-icon id="week-nav">arrow_back_ios</mat-icon>
+                  <mat-icon id="arrow-back">arrow_back_ios</mat-icon>
                 </button>
-                <span>{{ getWeekTitle() }}</span>
+                <span style="position: relative; top: 2px;">{{ getWeekTitle() }}</span>
                 <button
                   matTooltip="Go to next week"
-                  class="btn next-prev-btn"
+                  class="btn next-prev"
                   (click)="nextWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'fifth'"
                 >
-                  <mat-icon id="week-nav">arrow_forward_ios</mat-icon>
+                  <mat-icon>arrow_forward_ios</mat-icon>
                 </button>
                 <button
                   matTooltip="Go to last week"
-                  class="btn first-last-btn"
+                  class="btn first-last"
                   (click)="lastWeek()"
                   onclick="this.blur()"
                   *ngIf="currentWeek != 'fifth'"
                 >
-                  <mat-icon>last_page</mat-icon>
+                  <mat-icon id="first-last-icon">last_page</mat-icon>
                 </button>
               </div>
             </div>
