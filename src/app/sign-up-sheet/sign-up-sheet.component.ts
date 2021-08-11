@@ -90,52 +90,15 @@ export class SignUpSheetComponent implements OnInit {
     //trigger the toolbar to load
     this.userTransfer.loginUpdate(true);
 
-    this.events = this.fs.getEvents();
-    this.formatEventDates();
+    this.getNumberOfShifts();
+
     this.volunteers = this.fs.getUsers();
     this.setVolunteerList();
-
-
-
-
-
-
-
-
-
-
-    this.events.subscribe((changes) => {
-      let incrementer = 0;
-      let thisMonday = this.getMonday(new Date());
-      let incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7;
-      thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
-      let thisDateNumber = this.fs.getDateNumber(thisMonday);
-      console.log(thisDateNumber);
-      changes.forEach((snapshot: any) => {
-        if (incrementer < 5) {
-          if(snapshot.event_date < thisDateNumber){
-            this.weekEventCount[incrementer]++;
-          } else {
-            incrementer++;
-            if(incrementer != 5){
-              this.weekEventCount[incrementer]++;
-            }
-            thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
-            thisDateNumber = this.fs.getDateNumber(thisMonday);
-            console.log(thisDateNumber);
-          }
-        }
-      });
-      console.log(this.weekEventCount);
-    });
-
-
-
-
 
     this.db.list("event").auditTrail().subscribe((changes) => {
       this.formatEventDates();
     });
+
     this.removeLoading();
   }
 
@@ -182,8 +145,43 @@ export class SignUpSheetComponent implements OnInit {
     });
   }
 
+  getNumberOfShifts() {
+    this.events = this.fs.getEvents();
+    this.events.subscribe((changes) => {
+      let incrementer = 0;
+      let thisMonday = this.getMonday(new Date());
+      let incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7;
+      thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
+      let thisDateNumber = this.fs.getDateNumber(thisMonday);
+      console.log(thisDateNumber);
+      changes.forEach((snapshot: any) => {
+        if (incrementer < 5) {
+          if(snapshot.event_date < thisDateNumber){
+            this.weekEventCount[incrementer]++;
+          } else {
+            incrementer++;
+            if(incrementer != 5){
+              this.weekEventCount[incrementer]++;
+            }
+            else {
+              this.weekEventCount[1] += this.weekEventCount[0];
+              this.weekEventCount[2] += this.weekEventCount[1];
+              this.weekEventCount[3] += this.weekEventCount[2];
+              this.weekEventCount[4] += this.weekEventCount[3];
+            }
+            thisMonday.setTime(thisMonday.getTime() + incrementInMilliseconds);
+            thisDateNumber = this.fs.getDateNumber(thisMonday);
+            //console.log(thisDateNumber);
+          }
+        }
+      });
+      console.log(this.weekEventCount);
+    });
+    this.formatEventDates();
+    return;
+  }
+
   formatEventDates() {
-    const events_per_week = 136;
     let sub = this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
@@ -198,7 +196,7 @@ export class SignUpSheetComponent implements OnInit {
           event_type = snapshot.event_type.toString();
         }
         const event_date = snapshot.event_date;
-        if (i < events_per_week) {
+        if (i < this.weekEventCount[0]) {
           if (!(event_type in this.week1)) {
             this.week1[event_type] = {};
           }
@@ -219,7 +217,7 @@ export class SignUpSheetComponent implements OnInit {
             this.week1[event_type][event_date]["num_slots"] + 1;
           this.week1[event_type][event_date]["slots"].push(snapshot);
         } // Week 2
-        else if (i >= events_per_week && i < 2 * events_per_week) {
+        else if (i >= this.weekEventCount[0] && i < this.weekEventCount[1]) {
           if (!(event_type in this.week2)) {
             this.week2[event_type] = {};
           }
@@ -240,7 +238,7 @@ export class SignUpSheetComponent implements OnInit {
             this.week2[event_type][event_date]["num_slots"] + 1;
           this.week2[event_type][event_date]["slots"].push(snapshot);
         } //Week 3
-        else if (i >= 2 * events_per_week && i < 3 * events_per_week) {
+        else if (i >= this.weekEventCount[1] && i < this.weekEventCount[2]) {
           if (!(event_type in this.week3)) {
             this.week3[event_type] = {};
           }
@@ -261,7 +259,7 @@ export class SignUpSheetComponent implements OnInit {
             this.week3[event_type][event_date]["num_slots"] + 1;
           this.week3[event_type][event_date]["slots"].push(snapshot);
         } // Week 4
-        else if (i >= 3 * events_per_week && i < 4 * events_per_week) {
+        else if (i >= this.weekEventCount[2] && i < this.weekEventCount[3]) {
           if (!(event_type in this.week4)) {
             this.week4[event_type] = {};
           }
@@ -282,7 +280,7 @@ export class SignUpSheetComponent implements OnInit {
             this.week4[event_type][event_date]["num_slots"] + 1;
           this.week4[event_type][event_date]["slots"].push(snapshot);
         } //Week 5
-        else if (i >= 4 * events_per_week && i < 5 * events_per_week) {
+        else if (i >= this.weekEventCount[3] && i < this.weekEventCount[4]) {
           if (!(event_type in this.week5)) {
             this.week5[event_type] = {};
           }
