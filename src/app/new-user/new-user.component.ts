@@ -32,9 +32,11 @@ export class NewUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model.emergency_contact_name = "";
-    this.model.emergency_relationship = "";
-    this.model.emergency_contact_number = "";
+    // this.model.emergency_contact_name = "";
+    // this.model.emergency_relationship = "";
+    // this.model.emergency_contact_number = "";
+
+    console.log(this.getFormattedDate());
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
     this.myForm = this.formBuilder.group({
@@ -102,7 +104,7 @@ export class NewUserComponent implements OnInit {
           emergency_contact_number: user.emergency_contact_number,
           emergency_contact_name: user.emergency_contact_name,
           emergency_relationship: user.emergency_relationship,
-          signup_date: formatDate(new Date(), "yy/MM/dd", "en"),
+          signup_date: this.getFormattedDate(),
           cancellations: 0,
         });
       })
@@ -171,4 +173,13 @@ export class NewUserComponent implements OnInit {
     ).value;
     return this.model;
   }
+
+  getFormattedDate() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+  
+    return month + '/' + day + '/' + year;
+}
 }

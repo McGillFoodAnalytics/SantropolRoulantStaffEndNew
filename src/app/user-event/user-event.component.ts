@@ -95,6 +95,7 @@ export class UserEventComponent implements OnInit {
         if (user == null) {
           this.validId = false; //Do not display user profile
         } else {
+          this.loadForm();
           this.checkBox();
         }
       }
@@ -103,29 +104,28 @@ export class UserEventComponent implements OnInit {
     this.refresh();
   }
 
-  ngAfterViewInit() {
+  loadForm() {
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
-    this.firebase.delay(500).then(() => {
-      this.myForm = this.formBuilder.group({
-        dob: [this.element.dob, Validators.required],
-        address: [this.element.address, Validators.required],
-        address_city: [this.element.address_city, Validators.required],
-        address_postal_code: [
-          this.element.address_postal_code,
-          Validators.required,
-        ],
-        email: [this.element.email, Validators.required],
-        phone_number: [
-          this.element.phone_number,
-          Validators.pattern(phoneNumPattern),
-        ],
-        emergency_contact_name: [this.element.emergency_contact_name],
-        emergency_relationship: [this.element.emergency_relationship],
-        emergency_contact_number: [
-          this.element.emergency_contact_number,
-          Validators.pattern(phoneNumPattern),
-        ],
-      });
+
+    this.myForm = this.formBuilder.group({
+      dob: [this.element.dob, Validators.required],
+      address: [this.element.address, Validators.required],
+      address_city: [this.element.address_city, Validators.required],
+      address_postal_code: [
+        this.element.address_postal_code,
+        Validators.required,
+      ],
+      email: [this.element.email, Validators.required],
+      phone_number: [
+        this.element.phone_number,
+        Validators.pattern(phoneNumPattern),
+      ],
+      emergency_contact_name: [this.element.emergency_contact_name],
+      emergency_relationship: [this.element.emergency_relationship],
+      emergency_contact_number: [
+        this.element.emergency_contact_number,
+        Validators.pattern(phoneNumPattern),
+      ],
     });
   }
 
@@ -255,7 +255,8 @@ export class UserEventComponent implements OnInit {
 
   //Used for birthdate
   formatDate(date) {
-    if (date == null) {
+
+    if (date == null || date == "") {
       return "";
     }
     if (date.constructor == Date) {
@@ -288,17 +289,36 @@ export class UserEventComponent implements OnInit {
   }
 
   formatSignupDate(date: string) {
-    let year = "20" + date.substring(0, 2);
-    let day = date.substring(6);
-    let month = date.substring(3, 5);
+    //0 will stores month("mm"), 1 will store day("dd"), 2 will store year ("yyyy")
+    let times = {
+      0: "",
+      1: "",
+      2: ""
+    };
+
+    let counter = 0;
+    for (let index = 0; index < date.length; index++) {
+      if(date.charAt(index) === '/') {
+        counter++;
+      }
+      else{
+        times[counter] += date.charAt(index);
+      }
+    }
+    
+    let month = times[0];
+    let day = times[1];
+    let year = times[2];
+    
+
     const newDate = new Date(
       parseInt(year),
       parseInt(month) - 1,
       parseInt(day)
     );
 
-    let month2 = newDate.toLocaleString("default", { month: "long" });
-    date = month2 + " " + day + ", " + year;
+    month = newDate.toLocaleString("default", { month: "long" });
+    date = month + " " + day + ", " + year;
     return date;
   }
 
