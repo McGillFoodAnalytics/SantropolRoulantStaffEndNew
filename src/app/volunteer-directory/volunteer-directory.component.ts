@@ -40,7 +40,9 @@ export class VolunteerDirectoryComponent implements OnInit {
   ngAfterViewInit() {
     this.fs.getUsers().subscribe(snapshots => {
       snapshots.forEach(element => {
-        element.phone_number = this.prettifyPhoneNumber(element.phone_number)
+        element.phone_number = this.prettifyPhoneNumber(element.phone_number);
+          //Add new field to the list of vols that contains first and last name separated by a space, used for filtering. The field .a is important, since filter applies to fields ordered in alphabetical order
+          element.a = element.first_name + " " + element.last_name;
       });
     this.dataSource = new MatTableDataSource(snapshots);
     this.dataSource.sort = this.sort;

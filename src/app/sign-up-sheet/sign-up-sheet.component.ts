@@ -129,6 +129,8 @@ export class SignUpSheetComponent implements OnInit {
       this.volunteerListInitialized = false;
       snapshots.forEach((snapshot) => {
         if(snapshot.active_status){
+          //Add new field to the list of vols that contains first and last name separated by a space, used for filtering. The field .a is important, since filter applies to fields ordered in alphabetical order
+          snapshot.a = snapshot.first_name + " " + snapshot.last_name;
           this.volunteerList.push(snapshot);
         }
       });

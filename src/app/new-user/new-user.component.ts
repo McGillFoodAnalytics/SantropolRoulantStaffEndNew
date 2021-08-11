@@ -36,7 +36,6 @@ export class NewUserComponent implements OnInit {
     // this.model.emergency_relationship = "";
     // this.model.emergency_contact_number = "";
 
-    console.log(this.getFormattedDate());
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
     this.myForm = this.formBuilder.group({
