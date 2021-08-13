@@ -49,8 +49,6 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     console.log("Hide state at launch: " + this.welcomeHide);
 
-    console.log(this.router.url);
-
     /*
     if coming from toolbar button:
       loggedinmode()

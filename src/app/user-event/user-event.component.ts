@@ -14,6 +14,7 @@ import { Observable } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
 import { UserTransferService } from "../user-transfer.service";
+import {UserService} from '../user.service';
 
 @Component({
   selector: "app-user-event",
@@ -66,7 +67,8 @@ export class UserEventComponent implements OnInit {
     private modalService: NgbModal,
     private db: AngularFireDatabase,
     private firebase: FirebaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -168,8 +170,13 @@ export class UserEventComponent implements OnInit {
 
   //When deleting a user is confirmed
   onDelete() {
+    console.log("User: " + this.userId + "was deleted.")
     this.firebase.deleteUser(this.userId);
     this.modalReference2.close();
+    console.log(this.element.key)
+    this.userService.delete(this.element.key).subscribe(res => {
+      console.log(res)
+    })
     this.validId = false;
     this.unSub();
   }
