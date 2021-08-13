@@ -1,120 +1,162 @@
 <div class="page-title">
-    <h1>Account</h1>
+  <h1>Account</h1>
 </div>
 
 <body>
-
-    <div class="container">
-        <div class="backbox">
-            <div *ngIf="ready" class="loginMsg" [class.visibility]="loginMsgVisibility">
-                <div class="textcontent">
-                    <p class="title">Don't have an account?</p>
-                    <button id="switch1" (click)="signupMode()">Sign Up</button>
-                </div>
-            </div>
-            <div class="signupMsg" [class.visibility]="signupMsgVisibility">
-                <div class="textcontent">
-                    <p class="title">Have an<br>account?</p>
-                    <button id="switch2" (click)="loginMode()">Login</button>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="ready" class="frontbox" [class.animated]="shake" [class.shake]="shake" [class.moving]="frontBoxMoving" [class.center]="center">
-            <div class="login" [class.hide]="loginHide">
-                <h2>Login</h2>
-                <div class="inputbox">
-                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
-                    <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
-                </div>
-                <p (click)="resetMode()">Recover Password</p>
-                <button (click)="login()" class="frontbutton">LOG IN</button>
-            </div>
-
-            <div class="signup" [class.hide]="signupHide">
-                <h2>Sign up</h2>
-                <div class="inputbox">
-                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
-
-                </div>
-                <button (click)="signup()" class="frontbutton">SIGN UP</button>
-            </div>
-
-            <div *ngIf="!welcomeHide" class="welcome" [class.hide]="welcomeHide">
-
-                <form [formGroup]="form" (ngSubmit)="save()">
-
-                <div class="firstLine">
-
-                <div class="form-group welcomeName">
-                    <label>Full Name</label>
-                    <input type="string"
-                            formControlName="displayName"
-                            class="form-control">
-                </div>
-            
-                <div class="form-group welcomeEmail">
-                  <label>Email</label>
-                  <input type="email"
-                         formControlName="email"
-                         class="form-control"
-                         placeholder="example@mail.com">
-                </div>
-            
-                </div>
-
-                <div class="form-group welcomePhone">
-                    <label>Phone</label>
-                    <input type="phoneNumber"
-                           formControlName="phoneNumber"
-                           class="form-control"
-                           placeholder="+1xxxxxxxxxx">
-                </div>
-                    
-                  <div class = "passwords">
-
-                    <div class="form-group left">
-                    <label>Password</label>
-
-                    <input type="password"
-                           formControlName="password"
-                           class="form-control">
-                    </div>
-
-                    <div class="form-group right">
-                        <label>Confirm Password</label>
+  <div class="container">
     
-                        <input type="password"
-                               formControlName="confirmPassword"
-                               class="form-control">
-                    </div>
-
-                  </div>
-                
-                <button class="leftbutton" (click)="logout()">LOGOUT</button>
-                <button (click)="submitWelcome()" class="frontbutton">SUBMIT</button>
-
-                </form>
-            </div>
-
-            <div *ngIf="!loggedinHide" class="loggedin" [class.hide]="loggedinHide">
-                <img class="profileicon" src="https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile">
-                <p class="displayname">{{user.email}}</p>
-                <button class="leftbutton" (click)="open()">MANAGE</button>
-                <button (click)="logout()" class="frontbutton">LOGOUT</button>
-                <button *ngIf="user.role == 'admin' || user.email == 'kanjhassan@gmail.com'" (click)="openAdminSettings()" class="middlebutton">ADMIN SETTINGS</button>
-            </div>
-
-            <div class="reset" [class.hide]="resetHide">
-                <h2>Password Reset</h2>
-                <p>You will receive recovery instructions by email</p>
-                <div class="inputbox">
-                    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
-                </div>
-                <button (click)="loginMode()" class="leftbutton">CANCEL</button>
-                <button (click)="reset()" class="frontbutton">SUBMIT</button>
-            </div>
-
+      <div
+      *ngIf="ready"
+      class="logo"
+      [class.animated]="shake"
+      [class.shake]="shake"
+      [class.moving-logo]="frontBoxMoving"
+      [class.center-logo]="center"
+      >
+      <img src="../../../assets/santropol-logo.png" alt="" id="logo-santropol"/>
+        <!-- <div class="textcontent">
+          <p class="title">Don't have an account?</p>
+          <button id="switch1" (click)="signupMode()">Sign Up</button>
+        </div> -->
+      </div>
+      <!-- <div class="signupMsg" [class.visibility]="signupMsgVisibility">
+        <div class="textcontent">
+          <p class="title">Have an<br />account?</p>
+          <button id="switch2" (click)="loginMode()">Login</button>
         </div>
+      </div> -->
+    <div
+      *ngIf="ready"
+      class="frontbox"
+      [class.animated]="shake"
+      [class.shake]="shake"
+      [class.moving]="frontBoxMoving"
+      [class.center]="center"
+    >
+      <div class="login" [class.hide]="loginHide">
+        <h2>Login</h2>
+        <div class="inputbox">
+          <input
+            type="text"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+        <p (click)="resetMode()">Recover Password</p>
+        <button (click)="login()" class="frontbutton">LOG IN</button>
+      </div>
+
+      <div class="signup" [class.hide]="signupHide">
+        <h2>Sign up</h2>
+        <div class="inputbox">
+          <input
+            type="text"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Email"
+          />
+        </div>
+        <button (click)="signup()" class="frontbutton">SIGN UP</button>
+      </div>
+
+      <div *ngIf="!welcomeHide" class="welcome" [class.hide]="welcomeHide">
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <div class="firstLine">
+            <div class="form-group welcomeName">
+              <label>Full Name</label>
+              <input
+                type="string"
+                formControlName="displayName"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group welcomeEmail">
+              <label>Email</label>
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                placeholder="example@mail.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-group welcomePhone">
+            <label>Phone</label>
+            <input
+              type="phoneNumber"
+              formControlName="phoneNumber"
+              class="form-control"
+              placeholder="+1xxxxxxxxxx"
+            />
+          </div>
+
+          <div class="passwords">
+            <div class="form-group left">
+              <label>Password</label>
+
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+              />
+            </div>
+
+            <div class="form-group right">
+              <label>Confirm Password</label>
+
+              <input
+                type="password"
+                formControlName="confirmPassword"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <button class="leftbutton" (click)="logout()">LOGOUT</button>
+          <button (click)="submitWelcome()" class="frontbutton">SUBMIT</button>
+        </form>
+      </div>
+
+      <div *ngIf="!loggedinHide" class="loggedin" [class.hide]="loggedinHide">
+        <img
+          class="profileicon"
+          src="https://flaticons.net/icon.php?slug_category=application&slug_icon=user-profile"
+        />
+        <p class="displayname">{{ user.email }}</p>
+        <button class="leftbutton" (click)="open()">MANAGE</button>
+        <button (click)="logout()" class="frontbutton">LOGOUT</button>
+        <button
+          *ngIf="user.role == 'admin' || user.email == 'kanjhassan@gmail.com'"
+          (click)="openAdminSettings()"
+          class="middlebutton"
+        >
+          ADMIN SETTINGS
+        </button>
+      </div>
+
+      <div class="reset" [class.hide]="resetHide">
+        <h2>Password Reset</h2>
+        <p>You will receive recovery instructions by email</p>
+        <div class="inputbox">
+          <input
+            type="text"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Email"
+          />
+        </div>
+        <button (click)="loginMode()" class="leftbutton">CANCEL</button>
+        <button (click)="reset()" class="frontbutton">SUBMIT</button>
+      </div>
     </div>
+  </div>
 </body>
