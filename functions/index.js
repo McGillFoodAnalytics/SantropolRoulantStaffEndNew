@@ -41,6 +41,7 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
           uid: snapshot.val().uid
         });
       }
+      console.log("Deleted: " + snapshot.key);
       snapshot.ref.remove();
     }
     return 0;
@@ -65,7 +66,7 @@ function printStrings(date) {
       let dateNumber = getDateNumber(date2);
       let dateString = getDateString(date2);
       for (let j = 0; j < slotAmount[3]; j++) { //for each slot
-        console.log(dateNumber + 'kitpm' + pad(j + 1, 2));
+        console.log("Created" + dateNumber + 'kitpm' + pad(j + 1, 2));
         var eventNameRef = admin.database().ref('/event/' + dateNumber + 'kitpm' + pad(j + 1, 2));
         eventNameRef.set({
           event_date: dateNumber,
@@ -93,7 +94,7 @@ function printStrings(date) {
         let dateNumber = getDateNumber(date2);
         let dateString = getDateString(date2);
         for (let j = 0; j < slotAmount[i]; j++) { //for each slot
-          console.log(dateNumber + types[i] + pad(j + 1, 2));
+          console.log("Created" + dateNumber + types[i] + pad(j + 1, 2));
           var eventNameRef = admin.database().ref('/event/' + dateNumber + types[i] + pad(j + 1, 2));
           eventNameRef.set({
             event_date: dateNumber,
