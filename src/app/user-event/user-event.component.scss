@@ -338,6 +338,7 @@ input.apple-switch:checked:after {
 .table-shifts{
   height: 300px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .table-shifts th {

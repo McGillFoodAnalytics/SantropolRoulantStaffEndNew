@@ -9,6 +9,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class RemoveUserFromEventComponent implements OnInit {
 
+  private userKey;
   @Input() lastName;
   @Input() eventId;
   @Input() userId;
@@ -41,7 +42,11 @@ export class RemoveUserFromEventComponent implements OnInit {
   }
 
   onSubmit() {
-    this.fs.addCancellation(this.eventId, this.userId, this.cancellationNote, this.cancellationType);
+    let sub = this.fs.getUser(this.userId).subscribe(user =>{
+      this.userKey = user.key;
+      this.fs.addCancellation(this.eventId, this.userId, this.userKey, this.cancellationNote, this.cancellationType);
+      sub.unsubscribe();
+    });
     this.confirmRemove.emit("true");
     this.modalReference.close();
   }

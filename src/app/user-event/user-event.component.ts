@@ -28,7 +28,7 @@ export class UserEventComponent implements OnInit {
     "event_time_start",
     "event_time_end",
   ];
-  volunteers: Observable<any[]>;
+  
   events: Observable<any[]>;
   pastEvents: Observable<any[]>;
   cancelledEvents: Observable<any[]>;
@@ -104,6 +104,7 @@ export class UserEventComponent implements OnInit {
         }
       }
     });
+    this.pastEventsUser = [];
     this.displayPastEvents();
     this.refresh();
   }
@@ -205,7 +206,7 @@ export class UserEventComponent implements OnInit {
       this.pastEventsUser = [];
       let len = snapshots.length - 1;
       for (let i = len; i > -1; i--) {
-        if (snapshots[i].uid == this.userId) {
+        if (snapshots[i].key == this.element.key) {
           //if the model has past events
           this.pastEventsUser.push(snapshots[i]); //push it to pastEvents
           if (snapshots[i].is_late) {
@@ -222,7 +223,7 @@ export class UserEventComponent implements OnInit {
       this.currentEventsUser = [];
       snapshots.forEach((snapshot) => {
         if (!this.containsObject(snapshot, this.currentEventsUser)) {
-          if (snapshot.uid == this.userId) {
+          if (snapshot.key == this.element.key) {
             //if the model has current shifts
             if (snapshot.event_date < this.today) {
               this.pastEventsUser.push(snapshot);
@@ -240,7 +241,7 @@ export class UserEventComponent implements OnInit {
     this.cancelledShiftSub = this.cancelledEvents.subscribe((snapshots) => {
       this.cancelledEventsUser = [];
       snapshots.forEach((snapshot) => {
-        if (snapshot.user_id == this.userId) {
+        if (snapshot.key == this.element.key) {
           this.cancelledEventsUser.push(snapshot);
         }
       });

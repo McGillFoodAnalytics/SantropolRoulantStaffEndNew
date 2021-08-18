@@ -197,7 +197,7 @@ export class FirebaseService {
     });
   }
 
-  addCancellation(eventId: string, uid: string, reason: string, cancellation: string) {
+  addCancellation(eventId: string, uid: string, key: string, reason: string, cancellation: string) {
     if(cancellation == "no-show"){
       this.updateNoShows(uid);
     }
@@ -205,13 +205,13 @@ export class FirebaseService {
     if (reason == "" || reason == null) {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
-        user_id: uid,
+        key: key,
         cancellation_type: cancellation
       });
     } else {
       this.db.object("cancellation/" + eventId + "_" + uid).update({
         event_id: eventId,
-        user_id: uid,
+        key: key,
         reason: reason,
         cancellation_type: cancellation
       });
