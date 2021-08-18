@@ -14,6 +14,7 @@ import { Observable } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
 import { UserTransferService } from "../user-transfer.service";
+import {UserService} from '../user.service';
 
 @Component({
   selector: "app-user-event",
@@ -31,9 +32,9 @@ export class UserEventComponent implements OnInit {
   events: Observable<any[]>;
   pastEvents: Observable<any[]>;
   cancelledEvents: Observable<any[]>;
-  pastEventsUser: any;
-  currentEventsUser: any;
-  cancelledEventsUser: any;
+  pastEventsUser: any[];
+  currentEventsUser: any[];
+  cancelledEventsUser: any[];
   element: any;
   user: any;
   displayForm: boolean;
@@ -42,6 +43,7 @@ export class UserEventComponent implements OnInit {
   cancelledShiftSub;
   currentShiftSub;
   pastShiftSub;
+  volunteerSub;
   lateCounter;
   private myForm: FormGroup;
   private model = new User();
@@ -65,7 +67,8 @@ export class UserEventComponent implements OnInit {
     private modalService: NgbModal,
     private db: AngularFireDatabase,
     private firebase: FirebaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -79,13 +82,14 @@ export class UserEventComponent implements OnInit {
     this.validId = true;
     this.displayForm = false;
     this.events = this.firebase.getEvents();
+    this.cancelledEventsUser = [];
     this.cancelledEvents = this.firebase.getCancelledEvents();
     this.pastEvents = this.firebase.getPastEvents();
 
-    this.firebase.getUser(this.userId).subscribe((user) => {
+    this.volunteerSub = this.firebase.getUser(this.userId).subscribe((user) => {
       if (user) {
         this.element = user;
-
+        this.element.signup_date = this.formatSignupDate(this.element.signup_date);
         //Check if email is of the format from mobile app to change to be valid with  calender pick
         if (user.dob) {
           if (user.dob.length == 8) {
@@ -95,6 +99,7 @@ export class UserEventComponent implements OnInit {
         if (user == null) {
           this.validId = false; //Do not display user profile
         } else {
+          this.loadForm();
           this.checkBox();
         }
       }
@@ -103,35 +108,38 @@ export class UserEventComponent implements OnInit {
     this.refresh();
   }
 
-  ngAfterViewInit() {
+  loadForm() {
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
-    this.firebase.delay(500).then(() => {
-      this.myForm = this.formBuilder.group({
-        dob: [this.element.dob, Validators.required],
-        address: [this.element.address, Validators.required],
-        address_city: [this.element.address_city, Validators.required],
-        address_postal_code: [
-          this.element.address_postal_code,
-          Validators.required,
-        ],
-        email: [this.element.email, Validators.required],
-        phone_number: [
-          this.element.phone_number,
-          Validators.pattern(phoneNumPattern),
-        ],
-        emergency_contact_name: [this.element.emergency_contact_name],
-        emergency_relationship: [this.element.emergency_relationship],
-        emergency_contact_number: [
-          this.element.emergency_contact_number,
-          Validators.pattern(phoneNumPattern),
-        ],
-      });
+
+    this.myForm = this.formBuilder.group({
+      dob: [this.element.dob, Validators.required],
+      address: [this.element.address, Validators.required],
+      address_city: [this.element.address_city, Validators.required],
+      address_postal_code: [
+        this.element.address_postal_code,
+        Validators.required,
+      ],
+      email: [this.element.email, Validators.required],
+      phone_number: [
+        this.element.phone_number,
+        Validators.pattern(phoneNumPattern),
+      ],
+      emergency_contact_name: [this.element.emergency_contact_name],
+      emergency_relationship: [this.element.emergency_relationship],
+      emergency_contact_number: [
+        this.element.emergency_contact_number,
+        Validators.pattern(phoneNumPattern),
+      ],
     });
   }
 
   ngOnDestroy() {
+    this.volunteerSub.unsubscribe();
+    this.unSub();
+  }
+
+  unSub() {
     this.currentShiftSub.unsubscribe();
-    this.pastShiftSub.unsubscribe();
     this.cancelledShiftSub.unsubscribe();
   }
 
@@ -162,9 +170,15 @@ export class UserEventComponent implements OnInit {
 
   //When deleting a user is confirmed
   onDelete() {
+    console.log("User: " + this.userId + "was deleted.")
     this.firebase.deleteUser(this.userId);
     this.modalReference2.close();
+    console.log(this.element.key)
+    this.userService.delete(this.element.key).subscribe(res => {
+      console.log(res)
+    })
     this.validId = false;
+    this.unSub();
   }
 
   openEditForm() {
@@ -187,8 +201,8 @@ export class UserEventComponent implements OnInit {
   }
 
   displayPastEvents() {
-    this.pastEventsUser = [];
     this.pastShiftSub = this.pastEvents.subscribe((snapshots) => {
+      this.pastEventsUser = [];
       let len = snapshots.length - 1;
       for (let i = len; i > -1; i--) {
         if (snapshots[i].uid == this.userId) {
@@ -199,12 +213,13 @@ export class UserEventComponent implements OnInit {
           }
         }
       }
+      this.pastShiftSub.unsubscribe();
     });
   }
 
   displayCurrentEvents() {
-    this.currentEventsUser = [];
     this.currentShiftSub = this.events.subscribe((snapshots) => {
+      this.currentEventsUser = [];
       snapshots.forEach((snapshot) => {
         if (!this.containsObject(snapshot, this.currentEventsUser)) {
           if (snapshot.uid == this.userId) {
@@ -217,17 +232,19 @@ export class UserEventComponent implements OnInit {
           }
         }
       });
+      this.currentShiftSub.unsubscribe();
     });
   }
 
   displayCancellation() {
-    this.cancelledEventsUser = [];
     this.cancelledShiftSub = this.cancelledEvents.subscribe((snapshots) => {
+      this.cancelledEventsUser = [];
       snapshots.forEach((snapshot) => {
         if (snapshot.user_id == this.userId) {
           this.cancelledEventsUser.push(snapshot);
         }
       });
+      this.cancelledShiftSub.unsubscribe();
     });
   }
 
@@ -255,7 +272,7 @@ export class UserEventComponent implements OnInit {
 
   //Used for birthdate
   formatDate(date) {
-    if (date == null) {
+    if (date == null || date == "") {
       return "";
     }
     if (date.constructor == Date) {
@@ -288,17 +305,43 @@ export class UserEventComponent implements OnInit {
   }
 
   formatSignupDate(date: string) {
-    let year = "20" + date.substring(0, 2);
-    let day = date.substring(6);
-    let month = date.substring(3, 5);
-    const newDate = new Date(
-      parseInt(year),
-      parseInt(month) - 1,
-      parseInt(day)
-    );
+    /* 
+      This variable is used to determine which date format is being used. If
+      subdate is "yyyy" then format is mm/dd/yyyy.
+      If subdate contains '/' then format is yy/mm/dd
+     */
+    let subdate = date.substring(date.length - 4, date.length);
 
-    let month2 = newDate.toLocaleString("default", { month: "long" });
-    date = month2 + " " + day + ", " + year;
+    var day, month, year;
+
+
+    //If code is a number. (does not include '/')
+    if(!subdate.includes('/')){
+
+      //0 will stores month("mm"), 1 will store day("dd"), 2 will store year ("yyyy")
+      let times = {0: "", 1: "", 2: ""};
+
+      let counter = 0;
+      for (let index = 0; index < date.length; index++) {
+        if(date.charAt(index) === '/') {
+          counter++;
+        } else {
+          times[counter] += date.charAt(index);
+        }
+      }
+      month = times[0];
+      day = times[1];
+      year = times[2];
+    } 
+    else {
+      year = "20" + date.substring(0, 2);
+      day = date.substring(6);
+      month = date.substring(3, 5);
+    }
+    
+    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    month = newDate.toLocaleString("default", { month: "long" });
+    date = month + " " + day + ", " + year;
     return date;
   }
 
@@ -405,12 +448,25 @@ export class UserEventComponent implements OnInit {
   }
 
   onRemoveUserFromEvent(id: string) {
-    this.cancelledEventsUser = [];
-    this.currentEventsUser = [];
-    this.firebase.removeUserFromEvent(id).then(() => {
-      this.refresh();
+    this.firebase.removeUserFromEvent(id);
+    this.firebase.delay(500).then(() => {
+      this.removeShiftFromCurrent(id);
+      this.displayCancellation();
     });
     this.removeUserFromEvent.emit(id);
+  }
+
+  /**
+   * 
+   * @param id shift id from which current user is removed from
+   */
+  removeShiftFromCurrent(id) {
+    let shift:any;
+    for(let i = 0; i < this.currentEventsUser.length; i++){
+      if(id === this.currentEventsUser[i].id){
+        this.currentEventsUser.splice(i, 1);
+      }
+    }
   }
 
   /**

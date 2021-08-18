@@ -30,7 +30,7 @@
       >
         {{ element.first_name }} {{ element.last_name }} ({{
           element.staff_note
-        }})<mat-icon *ngIf="element.is_late" style="transform: scale(0.72)"
+        }})<mat-icon *ngIf="element.is_late" id="late-icon"
           >alarm</mat-icon
         >
       </div>
@@ -45,7 +45,7 @@
           "
         >
           {{ element.first_name }} {{ element.last_name }}
-          <mat-icon *ngIf="element.is_late" style="transform: scale(0.72)">
+          <mat-icon *ngIf="element.is_late" id="late-icon">
             alarm
           </mat-icon>
         </div>
@@ -54,7 +54,7 @@
         <ng-template #longNote>
           <div class="box">
             {{ element.first_name }} {{ element.last_name }}
-            <mat-icon *ngIf="element.is_late" style="transform: scale(0.72)">
+            <mat-icon *ngIf="element.is_late" id="late-icon">
               alarm
             </mat-icon>
             <button
@@ -62,7 +62,7 @@
               onclick="this.blur()"
               id="note-btn"
             >
-              <mat-icon style="margin-left: -4px; vertical-align: middle"
+              <mat-icon style="margin-left: -4px; vertical-align: middle; z-index: 100;"
                 >chat</mat-icon
               >
               <app-staff-note

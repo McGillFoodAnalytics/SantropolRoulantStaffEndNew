@@ -130,7 +130,7 @@ tr.element-row:not(.expanded-row):active {
   background-color: #60a4ff;
   border: 1px #1e7ffd solid !important;
   width: 12vw;
-  font-size: 0.95vw;
+  font-size: 1vw;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -143,7 +143,7 @@ tr.element-row:not(.expanded-row):active {
 .card-body {
   padding: 0;
   width: 12vw;
-  font-size: 0.96vw;
+  font-size: 13px;
 }
 
 .row {
@@ -239,7 +239,7 @@ h1 {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   z-index: 99;
-  top: 76px;
+  top: 70px;
 }
 
 //Psuedo-element to add padding to a flex container
@@ -268,23 +268,42 @@ h1 {
   width: 500px !important;
 }
 
-.first-last-btn {
-  transform: scale(1.7);
-  height: 30px;
-  width: 30px;
+.next-prev {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  margin: 3px;
 }
 
-.first-last-btn mat-icon {
+.next-prev mat-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+.first-last {
+  position: relative;
+  height: 26px;
+  width: 26px;
+  transform: scale(1.6);
+  margin: 5px; 
+}
+
+.first-last mat-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 .col-8 mat-icon {
   -webkit-text-fill-color:rgb(194, 230, 255);
 }
 
-#week-nav {
-  margin-top: 7px;
+#arrow-back {
+  transform: translate(-35%, -50%);
 }
+
+ 

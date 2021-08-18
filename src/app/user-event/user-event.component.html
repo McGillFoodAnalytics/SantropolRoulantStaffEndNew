@@ -253,7 +253,7 @@
         <tr>
           <td>
             <mat-icon>how_to_reg</mat-icon>
-            <pre>Registered Since:<span id="info-field">{{ (formatSignupDate(element.signup_date)) }}</span> </pre>
+            <pre>Registered Since:<span id="info-field">{{ element.signup_date }}</span> </pre>
           </td>
         </tr>
         <tr>
@@ -363,13 +363,13 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
       </button>
     </div>
     <div class="modal-body">
-      <h4 style="margin-left: 30px">
+      <h4 style="margin-left: 50px">
         Are you sure you want to delete this user? This action cannot be undone!
       </h4>
     </div>
     <div class="footer">
       <button
-        class="btn btn-xl btn-outline-danger btn-cancel"
+        class="btn btn-xl btn-cancel"
         (click)="modal2.dismiss()"
       >
         Cancel

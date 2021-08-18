@@ -149,7 +149,7 @@ export class FirebaseService {
     });
   }
 
-  removeUserFromEvent(event_id: string) : Promise<void> {
+  removeUserFromEvent(event_id: string) {
     this.db.object("/event/" + event_id).update({
       first_name: "",
       last_name: "",

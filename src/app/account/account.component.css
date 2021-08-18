@@ -1,292 +1,327 @@
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
-    width: 600px;
-    height: 350px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: inline-flex;
+  width: 600px;
+  height: 350px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
 }
 
 .backbox {
-    background-color: white;
-    width: 100%;
-    height: 80%;
-    position: absolute;
-    transform: translate(0,-50%);
-    top: 50%;
-    display: inline-flex;
+  background-color: white;
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  display: inline-flex;
 }
 
 .frontbox {
-    background-color: #60A4FF;
-    border-radius: 20px;
-    height: 100%;
-    width: 50%;
-    right: 0;
-    z-index: 10;
-    position: absolute;
-    margin-right: 3%;
-    margin-left: 3%;
-    transition: right .8s ease-in-out;
+  background-color: #60a4ff;
+  border-radius: 20px;
+  height: 100%;
+  width: 50%;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+  margin-right: 3%;
+  margin-left: 3%;
+  transition: right 0.8s ease-in-out;
 }
 
 .moving {
-    right: 45%;
+  right: 45%;
 }
 
 .center {
-    right: 21%;
+  right: 22%;
+}
+
+.logo {
+  left: 0; 
+  z-index: 9;
+  position: absolute;
+  margin-right: 3%;
+  margin-left: 3%;
+  transition: left 0.8s ease-in-out;
+}
+
+.moving-logo {
+  left: 45%;
+}
+
+.center-logo {
+  left: 30%;
+}
+
+#logo-santropol {
+	width: 150px;
+	height: 150px;
+	position: relative;
+	left: 25px;
 }
 
 .profileicon {
-    width: 30%;
-    position: absolute;
-    left: 35%;
-    top: 15%;
+  width: 30%;
+  position: absolute;
+  left: 35%;
+  top: 15%;
 }
 
 .loggedin {
-    text-align: center;
+  text-align: center;
 }
 
 .displayname {
-    color: white;
-    top: 50%;
-    left: 0px;
-    width: 100%;
-    position: absolute;
+  color: white;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  position: absolute;
 }
 
-.loginMsg, .signupMsg {
-    width: 50%;
-    height: 100%;
-    font-size: 15px;
-    box-sizing: border-box;
+.loginMsg,
+.signupMsg {
+  width: 50%;
+  height: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
 }
 
-    .loginMsg .title,
-    .signupMsg .title{
-        font-weight: 300;
-        font-size: 23px;
-    }
+.loginMsg .title,
+.signupMsg .title {
+  font-weight: 300;
+  font-size: 23px;
+}
 
-    .loginMsg p,
-    .signupMsg p {
-        font-weight: 100;
-    }
+.loginMsg p,
+.signupMsg p {
+  font-weight: 100;
+}
 
-.reset p{
-    margin-top: 30px;
-    color: white;
-    margin-bottom: 50px;
+.reset p {
+  margin-top: 30px;
+  color: white;
+  margin-bottom: 50px;
 }
 
 .textcontent {
-    color: #60A4FF;
-    margin-top: 65px;
-    margin-left: 12%;
+  color: #60a4ff;
+  margin-top: 65px;
+  margin-left: 12%;
 }
 
-    .textcontent p {
-        color: #60A4FF;
-    }
+.textcontent p {
+  color: #60a4ff;
+}
 
 .loginMsg button,
-.signupMsg button{
-    background-color: #60A4FF;
-    border: 2px solid white;
-    border-radius: 10px;
-    color: white;
-    font-size: 12px;
-    box-sizing: content-box;
-    font-weight: 300;
-    padding: 10px;
-    margin-top: 12px;
-    margin-left: 15px;
+.signupMsg button {
+  background-color: #60a4ff;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  box-sizing: content-box;
+  font-weight: 300;
+  padding: 10px;
+  margin-top: 12px;
+  margin-left: 15px;
 }
 
-.login, .signup, .reset {
-    padding: 20px;
-    text-align: center;
+.login,
+.signup,
+.reset {
+  padding: 20px;
+  text-align: center;
 }
 
-    .login h2,
-    .signup h2,
-    .reset h2 {
-        color: white;
-        font-size: 22px;
-    }
+.login h2,
+.signup h2,
+.reset h2 {
+  color: white;
+  font-size: 22px;
+}
 
 .inputbox {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 input {
-    display: block;
-    width: 100%;
-    height: 40px;
-    background-color: white;
-    border: none;
-    margin-bottom: 20px;
-    font-size: 12px;
-    border-radius: 7px;
-    padding-left: 10px;
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 12px;
+  border-radius: 7px;
+  padding-left: 10px;
 }
 
-.frontbutton, .leftbutton {
-    background-color: white;
-    border: none;
-    color: #60A4FF;
-    font-size: 12px;
-    font-weight: 300;
-    box-sizing: content-box;
-    padding: 10px;
-    border-radius: 10px;
-    width: 60px;
-    position: absolute;
-    right: 30px;
-    bottom: 30px;
-    cursor: pointer;
+.frontbutton,
+.leftbutton {
+  background-color: white;
+  border: none;
+  color: #60a4ff;
+  font-size: 12px;
+  font-weight: 300;
+  box-sizing: content-box;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60px;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
 }
 
 .leftbutton {
-    left: 30px;
+  left: 30px;
 }
 
 .middlebutton {
-    background-color: white;
-    border: none;
-    color: #60A4FF;
-    font-size: 12px;
-    font-weight: 300;
-    box-sizing: content-box;
-    padding: 10px;
-    border-radius: 10px;
-    width: 60px;
-    position: absolute;
-    right: 110px;
-    bottom: 70px;
-    cursor: pointer;
+  background-color: white;
+  border: none;
+  color: #60a4ff;
+  font-size: 12px;
+  font-weight: 300;
+  box-sizing: content-box;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60px;
+  position: absolute;
+  right: 110px;
+  bottom: 70px;
+  cursor: pointer;
 }
 
 .login p {
-    cursor: pointer;
-    color: white;
-    font-size: 15px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
 }
 
-.loginMsg, .signupMsg {
-    transition: opacity .8s ease-in-out;
+.loginMsg,
+.signupMsg {
+  transition: opacity 0.8s ease-in-out;
 }
 
 .visibility {
-    opacity: 0;
+  opacity: 0;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .animated {
-    -webkit-animation-duration: 0.5s;
-    animation-duration: 0.5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @-webkit-keyframes shake {
-    from, to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
-    10%, 50%, 90% {
-        -webkit-transform: translate3d(-10px, 0, 0);
-        transform: translate3d(-10px, 0, 0);
-    }
+  10%,
+  50%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
 
-    30%, 70% {
-        -webkit-transform: translate3d(10px, 0, 0);
-        transform: translate3d(10px, 0, 0);
-    }
+  30%,
+  70% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
 }
-
 
 @keyframes shake {
-    from, to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
-    10%, 50%, 90% {
-        -webkit-transform: translate3d(-10px, 0, 0);
-        transform: translate3d(-10px, 0, 0);
-    }
+  10%,
+  50%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
 
-    30%, 70% {
-        -webkit-transform: translate3d(10px, 0, 0);
-        transform: translate3d(10px, 0, 0);
-    }
+  30%,
+  70% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
 }
-
 
 .shake {
-    -webkit-animation-name: shake;
-    animation-name: shake;
+  -webkit-animation-name: shake;
+  animation-name: shake;
 }
 
-.form-group{
-    width: 50%;
-    margin-left: 20px;
+.form-group {
+  width: 50%;
+  margin-left: 20px;
 
-    margin-top: 1px;
-    margin-bottom: 10px;
+  margin-top: 1px;
+  margin-bottom: 10px;
 
-    padding: 0px;
+  padding: 0px;
 }
 
-.form-control{
-    margin-right: 1px;
+.form-control {
+  margin-right: 1px;
 
-    margin-top: 0px;
-    margin-bottom: 2px;
+  margin-top: 0px;
+  margin-bottom: 2px;
 }
 
 label {
-    margin: 2px;
-    padding: 0px;
+  margin: 2px;
+  padding: 0px;
 
-    color: white;
+  color: white;
 }
 
-.welcomeName{
-    flex: 0 0 35%;
+.welcomeName {
+  flex: 0 0 35%;
 }
 
-.welcomeEmail{
-    flex: 1;
+.welcomeEmail {
+  flex: 1;
 }
 
-.firstLine{
-    padding-right: 20px;
-    margin-top: 10px;
-    display: flex;
+.firstLine {
+  padding-right: 20px;
+  margin-top: 10px;
+  display: flex;
 }
 
-.passwords{
-    display: flex;
+.passwords {
+  display: flex;
 }
 
-.left{
-    flex: 0 0 35%;
+.left {
+  flex: 0 0 35%;
 }
 
-.right{
-    flex: 1;
-    padding-right: 20px;
+.right {
+  flex: 1;
+  padding-right: 20px;
 }

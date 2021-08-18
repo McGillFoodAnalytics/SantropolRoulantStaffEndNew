@@ -59,7 +59,7 @@ tr {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 #historyBtn {
@@ -354,4 +354,8 @@ input.apple-switch:checked:after {
   height: 8px;
   background-color: rgb(36, 36, 36);
   z-index: 99;
+}
+
+.btn-cancel {
+  border: transparent !important;
 }

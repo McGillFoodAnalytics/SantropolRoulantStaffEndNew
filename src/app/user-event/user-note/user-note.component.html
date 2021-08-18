@@ -1,11 +1,13 @@
 <div style="margin-top: 40px;" *ngIf="validId">
   <h5>User Note</h5>
   <div class="note">
-    <div class="userNote" contenteditable="true" 
+    <div class="userNote" [attr.contenteditable]="editMode" 
     [textContent]="currentUserNote" (input)="userNote=$event.target.textContent;">
     </div>
-    <button id="editNoteBtn" (click) = "saveNote()" onclick="this.blur()"
-    ><span>Save Note</span>
+    <button id="editNoteBtn" (click)="editNote()" onclick="this.blur()"
+    >
+    <span *ngIf="!editMode">Edit Note</span>
+    <span *ngIf="editMode">Save Note</span>
     </button>
   </div>
 </div>
