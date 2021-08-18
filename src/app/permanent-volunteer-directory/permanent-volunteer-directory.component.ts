@@ -57,21 +57,25 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
 
       // Sort the entries of perm volunteers by end date from recent to future.
       for(let i = 0; i < snapshots.length; i++){
-        for (let j = 0; j < snapshots.length; j++) {
-          if(snapshots[i].end_date < snapshots[j].end_date){
+        for (let j = i; j < snapshots.length; j++) {
+          if(snapshots[i].end_date > snapshots[j].end_date){
             temp = snapshots[i];
             snapshots[i] = snapshots[j];
             snapshots[j] = temp;
           }
         }
       }
-    
       // Array is now sorted.
       // Remove first element while it is less than one weeek ago from today's date.
       // pastDate = 7 days ago from today
       while(snapshots[0].end_date < pastDate){
         snapshots.shift();
       }
+
+      snapshots.forEach(snap => {
+        snap.a = snap.first_name + " " + snap.last_name;
+      });
+
       this.dataSource = new MatTableDataSource(snapshots);
     });
   }

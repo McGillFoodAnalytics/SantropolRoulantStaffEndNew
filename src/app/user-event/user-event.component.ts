@@ -173,7 +173,7 @@ export class UserEventComponent implements OnInit {
     console.log("User: " + this.userId + "was deleted.")
     this.firebase.deleteUser(this.userId);
     this.modalReference2.close();
-    console.log(this.element.key)
+
     this.userService.delete(this.element.key).subscribe(res => {
       console.log(res)
     })
