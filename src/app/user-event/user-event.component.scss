@@ -160,6 +160,7 @@ button {
 input {
   font-size: 15px;
   height: 27px;
+  border: 1px solid lightgray;
 }
 
 ::placeholder {
@@ -170,27 +171,22 @@ input {
   width: 220px;
   position: fixed;
   top: 216px;
-  border: 1px solid lightgray;
 }
 
 #editInputAddrNum {
   width: 50px;
-  border: 1px solid lightgray;
 }
 
 #editInputAddrStr {
   width: 170px;
-  border: 1px solid lightgray;
 }
 
 #editInputAddrCity {
   width: 100px;
-  border: 1px solid lightgray;
 }
 
 #editInputPostal {
   width: 80px;
-  border: 1px solid lightgray;
 }
 
 #editDate {
@@ -209,28 +205,21 @@ input {
   width: 170px;
   position: fixed;
   top: 363px;
-  border: 1px solid lightgray;
   outline: none;
 }
+
 .group2 {
   top: 412px;
 }
 
-#editInputEmergName {
+#editInputEmergName, #editInputEmergRel {
   width: 12vw;
-  border: 1px solid lightgray;
-}
-
-#editInputEmergRel {
-  width: 12vw;
-  border: 1px solid lightgray;
 }
 
 #editInputEmergNum {
   width: 170px;
   position: fixed;
   top: 460px;
-  border: 1px solid lightgray;
 }
 
 pre {
