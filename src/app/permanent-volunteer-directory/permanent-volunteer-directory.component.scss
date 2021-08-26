@@ -53,6 +53,12 @@
 
 .remove-perm-vol {
   border-radius: 5px;
+  background-color: white;
+}
+
+.remove-perm-vol:hover {
+  border-radius: 5px;
+  background-color: rgb(224, 53, 53);
 }
 
 #cancel {
