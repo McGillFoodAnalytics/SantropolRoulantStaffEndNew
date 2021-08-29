@@ -13,6 +13,6 @@ export class User {
   public signup_date: string;
   public emergency_contact_number: string;
   public emergency_contact_name: string;
-  public emergency_relationship: string;
+  public emergency_contact_relationship: string;
   public cancellation: number;
 }

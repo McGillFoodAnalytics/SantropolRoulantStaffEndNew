@@ -33,7 +33,7 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     // this.model.emergency_contact_name = "";
-    // this.model.emergency_relationship = "";
+    // this.model.emergency_contact_relationship = "";
     // this.model.emergency_contact_number = "";
 
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
@@ -54,7 +54,7 @@ export class NewUserComponent implements OnInit {
         ]),
       ],
       emergency_contact_name: [""],
-      emergency_relationship: [""],
+      emergency_contact_relationship: [""],
       emergency_contact_number: ["", Validators.pattern(phoneNumPattern)],
     });
   }
@@ -102,7 +102,7 @@ export class NewUserComponent implements OnInit {
           phone_number: user.phone_number,
           emergency_contact_number: user.emergency_contact_number,
           emergency_contact_name: user.emergency_contact_name,
-          emergency_relationship: user.emergency_relationship,
+          emergency_contact_relationship: user.emergency_contact_relationship,
           signup_date: this.getFormattedDate(),
           cancellations: 0,
         });
@@ -164,8 +164,8 @@ export class NewUserComponent implements OnInit {
     this.model.emergency_contact_name = this.myForm.get(
       "emergency_contact_name"
     ).value;
-    this.model.emergency_relationship = this.myForm.get(
-      "emergency_relationship"
+    this.model.emergency_contact_relationship = this.myForm.get(
+      "emergency_contact_relationship"
     ).value;
     this.model.emergency_contact_number = this.myForm.get(
       "emergency_contact_number"
@@ -176,9 +176,9 @@ export class NewUserComponent implements OnInit {
   getFormattedDate() {
     let date = new Date();
     let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, '0');
-    let day = date.getDate().toString().padStart(2, '0');
-  
-    return month + '/' + day + '/' + year;
-}
+    let month = (1 + date.getMonth()).toString().padStart(2, "0");
+    let day = date.getDate().toString().padStart(2, "0");
+
+    return month + "/" + day + "/" + year;
+  }
 }
