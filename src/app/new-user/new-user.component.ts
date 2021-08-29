@@ -7,8 +7,8 @@ import { formatDate } from "@angular/common";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { firebase } from "@firebase/app";
 import { FirebaseService } from "../firebase-service.service"
+import { UserService } from "../user.service";
 import "@firebase/auth";
-var Airtable = require('airtable');
 
 @Component({
   selector: "app-new-user",
@@ -30,19 +30,20 @@ export class NewUserComponent implements OnInit {
     private modalService: NgbModal,
     private db: AngularFireDatabase,
     private formBuilder: FormBuilder,
-    private fs: FirebaseService
+    private fs: FirebaseService,
+    private userService: UserService
   ) {
     this.today = new Date();
   }
 
   ngOnInit() {
 
-    let sub = this.fs.getAirtableAPIKey().subscribe((key) => {
-      this.base = new Airtable({
-        apiKey: key
-      }).base('appB7a5gvGu8ELiEp');
-      sub.unsubscribe();
-    });
+    // let sub = this.fs.getAirtableAPIKey().subscribe((key) => {
+    //   this.base = new Airtable({
+    //     apiKey: key
+    //   }).base('appB7a5gvGu8ELiEp');
+    //   sub.unsubscribe();
+    // });
     
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
@@ -136,8 +137,7 @@ export class NewUserComponent implements OnInit {
   }
 
   createAirtableUser(user: any) {
-    console.log("Creating new user in Airtable from Web app.")
-    this.base('👥 Volunteers').create([
+    let userObj = [
       {
         "fields": {
           "Account ID (VolApp)": user.id,
@@ -157,14 +157,10 @@ export class NewUserComponent implements OnInit {
           "Address - postal code": user.address_postal_code
         }
       }
-    ], function(err, records) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      records.forEach(function (record) {
-        console.log("Created new user in Airtable: " + record.getId());
-      });
+    ];
+    let sub = this.userService.createUserInAirtable(userObj).subscribe(() => {
+        console.log("Created user in Airtable");
+        sub.unsubscribe();
     });
   }
 

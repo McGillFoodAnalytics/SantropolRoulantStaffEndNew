@@ -59,4 +59,10 @@ export class UserService {
 
     return this.http.post(`${this.baseUrl}/airtable/modify/${data[0].id}`, data);
   }
+
+  createUserInAirtable(data: any) {
+    console.log("Creating user in Airtable from Webapp");
+
+    return this.http.post(`${this.baseUrl}/airtable/create/${data[0].id}`, data);
+  }
 }
