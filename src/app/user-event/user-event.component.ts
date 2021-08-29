@@ -14,7 +14,7 @@ import { Observable } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "../shared/models/user";
 import { UserTransferService } from "../user-transfer.service";
-import {UserService} from '../user.service';
+import { UserService } from "../user.service";
 
 @Component({
   selector: "app-user-event",
@@ -89,7 +89,12 @@ export class UserEventComponent implements OnInit {
     this.volunteerSub = this.firebase.getUser(this.userId).subscribe((user) => {
       if (user) {
         this.element = user;
-        this.element.signup_date = this.formatSignupDate(this.element.signup_date);
+        this.element.address = this.element.address.replace(/\n|\r/g, "");
+        this.element.address_postal_code
+           = this.element.address_postal_code.replace(/\n|\r/g, "");
+        this.element.signup_date = this.formatSignupDate(
+          this.element.signup_date
+        );
         //Check if email is of the format from mobile app to change to be valid with  calender pick
         if (user.dob) {
           if (user.dob.length == 8) {
@@ -125,7 +130,9 @@ export class UserEventComponent implements OnInit {
         Validators.pattern(phoneNumPattern),
       ],
       emergency_contact_name: [this.element.emergency_contact_name],
-      emergency_relationship: [this.element.emergency_relationship],
+      emergency_contact_relationship: [
+        this.element.emergency_contact_relationship,
+      ],
       emergency_contact_number: [
         this.element.emergency_contact_number,
         Validators.pattern(phoneNumPattern),
@@ -170,13 +177,13 @@ export class UserEventComponent implements OnInit {
 
   //When deleting a user is confirmed
   onDelete() {
-    console.log("User: " + this.userId + "was deleted.")
+    console.log("User: " + this.userId + "was deleted.");
     this.firebase.deleteUser(this.userId);
     this.modalReference2.close();
 
-    this.userService.delete(this.element.key).subscribe(res => {
-      console.log(res)
-    })
+    this.userService.delete(this.element.key).subscribe((res) => {
+      console.log(res);
+    });
     this.validId = false;
     this.unSub();
   }
@@ -314,16 +321,14 @@ export class UserEventComponent implements OnInit {
 
     var day, month, year;
 
-
     //If code is a number. (does not include '/')
-    if(!subdate.includes('/')){
-
+    if (!subdate.includes("/")) {
       //0 will stores month("mm"), 1 will store day("dd"), 2 will store year ("yyyy")
-      let times = {0: "", 1: "", 2: ""};
+      let times = { 0: "", 1: "", 2: "" };
 
       let counter = 0;
       for (let index = 0; index < date.length; index++) {
-        if(date.charAt(index) === '/') {
+        if (date.charAt(index) === "/") {
           counter++;
         } else {
           times[counter] += date.charAt(index);
@@ -332,14 +337,17 @@ export class UserEventComponent implements OnInit {
       month = times[0];
       day = times[1];
       year = times[2];
-    } 
-    else {
+    } else {
       year = "20" + date.substring(0, 2);
       day = date.substring(6);
       month = date.substring(3, 5);
     }
-    
-    const newDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    const newDate = new Date(
+      parseInt(year),
+      parseInt(month) - 1,
+      parseInt(day)
+    );
     month = newDate.toLocaleString("default", { month: "long" });
     date = month + " " + day + ", " + year;
     return date;
@@ -380,7 +388,7 @@ export class UserEventComponent implements OnInit {
       return "-";
     } else {
       contact_name = user.emergency_contact_name;
-      contact_rel = user.emergency_relationship;
+      contact_rel = user.emergency_contact_relationship;
     }
     return contact_name + " (" + contact_rel + ")";
   }
@@ -395,17 +403,45 @@ export class UserEventComponent implements OnInit {
   }
 
   updateUser(user) {
-    this.db.object("/user/" + this.userId).update({
-      address_city: user.address_city,
-      address_postal_code: user.address_postal_code,
-      address: user.address,
-      dob: user.dob,
-      email: user.email,
-      phone_number: user.phone_number,
-      emergency_contact_number: user.emergency_contact_number,
-      emergency_contact_name: user.emergency_contact_name,
-      emergency_relationship: user.emergency_relationship,
-    });
+    this.db
+      .object("/user/" + this.userId)
+      .update({
+        address_city: user.address_city,
+        address_postal_code: user.address_postal_code,
+        address: user.address,
+        dob: user.dob,
+        email: user.email,
+        phone_number: user.phone_number,
+        emergency_contact_number: user.emergency_contact_number,
+        emergency_contact_name: user.emergency_contact_name,
+        emergency_contact_relationship: user.emergency_contact_relationship,
+      })
+      .then(() => {
+        let obj = [
+          {
+            id: this.element.airtable_record_id,
+            fields: {
+              "Account ID (VolApp)": this.userId,
+              "Prenom": this.element.first_name,
+              "Nom": this.element.last_name,
+              "Address -city": user.address_city,
+              "Address - postal code": user.address_postal_code,
+              "Address - street": user.address,
+              "Birthdate": user.dob.substring(0, 10),
+              "Courriel": user.email,
+              "Status": this.element.active_status ? "Active" : "Inactive",
+              "Emergency contact name": user.emergency_contact_name,
+              "EC phone": user.emergency_contact_number,
+              "EC relationship": user.emergency_contact_relationship,
+              "Téléphone": user.phone_number,
+            },
+          },
+        ];
+        this.userService.modifyInAirtable(obj);
+        let sub = this.userService.modifyInAirtable(obj).subscribe(() => {
+          sub.unsubscribe();
+        });
+      });
   }
 
   onSave() {
@@ -457,13 +493,13 @@ export class UserEventComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param id shift id from which current user is removed from
    */
   removeShiftFromCurrent(id) {
-    let shift:any;
-    for(let i = 0; i < this.currentEventsUser.length; i++){
-      if(id === this.currentEventsUser[i].id){
+    let shift: any;
+    for (let i = 0; i < this.currentEventsUser.length; i++) {
+      if (id === this.currentEventsUser[i].id) {
         this.currentEventsUser.splice(i, 1);
       }
     }
@@ -490,12 +526,13 @@ export class UserEventComponent implements OnInit {
     this.model.emergency_contact_name = this.myForm.get(
       "emergency_contact_name"
     ).value;
-    this.model.emergency_relationship = this.myForm.get(
-      "emergency_relationship"
+    this.model.emergency_contact_relationship = this.myForm.get(
+      "emergency_contact_relationship"
     ).value;
     this.model.emergency_contact_number = this.myForm.get(
       "emergency_contact_number"
     ).value;
+
     return this.model;
   }
 }

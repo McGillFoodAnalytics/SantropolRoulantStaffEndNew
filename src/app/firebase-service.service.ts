@@ -77,6 +77,10 @@ export class FirebaseService {
     return this.db.object("user/" + userId).valueChanges();
   }
 
+  getAirtableAPIKey() : Observable<any> {
+    return this.db.object("airtable_key").valueChanges();
+  }
+
   getPermanentEvents(): Observable<any[]> {
     this.permanentEventsRef = this.db.list("recurring_events");
     this.permanentEvents = this.permanentEventsRef

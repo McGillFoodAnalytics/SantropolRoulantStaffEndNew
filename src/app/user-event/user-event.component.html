@@ -217,7 +217,7 @@
 
             <input
               id="editInputEmergRel"
-              formControlName="emergency_relationship"
+              formControlName="emergency_contact_relationship"
               placeholder="Emergency Relationship"
             />
           </div>
@@ -368,10 +368,7 @@ Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNu
       </h4>
     </div>
     <div class="footer">
-      <button
-        class="btn btn-xl btn-cancel"
-        (click)="modal2.dismiss()"
-      >
+      <button class="btn btn-xl btn-cancel" (click)="modal2.dismiss()">
         Cancel
       </button>
       <button class="btn btn-xl btn-outline-danger" (click)="onDelete()">
