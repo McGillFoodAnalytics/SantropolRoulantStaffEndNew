@@ -89,6 +89,9 @@ export class UserEventComponent implements OnInit {
     this.volunteerSub = this.firebase.getUser(this.userId).subscribe((user) => {
       if (user) {
         this.element = user;
+        this.element.address = this.element.address.replace(/\n|\r/g, "");
+        this.element.address_postal_code
+           = this.element.address_postal_code.replace(/\n|\r/g, "");
         this.element.signup_date = this.formatSignupDate(
           this.element.signup_date
         );

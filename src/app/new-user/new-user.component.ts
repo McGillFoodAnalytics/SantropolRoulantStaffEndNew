@@ -6,7 +6,9 @@ import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { formatDate } from "@angular/common";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { firebase } from "@firebase/app";
+import { FirebaseService } from "../firebase-service.service"
 import "@firebase/auth";
+var Airtable = require('airtable');
 
 @Component({
   selector: "app-new-user",
@@ -20,22 +22,29 @@ export class NewUserComponent implements OnInit {
   private today: Date;
   private randPassword;
   private errorMsg;
-
+  private number = 0;
+  private base;
+  
   @ViewChild("newUserError") templateRefErr: TemplateRef<any>;
 
   constructor(
     private modalService: NgbModal,
     private db: AngularFireDatabase,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private fs: FirebaseService
   ) {
     this.today = new Date();
   }
 
   ngOnInit() {
-    // this.model.emergency_contact_name = "";
-    // this.model.emergency_contact_relationship = "";
-    // this.model.emergency_contact_number = "";
 
+    let sub = this.fs.getAirtableAPIKey().subscribe((key) => {
+      this.base = new Airtable({
+        apiKey: key
+      }).base('appB7a5gvGu8ELiEp');
+      sub.unsubscribe();
+    });
+    
     var phoneNumPattern = new RegExp("^[0-9]{10}$");
 
     this.myForm = this.formBuilder.group({
@@ -74,10 +83,20 @@ export class NewUserComponent implements OnInit {
       user.phone_number;
 
     // Create a dummy app so that current user is not signed out
-    let authWorkerApp = firebase.initializeApp(
-      firebase.app().options,
-      "auth-worker"
-    );
+    let authWorkerApp;
+    try{
+        authWorkerApp = firebase.initializeApp(
+        firebase.app().options,
+        "auth-worker"
+      );
+    }
+    catch{
+      authWorkerApp.app().delete().then(function() {
+        firebase.initializeApp(firebase.app().options,
+        "auth-worker");
+      });
+    }
+
     let authWorkerAuth = firebase.auth(authWorkerApp);
     authWorkerAuth.setPersistence(firebase.auth.Auth.Persistence.NONE); // disables caching of account credentials
 
@@ -112,7 +131,42 @@ export class NewUserComponent implements OnInit {
         var errorMessage = error.message;
         this.errorMsg = error.message;
         this.modalService.open(this.templateRefErr, { centered: true });
+      }).then(() => {
+        this.createAirtableUser(user);
       });
+  }
+
+  createAirtableUser(user: any) {
+    console.log("Creating new user in Airtable from Web app.")
+    this.base('👥 Volunteers').create([
+      {
+        "fields": {
+          "Account ID (VolApp)": user.id,
+          "Nom": user.last_name,
+          "Courriel": user.email,
+          "Téléphone": user.phone_number,
+          "Prenom": user.first_name,
+          "Address - street": user.address,
+          "Emergency contact name": user.emergency_contact_name,
+          "EC relationship": user.emergency_contact_relationship,
+          "EC phone": user.emergency_contact_number,
+          "Birthdate": (user.dob + "").substring(0,10),
+          "Status": "Active",
+          "date created (original)": this.getAirtableSignupDate(),
+          "Address -city": user.address_city,
+          "Address - province": "QC",
+          "Address - postal code": user.address_postal_code
+        }
+      }
+    ], function(err, records) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      records.forEach(function (record) {
+        console.log("Created new user in Airtable: " + record.getId());
+      });
+    });
   }
 
   onSubmit(f) {
@@ -180,5 +234,14 @@ export class NewUserComponent implements OnInit {
     let day = date.getDate().toString().padStart(2, "0");
 
     return month + "/" + day + "/" + year;
+  }
+
+  getAirtableSignupDate() {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, "0");
+    let day = date.getDate().toString().padStart(2, "0");
+
+    return year + '-' + month + '-' + day;
   }
 }
