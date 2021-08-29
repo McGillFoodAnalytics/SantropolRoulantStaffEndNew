@@ -22,7 +22,6 @@ export class NewUserComponent implements OnInit {
   private today: Date;
   private randPassword;
   private errorMsg;
-  private number = 0;
   private base;
   
   @ViewChild("newUserError") templateRefErr: TemplateRef<any>;
