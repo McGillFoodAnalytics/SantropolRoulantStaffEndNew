@@ -455,18 +455,20 @@ export class SignUpSheetComponent implements OnInit {
 
   addEmptyThursday(obj) {
     const monday = new Date(Object.keys(obj)[0]);
-    const mond = monday.getMonth();
+    const mondayMonth = monday.getMonth();
     const thursday = new Date(monday.getTime() + 3 * 86400000);
 
     const day =
       thursday.getDate() < 10 ? "0" + thursday.getDate() : thursday.getDate();
 
-    const month =
-      thursday.getMonth() < 10 ? "0" + (thursday.getMonth() + 1) : thursday.getMonth() + 1;
+    const month = (thursday.getMonth() + 1);
 
+    const monthCorrection =
+      month < 10 ? "0".concat(month.toString()) : month;
+    
     const year = thursday.getFullYear();
-    const date = month + "/" + day + "/" + year;
-
+    const date = monthCorrection + "/" + day + "/" + year;
+    
     obj[date] = {
       slots: [
         {

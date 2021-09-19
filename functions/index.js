@@ -14,41 +14,45 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
   let firstDate = new Date();
   firstDate.setTime(firstDate.getTime() + incrementInMilliseconds); //monday
   let firstDateNumber = getDateNumber(firstDate);
-  
-  admin.database().ref('/event').on("child_added", function (snapshot) {
-    if (snapshot.val().event_date < firstDateNumber) { //it's the same date and type
-      if (snapshot.val().key != "nan"){
-        var eventNameRef = admin.database().ref('/past_events/' + snapshot.key);
-        let late = false;
-        if(snapshot.val().is_late){
-          late = true;
-        }
-        eventNameRef.set({
-          event_date: snapshot.val().event_date,
-          event_date_txt: snapshot.val().event_date_txt,
-          event_time_end: snapshot.val().event_time_end,
-          event_time_start: snapshot.val().event_time_start,
-          event_type: snapshot.val().event_type,
-          first_name: snapshot.val().first_name,
-          first_shift: snapshot.val().first_shift,
-          is_current: false,
-          is_important_event: snapshot.val().is_important_event,
-          is_late: late,
-          key: snapshot.val().key,
-          last_name: snapshot.val().last_name,
-          note: snapshot.val().note,
-          slot: snapshot.val().slot,
-          uid: snapshot.val().uid
-        });
-      }
-      console.log("Deleted: " + snapshot.key);
-      snapshot.ref.remove();
-    }
-    return 0;
-  });
+
   incrementInMilliseconds = 24 * 60 * 60 * 1000 * 7 * 12; //12 weeks
   firstDate.setTime(firstDate.getTime()+incrementInMilliseconds);
-  printStrings(firstDate);
+  
+  console.log('creating...');
+  printStrings(firstDate).then(() => {
+    admin.database().ref('/event').on("child_added", function (snapshot) {
+      if (snapshot.val().event_date < firstDateNumber) { //it's the same date and type
+        if (snapshot.val().key != "nan"){
+          var eventNameRef = admin.database().ref('/past_events/' + snapshot.key);
+          let late = false;
+          if(snapshot.val().is_late){
+            late = true;
+          }
+          eventNameRef.set({
+            event_date: snapshot.val().event_date,
+            event_date_txt: snapshot.val().event_date_txt,
+            event_time_end: snapshot.val().event_time_end,
+            event_time_start: snapshot.val().event_time_start,
+            event_type: snapshot.val().event_type,
+            first_name: snapshot.val().first_name,
+            first_shift: snapshot.val().first_shift,
+            is_current: false,
+            is_important_event: snapshot.val().is_important_event,
+            is_late: late,
+            key: snapshot.val().key,
+            last_name: snapshot.val().last_name,
+            note: snapshot.val().note,
+            slot: snapshot.val().slot,
+            uid: snapshot.val().uid
+          });
+        }
+        console.log("Deleted: " + snapshot.key);
+        snapshot.ref.remove();
+      }
+      return 0;
+    });
+    console.log('deleting...');
+  });
 });
 
 function printStrings(date) {
@@ -116,6 +120,10 @@ function printStrings(date) {
       }
     }
   }
+  return new Promise(resolve => {
+    console.log("Creating new shifts complete");
+    resolve();
+  });
 }
 
 function getDates(firstDate, lastDate, freq) {
