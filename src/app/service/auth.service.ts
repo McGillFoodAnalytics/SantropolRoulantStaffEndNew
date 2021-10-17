@@ -31,7 +31,6 @@ export class AuthService {
     this.firebaseAuth.onAuthStateChanged((credential)=>{
 
     if(credential){
-      console.log(credential);
       this.authStatusSub.next(credential);
       this.user = credential;
       console.log("defined: " + this.user.email);

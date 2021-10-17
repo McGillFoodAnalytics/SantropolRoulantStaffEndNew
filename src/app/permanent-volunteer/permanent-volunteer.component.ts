@@ -47,10 +47,6 @@ export class PermanentVolunteerComponent implements OnInit {
   }
 
   ngOnInit(){
-    // this.volunteers = this.myControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => this._filter(value))
-    // );
   }
 
   ngAfterViewInit() {
@@ -186,5 +182,16 @@ export class PermanentVolunteerComponent implements OnInit {
       return day !== 0 && day !== 4;
     }
     return day !== 0;  //Otherwise disable Sunday only
+  }
+
+
+  inputDisplay(volunteerData ): string {
+    console.log();
+    let temp = [];
+    if(volunteerData){
+      temp = volunteerData.toString().split(",");
+    }
+
+    return temp.length != 0 ?  temp[1] + " " + temp[2] : "";
   }
 }
