@@ -24,31 +24,27 @@
       </div>
       <div class="form-row mb-12">
         <div class="form-group col-md-4">
-          <mat-form-field>
+          <mat-form-field class="full-width">
             <mat-label>Existing Volunteer</mat-label>
-            <mat-select
-              formControlName="volunteer"
-              [(ngModel)]="model.volunteer"
-            >
+                  <input matInput class="filter" placeholder ="Search by Name" formControlName="volunteer" [matAutocomplete]="auto" [(ngModel)] = "model.volunteer" (keyup) = "onKey($event)"
+                  style="
+                  width: 100%; 
+                  height: 40px; 
+                  border: 2px solid #5fce99;">                
+                <mat-autocomplete #auto="matAutocomplete" [displayWith] = "inputDisplay">
               <mat-option disabled>--Select the volunteer--</mat-option>
-              <input class="filter" placeholder ="Search by Name" (keyup)="onKey($event.target.value)" 
-              style="
-              width: 100%; 
-              height: 40px; 
-              border: 2px solid #5fce99;">
-
-              <mat-option
-                *ngFor="let volunteer of volunteers"
-                [value]="[
-                  volunteer.id,
-                  volunteer.first_name,
-                  volunteer.last_name,
-                  volunteer.key
-                ]"
-              >
-                {{ volunteer.first_name }} {{ volunteer.last_name }}
-              </mat-option>
-            </mat-select>
+                    <mat-option
+                    *ngFor="let volunteer of volunteers"
+                    [value]="[
+                      volunteer.id,
+                      volunteer.first_name,
+                      volunteer.last_name,
+                      volunteer.key
+                    ]"
+                  >
+                    {{ volunteer.first_name }} {{ volunteer.last_name }}
+                  </mat-option>
+                </mat-autocomplete>
             <mat-error>Required!</mat-error>
           </mat-form-field>
         </div>

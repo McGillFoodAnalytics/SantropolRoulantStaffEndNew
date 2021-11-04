@@ -46,7 +46,8 @@ export class PermanentVolunteerComponent implements OnInit {
     this.dateInThreeMonths.setMonth(this.dateInThreeMonths.getMonth() + 3);
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+  }
 
   ngAfterViewInit() {
     this.volunteersObservable = this.fs.getUsers();
@@ -137,16 +138,17 @@ export class PermanentVolunteerComponent implements OnInit {
   
   //Filter the dropdown menu
   onKey(event){
-    if(!event){
+    if(!event.target.value){
         this.volunteers = this.origVolunteers;
     } // when nothing has typed*/   
-    if (typeof event === 'string') {
-        if(event == ""){
+    console.log(event.target.value);
+    if (typeof event.target.value === 'string') {
+        if(event.target.value == ""){
           this.volunteers = this.origVolunteers;
         }
         else{
           this.volunteers = this.origVolunteers.filter(a => (a.first_name + " "+a.last_name).toString().toLowerCase()
-          .includes(event.toString().toLowerCase()));
+          .includes(event.target.value.toString().toLowerCase()));
         }
     }      
  }      
@@ -180,5 +182,16 @@ export class PermanentVolunteerComponent implements OnInit {
       return day !== 0 && day !== 4;
     }
     return day !== 0;  //Otherwise disable Sunday only
+  }
+
+
+  inputDisplay(volunteerData ): string {
+    console.log();
+    let temp = [];
+    if(volunteerData){
+      temp = volunteerData.toString().split(",");
+    }
+
+    return temp.length != 0 ?  temp[1] + " " + temp[2] : "";
   }
 }
