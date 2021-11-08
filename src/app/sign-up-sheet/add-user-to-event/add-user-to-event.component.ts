@@ -39,8 +39,22 @@ export class AddUserToEventComponent implements OnInit {
 
   ngOnInit() {
     this.myModalService.set(this);
-    this.loadedEvents = false; //boolean used to load all events from database only once
+    this.loadedEvents = false;
+     //boolean used to load all events from database only once
   }
+
+  ngAfterViewInit() {
+    //sub.unsubscribe();
+    this.fs.getUsers().subscribe(snapshots => {
+      snapshots.forEach(element => {
+        //Add new field to the list of vols that contains first and last name separated by a space, used for filtering. The field .a is important, since filter applies to fields ordered in alphabetical order
+        // The normalize("NFD").replace(/[\u0300-\u036f]/g, "") uses a regex character class to ignore special characters such as accents
+        element.a = element.first_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "") + " " + element.last_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      });
+    this.dataSource = new MatTableDataSource(snapshots);
+    });
+  }
+
 
   open(event_id, eventType: string, date: string, volunteerList: any) {
     this.eventType = eventType;
@@ -71,7 +85,7 @@ export class AddUserToEventComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase()
   }
 
   setClickedRow(index, row) {

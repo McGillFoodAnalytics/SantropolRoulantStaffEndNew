@@ -147,8 +147,9 @@ export class PermanentVolunteerComponent implements OnInit {
           this.volunteers = this.origVolunteers;
         }
         else{
-          this.volunteers = this.origVolunteers.filter(a => (a.first_name + " "+a.last_name).toString().toLowerCase()
-          .includes(event.target.value.toString().toLowerCase()));
+          // The normalize("NFD").replace(/[\u0300-\u036f]/g, "") uses a regex character class to ignore special characters such as accents
+          this.volunteers = this.origVolunteers.filter(a => (a.first_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "") + " "+a.last_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")).toString().toLowerCase()
+          .includes(event.toString().toLowerCase()));
         }
     }      
  }      
