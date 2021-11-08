@@ -1,20 +1,5 @@
-<ng-template #PermanentVolModal let-modal>
-  <div class="modal-header text-center">
-    <h4 class="modal-title w-100">
-      <i class="fa fa-map-marker"></i>Permanent Volunteer Directory
-    </h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss()"
-      #closeModal
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 
-  <div class="permVolDir">
+  <div class="permVolDir" #PermanentVolModal>
     <div class="modal-body">
       <!-- Search container -->
       <div class="container-search">
@@ -86,12 +71,6 @@
       </mat-table>
     </div>
   </div>
-</ng-template>
-
-<button mat-menu-item (click)="open(PermanentVolModal, 'PermanentVolModal')">
-  <mat-icon>date_range</mat-icon>
-  <span>Permanent Volunteer Directory</span>
-</button>
 
 <ng-template #removePermVol let-modalWarning>
   <div class="modal-header text-center" style="background-color: #dc3545">

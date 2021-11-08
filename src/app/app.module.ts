@@ -128,6 +128,10 @@ const appRoutes: Routes = [
     component: UserProfileComponent
   },
   {
+    path: 'perm-volunteer-directory',
+    component: PermanentVolunteerDirectoryComponent
+  },
+  {
     path: 'past-week',
     component: PastWeekComponent//SignUpSheetComponent
   },

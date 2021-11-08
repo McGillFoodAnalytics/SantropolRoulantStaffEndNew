@@ -1,17 +1,13 @@
-::ng-deep .PermanentVolModal .modal-dialog {
-  max-width: 60% !important;
-  width: 60% !important;
-}
+ ::ng-deep .PermanentVolModal .modal-dialog {
+   max-width: 60% !important;
+   width: 60% !important;
+ }
 
 ::ng-deep .removePermVol .modal-dialog {
   max-width: 600px !important;
   width: 600px !important;
 }
 
-::ng-deep { .cdk-global-overlay-wrapper, .cdk-overlay-container { 
-  z-index: 9999!important; 
-  } 
-}
 
 .cdk-overlay-connected-position-bounding-box {
   z-index: 99999 !important;
@@ -33,12 +29,14 @@
 .modal-body{
   padding: 1rem 2rem 0 2rem;
   padding-top:2rem;
-  padding-bottom:2rem;
+   padding-bottom:2rem;
+  width: 100%;
+
 }
 
 .permVolDir{
-  overflow-y: auto;
-  height: 600px;
+   overflow-y: auto;
+    height: 100%;
 }
 
 .end-soon{
