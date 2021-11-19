@@ -30,6 +30,7 @@ export class FirebaseService {
   bugsRef: AngularFireList<any>;
   bugs: Observable<any[]>;
   user: Observable<any>;
+  
 
   shiftTypeLength = {
     kitam: 5,
@@ -484,4 +485,47 @@ export class FirebaseService {
       elements.unsubscribe();
     }); 
   }
-}
+
+     addDbSlot(eventModel, maxSlotNum){
+      // eventModel.subscribe(elems => elems.forEach(e => console.log(e.event_type)));  
+      
+      let newNodeKey = eventModel.event_date + eventModel.event_type + this.pad(maxSlotNum+1,2);
+      console.log(newNodeKey);
+        console.log(newNodeKey + "This is new node");
+        this.db.object('/event/'+newNodeKey).set({});
+         var eventNameRef = this.db.object('/event/' + newNodeKey).update( {
+          event_date: eventModel.event_date,
+          event_date_txt: eventModel.event_date_txt,
+          event_time_end: eventModel.event_time_end,
+          event_time_start: eventModel.event_time_start,
+          event_type: eventModel.event_type,
+          first_name: '',
+          first_shift: false,
+          is_current: true,
+          is_important_event: false,
+          key: 'nan',
+          last_name: '',
+          note: '',
+          slot: this.pad(maxSlotNum + 1, 2),
+          uid: 'nan'
+         });
+      }
+
+  }
+
+  // {
+  //   "event_date": 555,
+  //   "event_date_txt": "date",
+  //   "event_time_end": "gang",
+  //   "event_time_start": 9,
+  //   "event_type": 12,
+  //   "first_name": '',
+  //   "first_shift": false,
+  //   "is_current": true,
+  //   "is_important_event": false,
+  //   "key": 'nan',
+  //   "last_name": '',
+  //   "note": '',
+  //   "slot": 10,
+  //   "uid": 'nan'
+  //  }
