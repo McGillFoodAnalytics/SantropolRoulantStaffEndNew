@@ -14,9 +14,11 @@ import { UserTransferService } from '../user-transfer.service';
   styleUrls: ['./volunteer-directory.component.scss'],
 })
 
+
 export class VolunteerDirectoryComponent implements OnInit {
   displayedColumns: string[] = [ 'first_name', 'last_name', 'email', 'phone_number'];
   volunteers: any = [];
+  origVolunteers: any = [];
   volunteerRef: AngularFireList<any>;
   volunteersObservable: Observable<any[]>;
   expandableColumns;
@@ -32,17 +34,23 @@ export class VolunteerDirectoryComponent implements OnInit {
     this.errorMessage = "";
   }
 
+
   ngOnInit() {
      //trigger the toolbar to load 
      this.userTransfer.loginUpdate(true);
+     
   }
+  
 
   ngAfterViewInit() {
+        //sub.unsubscribe();
     this.fs.getUsers().subscribe(snapshots => {
       snapshots.forEach(element => {
+
         element.phone_number = this.prettifyPhoneNumber(element.phone_number);
           //Add new field to the list of vols that contains first and last name separated by a space, used for filtering. The field .a is important, since filter applies to fields ordered in alphabetical order
-          element.a = element.first_name + " " + element.last_name;
+        // The normalize("NFD").replace(/[\u0300-\u036f]/g, "") uses a regex character class to ignore special characters such as accents
+        element.a = element.first_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")  + " " + element.last_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "") ;
       });
     this.dataSource = new MatTableDataSource(snapshots);
     this.dataSource.sort = this.sort;
@@ -103,6 +111,22 @@ export class VolunteerDirectoryComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.dataSource.filter = filterValue.trim().replace(/[e]/g, "é");
+    //this.dataSource.filter = filterValue;    
+  
+    this.dataSource.filter = filterValue.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    return this.dataSource.filter;
+}
+
+  //Filter the dropdown menu
+  onKey(event){
+
+        this.volunteers = this.origVolunteers.filter(a => (a.first_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "") + " "+a.last_name.normalize('NFD').replace(/[\u0300-\u036f]/g, "")).toString().toLowerCase()
+        .includes(event.toString().toLowerCase()));
+        
+        this.volunteers  = event
+        
+ }      
+
 }

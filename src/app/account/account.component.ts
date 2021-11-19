@@ -96,6 +96,7 @@ export class AccountComponent implements OnInit {
         });
       } else {
         this.userTransfer.loginUpdate(false);
+        this.router.navigate(["/account"])
         this.loginMode();
       }
     });
