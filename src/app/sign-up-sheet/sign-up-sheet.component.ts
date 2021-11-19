@@ -584,8 +584,9 @@ export class SignUpSheetComponent implements OnInit {
   }
   val = 0;
 
-  addSlot(event){
+  addSlottoDay(event){
     this.val = 0;
+    console.log("hey");
     let dateNumber = this.fs.getDateNumber(new Date(this.slotInfo.event_date));
     let eventType = this.slotInfo.event_type;
     //let test1 = this.events.pipe(map(elem => elem.filter(e => e.event_type === eventType && e.event_date === dateNumber)));
