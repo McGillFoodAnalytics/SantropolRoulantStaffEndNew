@@ -1,4 +1,4 @@
-html{
+html {
   overflow-y: scroll;
 }
 
@@ -48,7 +48,7 @@ tr {
 
 .profile {
   width: 60vw;
-  position: relative; 
+  position: relative;
   margin-top: 2vh;
   left: 50vw;
   transform: translate(-50%, 0);
@@ -73,16 +73,16 @@ button {
   border-bottom-left-radius: 0px;
 }
 
-.editProfile{
+.editProfile {
   margin-top: -50px;
   position: relative;
   min-width: 600px;
 }
 
-.editProfile .input-group{
+.editProfile .input-group {
   left: 310px;
 }
-.editProfile input{
+.editProfile input {
   left: 310px;
 }
 
@@ -98,7 +98,7 @@ button {
   border-bottom-left-radius: 0px;
 }
 
-.btn-delete-user{
+.btn-delete-user {
   float: right;
   outline: none;
   height: 30px;
@@ -107,9 +107,9 @@ button {
   position: relative;
   margin-right: 10px;
   margin-top: 10px;
-	color: white !important;
+  color: white !important;
   border-color: indianred;
-	background-color: #dc3545 !important;
+  background-color: #dc3545 !important;
 }
 
 #saveBtn {
@@ -133,7 +133,7 @@ button {
 }
 
 .button span:after {
-  content: "\00bb";
+  content: '\00bb';
   position: absolute;
   opacity: 0;
   top: 0;
@@ -212,8 +212,17 @@ input {
   border: 1px solid lightgray;
   outline: none;
 }
+
+#editInputSecondaryPhone {
+  width: 170px;
+  position: fixed;
+  top: 410px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
 .group2 {
-  top: 412px;
+  top: 460px;
 }
 
 #editInputEmergName {
@@ -229,7 +238,7 @@ input {
 #editInputEmergNum {
   width: 170px;
   position: fixed;
-  top: 460px;
+  top: 508px;
   border: 1px solid lightgray;
 }
 
@@ -253,7 +262,7 @@ input.ng-invalid {
   width: 53.8vw;
   height: 194px;
   border: 1px solid #ccc;
-  overflow-y: scroll; 
+  overflow-y: scroll;
   margin-bottom: 120px;
 }
 
@@ -276,14 +285,14 @@ input.apple-switch {
   width: 47px;
   height: 27px;
   background-color: #fff;
-  border: 1px solid #D9DADC;
+  border: 1px solid #d9dadc;
   border-radius: 50px;
   box-shadow: inset -20px 0 0 0 #fff;
   transform: scale(0.88);
 }
 
 input.apple-switch:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1px;
   left: 1px;
@@ -291,7 +300,7 @@ input.apple-switch:after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 input.apple-switch:checked {
@@ -301,20 +310,20 @@ input.apple-switch:checked {
 
 input.apple-switch:checked:after {
   left: 20px;
-  box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+  box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
 }
 
-.removeVolBtn{
+.removeVolBtn {
   transform: scale(0.6);
   position: relative;
   top: -7px;
 }
 
-.footer{
+.footer {
   margin-top: 20px;
 }
 
-.userIdNull{
+.userIdNull {
   background-color: white;
   position: absolute;
   width: 100%;
@@ -322,20 +331,29 @@ input.apple-switch:checked:after {
   z-index: 100;
 }
 
-#phoneNumErrorMsg{
-  position: fixed; 
-  left: 490px; 
-  top: 348px; 
-  color: red; 
+#phoneNumErrorMsg {
+  position: fixed;
+  left: 490px;
+  top: 368px;
+  color: red;
   font-size: 14px;
   font-style: italic;
 }
 
-.past-n-future{
+#secondaryPhoneNumErrorMsg {
+  position: fixed;
+  left: 490px;
+  top: 412px;
+  color: red;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.past-n-future {
   height: 430px;
 }
 
-.table-shifts{
+.table-shifts {
   height: 300px;
   overflow-y: auto;
 }

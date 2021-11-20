@@ -16,14 +16,14 @@ function createWindow() {
         height: size.height,
         webPreferences: {
             nodeIntegration: true,
-            allowRunningInsecureContent: (serve) ? true : false,
+            allowRunningInsecureContent: serve ? true : false,
         },
     });
     if (serve) {
         require('devtron').install();
         win.webContents.openDevTools();
         require('electron-reload')(__dirname, {
-            electron: require(__dirname + "/node_modules/electron")
+            electron: require(__dirname + "/node_modules/electron"),
         });
         win.loadURL('http://localhost:4200');
     }
@@ -31,7 +31,7 @@ function createWindow() {
         win.loadURL(url.format({
             pathname: path.join(__dirname, 'dist/index.html'),
             protocol: 'file:',
-            slashes: true
+            slashes: true,
         }));
     }
     // Emitted when the window is closed.

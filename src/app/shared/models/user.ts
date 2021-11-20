@@ -10,6 +10,7 @@ export class User {
   public last_name: string;
   public no_show: number;
   public phone_number: string;
+  public secondary_phone_number: string;
   public signup_date: string;
   public emergency_contact_number: string;
   public emergency_contact_name: string;

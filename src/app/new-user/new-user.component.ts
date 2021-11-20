@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import { User } from "../shared/models/user";
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
-import { formatDate } from "@angular/common";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { firebase } from "@firebase/app";
-import { FirebaseService } from "../firebase-service.service"
-import { UserService } from "../user.service";
-import "@firebase/auth";
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { User } from '../shared/models/user';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { formatDate } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { firebase } from '@firebase/app';
+import { FirebaseService } from '../firebase-service.service';
+import { UserService } from '../user.service';
+import '@firebase/auth';
 
 @Component({
-  selector: "app-new-user",
-  templateUrl: "./new-user.component.html",
-  styleUrls: ["./new-user.component.scss"],
+  selector: 'app-new-user',
+  templateUrl: './new-user.component.html',
+  styleUrls: ['./new-user.component.scss'],
 })
 export class NewUserComponent implements OnInit {
   private model = new User();
@@ -23,8 +23,8 @@ export class NewUserComponent implements OnInit {
   private randPassword;
   private errorMsg;
   private base;
-  
-  @ViewChild("newUserError") templateRefErr: TemplateRef<any>;
+
+  @ViewChild('newUserError') templateRefErr: TemplateRef<any>;
 
   constructor(
     private modalService: NgbModal,
@@ -37,41 +37,47 @@ export class NewUserComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // let sub = this.fs.getAirtableAPIKey().subscribe((key) => {
     //   this.base = new Airtable({
     //     apiKey: key
     //   }).base('appB7a5gvGu8ELiEp');
     //   sub.unsubscribe();
     // });
-    
-    var phoneNumPattern = new RegExp("^[0-9]{10}$");
+
+    var phoneNumPattern = new RegExp('^[0-9]{10}$');
 
     this.myForm = this.formBuilder.group({
-      first_name: ["", Validators.required],
-      last_name: ["", Validators.required],
-      dob: ["", Validators.required],
-      address: ["", Validators.required],
-      address_city: ["", Validators.required],
-      address_postal_code: ["", Validators.required],
-      email: ["", Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      dob: ['', Validators.required],
+      address: ['', Validators.required],
+      address_city: ['', Validators.required],
+      address_postal_code: ['', Validators.required],
+      email: ['', Validators.required],
       phone_number: [
-        "",
+        '',
         Validators.compose([
           Validators.required,
           Validators.pattern(phoneNumPattern),
         ]),
       ],
-      emergency_contact_name: [""],
-      emergency_contact_relationship: [""],
-      emergency_contact_number: ["", Validators.pattern(phoneNumPattern)],
+      secondary_phone_number: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(phoneNumPattern),
+        ]),
+      ],
+      emergency_contact_name: [''],
+      emergency_contact_relationship: [''],
+      emergency_contact_number: ['', Validators.pattern(phoneNumPattern)],
     });
   }
 
   open(content) {
     this.modalReference = this.modalService.open(content, {
-      ariaLabelledBy: "modal-basic-title",
-      size: "lg",
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'lg',
       centered: true,
     });
   }
@@ -84,17 +90,18 @@ export class NewUserComponent implements OnInit {
 
     // Create a dummy app so that current user is not signed out
     let authWorkerApp;
-    try{
-        authWorkerApp = firebase.initializeApp(
+    try {
+      authWorkerApp = firebase.initializeApp(
         firebase.app().options,
-        "auth-worker"
+        'auth-worker'
       );
-    }
-    catch{
-      authWorkerApp.app().delete().then(function() {
-        firebase.initializeApp(firebase.app().options,
-        "auth-worker");
-      });
+    } catch {
+      authWorkerApp
+        .app()
+        .delete()
+        .then(function () {
+          firebase.initializeApp(firebase.app().options, 'auth-worker');
+        });
     }
 
     let authWorkerAuth = firebase.auth(authWorkerApp);
@@ -107,7 +114,7 @@ export class NewUserComponent implements OnInit {
       .createUserWithEmailAndPassword(user.email, this.randPassword)
       .then((userCredential) => {
         // Signed in
-        this.db.object("/user/" + user.id).update({
+        this.db.object('/user/' + user.id).update({
           address_city: user.address_city,
           address_postal_code: user.address_postal_code,
           address: user.address,
@@ -131,7 +138,8 @@ export class NewUserComponent implements OnInit {
         var errorMessage = error.message;
         this.errorMsg = error.message;
         this.modalService.open(this.templateRefErr, { centered: true });
-      }).then(() => {
+      })
+      .then(() => {
         this.createAirtableUser(user);
       });
   }
@@ -139,28 +147,28 @@ export class NewUserComponent implements OnInit {
   createAirtableUser(user: any) {
     let userObj = [
       {
-        "fields": {
-          "Account ID (VolApp)": user.id,
-          "Nom": user.last_name,
-          "Courriel": user.email,
-          "Téléphone": user.phone_number,
-          "Prenom": user.first_name,
-          "Address - street": user.address,
-          "Emergency contact name": user.emergency_contact_name,
-          "EC relationship": user.emergency_contact_relationship,
-          "EC phone": user.emergency_contact_number,
-          "Birthdate": (user.dob + "").substring(0,10),
-          "Status": "Active",
-          "date created (original)": this.getAirtableSignupDate(),
-          "Address -city": user.address_city,
-          "Address - province": "QC",
-          "Address - postal code": user.address_postal_code
-        }
-      }
+        fields: {
+          'Account ID (VolApp)': user.id,
+          Nom: user.last_name,
+          Courriel: user.email,
+          Téléphone: user.phone_number,
+          Prenom: user.first_name,
+          'Address - street': user.address,
+          'Emergency contact name': user.emergency_contact_name,
+          'EC relationship': user.emergency_contact_relationship,
+          'EC phone': user.emergency_contact_number,
+          Birthdate: (user.dob + '').substring(0, 10),
+          Status: 'Active',
+          'date created (original)': this.getAirtableSignupDate(),
+          'Address -city': user.address_city,
+          'Address - province': 'QC',
+          'Address - postal code': user.address_postal_code,
+        },
+      },
     ];
     let sub = this.userService.createUserInAirtable(userObj).subscribe(() => {
-        console.log("Created user in Airtable");
-        sub.unsubscribe();
+      console.log('Created user in Airtable');
+      sub.unsubscribe();
     });
   }
 
@@ -175,9 +183,9 @@ export class NewUserComponent implements OnInit {
   }
 
   generateRandomPassword() {
-    var numberChars = "0123456789";
-    var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+    var numberChars = '0123456789';
+    var upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var lowerChars = 'abcdefghijklmnopqrstuvwxyz';
     var allChars = numberChars + upperChars + lowerChars;
     var randPasswordArray = Array(16);
     randPasswordArray = randPasswordArray.fill(allChars);
@@ -186,7 +194,7 @@ export class NewUserComponent implements OnInit {
       randPasswordArray.map((x) => {
         return x[Math.floor(Math.random() * x.length)];
       })
-    ).join("");
+    ).join('');
   }
 
   shuffleArray(array) {
@@ -200,24 +208,24 @@ export class NewUserComponent implements OnInit {
   }
 
   getNewUser(): User {
-    this.model.first_name = this.myForm.get("first_name").value;
-    this.model.last_name = this.myForm.get("last_name").value;
-    this.model.dob = this.myForm.get("dob").value;
-    this.model.address = this.myForm.get("address").value;
-    this.model.address_city = this.myForm.get("address_city").value;
+    this.model.first_name = this.myForm.get('first_name').value;
+    this.model.last_name = this.myForm.get('last_name').value;
+    this.model.dob = this.myForm.get('dob').value;
+    this.model.address = this.myForm.get('address').value;
+    this.model.address_city = this.myForm.get('address_city').value;
     this.model.address_postal_code = this.myForm.get(
-      "address_postal_code"
+      'address_postal_code'
     ).value;
-    this.model.email = this.myForm.get("email").value;
-    this.model.phone_number = this.myForm.get("phone_number").value;
+    this.model.email = this.myForm.get('email').value;
+    this.model.phone_number = this.myForm.get('phone_number').value;
     this.model.emergency_contact_name = this.myForm.get(
-      "emergency_contact_name"
+      'emergency_contact_name'
     ).value;
     this.model.emergency_contact_relationship = this.myForm.get(
-      "emergency_contact_relationship"
+      'emergency_contact_relationship'
     ).value;
     this.model.emergency_contact_number = this.myForm.get(
-      "emergency_contact_number"
+      'emergency_contact_number'
     ).value;
     return this.model;
   }
@@ -225,17 +233,17 @@ export class NewUserComponent implements OnInit {
   getFormattedDate() {
     let date = new Date();
     let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, "0");
-    let day = date.getDate().toString().padStart(2, "0");
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
 
-    return month + "/" + day + "/" + year;
+    return month + '/' + day + '/' + year;
   }
 
   getAirtableSignupDate() {
     let date = new Date();
     let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, "0");
-    let day = date.getDate().toString().padStart(2, "0");
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
 
     return year + '-' + month + '-' + day;
   }

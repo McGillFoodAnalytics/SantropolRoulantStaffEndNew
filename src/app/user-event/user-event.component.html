@@ -208,6 +208,18 @@
             >*Invalid phone number. Should be 10 digits only.
           </mat-label>
 
+          <input
+            ng-model="name"
+            id="editInputSecondaryPhone"
+            formControlName="secondary_phone_number"
+            required
+          />
+          <mat-label
+            id="secondaryPhoneNumErrorMsg"
+            *ngIf="myForm.get('secondary_phone_number').invalid"
+            >*Invalid phone number. Should be 10 digits only.
+          </mat-label>
+
           <div class="input-group group2">
             <input
               id="editInputEmergName"
@@ -283,15 +295,23 @@ Address:<span id="info-field" *ngIf="!displayForm"> {{element.address}}, {{ elem
 Phone Number:<span id="info-field" *ngIf="!displayForm">{{prettifyNumber(element.phone_number)}}</span></pre>
           </td>
         </tr>
+        <tr></tr>
         <tr>
           <td id="colored">
+            <mat-icon>phone_android</mat-icon>
+            <pre>
+  Secondary Phone Number:<span id="info-field" *ngIf="!displayForm">{{prettifyNumber(element.secondary_phone_number)}}</span></pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <mat-icon>local_hospital</mat-icon>
             <pre>
  Emergency Contact:<span id="info-field" *ngIf="!displayForm">{{ emergency(element) }}</span></pre>
           </td>
         </tr>
         <tr>
-          <td>
+          <td id="colored">
             <mat-icon>perm_device_information</mat-icon>
             <pre>
 Emergency Contact Phone:<span id="info-field" *ngIf="!displayForm">{{ prettifyNumber(element.emergency_contact_number) }}</span></pre>
