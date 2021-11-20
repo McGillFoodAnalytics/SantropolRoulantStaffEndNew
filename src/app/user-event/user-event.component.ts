@@ -6,27 +6,27 @@ import {
   EventEmitter,
   ViewChild,
   TemplateRef,
-} from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { FirebaseService } from "../firebase-service.service";
-import { Observable } from "rxjs";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { User } from "../shared/models/user";
-import { UserTransferService } from "../user-transfer.service";
-import { UserService } from "../user.service";
+} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { FirebaseService } from '../firebase-service.service';
+import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../shared/models/user';
+import { UserTransferService } from '../user-transfer.service';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: "app-user-event",
-  templateUrl: "./user-event.component.html",
-  styleUrls: ["./user-event.component.scss"],
+  selector: 'app-user-event',
+  templateUrl: './user-event.component.html',
+  styleUrls: ['./user-event.component.scss'],
 })
 export class UserEventComponent implements OnInit {
   private displayedColumns: string[] = [
-    "event_data_text",
-    "event_type",
-    "event_time_start",
-    "event_time_end",
+    'event_data_text',
+    'event_type',
+    'event_time_start',
+    'event_time_end',
   ];
   volunteers: Observable<any[]>;
   events: Observable<any[]>;
@@ -51,15 +51,15 @@ export class UserEventComponent implements OnInit {
   private modalReference2;
 
   eventTypes = {
-    kitam: "Kitchen AM",
-    kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    kitam: 'Kitchen AM',
+    kitpm: 'Kitchen PM',
+    deldr: 'Delivery Driver',
+    deliv: 'Delivery',
   };
 
   @Input() userId: string;
   @Output() removeUserFromEvent: EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild("deleteUser", { static: true })
+  @ViewChild('deleteUser', { static: true })
   modalTemplateWarning: TemplateRef<any>;
 
   constructor(
@@ -89,9 +89,9 @@ export class UserEventComponent implements OnInit {
     this.volunteerSub = this.firebase.getUser(this.userId).subscribe((user) => {
       if (user) {
         this.element = user;
-        this.element.address = this.element.address.replace(/\n|\r/g, "");
-        this.element.address_postal_code
-           = this.element.address_postal_code.replace(/\n|\r/g, "");
+        this.element.address = this.element.address.replace(/\n|\r/g, '');
+        this.element.address_postal_code =
+          this.element.address_postal_code.replace(/\n|\r/g, '');
         this.element.signup_date = this.formatSignupDate(
           this.element.signup_date
         );
@@ -114,7 +114,7 @@ export class UserEventComponent implements OnInit {
   }
 
   loadForm() {
-    var phoneNumPattern = new RegExp("^[0-9]{10}$");
+    var phoneNumPattern = new RegExp('^[0-9]{10}$');
 
     this.myForm = this.formBuilder.group({
       dob: [this.element.dob, Validators.required],
@@ -127,6 +127,10 @@ export class UserEventComponent implements OnInit {
       email: [this.element.email, Validators.required],
       phone_number: [
         this.element.phone_number,
+        Validators.pattern(phoneNumPattern),
+      ],
+      secondary_phone_number: [
+        this.element.secondary_phone_number,
         Validators.pattern(phoneNumPattern),
       ],
       emergency_contact_name: [this.element.emergency_contact_name],
@@ -161,23 +165,23 @@ export class UserEventComponent implements OnInit {
 
   open(content) {
     this.modalReference = this.modalService.open(content, {
-      ariaLabelledBy: "modal-basic-title",
-      size: "lg",
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'lg',
       centered: true,
     });
   }
 
   openWarning() {
     this.modalReference2 = this.modalService.open(this.modalTemplateWarning, {
-      ariaLabelledBy: "modal-basic-title",
-      size: "md",
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'md',
       centered: true,
     });
   }
 
   //When deleting a user is confirmed
   onDelete() {
-    console.log("User: " + this.userId + "was deleted.");
+    console.log('User: ' + this.userId + 'was deleted.');
     this.firebase.deleteUser(this.userId);
     this.modalReference2.close();
 
@@ -193,7 +197,7 @@ export class UserEventComponent implements OnInit {
   }
 
   prettify(str: string) {
-    return str.replace("_", " ");
+    return str.replace('_', ' ');
   }
 
   changeActiveStatus() {
@@ -279,15 +283,15 @@ export class UserEventComponent implements OnInit {
 
   //Used for birthdate
   formatDate(date) {
-    if (date == null || date == "") {
-      return "";
+    if (date == null || date == '') {
+      return '';
     }
     if (date.constructor == Date) {
-      let month = date.toLocaleString("default", { month: "long" });
+      let month = date.toLocaleString('default', { month: 'long' });
       let day = date.getDate().toString();
       let year = date.getFullYear().toString();
 
-      return month + " " + day + ", " + year;
+      return month + ' ' + day + ', ' + year;
     } else if (date.constructor == String) {
       let month, day;
       const year = date.substring(0, 4);
@@ -304,9 +308,9 @@ export class UserEventComponent implements OnInit {
         parseInt(month) - 1,
         parseInt(day)
       );
-      let monthName = newDate.toLocaleString("default", { month: "long" });
+      let monthName = newDate.toLocaleString('default', { month: 'long' });
 
-      date = monthName + " " + day + ", " + year;
+      date = monthName + ' ' + day + ', ' + year;
       return date;
     }
   }
@@ -322,13 +326,13 @@ export class UserEventComponent implements OnInit {
     var day, month, year;
 
     //If code is a number. (does not include '/')
-    if (!subdate.includes("/")) {
+    if (!subdate.includes('/')) {
       //0 will stores month("mm"), 1 will store day("dd"), 2 will store year ("yyyy")
-      let times = { 0: "", 1: "", 2: "" };
+      let times = { 0: '', 1: '', 2: '' };
 
       let counter = 0;
       for (let index = 0; index < date.length; index++) {
-        if (date.charAt(index) === "/") {
+        if (date.charAt(index) === '/') {
           counter++;
         } else {
           times[counter] += date.charAt(index);
@@ -338,7 +342,7 @@ export class UserEventComponent implements OnInit {
       day = times[1];
       year = times[2];
     } else {
-      year = "20" + date.substring(0, 2);
+      year = '20' + date.substring(0, 2);
       day = date.substring(6);
       month = date.substring(3, 5);
     }
@@ -348,8 +352,8 @@ export class UserEventComponent implements OnInit {
       parseInt(month) - 1,
       parseInt(day)
     );
-    month = newDate.toLocaleString("default", { month: "long" });
-    date = month + " " + day + ", " + year;
+    month = newDate.toLocaleString('default', { month: 'long' });
+    date = month + ' ' + day + ', ' + year;
     return date;
   }
 
@@ -360,20 +364,20 @@ export class UserEventComponent implements OnInit {
   }
 
   formatReason(reason: string) {
-    if (reason == "" || reason == null) {
-      return "-";
+    if (reason == '' || reason == null) {
+      return '-';
     }
     return reason;
   }
 
   prettifyNumber(str: string) {
-    if (str == null || str == "") {
-      return "-";
+    if (str == null || str == '') {
+      return '-';
     }
     let a = str.substring(0, 3);
     let b = str.substring(3, 6);
     let c = str.substring(6, 10);
-    let phoneNumber = "(" + a + ") " + b + "-" + c;
+    let phoneNumber = '(' + a + ') ' + b + '-' + c;
     return phoneNumber;
   }
 
@@ -383,14 +387,14 @@ export class UserEventComponent implements OnInit {
     let contact_rel;
     if (
       user.emergency_contact_name == null ||
-      user.emergency_contact_name == ""
+      user.emergency_contact_name == ''
     ) {
-      return "-";
+      return '-';
     } else {
       contact_name = user.emergency_contact_name;
       contact_rel = user.emergency_contact_relationship;
     }
-    return contact_name + " (" + contact_rel + ")";
+    return contact_name + ' (' + contact_rel + ')';
   }
 
   //function is used to display 0 if cancellations property does not exists on user
@@ -404,7 +408,7 @@ export class UserEventComponent implements OnInit {
 
   updateUser(user) {
     this.db
-      .object("/user/" + this.userId)
+      .object('/user/' + this.userId)
       .update({
         address_city: user.address_city,
         address_postal_code: user.address_postal_code,
@@ -421,19 +425,19 @@ export class UserEventComponent implements OnInit {
           {
             id: this.element.airtable_record_id,
             fields: {
-              "Account ID (VolApp)": this.userId,
-              "Prenom": this.element.first_name,
-              "Nom": this.element.last_name,
-              "Address -city": user.address_city,
-              "Address - postal code": user.address_postal_code,
-              "Address - street": user.address,
-              "Birthdate": user.dob.substring(0, 10),
-              "Courriel": user.email,
-              "Status": this.element.active_status ? "Active" : "Inactive",
-              "Emergency contact name": user.emergency_contact_name,
-              "EC phone": user.emergency_contact_number,
-              "EC relationship": user.emergency_contact_relationship,
-              "Téléphone": user.phone_number,
+              'Account ID (VolApp)': this.userId,
+              Prenom: this.element.first_name,
+              Nom: this.element.last_name,
+              'Address -city': user.address_city,
+              'Address - postal code': user.address_postal_code,
+              'Address - street': user.address,
+              Birthdate: user.dob.substring(0, 10),
+              Courriel: user.email,
+              Status: this.element.active_status ? 'Active' : 'Inactive',
+              'Emergency contact name': user.emergency_contact_name,
+              'EC phone': user.emergency_contact_number,
+              'EC relationship': user.emergency_contact_relationship,
+              Téléphone: user.phone_number,
             },
           },
         ];
@@ -456,7 +460,7 @@ export class UserEventComponent implements OnInit {
   checkBox() {
     if (this.element.active_status || this.element.active_status == null) {
       let statusCheckBox = document.getElementById(
-        "statusCheck"
+        'statusCheck'
       ) as HTMLInputElement;
       statusCheckBox.checked = true;
     }
@@ -468,7 +472,7 @@ export class UserEventComponent implements OnInit {
 
     let day = code1.substring(4);
     let month = code1.substring(2, 4);
-    let year = "20" + code1.substring(0, 2);
+    let year = '20' + code1.substring(0, 2);
 
     // Create Date type to extract month in string format easily
     const newDate = new Date(
@@ -478,8 +482,8 @@ export class UserEventComponent implements OnInit {
     );
 
     // MonthName is the month in plain language, i.e. January
-    let monthName = newDate.toLocaleString("default", { month: "long" });
-    let date = monthName + " " + day + ", " + year;
+    let monthName = newDate.toLocaleString('default', { month: 'long' });
+    let date = monthName + ' ' + day + ', ' + year;
     return date;
   }
 
@@ -515,22 +519,22 @@ export class UserEventComponent implements OnInit {
   }
 
   getUpdatedUser(): User {
-    this.model.dob = this.myForm.get("dob").value;
-    this.model.address = this.myForm.get("address").value;
-    this.model.address_city = this.myForm.get("address_city").value;
+    this.model.dob = this.myForm.get('dob').value;
+    this.model.address = this.myForm.get('address').value;
+    this.model.address_city = this.myForm.get('address_city').value;
     this.model.address_postal_code = this.myForm.get(
-      "address_postal_code"
+      'address_postal_code'
     ).value;
-    this.model.email = this.myForm.get("email").value;
-    this.model.phone_number = this.myForm.get("phone_number").value;
+    this.model.email = this.myForm.get('email').value;
+    this.model.phone_number = this.myForm.get('phone_number').value;
     this.model.emergency_contact_name = this.myForm.get(
-      "emergency_contact_name"
+      'emergency_contact_name'
     ).value;
     this.model.emergency_contact_relationship = this.myForm.get(
-      "emergency_contact_relationship"
+      'emergency_contact_relationship'
     ).value;
     this.model.emergency_contact_number = this.myForm.get(
-      "emergency_contact_number"
+      'emergency_contact_number'
     ).value;
 
     return this.model;
