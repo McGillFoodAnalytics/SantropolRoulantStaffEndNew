@@ -64,6 +64,7 @@ export class SignUpSheetComponent implements OnInit {
   private weekRange5: string;
   private modalReference;
   private slotInfo; //When adding a new slot, need metadata from the existing slots
+  private numOfSlots = 0; //Get the # of slots for any particular event
   source;
  
   dataSource = new MatTableDataSource();
@@ -579,14 +580,11 @@ export class SignUpSheetComponent implements OnInit {
     this.fs.updateEventNote(event_id, event_note);
   }
   
-  test(){
-    console.log(this.val);
-  }
-  val = 0;
+
+ 
 
   addSlottoDay(event){
-    this.val = 0;
-    console.log("hey");
+    this.numOfSlots = 0;
     let dateNumber = this.fs.getDateNumber(new Date(this.slotInfo.event_date));
     let eventType = this.slotInfo.event_type;
     //let test1 = this.events.pipe(map(elem => elem.filter(e => e.event_type === eventType && e.event_date === dateNumber)));
@@ -595,12 +593,11 @@ export class SignUpSheetComponent implements OnInit {
           let eventCopy;
           snapshots.forEach((element: any) =>{
           if (element.event_type === eventType && element.event_date === dateNumber) {
-          console.log(element.event_type + "This is the func event" + eventType);
           eventCopy = element;
-          this.val++; 
+          this.numOfSlots++; 
         }
       });
-      this.fs.addDbSlot(eventCopy, this.val);
+      this.fs.addDbSlot(eventCopy, this.numOfSlots);
       obj.unsubscribe();
     });
   } 
@@ -614,7 +611,6 @@ export class SignUpSheetComponent implements OnInit {
       centered: true
     });
 
-    console.log(this.slotInfo);
   }
 
 }

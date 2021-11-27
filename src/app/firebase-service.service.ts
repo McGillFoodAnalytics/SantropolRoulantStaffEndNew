@@ -490,8 +490,6 @@ export class FirebaseService {
       // eventModel.subscribe(elems => elems.forEach(e => console.log(e.event_type)));  
       
       let newNodeKey = eventModel.event_date + eventModel.event_type + this.pad(maxSlotNum+1,2);
-      console.log(newNodeKey);
-        console.log(newNodeKey + "This is new node");
         this.db.object('/event/'+newNodeKey).set({});
          var eventNameRef = this.db.object('/event/' + newNodeKey).update( {
           event_date: eventModel.event_date,
