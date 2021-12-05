@@ -17,17 +17,17 @@ export class WeekGeneratorComponent implements OnInit {
   private volunteersObservable;
   private events: any = [];
   private eventsObservable;
-  private model: any = {kitamSlots: [], kitpmSlots:[], delivSlots:[], deldrSlots:[]};
+  private model: any = {kitamSlots: [], kitpmSlots:[], delivSlots:[],deliv_bikerSlots:[], deldrSlots:[], deldr_SRSlots:[]};
   private addPermanentForm: FormGroup;
   result: Observable<any>
   today: Date;
   aYearFromNow: Date;
   threeMondays: any = [];
   nearestMonday:Date = new Date();
-  types = ['deldr', 'deliv', 'kitam', 'kitpm'];
-  slotAmount = [2, 12, 6, 6];
-  startTimes = ['14:45','14:45','9:30','13:30'];
-  endTimes = ['18:00','18:00','12:30','16:00'];
+  types = ['deldr', 'deldr_SR', 'deliv','deliv_biker', 'kitam', 'kitpm'];
+  slotAmount = [2, 2, 12, 12, 6, 6];
+  startTimes = ['14:45', '14:45', '14:45','14:45', '9:30','13:30'];
+  endTimes = ['18:00', '18:00','18:00','18:00','12:30','16:00'];
 
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder, private fs: FirebaseService, private db: AngularFireDatabase){
     this.today = new Date();
@@ -49,7 +49,9 @@ export class WeekGeneratorComponent implements OnInit {
       kitamSlots:[[6,6,6,0,6,6,0], Validators.required],
       kitpmSlots:[[4,4,4,4,4,4,0], Validators.required],
       delivSlots:[[12,12,12,12,12,12,0], Validators.required],
+      deliv_bikerSlots:[[12,12,12,12,12,12,0], Validators.required],
       deldrSlots:[[4,4,4,4,4,4,0], Validators.required],
+      deldr_SRSlots:[[4,4,4,4,4,4,0], Validators.required],
     });
   }
 

@@ -56,12 +56,12 @@ exports.scheduledShiftGenerator = functions.pubsub.schedule("00 9 * * sun").time
 });
 
 function printStrings(date) {
-  var types = ['deldr', 'deliv', 'kitam', 'kitpm'];
-  var slotAmount = [4, 10, 6, 6];
-  var startTimes = ['14:45', '14:45', '9:30', '13:30'];
-  var endTimes = ['18:00', '18:00', '12:30', '16:00'];
-  var startTimesSat = ['14:15', '14:15', '9:00', '13:00'];
-  var endTimesSat = ['17:30', '17:30', '12:00', '15:30'];
+  var types = ['deldr','deldr_SR', 'deliv', 'deliv_biker', 'kitam', 'kitpm'];
+  var slotAmount = [4, 4, 10, 10, 6, 6];
+  var startTimes = ['14:45','14:45', '14:45', '14:45', '9:30', '13:30'];
+  var endTimes = ['18:00', '18:00', '18:00','18:00', '12:30', '16:00'];
+  var startTimesSat = ['14:15','14:15', '14:15','14:15', '9:00', '13:00'];
+  var endTimesSat = ['17:30', '17:30', '17:30','17:30', '12:00', '15:30'];
   for (let weekdayNo = 0; weekdayNo < 6; weekdayNo++) { //for each weekday
     if (weekdayNo == 3) { //thursday
       let incrementInMilliseconds = weekdayNo * 24 * 60 * 60 * 1000;

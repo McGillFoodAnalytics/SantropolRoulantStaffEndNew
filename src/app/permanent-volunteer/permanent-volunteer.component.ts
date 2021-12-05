@@ -27,8 +27,10 @@ export class PermanentVolunteerComponent implements OnInit {
   shiftTypes = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    deldr: "Delivery Driver (Own Car)",
+    deldr_SR: "Delivery Driver (SR Car)",
+    deliv: "Delivery (Walker)",
+    deliv_biker: "Delivery (Biker)",
   };
 
   today: Date;

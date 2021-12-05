@@ -151,11 +151,19 @@ export class AddUserToEventComponent implements OnInit {
     if (event == "Kitchen PM") {
       return "kitpm";
     }
-    if (event == "Delivery Driver") {
+    if (event == "Delivery Driver (Own Car)") {
       return "deldr";
     }
-    if (event == "Delivery") {
+
+    if (event == "Delivery Driver (SR Car)") {
+      return "deldr_SR";
+    }
+
+    if (event == "Delivery (Walker)") {
       return "deliv";
+    }
+    if (event == "Delivery (Biker)") {
+      return "deliv_biker";
     }
   }
 

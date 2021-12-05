@@ -28,8 +28,10 @@ export class PermanentVolunteerDirectoryComponent implements OnInit {
   shiftTypes = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    deldr: "Delivery Driver (Own Car)",
+    deldr_SR: "Delivery Driver (SR Car)",
+    deliv: "Delivery (Walker)",
+    deliv_biker: "Delivery (Biker)",
   };
 
   private eventsObservable;
