@@ -306,4 +306,7 @@ h1 {
   transform: translate(-35%, -50%);
 }
 
- 
+::ng-deep .addSlot .modal-dialog {
+  max-width: 60% !important;
+  width: 60% !important;
+}

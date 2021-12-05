@@ -2,7 +2,7 @@
   <div id="loaderBackground">
     <div class="loader" id="spinner"></div>
   </div>
-
+  <button (click)="test()">Test Button Output</button>
   <div class="container-fluid" style="padding: 0">
     <div class="row" style="padding-top: 2rem; padding-bottom: 1rem">
       <div class="col" id="header" style="text-align: center">
@@ -147,6 +147,7 @@
                     "
                     >announcement
                   </mat-icon>
+                  <button class="ml-3 btn-outline-secondary" (click)="openSlotConfirmation(addSlot, 'addSlot', day.value.slots[0])">Add Slot</button>
                   <app-add-user-to-event></app-add-user-to-event>
                 </div>
               </div>
@@ -228,6 +229,7 @@
                     "
                     >announcement
                   </mat-icon>
+                  <button class="ml-3 btn-outline-secondary" (click)="openSlotConfirmation(addSlot, 'addSlot', day.value.slots[0])">Add Slot</button>
                 </div>
               </div>
             </div>
@@ -304,6 +306,7 @@
                     "
                     >announcement
                   </mat-icon>
+                  <button class="ml-3 btn-outline-secondary" (click)="openSlotConfirmation(addSlot, 'addSlot', day.value.slots[0])">Add Slot</button>
                   <app-add-user-to-event></app-add-user-to-event>
                 </div>
               </div>
@@ -468,4 +471,42 @@
       <app-copyright-footer></app-copyright-footer>
     </div>
   </div>
+
+
+  <ng-template #addSlot let-slotMessage>
+    <div class="modal-header text-center" style="background-color: #35dc7b">
+      <h4 class="modal-title w-100" id="modal-basic-title">Add a New Slot </h4>
+      <button
+        type="button"
+        class="close"
+        style="outline: none"
+        aria-label="Close"
+        (click)="slotMessage.dismiss()"
+        #closeModal
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p class="text-center">
+        You are about to add a permanent slot to this day's event. Is this action confirmed?
+      </p>
+    </div>
+    <div class="footer">
+      <button
+        class="btn btn-xl btn-outline-danger"
+        (click)="slotMessage.dismiss()"
+        id="cancel"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-xl ml-2 btn-outline-primary"
+        (click)="addSlottoDay($event); slotMessage.dismiss()">
+        Confirm
+      </button>
+    </div>
+  </ng-template>
+  
+
 </html>

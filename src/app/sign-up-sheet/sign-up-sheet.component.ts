@@ -10,6 +10,8 @@ import {
   MatTooltipDefaultOptions,
 } from "@angular/material/tooltip";
 import { UserTransferService } from '../user-transfer.service';
+import { filter, map } from "rxjs/operators";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 export const myCustomTooltipDefaults: MatTooltipDefaultOptions = {
   showDelay: 1000,
@@ -60,6 +62,9 @@ export class SignUpSheetComponent implements OnInit {
   private weekRange3: string;
   private weekRange4: string;
   private weekRange5: string;
+  private modalReference;
+  private slotInfo; //When adding a new slot, need metadata from the existing slots
+  private numOfSlots = 0; //Get the # of slots for any particular event
   source;
  
   dataSource = new MatTableDataSource();
@@ -83,7 +88,7 @@ export class SignUpSheetComponent implements OnInit {
   private pane = "left";
   items: Observable<any[]>;
 
-  constructor(private userTransfer: UserTransferService, private db: AngularFireDatabase, private fs: FirebaseService) {}
+  constructor(private userTransfer: UserTransferService, private db: AngularFireDatabase, private fs: FirebaseService, private modalService:NgbModal) {}
 
   ngOnInit() {
     //trigger the toolbar to load 
@@ -574,4 +579,39 @@ export class SignUpSheetComponent implements OnInit {
   updateEventNote(event_id, event_note) {
     this.fs.updateEventNote(event_id, event_note);
   }
+  
+
+ 
+
+  addSlottoDay(event){
+    this.numOfSlots = 0;
+    let dateNumber = this.fs.getDateNumber(new Date(this.slotInfo.event_date));
+    let eventType = this.slotInfo.event_type;
+    //let test1 = this.events.pipe(map(elem => elem.filter(e => e.event_type === eventType && e.event_date === dateNumber)));
+   // this.fs.addDbSlot(test1, this.val);
+    let obj = this.events.subscribe((snapshots) => {
+          let eventCopy;
+          snapshots.forEach((element: any) =>{
+          if (element.event_type === eventType && element.event_date === dateNumber) {
+          eventCopy = element;
+          this.numOfSlots++; 
+        }
+      });
+      this.fs.addDbSlot(eventCopy, this.numOfSlots);
+      obj.unsubscribe();
+    });
+  } 
+
+  openSlotConfirmation(content, windowClass, slotInfo){
+    this.slotInfo = slotInfo;
+    this.modalReference = this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      size: 'sm',
+      windowClass: windowClass, 
+      centered: true
+    });
+
+  }
+
 }
+
