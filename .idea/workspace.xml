@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1c3b4e4-4daa-4564-95e9-825f2829322c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/functions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/firebase-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/firebase-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/past-week/past-week.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/past-week/past-week.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/past-week/past-week.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/past-week/past-week.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/permanent-volunteer-directory/permanent-volunteer-directory.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/permanent-volunteer-directory/permanent-volunteer-directory.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/permanent-volunteer/permanent-volunteer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/permanent-volunteer/permanent-volunteer.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/permanent-volunteer/permanent-volunteer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/permanent-volunteer/permanent-volunteer.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/sign-up-sheet/add-user-to-event/add-user-to-event.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/sign-up-sheet/add-user-to-event/add-user-to-event.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/volunteer-directory/volunteer-directory.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/volunteer-directory/volunteer-directory.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/volunteer-directory/volunteer-directory.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/volunteer-directory/volunteer-directory.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/sign-up-sheet/sign-up-sheet.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/sign-up-sheet/sign-up-sheet.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/week-generator/week-generator.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/week-generator/week-generator.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +72,8 @@
       <workItem from="1634948837624" duration="1247000" />
       <workItem from="1635441872483" duration="4098000" />
       <workItem from="1636140177675" duration="1249000" />
+      <workItem from="1638466431155" duration="21000" />
+      <workItem from="1638571626505" duration="3133000" />
     </task>
     <servers />
   </component>

@@ -53,8 +53,10 @@ export class UserEventComponent implements OnInit {
   eventTypes = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    deldr: "Delivery Driver (Own Car)",
+    deldr_SR: "Delivery Driver (Own Car)",
+    deliv: "Delivery (Walker)",
+    deliv_biker: "Delivery (Biker)",
   };
 
   @Input() userId: string;

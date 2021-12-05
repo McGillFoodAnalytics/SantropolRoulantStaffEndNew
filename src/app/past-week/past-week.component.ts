@@ -24,8 +24,10 @@ export class PastWeekComponent implements OnInit {
   shiftTypes = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    deldr: "Delivery Driver (Own Car)",
+    deldr_SR: "Delivery Driver (SR Car)",
+    deliv: "Delivery (Walker)",
+    deliv_biker: "Delivery (Biker)",
   };
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('paginator') paginator: MatPaginator;

@@ -35,7 +35,9 @@ export class FirebaseService {
     kitam: 5,
     kitpm: 5,
     deldr: 4,
+    deldr_SR: 4,
     deliv: 10,
+    deliv_biker: 10,
   };
 
   days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

@@ -68,16 +68,21 @@ export class SignUpSheetComponent implements OnInit {
   eventTypes = {
     "Kitchen AM": "kitam",
     "Kitchen PM": "kitpm",
-    "Delivery Driver": "deldr",
-    "Delivery": "deliv",
+    "Driver (Own Car)": "deldr",
+    "Driver (SR car)": "deldr_SR",
+    "Delivery (Walker)": "deliv",
+    "Delivery (Biker)": "deliv_biker",
   };
   eventTypesCool = {
     kitam: "Kitchen AM",
     kitpm: "Kitchen PM",
-    deldr: "Delivery Driver",
-    deliv: "Delivery",
+    deldr: "Driver (Own Car)",
+    deldr_SR: "Driver (SR car)",
+    deliv: "Delivery (Walker)",
+    deliv_biker: "Delivery (Biker)",
+    
   };
-  eventArray = ["Kitchen AM", "Kitchen PM", "Delivery Driver", "Delivery"];
+  eventArray = ["Kitchen AM", "Kitchen PM", "Driver (Own Car)", "Driver (SR Car)", "Delivery (Walker)", "Delivery (Biker)"];
 
   currentEvent = "Kitchen AM";
   private pane = "left";
@@ -139,7 +144,7 @@ export class SignUpSheetComponent implements OnInit {
   }
 
   formatEventDates() {
-    const events_per_week = 136;
+    const events_per_week = 206;
     let sub = this.events.subscribe((snapshots) => {
       let i = 0;
       this.week1 = [];
